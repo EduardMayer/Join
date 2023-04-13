@@ -91,3 +91,20 @@ body {
   font-weight: bold;
   color: #2a3647;
 }
+.mainHelpContainer{
+  margin-top: 171px;
+  margin-left: 124px;
+  margin-right: 124px;
+  text-align: justify;
+}
+.explainContainer{
+  display: flex;
+  gap: 35px;
+  margin-bottom: 15px;
+}
+.numberHelp{
+  display: flex;
+  margin: 0px;
+  font-weight: 700;
+  font-size: 27px;
+}
