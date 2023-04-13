@@ -1,0 +1,112 @@
+body {
+    margin: 0;
+    margin-left: 232px;
+    margin-top: 90px;
+    background-color: rgb(245, 245, 245);
+
+}
+
+.main {
+    margin-top: 200px;
+    margin-left: 200px;
+    margin-right: 200px;
+    width: 600px;
+}
+
+.headline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.workstation {
+    display: flex;
+    flex-direction: column;
+}
+
+.tasks-boxes {
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-board {
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 100px;
+    width: 100px;
+    align-items: center;
+    display: flex;
+    padding: 10px;
+    margin-right: 20px;
+    justify-content: center;
+    background-color: white;
+}
+
+.tasks-progress {
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 100px;
+    width: 100px;
+    align-items: center;
+    display: flex;
+    padding: 10px;
+    margin-right: 20px;
+    justify-content: center;
+    background-color: white;
+}
+
+.feedback {
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 100px;
+    width: 100px;
+    align-items: center;
+    display: flex;
+    padding: 10px;
+    margin-right: 20px;
+    justify-content: center;
+    background-color: white;
+}
+
+.tasks-urgent {
+    display: flex;
+    width: 550px;
+    border: 1px solid black;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border-radius: 20px;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+
+.todo-done {
+    display: flex;
+}
+
+.todo {
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 100px;
+    width: 200px;
+    align-items: center;
+    display: flex;
+    padding: 10px;
+    margin-right: 20px;
+    justify-content: center;
+    background-color: white;
+}
+
+.done {
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 100px;
+    width: 200px;
+    align-items: center;
+    display: flex;
+    padding: 10px;
+    margin-right: 20px;
+    justify-content: center;
+    background-color: white;
+}

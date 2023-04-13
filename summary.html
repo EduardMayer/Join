@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join-Summary</title>
+    <link rel="stylesheet" href="summary.css">
+    <link rel="stylesheet" href="headnav.css">
+    <script src="board.js"></script>
+</head>
+
+<body onload="includeHTML()">
+    <div w3-include-html="head_navbar.html"></div>
+    <div class="main">
+        <div class="headline">
+            <h1>Summary</h1>
+            <div class="verticalLine-summary"><img src="img/verticalline-sum.svg"></div>
+            <h4>Everything in a nutshell!</h4>
+        </div>
+        <div class="workstation">
+            <div class="tasks-boxes">
+                <div class="task-board">Tasks in Board</div>
+                <div class="tasks-progress">Tasks in Progress</div>
+                <div class="feedback">Awaiting Feedback</div>
+            </div>
+            <div class="tasks-urgent">
+                <img src="img/Frame 59.svg">
+                <div>Urgent</div>
+                <div class="verticalLine-urgent"><img src="img/verticalline-sum.svg"></div>
+                <div class="deadline">April 12, 2023</div>
+            </div>
+            <div class="todo-done">
+                <div class="todo"><img src="img/Group 7.svg">To-do</div>
+                <div class="done"><img src="img/done-button.svg">Done</div>
+            </div>
+        </div>
+        <div class="greet">Good evening, ...</div>
+    </div>
+</body>
+
+</html>
