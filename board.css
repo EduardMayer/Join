@@ -8,7 +8,6 @@ body {
 
 .mainBoardContainer {
   margin-left: 70px;
-  margin-right: 70px;
   padding-top: 82px;
 }
 .topBoardContainer {
@@ -16,7 +15,12 @@ body {
   align-items: center;
   justify-content: space-between;
 }
+.topBoardContainer p{
+  font-size: 61px;
+  font-weight: 700;
+  margin: 0px;
 
+}
 .searchBoardContainer {
   display: flex;
 }
@@ -48,23 +52,24 @@ body {
   background-color: #2a3647;
   color: white;
   border-radius: 10px;
-  font-weight: bold;
   align-items: center;
   gap: 10px;
   padding-left: 10px;
   padding-right: 10px;
-  font-size: 20px;
+  font-size: 21px;
   cursor: pointer;
-  margin-left: 20px;
+  margin-left: 35px;
+  margin-right: 65px;
 }
-.crossBox {
-  font-size: 30px;
+.addButtonContainer img{
+  margin-left: 10px;
 }
 .bottomBoardContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: 80px;
+  margin-right: 65px;
 }
 .statusContainer {
   display: flex;
@@ -73,31 +78,40 @@ body {
   width: 250px;
   white-space: nowrap;
 }
+
 .statusContainer h3 {
   margin-left: 15px;
+  font-size: 21px;
+  font-weight: 700;
 }
-.addBox {
-  border: solid 2px #2a3647;
-  border-radius: 10px;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  margin-left: 5px;
+
+.statusContainer img{
+cursor: pointer;
 }
-.addBox p {
-  font-size: 30px;
-  font-weight: bold;
-  color: #2a3647;
-}
+
 .mainHelpContainer{
-  margin-top: 171px;
+  margin-top: 161px;
   margin-left: 124px;
   margin-right: 124px;
+  margin-bottom: 124px;
   text-align: justify;
 }
+.backArrow{
+  display: flex;
+  width: 100%;
+  flex-direction: row-reverse;
+}
+.mainHelpContainer h1{
+ font-weight: 700;
+ font-size: 61px;
+ margin-top: 0px;
+}
+
+.mainHelpContainer h2{
+ font-weight: 700;
+ font-size: 27px;
+}
+
 .explainContainer{
   display: flex;
   gap: 35px;
