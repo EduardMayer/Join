@@ -145,6 +145,10 @@ h1{
     border-color:  rgba(41,171,225,255);
 }
 
+#password-img:hover{
+    cursor: pointer;
+}
+
 .login-button{
     border: none;
     padding: 12px;

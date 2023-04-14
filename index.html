@@ -30,8 +30,8 @@
                         <img src="img/emailicon.svg" alt="">
                     </div>
                     <div class="relativ-for-icon">
-                        <input placeholder="Password" type="password">
-                        <img src="img/passwordicon.svg" alt="">
+                        <input onkeyup="checkInput()" id="password" placeholder="Password" type="password">
+                        <img id="password-img" onclick="seePassword()" src="img/passwordicon.svg" alt="">
                     </div>
                 </div>
                 <div class="password-options">
