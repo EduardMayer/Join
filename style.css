@@ -13,16 +13,20 @@ body{
     background: none;
     max-height: min-content;
     max-width: min-content;
+    transition: all 250ms ease-in-out;
     animation-name: backgroundFill;
-    animation-duration: 0.5s;
+    animation-duration: 1.5s;
 }
 
 .logo img{
+    opacity: 0;
+    z-index: 9999;
     position: absolute;
     top: 50px;
     left: 50px;
     animation-name: logoEffect;
-    animation-duration: 2s;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
 }
 
 .nav-bar{
@@ -241,9 +245,14 @@ h1{
 
 @keyframes logoEffect{
     from{
+        opacity: 1;
         position: absolute;
         top: 50vh;
         left: 50%;
+        animation-delay: 1s;
+    }
+    to{
+        opacity: 1;
     }
 }
 
