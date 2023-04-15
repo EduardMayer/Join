@@ -9,48 +9,18 @@
     <link rel="stylesheet" href="fonts.css">
     <script src="script.js"></script>
 </head> 
-<body>
+<body onload="init()">
     <div class="overdiv">
         <div class="logo">
             <img src="img/Join-logo.svg" alt="">
         </div>
-        <div class="nav-bar">
+        <div id="navbar" class="nav-bar">
             <span>Not a Join user?</span>
-            <a href="#">Sign up</a>
+            <a onclick="renderSignUp()">Sign up</a>
         </div>
         <div class="login-div">
-            <div class="login">
-                <div>
-                    <h1>Log in</h1>
-                    <div class="h1-line"></div>
-                </div>
-                <div class="login-value">
-                    <div class="relativ-for-icon">
-                        <input placeholder="Email" type="email">
-                        <img src="img/emailicon.svg" alt="">
-                    </div>
-                    <div class="relativ-for-icon">
-                        <input onkeyup="checkInput()" id="password" placeholder="Password" type="password">
-                        <img id="password-img" onclick="seePassword()" src="img/passwordicon.svg" alt="">
-                    </div>
-                </div>
-                <div class="password-options">
-                    <div class="checkbox">
-                        <input type="checkbox">
-                        <span>Remember me</span>
-                    </div>
-                    <div class="forgot">
-                        <a href="#">Forgot my password</a>
-                    </div>
-                </div>
-                <div class="login-buttons">
-                    <div>
-                        <button class="login-button">Log in</button>
-                    </div>
-                    <div>
-                        <button class="guest-button">Guest Log in</button>
-                    </div>
-                </div>
+            <div id="loginDiv" class="login">
+                
             </div>
         </div>
     </div>
