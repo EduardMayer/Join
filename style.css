@@ -10,22 +10,23 @@ body{
 }
 
 .logo{
-    background: none;
+    background-color: rgb(246, 247, 248);
     max-height: min-content;
     max-width: min-content;
     transition: all 250ms ease-in-out;
     animation-name: backgroundFill;
-    animation-duration: 1.5s;
+    animation-duration: 4s;
 }
 
 .logo img{
-    opacity: 0;
-    z-index: 9999;
+    opacity: 1;
+    z-index: 999;
     position: absolute;
-    top: 50px;
-    left: 50px;
+    top: 50vh;
+    left: 50%;
+    animation-delay: 0.5s;
     animation-name: logoEffect;
-    animation-duration: 3s;
+    animation-duration: 1s;
     animation-fill-mode: forwards;
 }
 
@@ -249,10 +250,13 @@ h1{
         position: absolute;
         top: 50vh;
         left: 50%;
-        animation-delay: 1s;
     }
     to{
         opacity: 1;
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        animation-delay: 1s;
     }
 }
 
