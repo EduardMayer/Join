@@ -128,7 +128,7 @@ textarea{
 }
 
 .subtaskChildContainer:focus-within {
-    border: 2px solid black;
+    outline: 2px solid black;
   }
 .subtaskChildContainer input:focus {
     outline: none;
@@ -146,4 +146,41 @@ textarea{
     border: 1px solid #D1D1D1;
     border-radius: 10px;
     cursor: pointer;
+}
+.buttonTaskContainer{
+    display: flex;
+    justify-content: flex-end;
+    width: 92%;
+    gap: 10px;
+    margin-top: 30px;
+}
+.buttonTask{
+    border: 1px solid #2A3647;
+    background-color: #F5F5F5;
+    color: #2A3647;
+    width: 136px;
+    height: 61px;
+    padding: 18px, 10px, 18px, 10px;
+    border-radius: 10px;
+    font-size: 21px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+.buttonTask2{
+    border: 1px solid #2A3647;
+    background-color: #2A3647;
+    color: #F5F5F5;
+    width: 177px;
+    height: 61px;
+    padding: 18px, 10px, 18px, 10px;
+    border-radius: 10px;
+    font-size: 21px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
 }
