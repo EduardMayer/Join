@@ -9,8 +9,11 @@
     <link rel="stylesheet" href="fonts.css">
     <script src="script.js"></script>
     <script src="mini_backend.js"></script>
+    <script>
+        setURL('http://gruppe-533.developerakademie.net/smallest_backend_ever');
+    </script>
 </head> 
-<body onload="init()">
+<body onload="downloadFromServer(); init()">
     <div id="navbar" class="nav-bar">
         <span>Not a Join user?</span>
         <a onclick="renderSignUp()">Sign up</a>

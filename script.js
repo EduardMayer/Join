@@ -1,10 +1,7 @@
-
-
 let isPasswordSeen = false;
 let eyeImg = false;
 
 function init(){
-    setURL('http://gruppe-533.developerakademie.net/smallest_backend_ever');
     render();
 }
 
