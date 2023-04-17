@@ -1,0 +1,149 @@
+.headTaskContainer{
+    display: flex;
+    margin-top: 161px;
+    margin-left: 124px;
+}
+.headTaskContainer h1{
+    font-size: 61px;
+    margin-top: 0px;
+}
+.mainTaskContainer{
+    display: flex;
+    margin-left: 124px;
+    justify-content: space-between;
+}
+
+.leftTaskContainer{
+    display: flex;
+    flex-direction: column;
+    font-size: 21px;
+    gap: 34px;
+    margin-right: 59px;
+}
+label{
+    margin-bottom: 8px;
+}
+input{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 13px 21px;
+    height: 51px;
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    font-size: 21px;
+}
+textarea{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 13px 21px;
+    width: 422px;
+    height: 119px;
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    font-family: Inter;
+    font-size: 21px;
+   
+}
+.titleContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.descriptionContainer{
+    display: flex;
+    flex-direction: column;
+}
+.categoryContainer{
+    display: flex;
+    flex-direction: column;
+}
+.descriptionContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.childTaskContainer{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 21px;
+    width: 422px;
+    height: 51px;
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.middleTaskContainer{
+    border-left: 1px solid #d1d1d1;
+    height: 551px;
+}
+.rightTaskContainer{
+    display: flex;
+    flex-direction: column;
+    font-size: 21px;
+    gap: 37px;
+    margin-right: 123px;
+    margin-left: 59px;
+}
+.dateContainer{
+    display: flex;
+    flex-direction: column;
+}
+.prioContainer{
+    display: flex;
+    flex-direction: column;
+}
+.prioChildContainer{
+    display: flex;
+    gap: 8px;
+}
+.subtaskContainer{
+    display: flex;
+    flex-direction: column;
+}
+.subtaskChildContainer{
+    display: flex;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    justify-content: space-between;
+}
+
+.subtaskChildContainer img{
+    padding-right: 19px;
+    cursor: pointer;
+}
+.subtaskChildContainer input{
+    border: none;
+}
+
+.subtaskChildContainer:focus-within {
+    border: 2px solid black;
+  }
+.subtaskChildContainer input:focus {
+    outline: none;
+}
+.prioBox{
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 13px;
+    width: 136px;
+    height: 51px;
+    gap: 10px;
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    cursor: pointer;
+}

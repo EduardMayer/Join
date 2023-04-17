@@ -11,3 +11,8 @@ async function includeHTML() {
         }
     }
 }
+
+function openAddTaskContainer(){
+
+
+}

@@ -1,5 +1,4 @@
 body {
-  margin: 0;
   margin-left: 232px;
   margin-top: 90px;
   background-color: rgb(245, 245, 245);
@@ -66,6 +65,7 @@ body {
 }
 .bottomBoardContainer {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   margin-top: 80px;
