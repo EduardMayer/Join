@@ -123,6 +123,9 @@ textarea{
     padding-right: 19px;
     cursor: pointer;
 }
+.subtaskChildContainer img:hover{
+    scale: 1.2;
+}
 .subtaskChildContainer input{
     border: none;
 }
@@ -146,6 +149,12 @@ textarea{
     border: 1px solid #D1D1D1;
     border-radius: 10px;
     cursor: pointer;
+    transition: all 150ms ease-in-out;
+}
+
+.prioBox:hover{
+   box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
+   scale: 1.05;
 }
 .buttonTaskContainer{
     display: flex;
@@ -168,7 +177,18 @@ textarea{
     align-items: center;
     justify-content: center;
     gap: 16px;
+    transition: background 200ms ease-in-out;
 }
+.buttonTask:hover .cancelIcon {
+    content: url('/img/iconoir_cancel_hover.svg');
+}
+.buttonTask:hover{
+    box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
+    scale: 1.05;
+    border: 1px solid rgb(41,171,226);
+    color: rgb(41,171,226);
+}
+
 .buttonTask2{
     border: 1px solid #2A3647;
     background-color: #2A3647;
@@ -183,4 +203,28 @@ textarea{
     align-items: center;
     justify-content: center;
     gap: 14px;
+    transition: background 200ms ease-in-out;
+}
+.buttonTask2:hover{
+    box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
+    scale: 1.05;
+    background-color: rgb(41,171,226);
+    border: 1px solid rgb(41,171,226);
+}
+
+.subTaskDescription{
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+}
+.checkContainer{
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    height: 25px;
+}
+.checkContainer input{
+    height: 25px;
+    margin: 0px;
+    cursor: pointer;
 }

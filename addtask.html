@@ -13,7 +13,7 @@
     <title>AddTask</title>
 </head>
 
-<body onload="includeHTML()">
+<div onload="includeHTML()">
     <div w3-include-html="head_navbar.html"></div>
     <div class="headTaskContainer">
         <h1>Add Task</h1>
@@ -22,11 +22,11 @@
         <div class="leftTaskContainer">
             <div class="titleContainer">
                 <label for="title">Title</label>
-                <input type="text" placeholder="Enter a title">
+                <input type="text" id="title" placeholder="Enter a title">
             </div>
             <div class="descriptionContainer">
                 <label for="description">Description</label>
-                <textarea name="description" id="" placeholder="Enter a Description"></textarea>
+                <textarea name="description" id="description" placeholder="Enter a Description"></textarea>
             </div>
             <div class="categoryContainer">
                 <label for="Category">Category</label>
@@ -48,31 +48,45 @@
             <div>
                 <div class="dateContainer">
                     <label for="date">Due date</label>
-                    <input type="date">
+                    <input type="date" id="date">
                 </div>
             </div>
             <div class="prioContainer">
                 <label for="Prio">Prio</label>
                 <div class="prioChildContainer">
-                    <div class="prioBox">Urgent<img src="/img/urgent.svg"></div>
-                    <div class="prioBox">Medium<img src="/img/medium.svg"></div>
-                    <div class="prioBox">Low<img src="/img/low.svg"></div>
+                    <div id="urgentbox" onclick="checkpriobox(event)" class="prioBox">
+                        Urgent
+                        <img src="/img/urgent.svg" data-default-img="/img/urgent.svg" alt="Urgent Priority">
+                    </div>
+                    <div id="mediumbox" onclick="checkpriobox(event)" class="prioBox">
+                        Medium
+                        <img src="/img/medium.svg" data-default-img="/img/medium.svg" alt="Medium Priority">
+                    </div>
+                    <div id="lowbox" onclick="checkpriobox(event)" class="prioBox">
+                        Low
+                        <img src="/img/low.svg" data-default-img="/img/low.svg" alt="Low Priority">
+                    </div>
                 </div>
             </div>
-            <div class="subtaskContainer">
-                <label for="subtaskChildInput">Subtasks</label>
-                <div class="subtaskChildContainer">
-                    <input id="subtaskChildInput" type="text" placeholder="Add new subtask">
-                    <img src="/img/icon_cancel.svg">
+                <div class="subtaskContainer">
+                    <label for="subtaskChildInput">Subtasks</label>
+                    <div class="subtaskChildContainer">
+                        <input id="subtask" type="text" placeholder="Add new subtask">
+                        <img onclick="addSubtask()" src="/img/icon_cancel.svg">
+                    </div>
                 </div>
+                <div id="subTaskDescription" class="subTaskDescription"></div>
             </div>
         </div>
     </div>
     <div class="buttonTaskContainer">
-        <button class="buttonTask">Clear <img src="/img/iconoir_cancel.svg"></button>
-        <button class="buttonTask2">Create Task <img src="/img/akar-icons_check.svg"></button>
+        <button class="buttonTask" onclick="clearTask()">Clear <img class="cancelIcon"
+                src="/img/iconoir_cancel.svg"></button>
+        <button class="buttonTask2" onclick="createTask()">Create Task <img
+                src="/img/akar-icons_check.svg"></button>
+
     </div>
-    </div>
+</div>
 </body>
 
 </html>
