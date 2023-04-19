@@ -37,7 +37,7 @@ function setURL(url) {
  */
 
 async function loadJSONFromServer() {
-    let response = await fetch('http://gruppe-533.developerakademie.net/smallest_backend_ever/database.json' + '/nocors.php?json=database&noache=' + (new Date().getTime()));
+    let response = await fetch('https://gruppe-533.developerakademie.net/smallest_backend_ever' + '/nocors.php?json=database&noache=' + (new Date().getTime()));
     return await response.text();
 
 }
@@ -46,7 +46,7 @@ function loadJSONFromServerOld() {
     return new Promise(function(resolve, reject) {
         let xhttp = new XMLHttpRequest();
         let proxy = determineProxySettings();
-        let serverURL = proxy + 'http://gruppe-533.developerakademie.net/smallest_backend_ever/database.json' + '/nocors.php?json=database&noache=' + (new Date().getTime());
+        let serverURL = proxy + 'https://gruppe-533.developerakademie.net/smallest_backend_ever' + '/nocors.php?json=database&noache=' + (new Date().getTime());
 
 
 
