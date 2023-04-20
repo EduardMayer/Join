@@ -13,7 +13,7 @@
     <title>AddTask</title>
 </head>
 
-<div onload="includeHTML()">
+<body onload="includeHTML()">
     <div w3-include-html="head_navbar.html"></div>
     <div class="headTaskContainer">
         <h1>Add Task</h1>
@@ -68,25 +68,23 @@
                     </div>
                 </div>
             </div>
-                <div class="subtaskContainer">
-                    <label for="subtaskChildInput">Subtasks</label>
-                    <div class="subtaskChildContainer">
-                        <input id="subtask" type="text" placeholder="Add new subtask">
-                        <img onclick="addSubtask()" src="/img/icon_cancel.svg">
-                    </div>
+            <div class="subtaskContainer">
+                <label for="subtaskChildInput">Subtasks</label>
+                <div class="subtaskChildContainer">
+                    <input id="subtask" type="text" placeholder="Add new subtask">
+                    <img onclick="addSubtask()" src="/img/icon_cancel.svg">
                 </div>
-                <div id="subTaskDescription" class="subTaskDescription"></div>
             </div>
+            <div id="subTaskDescription" class="subTaskDescription"></div>
         </div>
+    </div>
     </div>
     <div class="buttonTaskContainer">
         <button class="buttonTask" onclick="clearTask()">Clear <img class="cancelIcon"
                 src="/img/iconoir_cancel.svg"></button>
-        <button class="buttonTask2" onclick="createTask()">Create Task <img
-                src="/img/akar-icons_check.svg"></button>
-
+        <button class="buttonTask2" onclick="createTask()">Create Task<img src="/img/akar-icons_check.svg"></button>
     </div>
-</div>
+    </div>
 </body>
 
 </html>
