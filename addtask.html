@@ -30,17 +30,19 @@
             </div>
             <div class="categoryContainer">
                 <label for="Category">Category</label>
-                <div class="childTaskContainer">
+                <div onclick="openDropBoxCategory()" class="childTaskContainer" id="childTaskContainer">
                     <p>Select task category</p>
                     <img src="/img/arrowTask.svg">
                 </div>
+                <div onclick="newCategory()" class="d-none" id="dropDownBox">New Category</div>
             </div>
-            <div class="descriptionContainer">
+            <div class="assignedToContainer">
                 <label for="Category">Assigned to</label>
-                <div class="childTaskContainer">
+                <div onclick="openDropBoxAssigned()" class="childTaskContainer" id="childUserContainer">
                     <p>Select cotacts to assign</p>
                     <img src="/img/arrowTask.svg">
                 </div>
+                <div class="d-none" id="dropDownUser"></div>
             </div>
         </div>
         <div class="middleTaskContainer"></div>

@@ -20,6 +20,41 @@ function openAddTaskContainer(){
 
 }
 
+function openDropBoxCategory() {
+ let dropDownBox = document.getElementById('dropDownBox');
+ let childTaskContainer = document.getElementById('childTaskContainer')
+  // Anzeigen des Dropdown-Menüs, wenn es ausgeblendet ist
+  if (dropDownBox.classList.contains('d-none')) {
+    dropDownBox.classList.remove('d-none');
+    dropDownBox.classList.add('dropDownBox');
+    childTaskContainer.classList.add('d-border');
+  }
+  // Schließen des Dropdown-Menüs, wenn es bereits sichtbar ist
+  else {
+    dropDownBox.classList.add('d-none');
+    dropDownBox.classList.remove('dropDownBox');
+    childTaskContainer.classList.remove('d-border');
+  }
+}
+
+function openDropBoxAssigned(){
+  let dropDownUser = document.getElementById('dropDownUser');
+  let childUserContainer = document.getElementById('childUserContainer')
+   // Anzeigen des Dropdown-Menüs, wenn es ausgeblendet ist
+   if (dropDownUser.classList.contains('d-none')) {
+     dropDownUser.classList.remove('d-none');
+     dropDownUser.classList.add('dropDownBox');
+     childUserContainer.classList.add('d-border');
+   }
+   // Schließen des Dropdown-Menüs, wenn es bereits sichtbar ist
+   else {
+     dropDownUser.classList.add('d-none');
+     dropDownUser.classList.remove('dropDownBox');
+     childUserContainer.classList.remove('d-border');
+   }
+ }
+ 
+
 function addSubtask(){
     let subtask = document.getElementById('subtask').value;
     document.getElementById('subTaskDescription').innerHTML += `<div class="checkContainer"><input type="checkbox"> ${subtask}</div>`;
