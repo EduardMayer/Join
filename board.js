@@ -1,10 +1,11 @@
 let currentElement = null;
 
+// Header und links Navigtionsleiste wird hinzugefügt
 async function includeHTML() {
   let includeElements = document.querySelectorAll("[w3-include-html]");
   for (let i = 0; i < includeElements.length; i++) {
     const element = includeElements[i];
-    file = element.getAttribute("w3-include-html"); // "includes/head_navbar.html"
+    file = element.getAttribute("w3-include-html");
     let resp = await fetch(file);
     if (resp.ok) {
       element.innerHTML = await resp.text();
@@ -14,7 +15,6 @@ async function includeHTML() {
   }
 }
 
-function openAddTaskContainer() {}
 
 function openDropBoxCategory() {
   let dropDownBox = document.getElementById("dropDownBox");
@@ -49,6 +49,7 @@ function openDropBoxAssigned() {
     childUserContainer.classList.remove("d-border");
   }
 }
+// Wechselt die Symbole in der Subtaskleiste
 function changeSubImg() {
   document.getElementById("subImgContainer").innerHTML =`<div class="subImgContainer">
   <img onclick="closeSubImg()" src="/img/iconoir_cancel_black.svg">
@@ -57,10 +58,13 @@ function changeSubImg() {
 </div>`;
 }
 
+//Schließt die Subtaskleiste und standart Bild wird eingefügt
 function closeSubImg(){
   document.getElementById("subImgContainer").innerHTML =`<img src="/img/icon_cancel.svg">`;
+  document.getElementById("subtask").value =``;
 }
 
+//Subtask wird hinzugefügt
 function addSubtask() {
   let subtask = document.getElementById("subtask").value;
   document.getElementById(
@@ -69,6 +73,7 @@ function addSubtask() {
   document.getElementById("subtask").value = ``;
 }
 
+// Die Buttons für die Priorität bekommen nach anklicken eine neue Farbe
 function resetImage(box) {
   const img = box.querySelector("img");
   const defaultImg = img.dataset.defaultImg;
@@ -95,4 +100,21 @@ function checkpriobox(event) {
   }
 
   currentElement = element;
+}
+
+//Setzt das aktuelle Datum in das Datumfeld
+function setCurrentDate() {
+  const dateInput = document.getElementById('date');
+  const now = new Date();
+  const year = now.getFullYear();
+  let month = now.getMonth() + 1;
+  let day = now.getDate();
+  if (month < 10) {
+    month = "0" + month;
+  }
+  if (day < 10) {
+    day = "0" + day;
+  }
+  const currentDate = year + "-" + month + "-" + day;
+  dateInput.value = currentDate;
 }
