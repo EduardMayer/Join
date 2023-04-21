@@ -131,3 +131,13 @@ cursor: pointer;
   font-weight: 700;
   font-size: 27px;
 }
+.createTaskBox:hover {
+  content: url('/img/blueplusicon.svg');
+}
+
+.searchBarContainer:focus-within {
+  outline: 2px solid black;
+}
+.searchBarContainer input:focus {
+  outline: none;
+}

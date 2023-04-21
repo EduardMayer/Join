@@ -72,9 +72,9 @@
             </div>
             <div class="subtaskContainer">
                 <label for="subtaskChildInput">Subtasks</label>
-                <div class="subtaskChildContainer">
-                    <input id="subtask" type="text" placeholder="Add new subtask">
-                    <img onclick="addSubtask()" src="/img/icon_cancel.svg">
+                <div class="subtaskChildContainer" >
+                    <input onclick="changeSubImg()" id="subtask" type="text" placeholder="Add new subtask">
+                    <div class="subImgContainer" id="subImgContainer"><img src="/img/icon_cancel.svg"></div>
                 </div>
             </div>
             <div id="subTaskDescription" class="subTaskDescription"></div>

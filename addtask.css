@@ -120,12 +120,11 @@ textarea{
 }
 
 .subtaskChildContainer img{
-    padding-right: 19px;
+    padding-right: 10px;
+    padding-left: 10px;
     cursor: pointer;
 }
-.subtaskChildContainer img:hover{
-    scale: 1.2;
-}
+
 .subtaskChildContainer input{
     border: none;
 }
@@ -157,10 +156,9 @@ textarea{
    scale: 1.05;
 }
 .buttonTaskContainer{
-    position: fixed;
     display: flex;
     gap: 10px;
-    right: 130px;
+    justify-content: flex-end;
 }
 .buttonTask{
     border: 1px solid #2A3647;
@@ -252,3 +250,8 @@ textarea{
     border-top: none;
 }
 
+.subImgContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
