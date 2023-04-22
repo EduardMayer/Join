@@ -7,16 +7,24 @@ body {
 }
 
 .main {
-    margin-top: 200px;
-    margin-left: 200px;
-    margin-right: 200px;
-    width: 600px;
+    position: relative;
+    height: 100px;
+    margin-left: 150px;
+    top: 100px;
+}
+
+.content {
+    max-width: 700px;
+    display: flex;
+    text-align: center;
+    align-items: center;
 }
 
 .headline {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
     align-items: center;
+    gap: 30px;
 }
 
 .workstation {
@@ -29,13 +37,24 @@ body {
     justify-content: space-between;
 }
 
+span{
+    font-size: 48px;
+    font-weight: 600;
+}
+
+p {
+    text-align: center;
+    font-size: 18px;
+}
+
 .task-board {
     border-radius: 20px;
     height: 100px;
     width: 100px;
     align-items: center;
     display: flex;
-    padding: 10px;
+    flex-direction: column;
+    padding: 30px;;
     margin-right: 20px;
     justify-content: center;
     background-color: white;
@@ -47,7 +66,8 @@ body {
     width: 100px;
     align-items: center;
     display: flex;
-    padding: 10px;
+    flex-direction: column;
+    padding: 30px;
     margin-right: 20px;
     justify-content: center;
     background-color: white;
@@ -59,7 +79,8 @@ body {
     width: 100px;
     align-items: center;
     display: flex;
-    padding: 10px;
+    flex-direction: column;
+    padding: 30px;
     margin-right: 20px;
     justify-content: center;
     background-color: white;
@@ -71,10 +92,14 @@ body {
     margin-bottom: 20px;
     margin-top: 20px;
     border-radius: 20px;
-    height: 100px;
+    height: 150px;
     align-items: center;
     justify-content: space-evenly;
     background-color: white;
+}
+
+.urgent {
+    text-align: center;
 }
 
 .todo-done {
@@ -93,6 +118,9 @@ body {
     background-color: white;
 }
 
+.date {
+    font-size: 28px;
+}
 .done {
     border-radius: 20px;
     height: 100px;
@@ -103,4 +131,15 @@ body {
     margin-right: 20px;
     justify-content: center;
     background-color: white;
+}
+
+.todo-done-ticket {
+    margin-left: 15px;
+    text-align: center;
+}
+
+.greet {
+    margin-left: 50px;
+    font-size: 38px;
+    font-weight: 500;
 }
