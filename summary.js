@@ -1,4 +1,4 @@
-function includeHTML() {
+function init() {
     renderGreetingMassage();
 }
 
@@ -13,7 +13,6 @@ function renderGreetingMassage() {
         document.getElementById('greeting-message').innerHTML = message + ',';
         // document.getElementById('greeting-user').innerHTML = user;
     }
-    getGreeting();
 }
 
 
@@ -21,13 +20,13 @@ function getGreeting() {
     let time = new Date();
     time = time.getHours();
 
-    if (time >= 5 && time < 12) {
+    if (time >= 6 && time < 12) {
         return 'Good morning';
     }
     if (time >= 12 && time < 18) {
         return 'Good afternoon';
     }
-    if ((time >= 18 && time < 24) || (time >= 0 && time < 5)) {
+    if ((time >= 18 && time < 24) || (time >= 0 && time < 6)) {
         return 'Good evening';
     }
 }
