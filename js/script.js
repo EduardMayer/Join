@@ -52,6 +52,8 @@ function back(){
     render();
 }
 
+
+
 function renderHTML(){
     return`
         <div>
@@ -105,7 +107,7 @@ function SignUpHTML(){
     </div>
 </div>
 <div class="login-value">
-    <form>
+    <form onsubmit="register();return false;">
         <div class="relativ-for-icon">
             <input required id="inputName" placeholder="name" type="text" minlength="2">
             <img src="img/people.svg" alt="">
@@ -118,13 +120,14 @@ function SignUpHTML(){
             <input required onkeyup="checkInput()" id="password" placeholder="Password" type="password">
             <img id="password-img" onclick="seePassword()" src="img/passwordicon.svg" alt="">
         </div>
+        <div class="login-buttons-sign-up">
+            <div>
+                <button id="Btn" class="login-button">Sign up</button>
+            </div>
+        </div>
     </form>
 </div>
-<div class="login-buttons-sign-up">
-    <div>
-        <button class="login-button">Sign up</button>
-    </div>
-</div>
+
     `;
 }
 
