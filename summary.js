@@ -1,15 +1,19 @@
+function includeHTML() {
+    renderGreetingMassage();
+}
+
 function renderGreetingMassage() {
-    let user = getUser();
+    // let user = getUser();
     let message = getGreeting();
-    if (user == 'Guest') {
+    if (message) {
         document.getElementById('greeting-message').innerHTML = message;
-        document.getElementById('greeting-user').innerHTML = '';
+        // document.getElementById('greeting-user').innerHTML = '';
         
     } else {
         document.getElementById('greeting-message').innerHTML = message + ',';
-        document.getElementById('greeting-user').innerHTML = user;
+        // document.getElementById('greeting-user').innerHTML = user;
     }
-
+    getGreeting();
 }
 
 
