@@ -130,34 +130,3 @@ function createTask() {
   console.log(date);
   
 }
-
-
-function renderTodos(tasks) {
-  document.getElementById('todo').innerHTML = '';
-  document.getElementById('inProgress').innerHTML = '';
-  document.getElementById('testing').innerHTML = '';
-  document.getElementById('done').innerHTML = '';
-  for (let i = 0; i < tasks.length; i++) {
-      let task = boardTasks.find(t => t.id == filterdTasks[i].id);
-      let boardIndex = boardTasks.indexOf(task);
-      document.getElementById(tasks[i]['board']).innerHTML += generateTaskHTML(i, boardIndex);
-      checkBoardPosition(i, tasks)
-      renderAssignedUser(boardIndex, i);
-      checkProgress(boardIndex);
-      checkIfTaskFinished(boardIndex);
-  }
-}
-
-
-
-
-function startDragging(event){
- currentDraggedElement = event;
-}
-
-function allowDrop(ev) {
-  ev.preventDefault();
-}
-function moveTo(ev){
-  ev.dataTransfer.setData("text", ev.target.id);
-}
