@@ -90,6 +90,7 @@ body {
   justify-content: space-between;
   width: 250px;
   white-space: nowrap;
+  flex-direction: column;
 }
 
 .statusContainer h3 {
@@ -100,6 +101,13 @@ body {
 
 .statusContainer img{
 cursor: pointer;
+}
+
+.upperStatusBox{
+  display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .mainHelpContainer{
@@ -145,4 +153,11 @@ cursor: pointer;
 }
 .searchBarContainer input:focus {
   outline: none;
+}
+
+/*/Testing Drag and Drop/*/
+
+.box{
+  width: 100%;
+  min-height: 200px;
 }

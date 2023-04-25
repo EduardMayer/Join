@@ -1,4 +1,5 @@
 let currentElement = null;
+let currentDraggedElement;
 
 // Header und links Navigtionsleiste wird hinzugefügt
 async function includeHTML() {
@@ -18,35 +19,35 @@ async function includeHTML() {
 
 function openDropBoxCategory() {
   let dropDownBox = document.getElementById("dropDownBox");
-  let childTaskContainer = document.getElementById("childTaskContainer");
+  let childTaskContainer = document.getElementById("category");
   // Anzeigen des Dropdown-Menüs, wenn es ausgeblendet ist
   if (dropDownBox.classList.contains("d-none")) {
     dropDownBox.classList.remove("d-none");
     dropDownBox.classList.add("dropDownBox");
-    childTaskContainer.classList.add("d-border");
+    childTaskContainer.classList.add("b-none");
   }
   // Schließen des Dropdown-Menüs, wenn es bereits sichtbar ist
   else {
     dropDownBox.classList.add("d-none");
     dropDownBox.classList.remove("dropDownBox");
-    childTaskContainer.classList.remove("d-border");
+    childTaskContainer.classList.remove("b-none");
   }
 }
 
 function openDropBoxAssigned() {
   let dropDownUser = document.getElementById("dropDownUser");
-  let childUserContainer = document.getElementById("childUserContainer");
+  let childUserContainer = document.getElementById("assigned");
   // Anzeigen des Dropdown-Menüs, wenn es ausgeblendet ist
   if (dropDownUser.classList.contains("d-none")) {
     dropDownUser.classList.remove("d-none");
     dropDownUser.classList.add("dropDownBox");
-    childUserContainer.classList.add("d-border");
+    childUserContainer.classList.add("b-none");
   }
   // Schließen des Dropdown-Menüs, wenn es bereits sichtbar ist
   else {
     dropDownUser.classList.add("d-none");
     dropDownUser.classList.remove("dropDownBox");
-    childUserContainer.classList.remove("d-border");
+    childUserContainer.classList.remove("b-none");
   }
 }
 // Wechselt die Symbole in der Subtaskleiste
@@ -69,7 +70,7 @@ function addSubtask() {
   let subtask = document.getElementById("subtask").value;
   document.getElementById(
     "subTaskDescription"
-  ).innerHTML += `<div class="checkContainer"><input type="checkbox"> ${subtask}</div>`;
+  ).innerHTML += `<div class="checkContainer" ><input type="checkbox"><div>${subtask}</div></div>`;
   document.getElementById("subtask").value = ``;
 }
 
@@ -117,4 +118,46 @@ function setCurrentDate() {
   }
   const currentDate = year + "-" + month + "-" + day;
   dateInput.value = currentDate;
+}
+
+function createTask() {
+  let title = document.getElementById('title').value;
+  let description = document.getElementById('description').value;
+  let date = document.getElementById('date').value;
+  
+  console.log(title);
+  console.log(description);
+  console.log(date);
+  
+}
+
+
+function renderTodos(tasks) {
+  document.getElementById('todo').innerHTML = '';
+  document.getElementById('inProgress').innerHTML = '';
+  document.getElementById('testing').innerHTML = '';
+  document.getElementById('done').innerHTML = '';
+  for (let i = 0; i < tasks.length; i++) {
+      let task = boardTasks.find(t => t.id == filterdTasks[i].id);
+      let boardIndex = boardTasks.indexOf(task);
+      document.getElementById(tasks[i]['board']).innerHTML += generateTaskHTML(i, boardIndex);
+      checkBoardPosition(i, tasks)
+      renderAssignedUser(boardIndex, i);
+      checkProgress(boardIndex);
+      checkIfTaskFinished(boardIndex);
+  }
+}
+
+
+
+
+function startDragging(event){
+ currentDraggedElement = event;
+}
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+function moveTo(ev){
+  ev.dataTransfer.setData("text", ev.target.id);
 }

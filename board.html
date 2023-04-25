@@ -37,34 +37,39 @@
         </div>
         <div class="bottomBoardContainer">
             <div class="statusContainer">
-                <div class="uperStatusBox">
+                <div class="upperStatusBox">
                     <h3>To Do</h3>
-                    <div  onclick="openAddTaskContainer()"><img class="createTaskBox" src="/img/plus button v1.svg"></div>
-                </div>
-            </div>
-            <div class="statusContainer">
-                <div class="uperStatusBox">
-                    <h3>In Progress</h3>
                     <div onclick="openAddTaskContainer()"><img class="createTaskBox" src="/img/plus button v1.svg"></div>
-
+                </div>
+                <div class="box" ondragover="allowDrop(event)" ondrop="moveTo(event)" id="todoBox">
                 </div>
             </div>
             <div class="statusContainer">
-                <div class="uperStatusBox">
+                <div class="upperStatusBox">
+                    <h3>In Progress</h3> 
+                    <div onclick="openAddTaskContainer()"><img class="createTaskBox" src="/img/plus button v1.svg"></div>
+                </div>
+                <div class="box" ondragover="allowDrop(event)" ondrop="moveTo(event)" id="progressBox">
+                </div>
+            </div>
+            <div class="statusContainer">
+                <div class="upperStatusBox">
                     <h3>Awaiting Feedback</h3>
                     <div onclick="openAddTaskContainer()"><img class="createTaskBox" src="/img/plus button v1.svg"></div>
                 </div>
-                
-            </div>
-            <div class="statusContainer">
-                <div class="uperStatusBox">
-                    <h3>Done</h3>
-                    <div onclick="openAddTaskContainer()"><img class="createTaskBox" src="/img/plus button v1.svg"></div>
+                <div class="box" ondragover="allowDrop(event)" ondrop="moveTo(event)" id="feedbackBox">
 
                 </div>
             </div>
+            <div class="statusContainer">
+                <div class="upperStatusBox">
+                    <h3>Done</h3>
+                    <div onclick="openAddTaskContainer()"><img class="createTaskBox" src="/img/plus button v1.svg"></div>
+                </div>
+                <div class="box" ondragover="allowDrop(event)" ondrop="moveTo(event)" id="doneBox">
+                </div>
+            </div>
         </div>
-    </div>
 </body>
 
 </html>
