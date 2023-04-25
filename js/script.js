@@ -57,41 +57,38 @@ function back(){
 function renderHTML(){
     return`
     <div>
-    <h1>Log in</h1>
-    <div class="overH1-line">
-      <div class="h1-line"></div>
-    </div>
-  </div>
-  <div class="login-value">
-    <form onsubmit="login();return false;">
-      <div class="relativ-for-icon">
-        <input id="email" required placeholder="Email" type="email">
-        <img src="img/emailicon.svg" alt="">
-      </div>
-      <div class="relativ-for-icon">
-        <input required onkeyup="checkInput()" id="password" placeholder="Password" type="password">
-        <img id="password-img" onclick="seePassword()" src="img/passwordicon.svg" alt="">
-      </div>
-  </div>
-  <div class="password-options">
-    <div class="checkbox">
-      <input type="checkbox">
-      <span>Remember me</span>
-    </div>
-    <div class="forgot">
-      <a onclick="renderPassword()">Forgot my password</a>
-    </div>
-  </div>
-  <div class="login-buttons">
-    <div>
-      <button class="login-button">Log in</button>
-    </div>
-    <div>
-      <button class="guest-button">Guest Log in</button>
-    </div>
-  </div>
-  </form>
-  </div>
+                    <h1>Log in</h1>
+                    <div class="overH1-line">
+                      <div class="h1-line"></div>
+                    </div>
+                </div>
+                <form class="login-value" onsubmit="login();return false;">
+                    <div class="relativ-for-icon">
+                        <input required placeholder="Email" type="email">
+                        <img src="img/emailicon.svg" alt="">
+                      </div>
+                      <div class="relativ-for-icon">
+                        <input required onkeyup="checkInput()" id="password" placeholder="Password" type="password">
+                        <img id="password-img" onclick="seePassword()" src="img/passwordicon.svg" alt="">
+                    </div>
+                    <div class="password-options">
+                        <div class="checkbox">
+                          <input type="checkbox">
+                          <span>Remember me</span>
+                        </div>
+                        <div class="forgot">
+                          <a onclick="renderPassword()">Forgot my password</a>
+                        </div>
+                      </div>
+                      <div class="login-buttons">
+                        <div>
+                          <button class="login-button">Log in</button>
+                        </div>
+                        <div>
+                          <button class="guest-button">Guest Log in</button>
+                        </div>
+                      </div>
+                </form>
   
 `;
 }

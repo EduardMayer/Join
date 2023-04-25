@@ -133,6 +133,8 @@ h1{
 
 .relativ-for-icon{
     position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 .login-value img{
@@ -141,18 +143,20 @@ h1{
     width: 20px;
     position: absolute;
     top: 37px;
-    right: 10px;
+    right: 160px;
 }
 
 .password-options{
     display: flex;
+    justify-content: center;
     margin-top: 30px;
 }
 
 .checkbox{
     display: flex;
     align-items: center;
-    margin-right: 30px;
+    text-align: center;
+    margin-right: 20px;
 }
 
 .checkbox span:hover{
@@ -160,6 +164,8 @@ h1{
 }
 
 .checkbox input{
+    width: 15px;
+    height: 15px;
     background-color: rgb(244, 244, 244);
     border-radius: 10px;
     margin-right: 10px;
@@ -177,9 +183,14 @@ h1{
 .login-buttons{
     display: flex;
     width: 100%;
-    justify-content: space-around;
+    justify-content: center;
     margin-top: 30px;
     margin-bottom: 30px;
+}
+
+.login-buttons button{
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 .login-buttons-sign-up{
