@@ -124,7 +124,7 @@ h1{
     font-size: 16px;
     margin-top: 32px;
     height: 25px;
-    width: 325px;
+    width: 350px;
 }
 
 .login-value input::placeholder{
@@ -142,21 +142,29 @@ h1{
     height: 20px;
     width: 20px;
     position: absolute;
-    top: 37px;
-    right: 160px;
+    top: 38px;
+    right: 20px;
 }
 
 .password-options{
     display: flex;
     justify-content: center;
-    margin-top: 30px;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 .checkbox{
     display: flex;
+    justify-content: center;
     align-items: center;
-    text-align: center;
-    margin-right: 20px;
+    margin-right: 35px;
+}
+
+.checkbox div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .checkbox span:hover{
@@ -164,11 +172,9 @@ h1{
 }
 
 .checkbox input{
-    width: 15px;
     height: 15px;
-    background-color: rgb(244, 244, 244);
-    border-radius: 10px;
-    margin-right: 10px;
+    width: 15px;
+    margin-top: 0 !important;
 }
 
 .forgot a{
