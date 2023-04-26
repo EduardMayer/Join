@@ -1,6 +1,6 @@
 let currentElement = null;
 let clickedId;
-let allTask = [];
+let allTasks = [];
 let allCategory = [];
 
 // Header und linke Navigationsleiste wird hinzugefügt
@@ -126,23 +126,30 @@ function setCurrentDate() {
 }
 
 function createTask() {
-  const title = document.getElementById('title').value;
-  const description = document.getElementById('description').value;
-  const date = document.getElementById('date').value;
+  const title = document.getElementById('title');
+  const description = document.getElementById('description');
+  const date = document.getElementById('date');
   const priority = clickedId;
   
+  
+  let allTask = {
 
+    "title": title.value,
+    "description": description.value,
+    "date": date.value,
+    "priority": priority,
+  };
 
+  allTasks.push(allTask);
+  console.log(allTasks);
 
+  clearTask(title, description, date);
+} 
 
-  console.log(priority);
-  console.log(title);
-  console.log(description);
-  console.log(date);
-
-  allTask(priority, title, description, date)
-}
-
-function allTask(){
-
+function clearTask(title, description, date){
+  title.value = ``;
+  description.value = ``;
+  date.value = ``;
+  currentElement = null;
+  
 }
