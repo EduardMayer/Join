@@ -1,5 +1,7 @@
 let currentElement = null;
 let clickedId;
+let allTask = [];
+let allCategory = [];
 
 // Header und linke Navigationsleiste wird hinzugefügt
 async function includeHTML() {
@@ -128,11 +130,19 @@ function createTask() {
   const description = document.getElementById('description').value;
   const date = document.getElementById('date').value;
   const priority = clickedId;
+  
+
+
 
 
   console.log(priority);
   console.log(title);
   console.log(description);
   console.log(date);
+
+  allTask(priority, title, description, date)
+}
+
+function allTask(){
 
 }

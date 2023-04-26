@@ -4,20 +4,23 @@ async function userInit(){
     await loadUsers();
 }
 
-async function loadUsers(){
-    users = await getItem('users')
-}
+async function loadUsers() {
+    const storedUsers = await getItem('users');
+    users = storedUsers ? JSON.parse(storedUsers) : [];
+  }
 
-async function register(){
+  async function register() {
     Btn.disabled = true;
-    users.push({
-        name: inputName.value,
-        email: inputEmail.value,
-        password: password.value
-    });
-    await setItem('users', JSON.stringify(users))
-    clearInput();
-}
+    if (Array.isArray(users)) {
+      users.push({
+        'name': inputName.value,
+        'email': inputEmail.value,
+        'password': password.value
+      });
+      await setItem('users', JSON.stringify(users))
+      clearInput();
+    }
+  }
 
 function clearInput(){
     inputName.value = '';
