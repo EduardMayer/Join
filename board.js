@@ -1,7 +1,7 @@
 let currentElement = null;
-let currentDraggedElement;
+let clickedId;
 
-// Header und links Navigtionsleiste wird hinzugefügt
+// Header und linke Navigationsleiste wird hinzugefügt
 async function includeHTML() {
   let includeElements = document.querySelectorAll("[w3-include-html]");
   for (let i = 0; i < includeElements.length; i++) {
@@ -89,19 +89,22 @@ function checkpriobox(event) {
     resetImage(currentElement);
   }
 
-  if (element.id === "urgentbox") {
+  if (element.id === "urgent") {
     element.style.backgroundColor = "rgb(255, 61, 0)";
     element.querySelector("img").src = "/img/Prio-urgent-white.png";
-  } else if (element.id === "mediumbox") {
+  } else if (element.id === "medium") {
     element.style.backgroundColor = "rgb(255, 168, 0)";
     element.querySelector("img").src = "/img/Prio-medium-white.png";
-  } else if (element.id === "lowbox") {
+  } else if (element.id === "low") {
     element.style.backgroundColor = "rgb(122,226,41)";
     element.querySelector("img").src = "/img/Prio-low-white.png";
   }
 
   currentElement = element;
+  clickedId = event.target.id; 
 }
+
+
 
 //Setzt das aktuelle Datum in das Datumfeld
 function setCurrentDate() {
@@ -121,12 +124,15 @@ function setCurrentDate() {
 }
 
 function createTask() {
-  let title = document.getElementById('title').value;
-  let description = document.getElementById('description').value;
-  let date = document.getElementById('date').value;
-  
+  const title = document.getElementById('title').value;
+  const description = document.getElementById('description').value;
+  const date = document.getElementById('date').value;
+  const priority = clickedId;
+
+
+  console.log(priority);
   console.log(title);
   console.log(description);
   console.log(date);
-  
+
 }
