@@ -73,8 +73,12 @@ function renderHTML(){
                     </div>
                     <div class="password-options">
                         <div class="checkbox">
-                          <input type="checkbox">
-                          <span>Remember me</span>
+                            <div>
+                                <input type="checkbox">
+                            </div>
+                            <div>
+                                <span>Remember me</span>
+                            </div>
                         </div>
                         <div class="forgot">
                           <a onclick="renderPassword()">Forgot my password</a>
