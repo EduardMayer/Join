@@ -13,7 +13,7 @@
     <script src="summary.js"></script>
 </head>
 
-<body onload="includeHTML(), init()">
+<body onload="includeHTML(), init(), setDate()">
     <div w3-include-html="head_navbar.html"></div>
     <div class="main">
         <div class="headline">
@@ -24,16 +24,16 @@
         <div class="content">
             <div>
                 <div class="workstation">
-                    <div class="tasks-boxes">
-                        <div class="task-board">
+                    <div class="tasks-container">
+                        <div class="task-box">
                             <span>9</span>
                             <p>Tasks in Board</p>
                         </div>
-                        <div class="tasks-progress">
+                        <div class="task-box">
                             <span>5</span>
                             <p>Tasks in Progress</p>
                         </div>
-                        <div class="feedback">
+                        <div class="task-box">
                             <span>2</span>
                             <p>Awaiting Feedback</p>
                         </div>
@@ -46,7 +46,7 @@
                         </div>
                         <div class="verticalLine-urgent"><img src="img/verticalline-urgent-grey.svg"></div>
                         <div class="deadline">
-                            <span class="date">April 12, 2023</span>
+                            <span id="date" class="date"></span>
                             <p>Upcoming Deadline</p>
                         </div>
                     </div>

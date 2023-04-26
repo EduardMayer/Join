@@ -140,16 +140,19 @@ function createTask() {
     "priority": priority,
   };
 
-  allTasks.push(allTask);
+//allTasks.push(allTask);
   console.log(allTasks);
+  console.log(subtask);
 
-  clearTask(title, description, date);
+clearTask(title, description, date, priority);
 } 
 
-function clearTask(title, description, date){
+function clearTask(title, description, date,){
+  
+  currentElement.style.backgroundColor = "";
+  resetImage(currentElement);
+  
   title.value = ``;
   description.value = ``;
   date.value = ``;
-  currentElement = null;
-  
 }

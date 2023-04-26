@@ -1,145 +1,131 @@
 body {
-    margin: 0;
-    margin-left: 232px;
-    margin-top: 90px;
-    background-color: rgb(245, 245, 245);
-    font-family: Inter;
+  margin: 0;
+  margin-left: 232px;
+  margin-top: 90px;
+  background-color: rgb(245, 245, 245);
+  font-family: Inter;
 }
 
 .main {
-    position: relative;
-    height: 100px;
-    margin-left: 150px;
-    top: 100px;
+  position: absolute;
+  width: 580px;
+  height: 540px;
+  left: 355px;
+  top: 331px;
 }
 
 .content {
-    max-width: 700px;
-    display: flex;
-    text-align: center;
-    align-items: center;
+  max-width: 700px;
+  display: flex;
+  text-align: center;
+  align-items: center;
 }
 
 .headline {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+}
+
+h1 {
+    font-size: 61px;
+    font-weight: 700;
+}
+
+h4 {
+    font-weight: 400;
+    font-size: 27px;
 }
 
 .workstation {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
-.tasks-boxes {
-    display: flex;
-    justify-content: space-between;
+.tasks-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 35px;
 }
 
-span{
-    font-size: 48px;
-    font-weight: 600;
+span {
+  font-size: 64px;
+  font-weight: 600;
 }
 
 p {
-    text-align: center;
-    font-size: 18px;
+  text-align: center;
+  font-size: 18px;
 }
 
-.task-board {
-    border-radius: 20px;
-    height: 100px;
-    width: 100px;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    padding: 30px;;
-    margin-right: 20px;
-    justify-content: center;
-    background-color: white;
-}
-
-.tasks-progress {
-    border-radius: 20px;
-    height: 100px;
-    width: 100px;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    padding: 30px;
-    margin-right: 20px;
-    justify-content: center;
-    background-color: white;
-}
-
-.feedback {
-    border-radius: 20px;
-    height: 100px;
-    width: 100px;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    padding: 30px;
-    margin-right: 20px;
-    justify-content: center;
-    background-color: white;
+.task-box {
+  border-radius: 30px;
+  height: 170px;
+  width: 170px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  padding: 25px;
 }
 
 .tasks-urgent {
-    display: flex;
-    width: 550px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    border-radius: 20px;
-    height: 150px;
-    align-items: center;
-    justify-content: space-evenly;
-    background-color: white;
+  display: flex;
+  width: 580px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border-radius: 20px;
+  height: 150px;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: white;
+  padding: 28px, 48px, 28px, 48px;
 }
 
 .urgent {
-    text-align: center;
+  text-align: center;
 }
 
 .todo-done {
-    display: flex;
+  display: flex;
 }
 
 .todo {
-    border-radius: 20px;
-    height: 100px;
-    width: 200px;
-    align-items: center;
-    display: flex;
-    padding: 10px;
-    margin-right: 20px;
-    justify-content: center;
-    background-color: white;
+  border-radius: 20px;
+  height: 100px;
+  width: 200px;
+  align-items: center;
+  display: flex;
+  padding: 10px;
+  margin-right: 20px;
+  justify-content: center;
+  background-color: white;
 }
 
 .date {
-    font-size: 28px;
+  font-size: 28px;
 }
 .done {
-    border-radius: 20px;
-    height: 100px;
-    width: 200px;
-    align-items: center;
-    display: flex;
-    padding: 10px;
-    margin-right: 20px;
-    justify-content: center;
-    background-color: white;
+  border-radius: 20px;
+  height: 100px;
+  width: 200px;
+  align-items: center;
+  display: flex;
+  padding: 10px;
+  margin-right: 20px;
+  justify-content: center;
+  background-color: white;
 }
 
 .todo-done-ticket {
-    margin-left: 15px;
-    text-align: center;
+  margin-left: 15px;
+  text-align: center;
 }
 
 .greet {
-    margin-left: 50px;
-    font-size: 38px;
-    font-weight: 500;
+  margin-left: 50px;
+  font-size: 38px;
+  font-weight: 500;
 }
