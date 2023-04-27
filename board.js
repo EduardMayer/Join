@@ -170,11 +170,15 @@ function createTask() {
   const title = document.getElementById('title');
   const description = document.getElementById('description');
   const date = document.getElementById('date');
+  
+  // Überprüfen, ob ein Ziel angeklickt wurde
+  if (!clickedId) {
+    document.getElementById('prioBoxAlarm').innerHTML = `<div class="alarmBoxPrio">Select a priority!</div>`;
+    return;
+  }
   const priority = clickedId;
   
-  
   let allTask = {
-
     "title": title.value,
     "description": description.value,
     "date": date.value,
@@ -182,19 +186,22 @@ function createTask() {
   };
 
   allTasks.push(allTask);
-  console.log(allTasks);
-  console.log(subtask);
+  clearTask();
+}
 
-clearTask(title, description, date, priority);
-} 
 
-function clearTask(title, description, date,){
+function clearTask() {
+  const title = document.getElementById('title');
+  const description = document.getElementById('description');
+  const alarmbox = document.getElementById('prioBoxAlarm');
   
-  
-  currentElement.style.backgroundColor = "";
-  
-  resetImage(currentElement);
-  title.value = ``;
-  description.value = ``;
-  date.value = ``;
+  alarmbox.innerHTML =``;
+  title.value = '';
+  description.value = '';
+  setCurrentDate();
+
+  if (currentElement !== null ) {
+    currentElement.style.backgroundColor = '';
+    resetImage(currentElement);
+  } 
 }
