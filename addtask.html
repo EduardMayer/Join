@@ -29,13 +29,15 @@
                 <label for="description">Description</label>
                 <textarea name="description" id="description" placeholder="Enter a Description"></textarea>
             </div>
-            <div class="categoryContainer">
+            <div class="categoryContainer" id="categoryContainer">
                 <label for="Category">Category</label>
                 <div onclick="openDropBoxCategory()" class="childTaskContainer" id="category">
                     <p>Select task category</p>
                     <img src="/img/arrowTask.svg">
                 </div>
                 <div onclick="newCategory()" class="d-none" id="dropDownBox">New Category</div>
+            </div>
+            <div class="categoryContainer, d-none"  id="newCategoryContainer">
             </div>
             <div class="assignedToContainer">
                 <label for="Category">Assigned to</label>
