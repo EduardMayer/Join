@@ -2,6 +2,7 @@ let currentElement = null;
 let clickedId = null;
 let allTasks = [];
 let allCategory = [];
+let subtaskArray = [];
 
 
 // Header und linke Navigationsleiste wird hinzugefügt
@@ -99,24 +100,31 @@ function closeSubImg(){
   document.getElementById("subtask").value =``;
 }
 
-//Subtask wird hinzugefügt
+//Subtask wird gerendert und hinzugefügt
 function addSubtask() {
   let subtask = document.getElementById("subtask").value;
   document.getElementById(
     "subTaskDescription"
   ).innerHTML += `<div class="checkContainer" ><input type="checkbox""><div id="subBox">${subtask}</div></div>`;
   document.getElementById("subtask").value = ``; 
+  pushSubtask()
 }
 
-// Die Buttons für die Priorität bekommen nach anklicken eine neue Farbe
+//Pusht den Subtask in das SubtaskArray
+function pushSubtask(){
+  let subtaskInfo = document.getElementById("subBox").innerHTML;
+  subtaskArray.push(subtaskInfo);
+  console.log(subtaskInfo);
+}
+
+// Die Buttons für die Priorität zeigen Standartwert wieder an
 function resetImage(box) {
   const img = box.querySelector("img");
   const defaultImg = img.dataset.defaultImg;
   img.src = defaultImg;
 }
 
-
-
+// Die Buttons für die Priorität bekommen nach anklicken eine neue Farbe
 function checkpriobox(event) {
   let element = event.target;
 
@@ -166,6 +174,8 @@ function setCurrentDate() {
   dateInput.value = currentDate;
 }
 
+
+// Ein Json wird angelegt und in das Array AllTasks gepusht
 function createTask() {
   const title = document.getElementById('title');
   const description = document.getElementById('description');
@@ -194,10 +204,16 @@ function clearTask() {
   const title = document.getElementById('title');
   const description = document.getElementById('description');
   const alarmbox = document.getElementById('prioBoxAlarm');
+  const subtask = document.getElementById('subtask');
+  const subtaskDescription = document.getElementById('subTaskDescription');
+  
   
   alarmbox.innerHTML =``;
   title.value = '';
   description.value = '';
+  subtask.value = ``;
+  subtaskDescription.innerHTML = ``;
+  
   setCurrentDate();
 
   if (currentElement !== null ) {
