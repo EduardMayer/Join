@@ -2,7 +2,8 @@ let currentElement = null;
 let clickedId = null;
 let allTasks = [];
 let allCategory = [];
-let subtaskArray = [];
+let allSubtask = [];
+let selectedColor = [];
 
 
 // Header und linke Navigationsleiste wird hinzugefügt
@@ -41,9 +42,13 @@ function openDropBoxCategory() {
 function newCategory(){
 let categoryContainer = document.getElementById("categoryContainer");
 let newCategoryContainer = document.getElementById("newCategoryContainer");
+let categoryColors = document.getElementById("categoryColors");
+
 
 categoryContainer.classList.add("d-none");
 newCategoryContainer.classList.remove("d-none");
+categoryColors.classList.remove("d-none");
+categoryColors.classList.add("colorsContainer");
 
 document.getElementById("newCategoryContainer").innerHTML =`<label for="Category">Category</label><div class="subtaskChildContainer" >
 <input type="text" placeholder="New category name">
@@ -56,17 +61,21 @@ document.getElementById("newCategoryContainer").innerHTML =`<label for="Category
 
 }
 
+
 function closeNewCategory(){
   let categoryContainer = document.getElementById("categoryContainer");
   let newCategoryContainer = document.getElementById("newCategoryContainer");
   let dropDownBox = document.getElementById("dropDownBox");
   let childTaskContainer = document.getElementById("category");
+  let categoryColors = document.getElementById("categoryColors");
 
   categoryContainer.classList.remove("d-none");
   newCategoryContainer.classList.add("d-none");
   dropDownBox.classList.add("d-none");
   dropDownBox.classList.remove("dropDownBox");
   childTaskContainer.classList.remove("b-none");
+  categoryColors.classList.add("d-none");
+  categoryColors.classList.remove("colorsContainer");
 }
 
 function openDropBoxAssigned() {
@@ -113,7 +122,7 @@ function addSubtask() {
 //Pusht den Subtask in das SubtaskArray
 function pushSubtask(){
   let subtaskInfo = document.getElementById("subBox").innerHTML;
-  subtaskArray.push(subtaskInfo);
+  allSubtask.push(subtaskInfo);
   console.log(subtaskInfo);
 }
 

@@ -259,3 +259,10 @@ textarea {
   color: red;
   margin-top: 5px;
 }
+
+.colorsContainer{
+  display: flex;
+  gap: 10px;
+  margin-top: -25px;
+  cursor: pointer;
+}
