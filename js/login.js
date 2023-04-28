@@ -3,6 +3,6 @@ function login(){
     let password = document.getElementById('password');
     let user = users.find(u => u.email.value == email.value && u.password.value == password.value);
     if(user){
-        //Anmeldung
+        window.open("summary.html");
     }
 }
