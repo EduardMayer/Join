@@ -64,7 +64,7 @@ function renderHTML(){
                 </div>
                 <form class="login-value" onsubmit="login();return false;">
                     <div class="relativ-for-icon">
-                        <input required placeholder="Email" type="email">
+                        <input required placeholder="Email" type="email" id="email">
                         <img src="img/emailicon.svg" alt="">
                       </div>
                       <div class="relativ-for-icon">
