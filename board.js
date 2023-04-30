@@ -1,7 +1,7 @@
 let currentElement = null;
 let clickedId = null;
 let allTasks = [];
-let allCategory = [];
+let allCategory = ["Design", "Tdsadsad"];
 let allSubtask = [];
 let selectedColor = [];
 
@@ -25,6 +25,7 @@ async function includeHTML() {
 function openDropBoxCategory() {
   let dropDownBox = document.getElementById("dropDownBox");
   let childTaskContainer = document.getElementById("category");
+  renderCategory();
   // Anzeigen des Dropdown-Menüs, wenn es ausgeblendet ist
   if (dropDownBox.classList.contains("d-none")) {
     dropDownBox.classList.remove("d-none");
@@ -44,23 +45,48 @@ let categoryContainer = document.getElementById("categoryContainer");
 let newCategoryContainer = document.getElementById("newCategoryContainer");
 let categoryColors = document.getElementById("categoryColors");
 
-
 categoryContainer.classList.add("d-none");
 newCategoryContainer.classList.remove("d-none");
 categoryColors.classList.remove("d-none");
 categoryColors.classList.add("colorsContainer");
 
 document.getElementById("newCategoryContainer").innerHTML =`<label for="Category">Category</label><div class="subtaskChildContainer" >
-<input type="text" placeholder="New category name">
+<input type="text" id="inputCategory" placeholder="New category name">
 <div class="subImgContainer">
   <img onclick="closeNewCategory()" src="/img/iconoir_cancel_black.svg">
   <div class="searchBarLine"></div>
   <img onclick="addNewCategory()" id="subImg" src="/img/akar-icons_check_black.svg">
 </div>
 </div>`;
-
 }
 
+async function renderCategory() {
+  await load();
+  let categoryBox = document.getElementById('categoryBox');
+  categoryBox.innerHTML = '';
+  for (let i = 0; i < allCategory.length; i++) {
+    categoryBox.innerHTML += `<div onclick="selectCategory(${i})">${allCategory[i]}</div>`;
+  }
+}
+
+async function load() {
+  allCategory = JSON.parse(localStorage.getItem(`allCategory`)) || [];
+}
+
+function save() {
+  localStorage.setItem(`allCategory`, JSON.stringify(allCategory));
+}
+
+
+function addNewCategory(){
+  let newCategory = document.getElementById('inputCategory').value;
+  allCategory.push(newCategory);
+  save();
+  document.getElementById('inputCategory').value = ``;
+  closeNewCategory();
+  renderCategory();
+  openDropBoxCategory()
+}
 
 function closeNewCategory(){
   let categoryContainer = document.getElementById("categoryContainer");
@@ -123,8 +149,8 @@ function addSubtask() {
 function pushSubtask(){
   let subtaskInfo = document.getElementById("subBox").innerHTML;
   allSubtask.push(subtaskInfo);
-  console.log(subtaskInfo);
 }
+
 
 // Die Buttons für die Priorität zeigen Standartwert wieder an
 function resetImage(box) {
@@ -197,15 +223,20 @@ function createTask() {
   }
   const priority = clickedId;
   
-  let allTask = {
+
+  
+let allTask = {
     "title": title.value,
     "description": description.value,
     "date": date.value,
     "priority": priority,
+    "subtask": allSubtask,
   };
 
   allTasks.push(allTask);
+  allSubtask = [];
   clearTask();
+  console.log(allTask);
 }
 
 
@@ -215,7 +246,6 @@ function clearTask() {
   const alarmbox = document.getElementById('prioBoxAlarm');
   const subtask = document.getElementById('subtask');
   const subtaskDescription = document.getElementById('subTaskDescription');
-  
   
   alarmbox.innerHTML =``;
   title.value = '';
