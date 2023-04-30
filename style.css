@@ -254,12 +254,20 @@ h1{
 }
 
 .d-none{
-    display: none;
+    display: none !important;
 }
 
 .Password-text{
     font-size: 16px;
     margin-top: 20px;
+}
+
+.worng{
+    position: absolute;
+    bottom: -20px;
+    left: 10px;
+    color: red;
+    font-size: 12px;
 }
 
 @keyframes logoEffect{

@@ -70,6 +70,7 @@ function renderHTML(){
                       <div class="relativ-for-icon">
                         <input required onkeyup="checkInput()" id="password" placeholder="Password" type="password">
                         <img id="password-img" onclick="seePassword()" src="img/passwordicon.svg" alt="">
+                        <span class="d-none worng">wrong password</span>
                     </div>
                     <div class="password-options">
                         <div class="checkbox">
