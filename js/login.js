@@ -8,5 +8,6 @@ function login(){
         email.value = ''
         password.value = ''
         document.getElementById('wrong').classList.remove('d-none');
+        return false;
     }
 }
