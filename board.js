@@ -1,7 +1,7 @@
 let currentElement = null;
 let clickedId = null;
 let allTasks = [];
-let allCategory = ["Design", "Tdsadsad"];
+let allCategory = [];
 let allSubtask = [];
 let selectedColor = [];
 
@@ -60,6 +60,7 @@ document.getElementById("newCategoryContainer").innerHTML =`<label for="Category
 </div>`;
 }
 
+//Rendert die Dropbox und fügt aus dem Array alle gespeicherten Werte ein
 async function renderCategory() {
   await load();
   let categoryBox = document.getElementById('categoryBox');
@@ -68,11 +69,11 @@ async function renderCategory() {
     categoryBox.innerHTML += `<div onclick="selectCategory(${i})">${allCategory[i]}</div>`;
   }
 }
-
+//Lädt die Json aus dem Local Storage
 async function load() {
   allCategory = JSON.parse(localStorage.getItem(`allCategory`)) || [];
 }
-
+// Speichert Json in das Local Storage
 function save() {
   localStorage.setItem(`allCategory`, JSON.stringify(allCategory));
 }
