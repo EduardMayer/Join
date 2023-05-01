@@ -5,7 +5,6 @@ let allCategory = [];
 let allSubtask = [];
 let selectedColor = [];
 
-
 // Header und linke Navigationsleiste wird hinzugefügt
 async function includeHTML() {
   let includeElements = document.querySelectorAll("[w3-include-html]");
@@ -25,18 +24,23 @@ async function includeHTML() {
 function openDropBoxCategory() {
   let dropDownBox = document.getElementById("dropDownBox");
   let childTaskContainer = document.getElementById("category");
+  let categoryBox = document.getElementById("categoryBox");
   renderCategory();
   // Anzeigen des Dropdown-Menüs, wenn es ausgeblendet ist
   if (dropDownBox.classList.contains("d-none")) {
     dropDownBox.classList.remove("d-none");
     dropDownBox.classList.add("dropDownBox");
     childTaskContainer.classList.add("b-none");
+    categoryBox.classList.remove("d-none");
+    categoryBox.classList.add("categoryBox");
   }
   // Schließen des Dropdown-Menüs, wenn es bereits sichtbar ist
   else {
     dropDownBox.classList.add("d-none");
     dropDownBox.classList.remove("dropDownBox");
     childTaskContainer.classList.remove("b-none");
+    categoryBox.classList.add("d-none");
+    categoryBox.classList.remove("categoryBox");
   }
 }
 
@@ -55,6 +59,7 @@ document.getElementById("newCategoryContainer").innerHTML =`<label for="Category
 <div class="subImgContainer">
   <img onclick="closeNewCategory()" src="/img/iconoir_cancel_black.svg">
   <div class="searchBarLine"></div>
+  <div id="colorBox" class="colorBox"></div>
   <img onclick="addNewCategory()" id="subImg" src="/img/akar-icons_check_black.svg">
 </div>
 </div>`;
@@ -66,7 +71,7 @@ async function renderCategory() {
   let categoryBox = document.getElementById('categoryBox');
   categoryBox.innerHTML = '';
   for (let i = 0; i < allCategory.length; i++) {
-    categoryBox.innerHTML += `<div onclick="selectCategory(${i})">${allCategory[i]}</div>`;
+    categoryBox.innerHTML += `<div onclick="selectCategory(${i})" id="selectCategory${i}">${allCategory[i]}</div>`;
   }
 }
 //Lädt die Json aus dem Local Storage
@@ -87,6 +92,13 @@ function addNewCategory(){
   closeNewCategory();
   renderCategory();
   openDropBoxCategory()
+}
+
+function selectCategory(i){
+  let sourceDiv = document.getElementById(`selectCategory${i}`);
+  let targetDiv = document.getElementById(`category`);
+  
+  targetDiv.innerHTML = sourceDiv.innerHTML;
 }
 
 function closeNewCategory(){
