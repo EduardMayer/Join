@@ -32,15 +32,17 @@
             <div class="categoryContainer" id="categoryContainer">
                 <label for="Category">Category</label>
                 <div onclick="openDropBoxCategory()" class="childTaskContainer" id="category">
-                    <p>Select task category</p>
-                    <img src="/img/arrowTask.svg">
+                    <div id="categoryTextBox" class="categoryTextBox">
+                        <p>Select task category</p>
+                    </div>
+                    <div><img src="/img/arrowTask.svg"></div>
                 </div>
                 <div onclick="newCategory()" class="d-none" id="dropDownBox">
                     <div>New Category</div>
                 </div>
                 <div id="categoryBox" class="d-none"></div>
             </div>
-            <div class="d-none"  id="newCategoryContainer">
+            <div class="d-none" id="newCategoryContainer">
             </div>
             <div id="categoryColors" class="d-none">
             </div>
@@ -61,7 +63,7 @@
                     <input type="date" id="date">
                 </div>
             </div>
-            <div class="prioContainer"  id="prioContainer">
+            <div class="prioContainer" id="prioContainer">
                 <label for="Prio">Prio</label>
                 <div class="prioChildContainer">
                     <div id="urgent" onclick="checkpriobox(event)" class="prioBox">
@@ -81,13 +83,13 @@
             </div>
             <div class="subtaskContainer">
                 <label for="subtaskChildInput">Subtasks</label>
-                <div class="subtaskChildContainer" >
+                <div class="subtaskChildContainer">
                     <input onclick="changeSubImg()" id="subtask" type="text" placeholder="Add new subtask">
                     <div class="subImgContainer" id="subImgContainer"><img src="/img/icon_cancel.svg"></div>
                 </div>
             </div>
             <div id="subTaskDescription" class="subTaskDescription">
-                
+
             </div>
         </div>
     </div>
