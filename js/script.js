@@ -62,7 +62,7 @@ function renderHTML(){
                       <div class="h1-line"></div>
                     </div>
                 </div>
-                <form class="login-value" onsubmit="login();return false;">
+                <form class="login-value">
                     <div class="relativ-for-icon">
                         <input required placeholder="Email" type="email" id="email">
                         <img src="img/emailicon.svg" alt="">
@@ -87,10 +87,10 @@ function renderHTML(){
                       </div>
                       <div class="login-buttons">
                         <div>
-                          <button class="login-button">Log in</button>
+                          <button onsubmit="return false; login();" class="login-button">Log in</button>
                         </div>
                         <div>
-                          <button class="guest-button">Guest Log in</button>
+                          <button onclick="guestLogin()" class="guest-button">Guest Log in</button>
                         </div>
                       </div>
                 </form>
