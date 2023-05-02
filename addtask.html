@@ -14,7 +14,7 @@
     <title>AddTask</title>
 </head>
 
-<body onload="includeHTML(), setCurrentDate(), renderCategory()">
+<body onload="includeHTML(), setCurrentDate(), renderCategory(), renderColorCategory()">
     <div w3-include-html="head_navbar.html"></div>
     <div class="headTaskContainer">
         <h1>Add Task</h1>
@@ -43,27 +43,6 @@
             <div class="d-none"  id="newCategoryContainer">
             </div>
             <div id="categoryColors" class="d-none">
-                <div onclick="selectColor(0)" id="selectColor0" class="color">
-                    <img src="/img/circle_pink.png">
-                </div>
-                <div onclick="selectColor(1)" id="selectColor1" class="color">
-                    <img src="/img/circle_turquoise.png">
-                </div>
-                <div onclick="selectColor(2)" id="selectColor2" class="color">
-                    <img src="/img/circle_darkblue.png">
-                </div>
-                <div onclick="selectColor(3)" id="selectColor3" class="color">
-                    <img src="/img/circle_orange.png">
-                </div>
-                <div onclick="selectColor(4)" id="selectColor4" class="color">
-                    <img src="/img/circle_green.png">
-                </div>
-                <div onclick="selectColor(5)" id="selectColor5" class="color">
-                    <img src="/img/circle_red.png">
-                </div>
-                <div onclick="selectColor(6)" id="selectColor6" class="color">
-                    <img src="/img/circle_blue.png">
-                </div>
             </div>
             <div class="assignedToContainer">
                 <label for="Category">Assigned to</label>
