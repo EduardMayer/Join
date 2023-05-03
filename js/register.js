@@ -19,6 +19,7 @@ async function loadUsers() {
       });
       await setItem('users', JSON.stringify(users))
       clearInput();
+      render()
     }
   }
 
