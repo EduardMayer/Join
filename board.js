@@ -272,6 +272,14 @@ function createTask() {
   const categoryText = document.getElementById("categoryText");
   const categoryColor = document.getElementById("selectColorBox");
   const priority = clickedId;
+    
+   // Überprüfen, ob ein Ziel angeklickt wurde
+    if (!clickedId) {
+      document.getElementById(
+        "prioBoxAlarm"
+      ).innerHTML = `<div class="alarmBoxPrio">Select a priority!</div>`;
+      return;
+    }
 
   let allTask = {
     title: title.value,
