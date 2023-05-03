@@ -28,6 +28,26 @@ async function includeHTML() {
   }
 }
 
+ async function renderBoardCards(){
+  let todoBox = document.getElementById("todoBox");
+  load()
+  for (let i = 0; i < allTasks.length; i++) {
+    let allTask = allTasks[i]
+    todoBox.innerHTML +=`<div class="card">
+    <div class="cardCategory" style="background-color:${allTask['categoryColor']}">${allTask['categoryText']}</div>
+    <div class="cardTitle">${allTask['title']}</div>
+    <div class="cardDescription">${allTask['description']}</div>
+    <div>
+        <div></div>
+        <div></div>
+    </div>
+    <div>
+        <div class="cardUser"></div>
+        <div class="cardPrio"></div>
+    </div>
+</div>`;}   
+}
+
 // Dropbox für die Category 
 function openDropBoxCategory() {
   let dropDownBox = document.getElementById("dropDownBox");
@@ -281,20 +301,22 @@ function createTask() {
       return;
     }
 
-  let allTask = {
-    title: title.value,
-    description: description.value,
-    categoryText: categoryText.innerHTML,
-    categoryColor: categoryColor.style.backgroundColor,
-    date: date.value,
-    priority: priority,
-    subtask: allSubtask,
-  };
+    let allTask = {
+      id: allTasks.length + 1, 
+      title: title.value,
+      description: description.value,
+      categoryText: categoryText.innerHTML,
+      categoryColor: categoryColor.style.backgroundColor,
+      date: date.value,
+      priority: priority,
+      subtask: allSubtask,
+    };
 
   allTasks.push(allTask);
   save();
   allSubtask = [];
   clearTask();
+  window.location.href = "board.html";
 }
 
 // Die Felder vom AddTask werden resettet 
