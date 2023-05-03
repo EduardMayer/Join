@@ -237,7 +237,7 @@ textarea {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 00px 21px 5px;
+  padding: 5px 21px 5px;
   width: 422px;
   background: #ffffff;
   border: 1px solid #d1d1d1;
@@ -265,6 +265,7 @@ textarea {
   cursor: pointer;
   border-top: none;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .subImgContainer {
@@ -310,9 +311,11 @@ textarea {
   align-items: center;
   padding: 0px 21px;
   width: 90%;
+  overflow:hidden;
 }
 .colorCategoryBox:hover {
   background-color: #d1d1d1;
+  
 }
 
 .selectColorBox {

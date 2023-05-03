@@ -28,21 +28,19 @@ async function includeHTML() {
   }
 }
 
+// Dropbox für die Category 
 function openDropBoxCategory() {
   let dropDownBox = document.getElementById("dropDownBox");
   let childTaskContainer = document.getElementById("category");
   let categoryBox = document.getElementById("categoryBox");
   renderCategory();
-  // Anzeigen des Dropdown-Menüs, wenn es ausgeblendet ist
   if (dropDownBox.classList.contains("d-none")) {
     dropDownBox.classList.remove("d-none");
     dropDownBox.classList.add("dropDownBox");
     childTaskContainer.classList.add("b-none");
     categoryBox.classList.remove("d-none");
     categoryBox.classList.add("categoryBox");
-  }
-  // Schließen des Dropdown-Menüs, wenn es bereits sichtbar ist
-  else {
+  } else {
     dropDownBox.classList.add("d-none");
     dropDownBox.classList.remove("dropDownBox");
     childTaskContainer.classList.remove("b-none");
@@ -51,6 +49,7 @@ function openDropBoxCategory() {
   }
 }
 
+//Neue Container für newCategory wird angezeigt / ausgeblendet
 function newCategory() {
   let categoryContainer = document.getElementById("categoryContainer");
   let newCategoryContainer = document.getElementById("newCategoryContainer");
@@ -60,7 +59,6 @@ function newCategory() {
   newCategoryContainer.classList.remove("d-none");
   categoryColors.classList.remove("d-none");
   categoryColors.classList.add("colorsContainer");
-
   document.getElementById(
     "newCategoryContainer"
   ).innerHTML = `<label for="Category">Category</label><div class="subtaskChildContainer" >
@@ -74,6 +72,7 @@ function newCategory() {
 </div>`;
 }
 
+// Die Farben für Category wird gerendert
 function renderColorCategory() {
   let categoryColors = document.getElementById("categoryColors");
   for (let i = 0; i < allColors.length; i++) {
@@ -81,6 +80,8 @@ function renderColorCategory() {
     </div>`;
   }
 }
+
+// Farbe für Category wird ausgewählt
 function selectColor(i) {
   let colorBox = document.getElementById("colorBox");
   colorBox.innerHTML = "";
@@ -91,7 +92,7 @@ function selectColor(i) {
   colorBox.appendChild(selectedColor);
 }
 
-//Rendert die Dropbox und fügt aus dem Array alle gespeicherten Werte ein
+//Rendert die Dropbox der Category und fügt aus dem Array alle gespeicherten Werte ein
 async function renderCategory() {
   await load();
   let categoryBox = document.getElementById("categoryBox");
@@ -99,18 +100,21 @@ async function renderCategory() {
   for (let i = 0; i < allCategory.length; i++) {
     const category = allCategory[i].category;
     const color = allCategory[i].color;
-    categoryBox.innerHTML += `<div class="colorCategoryBox" onclick="selectCategory(${i})" id="selectCategory${i}">${category}<div class="selectColorBox" id="selectColorBox" style="background-color:${color};"></div></div>`;
+    categoryBox.innerHTML += `<div class="colorCategoryBox" onclick="selectCategory(${i})" id="selectCategory${i}"><div id="categoryText">${category}</div><div class="selectColorBox" id="selectColorBox" style="background-color:${color};"></div></div>`;
   }
 }
 //Lädt die Json aus dem Local Storage
 async function load() {
   allCategory = JSON.parse(localStorage.getItem(`allCategory`)) || [];
+  allTasks = JSON.parse(localStorage.getItem(`allTasks`)) || [];
 }
 // Speichert Json in das Local Storage
 function save() {
   localStorage.setItem(`allCategory`, JSON.stringify(allCategory));
+  localStorage.setItem(`allTasks`, JSON.stringify(allTasks));
 }
 
+//Pusht die neue Category in das Array und Ausgangsbeschreibug wird angezeigt
 function addNewCategory() {
   let newCategory = document.getElementById("inputCategory").value;
   let colorBox = document.getElementById("colorBox");
@@ -124,16 +128,17 @@ function addNewCategory() {
   openDropBoxCategory();
 }
 
+// Category wird ausgewählt und hinzugefügt
 function selectCategory(i) {
   let sourceDiv = document.getElementById(`selectCategory${i}`);
   let targetDiv = document.getElementById(`categoryTextBox`);
 
   targetDiv.innerHTML = sourceDiv.innerHTML;
   sourceDiv.parentNode.removeChild(sourceDiv);
-
   openDropBoxCategory();
 }
 
+// Category Container wird geschlossen
 function closeNewCategory() {
   let categoryContainer = document.getElementById("categoryContainer");
   let newCategoryContainer = document.getElementById("newCategoryContainer");
@@ -154,22 +159,22 @@ function closeNewCategory() {
   clearCategory();
 }
 
+// Dropbox öffnet/schließt sich
 function openDropBoxAssigned() {
   let dropDownUser = document.getElementById("dropDownUser");
   let childUserContainer = document.getElementById("assigned");
-  // Anzeigen des Dropdown-Menüs, wenn es ausgeblendet ist
+  
   if (dropDownUser.classList.contains("d-none")) {
     dropDownUser.classList.remove("d-none");
     dropDownUser.classList.add("dropDownBox");
     childUserContainer.classList.add("b-none");
-  }
-  // Schließen des Dropdown-Menüs, wenn es bereits sichtbar ist
-  else {
+  } else {
     dropDownUser.classList.add("d-none");
     dropDownUser.classList.remove("dropDownBox");
     childUserContainer.classList.remove("b-none");
   }
 }
+
 // Wechselt die Symbole in der Subtaskleiste
 function changeSubImg() {
   document.getElementById(
@@ -217,14 +222,12 @@ function checkpriobox(event) {
   let element = event.target;
 
   if (currentElement === element) {
-    // Check if clicked element is the same as current element
     element.style.backgroundColor = "";
     resetImage(element);
     currentElement = null;
     clickedId = null;
   } else {
     if (currentElement !== null) {
-      // Check if there is a current element
       currentElement.style.backgroundColor = "";
       resetImage(currentElement);
     }
@@ -239,7 +242,6 @@ function checkpriobox(event) {
       element.style.backgroundColor = "rgb(122,226,41)";
       element.querySelector("img").src = "/img/Prio-low-white.png";
     }
-
     currentElement = element;
     clickedId = event.target.id;
   }
@@ -267,32 +269,27 @@ function createTask() {
   const title = document.getElementById("title");
   const description = document.getElementById("description");
   const date = document.getElementById("date");
-  let category = document.getElementById("category");
-
-  // Überprüfen, ob ein Ziel angeklickt wurde
-  if (!clickedId) {
-    document.getElementById(
-      "prioBoxAlarm"
-    ).innerHTML = `<div class="alarmBoxPrio">Select a priority!</div>`;
-    return;
-  }
+  const categoryText = document.getElementById("categoryText");
+  const categoryColor = document.getElementById("selectColorBox");
   const priority = clickedId;
 
   let allTask = {
     title: title.value,
     description: description.value,
-    category: category.innerHTML,
+    categoryText: categoryText.innerHTML,
+    categoryColor: categoryColor.style.backgroundColor,
     date: date.value,
     priority: priority,
     subtask: allSubtask,
   };
 
   allTasks.push(allTask);
+  save();
   allSubtask = [];
   clearTask();
-  console.log(allTask);
 }
 
+// Die Felder vom AddTask werden resettet 
 function clearTask() {
   const title = document.getElementById("title");
   const description = document.getElementById("description");
@@ -315,6 +312,7 @@ function clearTask() {
   }
 }
 
+// Categoryfeld bekommt Standart Beschreibung
 function clearCategory() {
   let category = document.getElementById("category");
 
