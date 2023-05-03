@@ -84,7 +84,6 @@ body {
 }
 .statusContainer {
   display: flex;
-  justify-content: space-between;
   width: 250px;
   white-space: nowrap;
   flex-direction: column;
