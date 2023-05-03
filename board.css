@@ -84,7 +84,6 @@ body {
 }
 .statusContainer {
   display: flex;
-  align-items: center;
   justify-content: space-between;
   width: 250px;
   white-space: nowrap;
@@ -156,7 +155,8 @@ body {
 /*/Testing Drag and Drop/*/
 
 .box {
-  max-width: 250px;
+  max-width: 100%;
+  min-height:  400px;
 }
 
 .card {

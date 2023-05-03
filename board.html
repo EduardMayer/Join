@@ -41,7 +41,7 @@
                     <h3>To Do</h3>
                     <div onclick="openAddTaskContainer()"><img class="createTaskBox" src="/img/plus button v1.svg"></div>
                 </div>
-                <div class="box" ondragover="allowDrop(event)" ondrop="moveTo(event)" id="todoBox">
+                <div class="box" ondragover="allowDrop(event)" ondrop="moveTo('todo')" id="todo">
                 </div>
             </div>
             <div class="statusContainer">
@@ -49,7 +49,7 @@
                     <h3>In Progress</h3> 
                     <div onclick="openAddTaskContainer()"><img class="createTaskBox" src="/img/plus button v1.svg"></div>
                 </div>
-                <div class="box" ondragover="allowDrop(event)" ondrop="moveTo(event)" id="progressBox">
+                <div class="box" ondragover="allowDrop(event)" ondrop="moveTo('progress')" id="progress">
                 </div>
             </div>
             <div class="statusContainer">
@@ -57,7 +57,7 @@
                     <h3>Awaiting Feedback</h3>
                     <div onclick="openAddTaskContainer()"><img class="createTaskBox" src="/img/plus button v1.svg"></div>
                 </div>
-                <div class="box" ondragover="allowDrop(event)" ondrop="moveTo(event)" id="feedbackBox">
+                <div class="box" ondragover="allowDrop(event)" ondrop="moveTo('feedback')" id="feedback">
 
                 </div>
             </div>
@@ -66,7 +66,7 @@
                     <h3>Done</h3>
                     <div onclick="openAddTaskContainer()"><img class="createTaskBox" src="/img/plus button v1.svg"></div>
                 </div>
-                <div class="box" ondragover="allowDrop(event)" ondrop="moveTo(event)" id="doneBox">
+                <div class="box" ondragover="allowDrop(event)" ondrop="moveTo('done')" id="done">
                 </div>
             </div>
         </div>

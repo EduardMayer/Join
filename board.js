@@ -12,6 +12,9 @@ let allColors = [
   "#FF0000",
   "#8AA4FF",
 ];
+let currentDraggedElement;
+
+load();
 
 // Header und linke Navigationsleiste wird hinzugefügt
 async function includeHTML() {
@@ -28,27 +31,79 @@ async function includeHTML() {
   }
 }
 
- async function renderBoardCards(){
-  let todoBox = document.getElementById("todoBox");
-  load()
-  for (let i = 0; i < allTasks.length; i++) {
-    let allTask = allTasks[i]
-    todoBox.innerHTML +=`<div class="card">
-    <div class="cardCategory" style="background-color:${allTask['categoryColor']}">${allTask['categoryText']}</div>
-    <div class="cardTitle">${allTask['title']}</div>
-    <div class="cardDescription">${allTask['description']}</div>
-    <div>
-        <div></div>
-        <div></div>
-    </div>
-    <div>
-        <div class="cardUser"></div>
-        <div class="cardPrio"></div>
-    </div>
-</div>`;}   
+async function renderBoardCards() {
+  // lade alle Tasks vom Local Storage
+
+  // todo-Karten
+  let todoTasks = allTasks.filter((task) => task.status === "todo");
+  let todoBox = document.getElementById("todo");
+  todoBox.innerHTML = "";
+  for (let i = 0; i < todoTasks.length; i++) {
+    let task = todoTasks[i];
+    todoBox.innerHTML += generateCardHTML(task, i);
+  }
+
+  // progress-Karten
+  let progressTasks = allTasks.filter((task) => task.status === "progress");
+  let progressBox = document.getElementById("progress");
+  progressBox.innerHTML = "";
+  for (let i = 0; i < progressTasks.length; i++) {
+    let task = progressTasks[i];
+    progressBox.innerHTML += generateCardHTML(task, i);
+  }
+
+  // feedback-Karten
+  let feedbackTasks = allTasks.filter((task) => task.status === "feedback");
+  let feedbackBox = document.getElementById("feedback");
+  feedbackBox.innerHTML = "";
+  for (let i = 0; i < feedbackTasks.length; i++) {
+    let task = feedbackTasks[i];
+    feedbackBox.innerHTML += generateCardHTML(task, i);
+  }
+
+  // done-Karten
+  let doneTasks = allTasks.filter((task) => task.status === "done");
+  let doneBox = document.getElementById("done");
+  doneBox.innerHTML = "";
+  for (let i = 0; i < doneTasks.length; i++) {
+    let task = doneTasks[i];
+    doneBox.innerHTML += generateCardHTML(task, i);
+  }
 }
 
-// Dropbox für die Category 
+function generateCardHTML(task, i) {
+  return `
+<div draggable="true" ondragstart="startDragging(${task['id']})" class="card">
+  <div class="cardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div>
+  <div class="cardTitle">${task.title}</div>
+  <div class="cardDescription">${task.description}</div>
+  <div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div class="cardUser"></div>
+    <div class="cardPrio"></div>
+  </div>
+</div>
+`;
+}
+
+function startDragging(id){
+  currentDraggedElement = id;
+}
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function moveTo(status) {
+  allTasks[currentDraggedElement]['status'] = status;
+  save(); // Save the updated task list to local storage
+  renderBoardCards(); // Update the UI with the new task status
+}
+
+// Dropbox für die Category
 function openDropBoxCategory() {
   let dropDownBox = document.getElementById("dropDownBox");
   let childTaskContainer = document.getElementById("category");
@@ -183,7 +238,7 @@ function closeNewCategory() {
 function openDropBoxAssigned() {
   let dropDownUser = document.getElementById("dropDownUser");
   let childUserContainer = document.getElementById("assigned");
-  
+
   if (dropDownUser.classList.contains("d-none")) {
     dropDownUser.classList.remove("d-none");
     dropDownUser.classList.add("dropDownBox");
@@ -292,25 +347,26 @@ function createTask() {
   const categoryText = document.getElementById("categoryText");
   const categoryColor = document.getElementById("selectColorBox");
   const priority = clickedId;
-    
-   // Überprüfen, ob ein Ziel angeklickt wurde
-    if (!clickedId) {
-      document.getElementById(
-        "prioBoxAlarm"
-      ).innerHTML = `<div class="alarmBoxPrio">Select a priority!</div>`;
-      return;
-    }
 
-    let allTask = {
-      id: allTasks.length + 1, 
-      title: title.value,
-      description: description.value,
-      categoryText: categoryText.innerHTML,
-      categoryColor: categoryColor.style.backgroundColor,
-      date: date.value,
-      priority: priority,
-      subtask: allSubtask,
-    };
+  // Überprüfen, ob ein Ziel angeklickt wurde
+  if (!clickedId) {
+    document.getElementById(
+      "prioBoxAlarm"
+    ).innerHTML = `<div class="alarmBoxPrio">Select a priority!</div>`;
+    return;
+  }
+
+  let allTask = {
+    id: allTasks.length,
+    title: title.value,
+    description: description.value,
+    categoryText: categoryText.innerHTML,
+    categoryColor: categoryColor.style.backgroundColor,
+    date: date.value,
+    priority: priority,
+    status: "todo",
+    subtask: allSubtask,
+  };
 
   allTasks.push(allTask);
   save();
@@ -319,7 +375,7 @@ function createTask() {
   window.location.href = "board.html";
 }
 
-// Die Felder vom AddTask werden resettet 
+// Die Felder vom AddTask werden resettet
 function clearTask() {
   const title = document.getElementById("title");
   const description = document.getElementById("description");
