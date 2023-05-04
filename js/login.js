@@ -1,10 +1,43 @@
+function RememberMeGetLocalStorage(){
+    let RemeberMeAsString = localStorage.getItem('RemeberMe');
+    if(RemeberMeAsString){
+        let RemeberMeAsJson = JSON.parse(RemeberMeAsString);
+        checkInputField(RemeberMeAsJson);
+    }
+}
+
+function RememberMeSetLocalStorage(){
+    let inputcheck = document.getElementById('check');
+    if(inputcheck.checked = true){
+        let isTrue = true;
+        localStorage.setItem('checkbox', isTrue);
+    }else{
+        let isFalse = false;
+        localStorage.setItem('checkbox', isFalse);
+    }
+}
+
+function loadFromLocalStorage(){
+    let userAsString = localStorage.getItem('user');
+    if(userAsString){
+        let userAsJson = JSON.parse(userAsString);
+        pushInInput(userAsJson);
+    }
+}
+
+function pushInInput(userAsJson){
+    let email = document.getElementById('email');
+    let password = document.getElementById('password');
+    email.value = userAsJson['email'];
+    password.value = userAsJson['password'];
+}
+
 function login(event){
     event.preventDefault();
     let email = document.getElementById('email');
     let password = document.getElementById('password');
     let user = users.find(u => u.email == email.value && u.password == password.value);
     trueOrFalse(email,password,user);
-   
 }
 
 function guestLogin(){
@@ -18,10 +51,18 @@ function guestLogin(){
 
 function trueOrFalse(email,password,user){
     if(user){
+        if(user.email != 'Guest@Guest.de'){
+            let userAsString = JSON.stringify(user);
+            localStorage.setItem('user', userAsString);
+        }
         location.href = "summary.html";
     }else{
         email.value = ''
         password.value = ''
         document.getElementById('wrong').classList.remove('d-none');
     }
+}
+
+function forgotPassword(){
+    alert('You can not canges it!')
 }

@@ -77,14 +77,14 @@ function renderHTML(){
                     <div class="password-options">
                         <div class="checkbox">
                             <div>
-                                <input type="checkbox">
+                                <input onclick="RememberMeSetLocalStorage()" id="check" type="checkbox">
                             </div>
                             <div>
                                 <span>Remember me</span>
                             </div>
                         </div>
                         <div class="forgot">
-                          <a onclick="renderPassword()">Forgot my password</a>
+                          <a onclick="forgotPassword()">Forgot my password</a>
                         </div>
                       </div>
                       <div class="login-buttons">
