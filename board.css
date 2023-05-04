@@ -100,6 +100,7 @@ body {
 }
 
 .upperStatusBox {
+  color: #2A3647;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -151,11 +152,9 @@ body {
   outline: none;
 }
 
-/*/Testing Drag and Drop/*/
-
 .box {
   max-width: 100%;
-  min-height:  400px;
+  min-height: 400px;
 }
 
 .card {
@@ -167,7 +166,7 @@ body {
   box-shadow: 0px 0px 14px 3px rgb(0 0 0 / 0.04);
   margin-bottom: 35px;
   height: auto;
-  cursor: pointer;
+  cursor: grab;
 }
 
 .cardCategory {
@@ -183,6 +182,7 @@ body {
 }
 
 .cardTitle {
+  color: #2A3647;
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 10px;
@@ -197,21 +197,35 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.progressContainer{
+.progressContainer {
   display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  align-items: center;
 }
-.progressBar{
+.progressBar {
   width: 138px;
   height: 8px;
   border-radius: 2px;
-  background-color: #F4F4F4;
+  background-color: #f4f4f4;
 }
 
-.lowerCard{
+.lowerCard {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.popupCard {
+  display: flex;
+    position: absolute;
+    top: 55%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    width: 623px;
+    height: 624px;
+    border-radius: 30px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 14px 3px rgb(0 0 0 / 0.04);
+    padding: 50px;
 }

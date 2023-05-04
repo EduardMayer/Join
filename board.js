@@ -102,6 +102,10 @@ function generateCardHTML(task) {
   `;
 }
 
+function showCard(taskId) {
+  popupCard = document.getElementById('popupCard').innerHTML +=``;
+}
+
 function startDragging(id) {
   currentDraggedElement = id;
 }
