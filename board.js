@@ -3,6 +3,7 @@ let clickedId = null;
 let allTasks = [];
 let allCategory = [];
 let allSubtask = [];
+let subtaskChecked = [];
 let allColors = [
   "#E200BE",
   "#1FD7C1",
@@ -12,6 +13,7 @@ let allColors = [
   "#FF0000",
   "#8AA4FF",
 ];
+
 let currentDraggedElement;
 
 load();
@@ -71,25 +73,40 @@ async function renderBoardCards() {
   }
 }
 
-function generateCardHTML(task, i) {
-  return `
-<div draggable="true" ondragstart="startDragging(${task['id']})" class="card">
-  <div class="cardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div>
-  <div class="cardTitle">${task.title}</div>
-  <div class="cardDescription">${task.description}</div>
-  <div>
-    <div></div>
-    <div></div>
-  </div>
-  <div>
-    <div class="cardUser"></div>
-    <div class="cardPrio"></div>
-  </div>
-</div>
-`;
+function renderSubtaskHtml(subtasks) {
+  let subtasksHTML = "";
+  for (let j = 0; j < subtasks.length; j++) {}
+  return subtasksHTML;
 }
 
-function startDragging(id){
+function generateCardHTML(task) {
+  let subtasksHTML = renderSubtaskHtml(task.subtask);
+  let progressContainerClass =
+    task.subtask.length > 0
+      ? "progressContainer"
+      : "progressContainer display d-none";
+  return `
+    <div draggable="true" onclick="showCard(${task["id"]})" ondragstart="startDragging(${task["id"]})" class="card">
+      <div class="cardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div>
+      <div class="cardTitle">${task.title}</div>
+      <div class="cardDescription">${task.description}</div>
+      <div class="${progressContainerClass}">
+        <div class="progressBar" id="progressBar"></div>
+        <div class="subtaskCounter" id="subtaskCounter">/${task.subtask.length} Done</div>
+      </div>
+      <div class="lowerCard">
+        <div class="cardUser">User</div>
+        <div class="cardPrio"><img src="img/${task.priority}.svg" alt="${task.priority}"></div>
+      </div>
+    </div>
+  `;
+}
+
+function showCard(taskId) {
+  popupCard = document.getElementById('popupCard').innerHTML +=``;
+}
+
+function startDragging(id) {
   currentDraggedElement = id;
 }
 
@@ -98,7 +115,7 @@ function allowDrop(ev) {
 }
 
 function moveTo(status) {
-  allTasks[currentDraggedElement]['status'] = status;
+  allTasks[currentDraggedElement]["status"] = status;
   save(); // Save the updated task list to local storage
   renderBoardCards(); // Update the UI with the new task status
 }
@@ -274,15 +291,19 @@ function addSubtask() {
   let subtask = document.getElementById("subtask").value;
   document.getElementById(
     "subTaskDescription"
-  ).innerHTML += `<div class="checkContainer" ><input type="checkbox""><div id="subBox">${subtask}</div></div>`;
+  ).innerHTML += `<div class="checkContainer"><input type="checkbox"><div class="subBox">${subtask}</div></div>`;
   document.getElementById("subtask").value = ``;
   pushSubtask();
 }
 
 //Pusht den Subtask in das SubtaskArray
 function pushSubtask() {
-  let subtaskInfo = document.getElementById("subBox").innerHTML;
-  allSubtask.push(subtaskInfo);
+  let subtaskElements = document.querySelectorAll(".subBox");
+  let subtaskInfo = [];
+  for (let i = 0; i < subtaskElements.length; i++) {
+    subtaskInfo.push(subtaskElements[i].innerHTML);
+  }
+  allSubtask = subtaskInfo;
 }
 
 // Die Buttons für die Priorität zeigen Standartwert wieder an
