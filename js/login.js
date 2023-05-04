@@ -1,19 +1,25 @@
+let checked = false;
+
 function RememberMeGetLocalStorage(){
-    let RemeberMeAsString = localStorage.getItem('RemeberMe');
+    let RemeberMeAsString = localStorage.getItem('checkbox');
     if(RemeberMeAsString){
         let RemeberMeAsJson = JSON.parse(RemeberMeAsString);
-        checkInputField(RemeberMeAsJson);
+        checked = RemeberMeAsJson;
+        RememberMeSetLocalStorage();
+        loadFromLocalStorage();
     }
 }
 
 function RememberMeSetLocalStorage(){
     let inputcheck = document.getElementById('check');
-    if(inputcheck.checked = true){
-        let isTrue = true;
-        localStorage.setItem('checkbox', isTrue);
+    if(checked == true){
+        localStorage.setItem('checkbox', checked);
+        inputcheck.checked = checked;
+        checked = false;
     }else{
-        let isFalse = false;
-        localStorage.setItem('checkbox', isFalse);
+        inputcheck.checked = checked;
+        localStorage.setItem('checkbox', checked);
+        checked = true;
     }
 }
 
@@ -26,10 +32,16 @@ function loadFromLocalStorage(){
 }
 
 function pushInInput(userAsJson){
-    let email = document.getElementById('email');
-    let password = document.getElementById('password');
-    email.value = userAsJson['email'];
-    password.value = userAsJson['password'];
+    if(checked == false){
+        let email = document.getElementById('email');
+        let password = document.getElementById('password');
+        email.value = userAsJson['email'];
+        password.value = userAsJson['password'];
+        seePassword();
+    }else{
+        email.value = '';
+        password.value = '';
+    }
 }
 
 function login(event){
