@@ -103,7 +103,24 @@ function generateCardHTML(task) {
 }
 
 function showCard(taskId) {
-  popupCard = document.getElementById('popupCard').innerHTML +=``;
+  let task = allTasks.find((task) => task.id === taskId);
+
+  popupCard = document.getElementById('popupCard');
+  popupCard.innerHTML = `
+    <div class="popupCard">
+      <div>
+        <div class="cardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div>
+        <img src="">
+      </div>
+      <div class="popupCardTitle">${task.title}</div>
+      <div class="cardDescription">${task.description}</div>
+      <div><b>Due date:</b> ${task.dueDate}</div>
+      <div><b>Priority:</b> ${task.priority}</div>
+      <div><b>Assigned To:</b> ${task.assignedTo}</div>
+      <div></div>
+      <div><img src=""><img src=""></div>
+    </div>
+  `;
 }
 
 function startDragging(id) {
