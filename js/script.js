@@ -1,6 +1,8 @@
 let isPasswordSeen = false;
 let eyeImg = false;
 
+
+
 function init(){
     render();
 }
@@ -90,7 +92,7 @@ function renderHTML(){
                           <button type="submit" onclick="login(event)" class="login-button">Log in</button>
                         </div>
                         <div>
-                          <button onclick="guestLogin()" class="guest-button">Guest Log in</button>
+                          <button type="button" onclick="guestLogin()" id="guest" class="guest-button">Guest Log in</button>
                         </div>
                       </div>
                 </form>

@@ -8,8 +8,10 @@ function login(event){
 }
 
 function guestLogin(){
-    let email = 'Guest@Guest.de';
-    let password = '123456789';
+    let email = document.getElementById('email');
+    let password = document.getElementById('password');
+    email.value = 'Guest@Guest.de';
+    password.value = '123456789';
     let user = users.find(u => u.email == email.value && u.password == password.value);
     trueOrFalse(email,password,user);
 }
