@@ -70,7 +70,7 @@ function renderHTML(){
                       <div class="relativ-for-icon">
                         <input required onkeyup="checkInput()" id="password" placeholder="Password" type="password">
                         <img id="password-img" onclick="seePassword()" src="img/passwordicon.svg" alt="">
-                        <span class="d-none worng">wrong password</span>
+                        <span id="wrong" class="d-none worng">wrong password</span>
                     </div>
                     <div class="password-options">
                         <div class="checkbox">
@@ -87,7 +87,7 @@ function renderHTML(){
                       </div>
                       <div class="login-buttons">
                         <div>
-                          <button onsubmit="return false; login();" class="login-button">Log in</button>
+                          <button onsubmit="login(); return false;" class="login-button">Log in</button>
                         </div>
                         <div>
                           <button onclick="guestLogin()" class="guest-button">Guest Log in</button>
