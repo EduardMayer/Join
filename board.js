@@ -105,7 +105,7 @@ function generateCardHTML(task) {
 function showCard(taskId) {
   let task = allTasks.find((task) => task.id === taskId);
 
-  popupCard = document.getElementById('popupCard');
+  popupCard = document.getElementById('popupContainer');
   popupCard.innerHTML = `
     <div class="popupCard">
       <div>

@@ -1,6 +1,8 @@
 let isPasswordSeen = false;
 let eyeImg = false;
 
+
+
 function init(){
     render();
 }
@@ -75,14 +77,14 @@ function renderHTML(){
                     <div class="password-options">
                         <div class="checkbox">
                             <div>
-                                <input type="checkbox">
+                                <input onclick="RememberMeSetLocalStorage()" id="check" type="checkbox">
                             </div>
                             <div>
                                 <span>Remember me</span>
                             </div>
                         </div>
                         <div class="forgot">
-                          <a onclick="renderPassword()">Forgot my password</a>
+                          <a onclick="forgotPassword()">Forgot my password</a>
                         </div>
                       </div>
                       <div class="login-buttons">
@@ -90,7 +92,7 @@ function renderHTML(){
                           <button type="submit" onclick="login(event)" class="login-button">Log in</button>
                         </div>
                         <div>
-                          <button onclick="guestLogin()" class="guest-button">Guest Log in</button>
+                          <button type="button" onclick="guestLogin()" id="guest" class="guest-button">Guest Log in</button>
                         </div>
                       </div>
                 </form>
