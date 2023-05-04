@@ -87,7 +87,7 @@ function renderHTML(){
                       </div>
                       <div class="login-buttons">
                         <div>
-                          <button onsubmit="login();" class="login-button">Log in</button>
+                          <button onsubmit="return false; login();" class="login-button">Log in</button>
                         </div>
                         <div>
                           <button onclick="guestLogin()" class="guest-button">Guest Log in</button>
