@@ -15,6 +15,7 @@ let allColors = [
 ];
 
 let currentDraggedElement;
+let currentTaskId;
 
 load();
 
@@ -96,7 +97,7 @@ function generateCardHTML(task) {
       </div>
       <div class="lowerCard">
         <div class="cardUser">User</div>
-        <div class="cardPrio"><img src="img/${task.priority}.svg" alt="${task.priority}"></div>
+        <div class="cardPrio"><img src="img/${task.priority}.svg"></div>
       </div>
     </div>
   `;
@@ -105,22 +106,66 @@ function generateCardHTML(task) {
 function showCard(taskId) {
   let task = allTasks.find((task) => task.id === taskId);
 
-  popupCard = document.getElementById('popupContainer');
+  let popupCard = document.getElementById("popupContainer");
+  let date = new Date(task.date);
+  let options = { year: "numeric", month: "2-digit", day: "2-digit" };
+  let formattedDate = date
+    .toLocaleDateString("de-DE", options)
+    .replace(/\./g, "-");
+  let backgroundColor;
+  let priorityImage, priorityText;
+  if (task.priority === "urgent") {
+    priorityImage = "/img/Prio-urgent-white.png";
+    priorityText = "Urgent";
+    backgroundColor = "rgb(255, 61, 0)";
+  } else if (task.priority === "medium") {
+    priorityImage = "/img/Prio-medium-white.png";
+    priorityText = "Medium";
+    backgroundColor = "rgb(255, 168, 0)";
+  } else {
+    priorityImage = "/img/Prio-low-white.png";
+    priorityText = "Low";
+    backgroundColor = "rgb(122,226,41)";
+  }
   popupCard.innerHTML = `
     <div class="popupCard">
       <div>
-        <div class="cardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div>
-        <img src="">
+        <div class="cancelIconPopupCard" onclick="closePopupCard()"><img src="/img/cross.png"></div>
+        <div class="popupcardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div>
       </div>
       <div class="popupCardTitle">${task.title}</div>
-      <div class="cardDescription">${task.description}</div>
-      <div><b>Due date:</b> ${task.dueDate}</div>
-      <div><b>Priority:</b> ${task.priority}</div>
-      <div><b>Assigned To:</b> ${task.assignedTo}</div>
+      <div class="popupcardDescription">${task.description}</div>
+      <div class="popupCardDate"><b>Due date:</b><div>${formattedDate}</div></div>
+      <div class="popupPrioContainer"><b>Priority:</b>
+      <div class="popupPrioBox" style="background-color:${backgroundColor}">${priorityText} <img src="${priorityImage}"</div></div>
+      </div>
+      <div class="popupCardAssigned"><b>Assigned To:</b></div>
       <div></div>
-      <div><img src=""><img src=""></div>
+      <div class="popupCardImgContainer">
+        <div class="popupCardImgBox">
+          <div class="popupDeletButton" onclick="deletePopupCard(${taskId})"><img src="/img/deletebuttonv1.png"></div>
+          <div class="popupEditButton" onclick="editPopupCard(${taskId})"><img src="/img/editbuttonv1.png"></div>
+        </div> 
+      </div>
     </div>
   `;
+}
+
+
+function closePopupCard() {
+  let popupCard = document.getElementById("popupContainer");
+  popupCard.innerHTML = "";
+}
+
+function deletePopupCard(taskId) {
+  // Finde den Index der zu löschenden Aufgabe im allTasks-Array
+  const taskIndex = allTasks.findIndex((task) => task.id === taskId);
+  if (taskIndex !== -1) {
+    allTasks.splice(taskIndex, 1);
+    save();
+    renderBoardCards();
+    closePopupCard();
+  }
 }
 
 function startDragging(id) {
