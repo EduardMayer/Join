@@ -21,6 +21,7 @@ async function register() {
       await setItem('users', JSON.stringify(users))
       clearInput();
       render()
+      back()
     }
 }
 
