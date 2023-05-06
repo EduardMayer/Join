@@ -16,12 +16,13 @@ async function register() {
         'name': inputName.value,
         'email': inputEmail.value,
         'password': password.value,
-        'img': 'img/person.svg',
+        'contact': [],
+        'img': 'img/guest.png',
       });
       await setItem('users', JSON.stringify(users))
       clearInput();
-      render()
-      back()
+      render();
+      back();
     }
 }
 
