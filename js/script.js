@@ -84,7 +84,7 @@ function renderHTML(){
                             </div>
                         </div>
                         <div class="forgot">
-                          <a onclick="forgotPassword()">Forgot my password</a>
+                          <a onclick="renderPassword()">Forgot my password</a>
                         </div>
                       </div>
                       <div class="login-buttons">
@@ -137,7 +137,7 @@ function SignUpHTML(){
 }
 
 function forgotMyPasswordHTML(){
-    return `
+    return /* html */`
     
     <div class="back">
         <img onclick="back()" src="img/blackarrowicon.svg" alt="">
@@ -150,17 +150,20 @@ function forgotMyPasswordHTML(){
     </div>
     <span class="Password-text">Don't worry! We will send you an email with the instructions to <br> reset your password.</span>
     <div class="login-value">
-        <form>
+        <form onsubmit="forgotPassword(); return false;">
             <div class="relativ-for-icon">
                 <input required placeholder="Email" type="email">
                 <img src="img/emailicon.svg" alt="">
             </div>
-        </form>
-    </div>
-    <div class="login-buttons-sign-up">
-        <div>
-            <button style="width: 200px; margin-top: 20px;" class="login-button">Send me the Email</button>
+            <div>
+                <img src="img/SendCheck.svg" alt=""> aaa
+            </div>
+            <div class="login-buttons-sign-up">
+            <div>
+                <button style="width: 200px; margin-top: 20px;" class="login-button">Send me the Email</button>
+            </div>
         </div>
+        </form>
     </div>
 </div>
 

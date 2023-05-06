@@ -9,7 +9,7 @@ async function loadUsers() {
     users = storedUsers ? JSON.parse(storedUsers) : [];
   }
 
-  async function register() {
+async function register() {
     Btn.disabled = true;
     if (Array.isArray(users)) {
       users.push({
@@ -21,7 +21,7 @@ async function loadUsers() {
       clearInput();
       render()
     }
-  }
+}
 
 function clearInput(){
     inputName.value = '';
