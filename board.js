@@ -103,6 +103,33 @@ function generateCardHTML(task) {
   `;
 }
 
+function searchCards() {
+  const searchInput = document.querySelector(".searchBarContainer input");
+  const searchValue = searchInput.value.trim().toLowerCase();
+
+  const cards = document.querySelectorAll(".card");
+  const matchedCards = [];
+
+  cards.forEach((card) => {
+    const cardTitle = card.querySelector(".cardTitle").textContent.toLowerCase();
+    const cardDescription = card.querySelector(".cardDescription").textContent.toLowerCase();
+
+    if (cardTitle.includes(searchValue) || cardDescription.includes(searchValue)) {
+      matchedCards.push(card);
+    }
+  });
+
+  // Verstecke alle Karten
+  cards.forEach((card) => {
+    card.style.display = "none";
+  });
+
+  // Zeige nur die übereinstimmenden Karten an
+  matchedCards.forEach((card) => {
+    card.style.display = "block";
+  });
+}
+
 function showCard(taskId) {
   let task = allTasks.find((task) => task.id === taskId);
 
