@@ -1,0 +1,64 @@
+body {
+    overflow: hidden;
+}
+.parent-Container {
+    background-color: #F5F5F5;
+    height: calc(100vh - 89px);
+    margin: 89px 0 0 232px;
+    display: flex;
+}
+
+.contact-list-overview {
+    width: 40%;
+    max-width: 500px;
+    background-color: white;
+    box-shadow: 4px 0px 6px 0px #00000014;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 16px;
+}
+
+.contact-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+}
+
+.new-contact {
+    height: 53px;
+    align-self: flex-end;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.new-contact:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.button {
+    color: white;
+    background-color: #2A3647;
+    border-radius: 10px;
+    border: none;
+    transition: 100ms ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 10px;
+    gap: 10px;
+    white-space: nowrap;
+}
+
+.new-contact span {
+    font-weight: 700;
+    font-size: 21px;
+}
+
+.mobile-only {
+    display: none;
+}
+
