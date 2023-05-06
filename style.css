@@ -270,6 +270,28 @@ h1{
     font-size: 12px;
 }
 
+.send{
+    height: 40px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(41, 55, 71);
+    border-radius: 7px;
+}
+
+.send img{
+    position: inherit !important;
+    margin-left: 20px;
+    height: 30px;
+    width: 30px;
+}
+
+.send span{
+    margin-right: 20px;
+    color: rgb(240, 249, 253);
+}
+
 @keyframes logoEffect{
     from{
         opacity: 1;

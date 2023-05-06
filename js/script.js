@@ -152,11 +152,12 @@ function forgotMyPasswordHTML(){
     <div class="login-value">
         <form onsubmit="forgotPassword(); return false;">
             <div class="relativ-for-icon">
-                <input required placeholder="Email" type="email">
+                <input id="email" required placeholder="Email" type="email">
                 <img src="img/emailicon.svg" alt="">
             </div>
-            <div>
-                <img src="img/SendCheck.svg" alt=""> aaa
+            <div class="send d-none" id="send">
+                <img style="display:block;" src="img/SendCheck.svg" alt=""> 
+                <span>An E-Mail has been sent to you</span>
             </div>
             <div class="login-buttons-sign-up">
             <div>

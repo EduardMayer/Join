@@ -76,5 +76,6 @@ function trueOrFalse(email,password,user){
 }
 
 function forgotPassword(){
-    alert('You can not canges it!')
+    document.getElementById('send').classList.remove('d-none');
+    document.getElementById('email').value = '';
 }
