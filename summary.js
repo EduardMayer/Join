@@ -136,20 +136,21 @@ function renderGreetingMessage() {
 }
 
 function setDate() {
-  let date = document.getElementById("date");
-  let now = new Date();
-  let year = now.getFullYear();
-  let month = monthNames[now.getMonth()];
-  let day = now.getDate();
-  if (month < 10) {
-    month = "0" + month;
-  }
-  if (day < 10) {
-    day = "0" + day;
-  }
-  const currentDate = month + " " + day + "," + " " + year;
+  let urgentTasks = allTasks.filter((t) => t.priority === "urgent" && t.date);
+  let sortedUrgentTasks = urgentTasks
+    .map((t) => new Date(t.date))
+    .filter((d) => !isNaN(d.getTime()))
+    .sort((a, b) => a.getTime() - b.getTime());
 
-  date.innerHTML = currentDate;
+  if (sortedUrgentTasks.length === 0) {
+    console.log("No urgent tasks found.");
+    return;
+  }
+
+  let closestDate = sortedUrgentTasks.reduce((a, b) => Math.abs(b - new Date()) < Math.abs(a - new Date()) ? b : a);
+  let closestDateString = closestDate.toLocaleString('default', { month: 'long', day: '2-digit', year: 'numeric' });
+  
+  document.getElementById("date").innerHTML = `${closestDateString}`;
 }
 
 function getGreeting() {
