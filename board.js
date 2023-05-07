@@ -112,9 +112,8 @@ function searchCards() {
 
   cards.forEach((card) => {
     const cardTitle = card.querySelector(".cardTitle").textContent.toLowerCase();
-    const cardDescription = card.querySelector(".cardDescription").textContent.toLowerCase();
 
-    if (cardTitle.includes(searchValue) || cardDescription.includes(searchValue)) {
+    if (cardTitle.includes(searchValue)) {
       matchedCards.push(card);
     }
   });
@@ -129,6 +128,7 @@ function searchCards() {
     card.style.display = "block";
   });
 }
+
 
 function showCard(taskId) {
   let task = allTasks.find((task) => task.id === taskId);
