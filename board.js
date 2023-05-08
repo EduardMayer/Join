@@ -201,6 +201,13 @@ function deletePopupCard(taskId) {
     closePopupCard();
   }
 }
+function highlight(id){
+document.getElementById(id).classList.add('box-highlight');
+}
+
+function removeHighlight(id){
+document.getElementById(id).classList.remove('box-highlight');
+}
 
 function startDragging(id) {
   currentDraggedElement = id;
@@ -208,6 +215,7 @@ function startDragging(id) {
 
 function allowDrop(ev) {
   ev.preventDefault();
+  
 }
 
 function moveTo(status) {

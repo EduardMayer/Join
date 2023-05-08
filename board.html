@@ -42,7 +42,7 @@
                     <h3>To Do</h3>
                     <div onclick="openAddTaskContainer()"><img class="createTaskBox" src="/img/plus button v1.svg"></div>
                 </div>
-                <div class="box" ondragover="allowDrop(event)" ondrop="moveTo('todo')" id="todo">
+                <div class="box" ondragover="allowDrop(event); highlight('todo')" ondrop="moveTo('todo'); removeHighlight('todo')"ondragleave="removeHighlight('todo')" id="todo">
                 </div>
             </div>
             <div class="statusContainer">
@@ -50,7 +50,7 @@
                     <h3>In Progress</h3> 
                     <div onclick="openAddTaskContainer()"><img class="createTaskBox" src="/img/plus button v1.svg"></div>
                 </div>
-                <div class="box" ondragover="allowDrop(event)" ondrop="moveTo('progress')" id="progress">
+                <div class="box" ondragover="allowDrop(event); highlight('progress')" ondrop="moveTo('progress'); removeHighlight('progress')" ondragleave="removeHighlight('progress')" id="progress">
                 </div>
             </div>
             <div class="statusContainer">
@@ -58,7 +58,7 @@
                     <h3>Awaiting Feedback</h3>
                     <div onclick="openAddTaskContainer()"><img class="createTaskBox" src="/img/plus button v1.svg"></div>
                 </div>
-                <div class="box" ondragover="allowDrop(event)" ondrop="moveTo('feedback')" id="feedback">
+                <div class="box" ondragover="allowDrop(event); highlight('feedback')" ondrop="moveTo('feedback'); removeHighlight('feedback')"ondragleave="removeHighlight('feedback')" id="feedback">
 
                 </div>
             </div>
@@ -67,7 +67,7 @@
                     <h3>Done</h3>
                     <div onclick="openAddTaskContainer()"><img class="createTaskBox" src="/img/plus button v1.svg"></div>
                 </div>
-                <div class="box" ondragover="allowDrop(event)" ondrop="moveTo('done')" id="done">
+                <div class="box" ondragover="allowDrop(event); highlight('done')" ondrop="moveTo('done'); removeHighlight('done')" ondragleave="removeHighlight('done')" id="done">
                 </div>
             </div>
         </div>
