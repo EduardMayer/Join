@@ -69,58 +69,60 @@ function renderSummaryCards(
 ) {
   let contentSummary = document.getElementById("content-summary");
 
-  contentSummary.innerHTML = `<div class="content">
-    <div>
-        <div class="workstation">
-            <div class="tasks-container">
-                <div class="task-box">
-                    <span>${totalCount}</span>
-                    <p>Tasks in Board</p>
-                </div>
-                <div class="task-box">
-                    <span>${progressCount}</span>
-                    <p>Tasks in Progress</p>
-                </div>
-                <div class="task-box">
-                    <span>${feedbackCount}</span>
-                    <p>Awaiting Feedback</p>
-                </div>
-            </div>
-            <div class="tasks-urgent">
-                <img src="img/Frame 59.svg">
-                <div class="urgent">
-                    <span>${urgentCount}</span>
-                    <p>Urgent</p>
-                </div>
-                <div class="verticalLine-urgent"><img src="img/verticalline-urgent-grey.svg"></div>
-                <div class="deadline">
-                    <span id="date" class="date"></span>
-                    <p>Upcoming Deadline</p>
-                </div>
-            </div>
-            <div class="todo-done">
-                <div class="todo">
-                    <img src="img/Group 7.svg">
-                    <div class="todo-done-ticket">
-                        <span>${todoCount}</span>
-                        <p>To-do</p>
-                    </div>
-                </div>
-                <div class="done">
-                    <img src="img/done-button.svg">
-                    <div class="todo-done-ticket">
-                        <span>${doneCount}</span>
-                        <p>Done</p>
-                    </div>
-                </div>
-            </div>
+  contentSummary.innerHTML = `
+    <div class="content">
+      <div class="tasks-container">
+        <div class="task-boxes">
+          <div class="task-box"> ${totalCount}</div>
+            <p>Tasks in
+            <br>
+            Board</p>  
         </div>
-    </div>
-    <div class="greet">
-        <div id="greeting-message">Good evening</div>
-        <div id="greeting-user"></div>
-    </div>
-</div>`;
+        <div class="task-boxes">
+          <div class="task-box">${progressCount}</div>
+            <p>Tasks in Progress</p>
+          </div>
+        <div class="task-boxes">
+          <div class="task-box">${feedbackCount}</div> 
+            <p>Awaiting Feedback</p>
+          </div>
+      </div>
+      <div class="tasks-urgent-deadline">
+        <div class="tasks-urgent"><img src="img/Frame 59.svg">
+          <div class="urgent-info">
+            <div class="urgnet-number">${urgentCount}</div>
+            <div class="urgent-name">Urgent</div>
+          </div> 
+        </div>   
+        <div class="verticalLine-urgent"><img src="img/verticalline-urgent-grey.svg"></div>
+          <div class="deadline">
+            <div id="date" class="deadline-date"></div>
+            <div class="deadline-upcoming">Upcoming Deadline</div>
+          </div>
+      </div>
+      <div class="todo-done">
+        <div class="todo">
+            <img src="img/Group 7.svg">
+            <div class="todo-done-ticket">
+              <span>${todoCount}</span>
+              <p>To-do</p>
+            </div>
+          </div>
+          <div class="done">
+            <img src="img/done-button.svg">
+            <div class="todo-done-ticket">
+              <span>${doneCount}</span>
+              <p>Done</p>
+            </div>
+          </div>
+        </div>
+        
+        </div><div class="greet">
+          <div id="greeting-message">Good evening</div>
+            <div id="greeting-user"></div>
+        </div>
+      </div>
+    </div>`;
 }
 
 function renderGreetingMessage() {

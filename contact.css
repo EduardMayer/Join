@@ -62,3 +62,16 @@ body {
     display: none;
 }
 
+.contact-info {
+    flex-grow: 1;
+    padding: 89px 52px 67px 52px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    position: relative;
+}
+
+.desktop-only {
+    display: flex;
+}

@@ -1,120 +1,228 @@
 body {
   margin: 0;
-  margin-left: 232px;
-  margin-top: 90px;
   background-color: rgb(245, 245, 245);
   font-family: Inter;
 }
 
 .main {
-  position: absolute;
-  width: 580px;
-  height: 540px;
-  left: 355px;
-  top: 150px;
-}
-
-.content {
-  max-width: 700px;
   display: flex;
-  text-align: center;
-  align-items: center;
+  flex-direction: column;
+  margin-top: 141px;
+  margin-left: 315px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 120%;
 }
 
 .headline {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
   gap: 30px;
+  width: 681px;
+  height: 80px;
 }
 
 h1 {
-    font-size: 61px;
-    font-weight: 700;
+  font-size: 61px;
+  font-weight: 700;
+  line-height: 120%;
+  width: 315px;
+}
+
+.verticalline-summary {
+  width: 0px;
+  height: 59px;
+  border: 3px solid #29ABE2;
 }
 
 h4 {
-    font-weight: 400;
-    font-size: 27px;
+  width: 306px;
+  height: 32px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 27px;
+  line-height: 120%;
+  color: #2A3647;
 }
 
-.workstation {
+.content-summary {
+  display: flex;
+  align-items: center;
+  padding-top: 87px;
+  max-width: 1500px;
+}
+
+.content {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 35px;
+  width: 55%;
+  height: 510px;
 }
 
 .tasks-container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  align-items: flex-start;
   gap: 35px;
-}
-
-span {
-  font-size: 64px;
-  font-weight: 600;
+  width: 580px;
+  height: 170px;
 }
 
 p {
   text-align: center;
-  font-size: 18px;
 }
 
-.task-box {
-  border-radius: 30px;
-  height: 150px;
-  width: 150px;
-  align-items: center;
+.task-boxes {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: white;
-  padding: 25px;
+  align-items: center;
+  width: 170px;
+  height: 170px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  transition: all 100ms ease-in-out;
+}
+
+.task-box {
+  text-align: center;
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 90%;
+  margin-top: 15px;
+}
+
+.tasks-urgent-deadline {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 61px;
+  width: 580px;
+  height: 150px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 100ms ease-in-out;
 }
 
 .tasks-urgent {
   display: flex;
-  width: 100%;
-  margin-bottom: 30px;
-  margin-top: 30px;
-  border-radius: 20px;
-  height: 150px;
+  flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
-  background-color: white;
-  
+  padding: 0px;
+  gap: 18px;
+  width: 130px;
+  height: 75px;
 }
 
-.urgent {
+.urgent-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  width: 52px;
+  height: 75px;
+}
+
+.urrgent-number {
+  width: 50px;
+  height: 56px;
+  font-weight: 600;
+  font-size: 47px;
+  line-height: 120%;
   text-align: center;
+}
+
+.urgent-name {
+  width: 52px;
+  height: 19px;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--dark-grey);
+}
+
+.verticalline-urgent {
+  width: 0px;
+  height: 102.02px;
+  border: 2px solid var(--grey);
+}
+
+.deadline {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 13px;
+  height: 57px;
+}
+
+.deadline-date {
+  height: 25px;
+  font-weight: 700;
+  color: var(--dark-grey);
+}
+
+.deadline-upcoming {
+  width: 148px;
+  height: 19px;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--dark-grey);
 }
 
 .todo-done {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 35px;
+  width: 580px;
+  height: 150px;
 }
 
 .todo {
-  border-radius: 20px;
-  height: 150px;
-  width: 320px;
-  align-items: center;
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  background-color: white;
+  align-items: center;
+  gap: 18px;
+  width: 272.5px;
+  height: 150px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 100ms ease-in-out;
 }
 
 .date {
   font-size: 28px;
 }
+
 .done {
-  border-radius: 20px;
-  height: 150px;
-  width: 320px;
-  align-items: center;
   display: flex;
-  margin-left: 30px;
+  flex-direction: row;
   justify-content: center;
-  background-color: white;
+  align-items: center;
+  gap: 18px;
+  width: 272.5px;
+  height: 150px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 100ms ease-in-out;
 }
 
 .todo-done-ticket {

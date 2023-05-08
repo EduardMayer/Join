@@ -33,7 +33,7 @@ function newContactHTML(){
                     <span>Tasks are better with a team!</span>
                     <div style="height:2px; width:50px; background-color:rgb(40, 172, 226);"></div>
                 </div>
-            </div>
+            </div>  
             <div>
                 <div>
                     <img src="profile picture" alt="">
