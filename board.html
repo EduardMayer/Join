@@ -14,7 +14,7 @@
     <title>Join-Board</title>
 </head>
 
-<body onload="includeHTML(), renderBoardCards(), load()">
+<body onload="includeHTML(), renderBoardCards(), load(), renderPopupAddTaskContainer()">
     <div w3-include-html="head_navbar.html"></div>
     <div class="mainBoardContainer">
         <div class="topBoardContainer">
@@ -72,6 +72,7 @@
             </div>
         </div>
         <div class="popupContainer" id="popupContainer"></div>
+        <div class="popupAddTaskContainer" id="popupAddTaskContainer"></div>
 </body>
 
 </html>

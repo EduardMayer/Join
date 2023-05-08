@@ -229,6 +229,7 @@ body {
   padding: 50px;
   flex-direction: column;
   gap: 25px;
+  z-index: 5;
 }
 
 .popupcardCategory {
@@ -247,35 +248,35 @@ body {
   font-weight: bold;
   font-size: 61px;
 }
-.popupcardDescription{
+.popupcardDescription {
   color: #000000;
   font-size: 21px;
 }
 
-.popupCardDate{
+.popupCardDate {
   display: flex;
   font-size: 21px;
   gap: 25px;
 }
 
-.popupPrioContainer{
+.popupPrioContainer {
   display: flex;
   font-size: 21px;
   align-items: center;
   gap: 25px;
 }
 
-.popupPrioBox{
+.popupPrioBox {
   color: white;
   padding: 4px 18px;
   border-radius: 10px;
 }
 
-.popupCardAssigned{
+.popupCardAssigned {
   font-size: 21px;
 }
 
-.popupCardImgContainer{
+.popupCardImgContainer {
   display: flex;
   justify-content: end;
   width: 100%;
@@ -284,7 +285,7 @@ body {
   left: -50px;
   cursor: pointer;
 }
-.popupCardImgBox{
+.popupCardImgBox {
   display: flex;
   align-items: center;
   width: 100px;
@@ -300,9 +301,62 @@ body {
   content: url("/img/editbuttonhover.png");
 }
 
-.cancelIconPopupCard{
+.cancelIconPopupCard {
   display: flex;
   justify-content: flex-end;
   width: 100%;
   cursor: pointer;
+}
+
+.mainAddTaskContainer {
+  transform: translateX(150%);
+  transition: all 1.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 61px 74px;
+  background: #ffffff;
+  border-radius: 30px;
+  position: absolute;
+  top: 60px;
+  z-index: -15;
+  box-shadow: 0px 0px 14px 3px rgb(0 0 0 / 0.04);
+}
+
+.mainAddTaskContainer.open {
+  transform: translate(15% , -3%);
+  z-index: 5;
+}
+
+.bodyAddTaskCotnainer {
+  display: flex;
+}
+
+.headAddTaskContainer {
+  display: flex;
+  font-weight: bold;
+}
+
+.rightAddTaskContainer {
+  display: flex;
+  flex-direction: column;
+  font-size: 21px;
+  gap: 37px;
+  margin-left: 59px;
+}
+
+.headAddTaskContainer p {
+  font-size: 61px;
+  margin-top: 0px;
+  margin-bottom: 41px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  background-color: rgba(0, 0, 0, 0.5); /* Hier können Sie die Opazität anpassen */
 }
