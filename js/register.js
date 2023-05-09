@@ -15,11 +15,14 @@ async function register() {
       users.push({
         'name': inputName.value,
         'email': inputEmail.value,
-        'password': password.value
+        'password': password.value,
+        'contact': [],
+        'img': 'img/guest.png',
       });
       await setItem('users', JSON.stringify(users))
       clearInput();
-      render()
+      render();
+      back();
     }
 }
 

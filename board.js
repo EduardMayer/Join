@@ -76,7 +76,7 @@ async function renderBoardCards() {
 
 function renderSubtaskHtml(subtasks) {
   let subtasksHTML = "";
-  for (let j = 0; j < subtasks.length; j++) {}
+  for (let j = 0; j < subtasks.length; j++) { }
   return subtasksHTML;
 }
 
@@ -103,8 +103,37 @@ function generateCardHTML(task) {
   `;
 }
 
+function searchCards() {
+  const searchInput = document.querySelector(".searchBarContainer input");
+  const searchValue = searchInput.value.trim().toLowerCase();
+
+  const cards = document.querySelectorAll(".card");
+  const matchedCards = [];
+
+  cards.forEach((card) => {
+    const cardTitle = card
+      .querySelector(".cardTitle")
+      .textContent.toLowerCase();
+
+    if (cardTitle.includes(searchValue)) {
+      matchedCards.push(card);
+    }
+  });
+
+  // Verstecke alle Karten
+  cards.forEach((card) => {
+    card.style.display = "none";
+  });
+
+  // Zeige nur die übereinstimmenden Karten an
+  matchedCards.forEach((card) => {
+    card.style.display = "block";
+  });
+}
+
 function showCard(taskId) {
   let task = allTasks.find((task) => task.id === taskId);
+  let overlayDiv = document.createElement("div");
 
   let popupCard = document.getElementById("popupContainer");
   let date = new Date(task.date);
@@ -127,6 +156,8 @@ function showCard(taskId) {
     priorityText = "Low";
     backgroundColor = "rgb(122,226,41)";
   }
+  overlayDiv.classList.add("overlay");
+  document.body.appendChild(overlayDiv);
   popupCard.innerHTML = `
     <div class="popupCard">
       <div>
@@ -151,9 +182,12 @@ function showCard(taskId) {
   `;
 }
 
-
 function closePopupCard() {
   let popupCard = document.getElementById("popupContainer");
+  let overlayDiv = document.querySelector(".overlay");
+  if (overlayDiv) {
+    document.body.removeChild(overlayDiv);
+  }
   popupCard.innerHTML = "";
 }
 
@@ -167,6 +201,13 @@ function deletePopupCard(taskId) {
     closePopupCard();
   }
 }
+function highlight(id){
+document.getElementById(id).classList.add('box-highlight');
+}
+
+function removeHighlight(id){
+document.getElementById(id).classList.remove('box-highlight');
+}
 
 function startDragging(id) {
   currentDraggedElement = id;
@@ -174,6 +215,7 @@ function startDragging(id) {
 
 function allowDrop(ev) {
   ev.preventDefault();
+  
 }
 
 function moveTo(status) {
@@ -486,4 +528,109 @@ function clearCategory() {
   let category = document.getElementById("category");
 
   category.innerHTML = `<div id="categoryTextBox" class="categoryTextBox"><p>Select task category</p></div><div><img src="/img/arrowTask.svg"></div>`;
+}
+
+function openAddTaskContainer() {
+  let mainAddTaskContainer = document.querySelector(".mainAddTaskContainer");
+  let overlayDiv = document.createElement("div");
+  mainAddTaskContainer.classList.add("open");
+  mainAddTaskContainer.classList.remove("d-none");
+  overlayDiv.classList.add("overlay");
+  document.body.appendChild(overlayDiv);
+}
+
+function closePopupTaskCard() {
+  let mainAddTaskContainer = document.querySelector(".mainAddTaskContainer");
+  let overlayDiv = document.querySelector(".overlay");
+  document.body.removeChild(overlayDiv);
+  mainAddTaskContainer.classList.remove("open");
+  mainAddTaskContainer.classList.add("d-none");
+}
+
+function renderPopupAddTaskContainer() {
+  document.getElementById("popupAddTaskContainer").innerHTML =`
+    <div class="mainAddTaskContainer , d-none">
+    <div class="cancelIconPopupCard" onclick="closePopupTaskCard()"><img src="/img/cross.png"></div>
+    <div class="headAddTaskContainer">
+    <p>Add Task</p>
+    </div>
+    <div class="bodyAddTaskCotnainer">
+      <div class="leftTaskContainer">
+        <div class="titleContainer">
+          <label for="title">Title</label>
+          <input type="text" id="title" placeholder="Enter a title">
+        </div>
+        <div class="descriptionContainer">
+          <label for="description">Description</label>
+          <textarea name="description" id="description" placeholder="Enter a Description"></textarea>
+        </div>
+        <div class="categoryContainer" id="categoryContainer">
+          <label for="Category">Category</label>
+          <div onclick="openDropBoxCategory()" class="childTaskContainer" id="category">
+            <div id="categoryTextBox" class="categoryTextBox">
+              <p>Select task category</p>
+            </div>
+            <div><img src="/img/arrowTask.svg"></div>
+          </div>
+          <div onclick="newCategory()" class="d-none" id="dropDownBox">
+            <div>New Category</div>
+          </div>
+          <div id="categoryBox" class="d-none"></div>
+        </div>
+        <div class="d-none" id="newCategoryContainer">
+        </div>
+        <div id="categoryColors" class="d-none">
+        </div>
+        <div class="assignedToContainer">
+          <label for="Category">Assigned to</label>
+          <div onclick="openDropBoxAssigned()" class="childTaskContainer" id="assigned">
+            <p>Select contacts to assign</p>
+            <img src="/img/arrowTask.svg">
+          </div>
+          <div class="d-none" id="dropDownUser"></div>
+        </div>
+      </div>
+      <div class="middleTaskContainer"></div>
+      <div class="rightAddTaskContainer">
+        <div>
+          <div class="dateContainer">
+            <label for="date">Due date</label>
+            <input type="date" id="date">
+          </div>
+        </div>
+        <div class="prioContainer" id="prioContainer">
+          <label for="Prio">Prio</label>
+          <div class="prioChildContainer">
+            <div id="urgent" onclick="checkpriobox(event)" class="prioBox">
+              Urgent
+              <img src="/img/urgent.svg" data-default-img="/img/urgent.svg" alt="Urgent Priority">
+            </div>
+            <div id="medium" onclick="checkpriobox(event)" class="prioBox">
+              Medium
+              <img src="/img/medium.svg" data-default-img="/img/medium.svg" alt="Medium Priority">
+            </div>
+            <div id="low" onclick="checkpriobox(event)" class="prioBox">
+              Low
+              <img src="/img/low.svg" data-default-img="/img/low.svg" alt="Low Priority">
+            </div>
+          </div>
+          <div id="prioBoxAlarm"></div>
+        </div>
+        <div class="subtaskContainer">
+          <label for="subtaskChildInput">Subtasks</label>
+          <div class="subtaskChildContainer">
+              <input onclick="changeSubImg()" id="subtask" type="text" placeholder="Add new subtask">
+              <div class="subImgContainer" id="subImgContainer"><img src="/img/icon_cancel.svg"></div>
+          </div>
+      </div>
+      <div id="subTaskDescription" class="subTaskDescription">
+      </div>
+    </div>
+  </div>
+  <div class="buttonTaskContainer">
+  <button class="buttonTask" onclick="clearTask()">Clear <img class="cancelIcon"
+    src="/img/iconoir_cancel.svg"></button>
+  <button class="buttonTask2" onclick="createTask()">Create Task<img src="/img/akar-icons_check.svg"></button>
+</div>
+</div>`;
 }
