@@ -104,14 +104,14 @@ function renderSummaryCards(
         <div class="todo">
             <img src="img/Group 7.svg">
             <div class="todo-done-ticket">
-              <span>${todoCount}</span>
+              <div class="todo-done-number">${todoCount}</div>
               <p>To-do</p>
             </div>
           </div>
           <div class="done">
             <img src="img/done-button.svg">
             <div class="todo-done-ticket">
-              <span>${doneCount}</span>
+              <div class="todo-done-number">${doneCount}</div>
               <p>Done</p>
             </div>
           </div>
