@@ -58,22 +58,22 @@ function renderSummaryCards(totalCount, todoCount, progressCount, feedbackCount,
   contentSummary.innerHTML = `
     <div class="content">
       <div class="tasks-container">
-        <div class="task-boxes">
+        <div class="task-boxes" onclick="linkToBoard()">
           <div class="task-box"> ${totalCount}</div>
             <p>Tasks in
             <br>
             Board</p>  
         </div>
-        <div class="task-boxes">
+        <div class="task-boxes" onclick="linkToBoard()">
           <div class="task-box">${progressCount}</div>
             <p>Tasks in Progress</p>
           </div>
-        <div class="task-boxes">
+        <div class="task-boxes" onclick="linkToBoard()">
           <div class="task-box">${feedbackCount}</div> 
             <p>Awaiting Feedback</p>
           </div>
       </div>
-      <div class="tasks-urgent-deadline">
+      <div class="tasks-urgent-deadline" onclick="linkToBoard()">
         <div class="tasks-urgent"><img src="img/Frame 59.svg">
           <div class="urgent-info">
             <div class="urgnet-number">${urgentCount}</div>
@@ -87,7 +87,7 @@ function renderSummaryCards(totalCount, todoCount, progressCount, feedbackCount,
           </div>
       </div>
       <div class="todo-done">
-        <div class="todo">
+        <div class="todo" onclick="linkToBoard()">
             <img class="pensil" src="img/Group 7.svg">
             <img class="d-none" src="img/pencilInverted.png">
             <div class="todo-done-ticket">
@@ -95,7 +95,7 @@ function renderSummaryCards(totalCount, todoCount, progressCount, feedbackCount,
               <p>To-do</p>
             </div>
           </div>
-          <div class="done">
+          <div class="done" onclick="linkToBoard()">
             <img class="done-btn" src="img/done-button.svg">
             <img class="d-none" src="img/checkInverted.png">
             <div class="todo-done-ticket">
@@ -156,4 +156,8 @@ function getGreeting() {
   if ((time >= 18 && time < 24) || (time >= 0 && time < 6)) {
     return "Good evening";
   }
+}
+
+function linkToBoard() {
+  window.location.href = "../board.html";
 }
