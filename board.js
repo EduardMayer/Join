@@ -104,18 +104,17 @@ function generateCardHTML(task) {
 }
 
 function searchCards() {
-  const searchInput = document.querySelector(".searchBarContainer input");
-  const searchValue = searchInput.value.trim().toLowerCase();
+  let searchInput = document.querySelector(".searchBarContainer input");
+  let searchValue = searchInput.value.trim().toLowerCase();
 
-  const cards = document.querySelectorAll(".card");
-  const matchedCards = [];
+  let cards = document.querySelectorAll(".card");
+  let matchedCards = [];
 
   cards.forEach((card) => {
-    const cardTitle = card
-      .querySelector(".cardTitle")
-      .textContent.toLowerCase();
+    let cardTitle = card.querySelector(".cardTitle").textContent.toLowerCase();
+    let cardDescription = card.querySelector(".cardDescription").textContent.toLowerCase();
 
-    if (cardTitle.includes(searchValue)) {
+    if (cardTitle.includes(searchValue) || cardDescription.includes(searchValue)) {
       matchedCards.push(card);
     }
   });
@@ -455,17 +454,18 @@ function setCurrentDate() {
   let month = now.getMonth() + 1;
   let day = now.getDate();
   if (month < 10) {
-    month = "0" + month;
+  month = "0" + month;
   }
   if (day < 10) {
-    day = "0" + day;
+  day = "0" + day;
   }
   const currentDate = year + "-" + month + "-" + day;
+  dateInput.min = currentDate; // set minimum date to current date
   dateInput.value = currentDate;
-}
+  }
 
 // Ein Json wird angelegt und in das Array AllTasks gepusht
-function createTask() {
+function createTask(status) {
   const title = document.getElementById("title");
   const description = document.getElementById("description");
   const date = document.getElementById("date");
@@ -489,7 +489,7 @@ function createTask() {
     categoryColor: categoryColor.style.backgroundColor,
     date: date.value,
     priority: priority,
-    status: "todo",
+    status: status,
     subtask: allSubtask,
   };
 
@@ -526,17 +526,24 @@ function clearTask() {
 // Categoryfeld bekommt Standart Beschreibung
 function clearCategory() {
   let category = document.getElementById("category");
-
   category.innerHTML = `<div id="categoryTextBox" class="categoryTextBox"><p>Select task category</p></div><div><img src="/img/arrowTask.svg"></div>`;
 }
 
-function openAddTaskContainer() {
+function openAddTaskContainer(status) {
+  let popupAddTaskContainer = document.getElementById('popupAddTaskContainer');
+  popupAddTaskContainer.innerHTML=``;
+  popupAddTaskContainer.innerHTML += popupAddTaskContainerTemplate(status);
+  slideAnimation()
+}
+
+function slideAnimation(){
   let mainAddTaskContainer = document.querySelector(".mainAddTaskContainer");
   let overlayDiv = document.createElement("div");
   mainAddTaskContainer.classList.add("open");
   mainAddTaskContainer.classList.remove("d-none");
   overlayDiv.classList.add("overlay");
   document.body.appendChild(overlayDiv);
+  setCurrentDate()
 }
 
 function closePopupTaskCard() {
@@ -545,11 +552,12 @@ function closePopupTaskCard() {
   document.body.removeChild(overlayDiv);
   mainAddTaskContainer.classList.remove("open");
   mainAddTaskContainer.classList.add("d-none");
+  
 }
 
-function renderPopupAddTaskContainer() {
-  document.getElementById("popupAddTaskContainer").innerHTML =`
-    <div class="mainAddTaskContainer , d-none">
+function popupAddTaskContainerTemplate(status) {
+  return`
+    <div class="mainAddTaskContainer ">
     <div class="cancelIconPopupCard" onclick="closePopupTaskCard()"><img src="/img/cross.png"></div>
     <div class="headAddTaskContainer">
     <p>Add Task</p>
@@ -630,7 +638,9 @@ function renderPopupAddTaskContainer() {
   <div class="buttonTaskContainer">
   <button class="buttonTask" onclick="clearTask()">Clear <img class="cancelIcon"
     src="/img/iconoir_cancel.svg"></button>
-  <button class="buttonTask2" onclick="createTask()">Create Task<img src="/img/akar-icons_check.svg"></button>
+  <button class="buttonTask2" onclick="createTask('${status}')">Create Task<img src="/img/akar-icons_check.svg"></button>
 </div>
 </div>`;
 }
+
+

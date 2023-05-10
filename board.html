@@ -14,7 +14,7 @@
     <title>Join-Board</title>
 </head>
 
-<body onload="includeHTML(), renderBoardCards(), load(), renderPopupAddTaskContainer()">
+<body onload="includeHTML(), renderBoardCards(), load()">
     <div w3-include-html="head_navbar.html"></div>
     <div class="mainBoardContainer">
         <div class="topBoardContainer">
@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="addButtonContainer">
-                    <div onclick="openAddTaskContainer()"><b>Add task</b><img src="/img/crossboard.svg"></div>
+                    <div onclick="openAddTaskContainer('todo')"><b>Add task</b><img src="/img/crossboard.svg"></div>
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@
             <div class="statusContainer">
                 <div class="upperStatusBox">
                     <h3>To Do</h3>
-                    <div onclick="openAddTaskContainer()"><img class="createTaskBox" src="/img/plus button v1.svg"></div>
+                    <div onclick="openAddTaskContainer('todo')"><img class="createTaskBox" src="/img/plus button v1.svg"></div>
                 </div>
                 <div class="box" ondragover="allowDrop(event); highlight('todo')" ondrop="moveTo('todo'); removeHighlight('todo')"ondragleave="removeHighlight('todo')" id="todo">
                 </div>
@@ -48,7 +48,7 @@
             <div class="statusContainer">
                 <div class="upperStatusBox">
                     <h3>In Progress</h3> 
-                    <div onclick="openAddTaskContainer()"><img class="createTaskBox" src="/img/plus button v1.svg"></div>
+                    <div onclick="openAddTaskContainer('progress')"><img class="createTaskBox" src="/img/plus button v1.svg"></div>
                 </div>
                 <div class="box" ondragover="allowDrop(event); highlight('progress')" ondrop="moveTo('progress'); removeHighlight('progress')" ondragleave="removeHighlight('progress')" id="progress">
                 </div>
@@ -56,7 +56,7 @@
             <div class="statusContainer">
                 <div class="upperStatusBox">
                     <h3>Awaiting Feedback</h3>
-                    <div onclick="openAddTaskContainer()"><img class="createTaskBox" src="/img/plus button v1.svg"></div>
+                    <div onclick="openAddTaskContainer('feedback')"><img class="createTaskBox" src="/img/plus button v1.svg"></div>
                 </div>
                 <div class="box" ondragover="allowDrop(event); highlight('feedback')" ondrop="moveTo('feedback'); removeHighlight('feedback')"ondragleave="removeHighlight('feedback')" id="feedback">
 
@@ -65,7 +65,7 @@
             <div class="statusContainer">
                 <div class="upperStatusBox">
                     <h3>Done</h3>
-                    <div onclick="openAddTaskContainer()"><img class="createTaskBox" src="/img/plus button v1.svg"></div>
+                    <div onclick="openAddTaskContainer('done')"><img class="createTaskBox" src="/img/plus button v1.svg"></div>
                 </div>
                 <div class="box" ondragover="allowDrop(event); highlight('done')" ondrop="moveTo('done'); removeHighlight('done')" ondragleave="removeHighlight('done')" id="done">
                 </div>
