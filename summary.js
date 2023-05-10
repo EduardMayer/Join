@@ -49,24 +49,10 @@ function countTaskStatuses() {
       urgentCount++;
     }
   }
-  renderSummaryCards(
-    totalCount,
-    todoCount,
-    progressCount,
-    feedbackCount,
-    doneCount,
-    urgentCount
-  );
+  renderSummaryCards(totalCount, todoCount, progressCount, feedbackCount, doneCount, urgentCount);
 }
 
-function renderSummaryCards(
-  totalCount,
-  todoCount,
-  progressCount,
-  feedbackCount,
-  doneCount,
-  urgentCount
-) {
+function renderSummaryCards(totalCount, todoCount, progressCount, feedbackCount, doneCount, urgentCount) {
   let contentSummary = document.getElementById("content-summary");
 
   contentSummary.innerHTML = `
@@ -102,14 +88,16 @@ function renderSummaryCards(
       </div>
       <div class="todo-done">
         <div class="todo">
-            <img src="img/Group 7.svg">
+            <img class="pensil" src="img/Group 7.svg">
+            <img class="d-none" src="img/pencilInverted.png">
             <div class="todo-done-ticket">
               <div class="todo-done-number">${todoCount}</div>
               <p>To-do</p>
             </div>
           </div>
           <div class="done">
-            <img src="img/done-button.svg">
+            <img class="done-btn" src="img/done-button.svg">
+            <img class="d-none" src="img/checkInverted.png">
             <div class="todo-done-ticket">
               <div class="todo-done-number">${doneCount}</div>
               <p>Done</p>
@@ -118,8 +106,8 @@ function renderSummaryCards(
         </div>
         
         </div><div class="greet">
-          <div id="greeting-message">Good evening</div>
-            <div id="greeting-user"></div>
+          <div class="greeting-message" id="greeting-message">Good evening</div>
+          <div class"gretting-user" id="greeting-user"></div>
         </div>
       </div>
     </div>`;
