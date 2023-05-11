@@ -74,35 +74,6 @@ async function renderBoardCards() {
   }
 }
 
-function renderSubtaskHtml(subtasks) {
-  let subtasksHTML = "";
-  for (let j = 0; j < subtasks.length; j++) { }
-  return subtasksHTML;
-}
-
-function generateCardHTML(task) {
-  let subtasksHTML = renderSubtaskHtml(task.subtask);
-  let progressContainerClass =
-    task.subtask.length > 0
-      ? "progressContainer"
-      : "progressContainer display d-none";
-  return `
-    <div draggable="true" onclick="showCard(${task["id"]})" ondragstart="startDragging(${task["id"]})" class="card">
-      <div class="cardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div>
-      <div class="cardTitle">${task.title}</div>
-      <div class="cardDescription">${task.description}</div>
-      <div class="${progressContainerClass}">
-        <div class="progressBar" id="progressBar"></div>
-        <div class="subtaskCounter" id="subtaskCounter">/${task.subtask.length} Done</div>
-      </div>
-      <div class="lowerCard">
-        <div class="cardUser">User</div>
-        <div class="cardPrio"><img src="img/${task.priority}.svg"></div>
-      </div>
-    </div>
-  `;
-}
-
 function searchCards() {
   let searchInput = document.querySelector(".searchBarContainer input");
   let searchValue = searchInput.value.trim().toLowerCase();
@@ -130,18 +101,22 @@ function searchCards() {
   });
 }
 
-function showCard(taskId) {
-  let task = allTasks.find((task) => task.id === taskId);
-  let overlayDiv = document.createElement("div");
+function generateCardHTML(task) {
+  return`
+    <div draggable="true" onclick="showCard(${task["id"]})" ondragstart="startDragging(${task["id"]})" class="card">
+      <div class="cardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div>
+      <div class="cardTitle">${task.title}</div>
+      <div class="cardDescription">${task.description}</div>
+      <div class="lowerCard">
+        <div class="cardUser"></div>
+        <div class="cardPrio"><img src="img/${task.priority}.svg"></div>
+      </div>
+    </div>
+  `;
+}
 
-  let popupCard = document.getElementById("popupContainer");
-  let date = new Date(task.date);
-  let options = { year: "numeric", month: "2-digit", day: "2-digit" };
-  let formattedDate = date
-    .toLocaleDateString("de-DE", options)
-    .replace(/\./g, "-");
-  let backgroundColor;
-  let priorityImage, priorityText;
+function checkPrioPopupCard(task) {
+  let priorityImage, priorityText, backgroundColor;
   if (task.priority === "urgent") {
     priorityImage = "/img/Prio-urgent-white.png";
     priorityText = "Urgent";
@@ -155,8 +130,28 @@ function showCard(taskId) {
     priorityText = "Low";
     backgroundColor = "rgb(122,226,41)";
   }
+  return { priorityImage, priorityText, backgroundColor };
+}
+
+
+
+function showCard(taskId) {
+  let task = allTasks.find((task) => task.id === taskId);
+  let overlayDiv = document.createElement("div");
+  let popupCard = document.getElementById("popupContainer");
+  let { priorityImage, priorityText, backgroundColor } = checkPrioPopupCard(task);
   overlayDiv.classList.add("overlay");
   document.body.appendChild(overlayDiv);
+  let subtask = '';
+  for (let i = 0; i < task.subtask.length; i++) {
+    subtask += `
+      <div class="popupCardSubItem">
+        <input type="checkbox" class="popupCardCheckbox">
+        <span class="popupCardSubtask">${task.subtask[i]}</span>
+      </div>
+    `;
+  }
+
   popupCard.innerHTML = `
     <div class="popupCard">
       <div>
@@ -165,21 +160,28 @@ function showCard(taskId) {
       </div>
       <div class="popupCardTitle">${task.title}</div>
       <div class="popupcardDescription">${task.description}</div>
-      <div class="popupCardDate"><b>Due date:</b><div>${formattedDate}</div></div>
+      <div class="popupCardDate"><b>Due date:</b><div>${task.date}</div></div>
       <div class="popupPrioContainer"><b>Priority:</b>
-      <div class="popupPrioBox" style="background-color:${backgroundColor}">${priorityText} <img src="${priorityImage}"</div></div>
+        <div class="popupPrioBox" style="background-color:${backgroundColor}">${priorityText} <img src="${priorityImage}"></div>
       </div>
+
       <div class="popupCardAssigned"><b>Assigned To:</b></div>
-      <div></div>
-      <div class="popupCardImgContainer">
-        <div class="popupCardImgBox">
-          <div class="popupDeletButton" onclick="deletePopupCard(${taskId})"><img src="/img/deletebuttonv1.png"></div>
-          <div class="popupEditButton" onclick="editPopupCard(${taskId})"><img src="/img/editbuttonv1.png"></div>
-        </div> 
-      </div>
+      <div class="popupCardLowerContainer">
+        <div class="popupCardSubContainer">
+          <div><b>Subtasks</b></div>
+          <div id="popupCardSubBox" class="popupCardSubBox">${subtask}</div>
+        </div>
+        <div class="popupCardImgContainer">
+          <div class="popupCardImgBox">
+            <div class="popupDeletButton" onclick="deletePopupCard(${taskId})"><img src="/img/deletebuttonv1.png"></div>
+            <div class="popupEditButton" onclick="editPopupCard(${taskId})"><img src="/img/editbuttonv1.png"></div>
+          </div> 
+        </div>  
+      </div>  
     </div>
   `;
 }
+
 
 function closePopupCard() {
   let popupCard = document.getElementById("popupContainer");

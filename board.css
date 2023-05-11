@@ -256,6 +256,8 @@ body {
 .popupcardDescription {
   color: #000000;
   font-size: 21px;
+  width: 100%;
+  word-wrap: break-word;
 }
 
 .popupCardDate {
@@ -279,6 +281,39 @@ body {
 
 .popupCardAssigned {
   font-size: 21px;
+  height: 15%;
+}
+
+.popupCardSubContainer{
+  font-size: 21px;
+  z-index: 4;
+}
+.popupCardSubBox{
+  height: 120px;
+  width: 400px;
+  overflow-y: auto;
+}
+
+/* Hiermit passt du das Aussehen der Scrollbar an */
+.popupCardSubBox::-webkit-scrollbar {
+  width: 8px;
+}
+
+.popupCardSubBox::-webkit-scrollbar-thumb {
+  background-color: rgba(9, 25, 49);
+  border-radius: 5px;
+}
+
+.popupCardSubBox::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+
+.popupCardSubItem{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 30px;
 }
 
 .popupCardImgContainer {
@@ -304,6 +339,12 @@ body {
 
 .popupEditButton:hover {
   content: url("/img/editbuttonhover.png");
+}
+
+.popupCardLowerContainer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .cancelIconPopupCard {
@@ -365,3 +406,4 @@ body {
   z-index: 4;
   background-color: rgba(0, 0, 0, 0.5);
 }
+
