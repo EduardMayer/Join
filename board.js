@@ -158,11 +158,11 @@ function showCard(taskId) {
         <div class="cancelIconPopupCard" onclick="closePopupCard()"><img src="/img/cross.png"></div>
         <div class="popupcardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div>
       </div>
-      <div class="popupCardTitle">${task.title}</div>
-      <div class="popupcardDescription">${task.description}</div>
-      <div class="popupCardDate"><b>Due date:</b><div>${task.date}</div></div>
-      <div class="popupPrioContainer"><b>Priority:</b>
-        <div class="popupPrioBox" style="background-color:${backgroundColor}">${priorityText} <img src="${priorityImage}"></div>
+      <div class="popupCardTitle" id="popupCardTitle">${task.title}</div>
+      <div class="popupcardDescription" id="popupcardDescription">${task.description}</div>
+      <div class="popupCardDate" id="popupCardDate"><b>Due date:</b><div>${task.date}</div></div>
+      <div class="popupPrioContainer" id="popupPrioContainer" ><b>Priority:</b>
+        <div class="popupPrioBox" id="popupPrioBox" style="background-color:${backgroundColor}">${priorityText} <img src="${priorityImage}"></div>
       </div>
 
       <div class="popupCardAssigned"><b>Assigned To:</b></div>
@@ -182,6 +182,56 @@ function showCard(taskId) {
   `;
 }
 
+function editPopupCard(taskId) {
+  let task = allTasks.find((task) => task.id === taskId);
+  let today = new Date();
+  let popupCard = document.getElementById("popupContainer");
+  checkPrioPopupCard(task);
+  
+  popupCard.innerHTML = `
+    <div class="popupCard">
+      <div>
+        <div class="cancelIconPopupCard" onclick="closePopupCard()"><img src="/img/cross.png"></div>
+        <div class="popupcardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div>
+      </div>
+      <div class="popupCardtitleContainer">
+          <label for="title">Title</label>
+          <input type="text" class="popupCardTitle" id="popupCardTitle" value="${task.title}">
+      </div>
+      <div class="popupCarddescriptionContainer">
+          <label for="description">Description</label>
+          <textarea class="popupcardDescription" id="popupcardDescription">${task.description}</textarea>
+      </div>
+      <div class="popupCarddateContainer">
+      <label for="date">Due date</label>
+      <input type="date" class="popupCardDate" id="popupCardDate" min="${today.toISOString().split('T')[0]}" value="${task.date}">
+      </div>
+      <div class="popupCardprioContainer" id="prioContainer">
+      <label for="Prio">Prio</label>
+      <div class="prioChildContainer">
+          <div id="urgent" onclick="checkpriobox(event)" class="popupCardprioBox">
+              Urgent
+              <img src="/img/urgent.svg" data-default-img="/img/urgent.svg" alt="Urgent Priority">
+          </div>
+          <div id="medium" onclick="checkpriobox(event)" class="popupCardprioBox">
+              Medium
+              <img src="/img/medium.svg" data-default-img="/img/medium.svg" alt="Medium Priority">
+          </div>
+          <div id="low" onclick="checkpriobox(event)" class="popupCardprioBox">
+              Low
+              <img src="/img/low.svg" data-default-img="/img/low.svg" alt="Low Priority">
+          </div>
+      </div>
+      <div id="prioBoxAlarm"></div>
+      <div class="popupCardEditAssigned"><b>Assigned To:</b></div>
+      <div class="popupCardEditImgContainer">
+        <div><button class="popupSaveButton" onclick="savePopupCard(${taskId})">Save<img src="/img/akar-icons_check.svg"></button></div>
+      </div>
+      
+  </div>
+  
+  `;
+}
 
 function closePopupCard() {
   let popupCard = document.getElementById("popupContainer");
