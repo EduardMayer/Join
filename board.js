@@ -19,6 +19,8 @@ let currentTaskId;
 
 load();
 
+
+
 // Header und linke Navigationsleiste wird hinzugefügt
 async function includeHTML() {
   let includeElements = document.querySelectorAll("[w3-include-html]");
@@ -133,6 +135,96 @@ function checkPrioPopupCard(task) {
   return { priorityImage, priorityText, backgroundColor };
 }
 
+// Ein Json wird angelegt und in das Array AllTasks gepusht
+function createTask(status) {
+  const title = document.getElementById("title");
+  const description = document.getElementById("description");
+  const date = document.getElementById("date");
+  const categoryText = document.getElementById("categoryText");
+  const categoryColor = document.getElementById("selectColorBox");
+  let priority = clickedId;
+
+  // Überprüfen, ob ein Ziel angeklickt wurde
+  if (!clickedId) {
+    document.getElementById(
+      "prioBoxAlarm"
+    ).innerHTML = `<div class="alarmBoxPrio">Select a priority!</div>`;
+    return;
+  }
+
+  let allTask = {
+    id: allTasks.length,
+    title: title.value,
+    description: description.value,
+    categoryText: categoryText.innerHTML,
+    categoryColor: categoryColor.style.backgroundColor,
+    date: date.value,
+    priority: priority,
+    status: status,
+    subtask: allSubtask,
+  };
+
+  allTasks.push(allTask);
+  save();
+  allSubtask = [];
+  clearTask();
+  window.location.href = "board.html";
+}
+
+// Die Felder vom AddTask werden resettet
+function clearTask() {
+  const title = document.getElementById("title");
+  const description = document.getElementById("description");
+  const alarmbox = document.getElementById("prioBoxAlarm");
+  const subtask = document.getElementById("subtask");
+  const subtaskDescription = document.getElementById("subTaskDescription");
+
+  alarmbox.innerHTML = ``;
+  title.value = "";
+  description.value = "";
+  subtask.value = ``;
+  subtaskDescription.innerHTML = ``;
+
+  setCurrentDate();
+  clearCategory();
+
+  if (currentElement !== null) {
+    currentElement.style.backgroundColor = "";
+    resetImage(currentElement);
+  }
+}
+
+// Categoryfeld bekommt Standart Beschreibung
+function clearCategory() {
+  let category = document.getElementById("category");
+  category.innerHTML = `<div id="categoryTextBox" class="categoryTextBox"><p>Select task category</p></div><div><img src="/img/arrowTask.svg"></div>`;
+}
+
+function openAddTaskContainer(status) {
+  let popupAddTaskContainer = document.getElementById('popupAddTaskContainer');
+  popupAddTaskContainer.innerHTML=``;
+  popupAddTaskContainer.innerHTML += popupAddTaskContainerTemplate(status);
+  slideAnimation()
+}
+
+function slideAnimation(){
+  let mainAddTaskContainer = document.querySelector(".mainAddTaskContainer");
+  let overlayDiv = document.createElement("div");
+  mainAddTaskContainer.classList.add("open");
+  mainAddTaskContainer.classList.remove("d-none");
+  overlayDiv.classList.add("overlay");
+  document.body.appendChild(overlayDiv);
+  setCurrentDate()
+}
+
+function closePopupTaskCard() {
+  let mainAddTaskContainer = document.querySelector(".mainAddTaskContainer");
+  let overlayDiv = document.querySelector(".overlay");
+  document.body.removeChild(overlayDiv);
+  mainAddTaskContainer.classList.remove("open");
+  mainAddTaskContainer.classList.add("d-none");
+  
+}
 
 
 function showCard(taskId) {
@@ -232,6 +324,37 @@ function editPopupCard(taskId) {
   
   `;
 }
+
+function savePopupCard(taskId) {
+  let task = allTasks.find((task) => task.id === taskId);
+
+  // Retrieve the updated values from the form
+  let title = document.getElementById("popupCardTitle").value;
+  let description = document.getElementById("popupcardDescription").value;
+  let date = document.getElementById("popupCardDate").value;
+  let priority = clickedId;
+  
+
+  // Update the task object with the new values
+  task.title = title;
+  task.description = description;
+  task.date = date;
+  task.priority= priority
+
+  // Find the index of the task in the allTasks array
+  let taskIndex = allTasks.findIndex((task) => task.id === taskId);
+
+  // Replace the old task object with the updated task object
+  allTasks.splice(taskIndex, 1, task);
+
+  // Save the updated allTasks array to local storage
+  localStorage.setItem("allTasks", JSON.stringify(allTasks));
+
+  // Close the popup card
+  renderBoardCards()
+  closePopupCard();
+}
+
 
 function closePopupCard() {
   let popupCard = document.getElementById("popupContainer");
@@ -515,97 +638,6 @@ function setCurrentDate() {
   dateInput.min = currentDate; // set minimum date to current date
   dateInput.value = currentDate;
   }
-
-// Ein Json wird angelegt und in das Array AllTasks gepusht
-function createTask(status) {
-  const title = document.getElementById("title");
-  const description = document.getElementById("description");
-  const date = document.getElementById("date");
-  const categoryText = document.getElementById("categoryText");
-  const categoryColor = document.getElementById("selectColorBox");
-  const priority = clickedId;
-
-  // Überprüfen, ob ein Ziel angeklickt wurde
-  if (!clickedId) {
-    document.getElementById(
-      "prioBoxAlarm"
-    ).innerHTML = `<div class="alarmBoxPrio">Select a priority!</div>`;
-    return;
-  }
-
-  let allTask = {
-    id: allTasks.length,
-    title: title.value,
-    description: description.value,
-    categoryText: categoryText.innerHTML,
-    categoryColor: categoryColor.style.backgroundColor,
-    date: date.value,
-    priority: priority,
-    status: status,
-    subtask: allSubtask,
-  };
-
-  allTasks.push(allTask);
-  save();
-  allSubtask = [];
-  clearTask();
-  window.location.href = "board.html";
-}
-
-// Die Felder vom AddTask werden resettet
-function clearTask() {
-  const title = document.getElementById("title");
-  const description = document.getElementById("description");
-  const alarmbox = document.getElementById("prioBoxAlarm");
-  const subtask = document.getElementById("subtask");
-  const subtaskDescription = document.getElementById("subTaskDescription");
-
-  alarmbox.innerHTML = ``;
-  title.value = "";
-  description.value = "";
-  subtask.value = ``;
-  subtaskDescription.innerHTML = ``;
-
-  setCurrentDate();
-  clearCategory();
-
-  if (currentElement !== null) {
-    currentElement.style.backgroundColor = "";
-    resetImage(currentElement);
-  }
-}
-
-// Categoryfeld bekommt Standart Beschreibung
-function clearCategory() {
-  let category = document.getElementById("category");
-  category.innerHTML = `<div id="categoryTextBox" class="categoryTextBox"><p>Select task category</p></div><div><img src="/img/arrowTask.svg"></div>`;
-}
-
-function openAddTaskContainer(status) {
-  let popupAddTaskContainer = document.getElementById('popupAddTaskContainer');
-  popupAddTaskContainer.innerHTML=``;
-  popupAddTaskContainer.innerHTML += popupAddTaskContainerTemplate(status);
-  slideAnimation()
-}
-
-function slideAnimation(){
-  let mainAddTaskContainer = document.querySelector(".mainAddTaskContainer");
-  let overlayDiv = document.createElement("div");
-  mainAddTaskContainer.classList.add("open");
-  mainAddTaskContainer.classList.remove("d-none");
-  overlayDiv.classList.add("overlay");
-  document.body.appendChild(overlayDiv);
-  setCurrentDate()
-}
-
-function closePopupTaskCard() {
-  let mainAddTaskContainer = document.querySelector(".mainAddTaskContainer");
-  let overlayDiv = document.querySelector(".overlay");
-  document.body.removeChild(overlayDiv);
-  mainAddTaskContainer.classList.remove("open");
-  mainAddTaskContainer.classList.add("d-none");
-  
-}
 
 function popupAddTaskContainerTemplate(status) {
   return`
