@@ -5,7 +5,12 @@
     </div>
     <div class="rightSiteheader">
       <a href="help.html"><img src="img/helpicon.svg"></a>
-      <a class="guestIcon" href="#"><img src="img/guest.png"></a>
+      <div class="logout">
+        <a class="guestIcon" href="#"><img onclick="showLogOut()" src="img/guest.png"></a>
+        <span class="d-none" id="logout" onclick="logout()">
+          Log out
+        </span>
+      </div>
   </header>
   <nav class="navbarMainContainer">
     <a href="summary.html"><img src="/img/logoJoin.svg"></a>

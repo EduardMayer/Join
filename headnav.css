@@ -108,3 +108,39 @@
 .lowerNavbarSection:hover{
     background-color: #091931;
 }
+
+.logout{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+header{
+  position: relative;
+}
+
+.logout span{
+    background-color: rgb(41, 55, 71);
+    position: absolute;
+    bottom: -40px;
+    width: 70px;
+    color: rgb(144, 149, 155);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.logout span:hover{
+    cursor: pointer;
+    color: white;
+}
+
+.d-none{
+    display: none !important;
+}

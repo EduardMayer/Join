@@ -4,6 +4,19 @@ async function userInit(){
     await loadUsers();
 }
 
+function showLogOut(){
+    let logOutButton =  document.getElementById('logout');
+    if(logOutButton.classList.contains('d-none')){
+        logOutButton.classList.remove('d-none')
+    }else{
+      logOutButton.classList.add('d-none');
+    };
+}
+
+function logout(){
+  location.href = "index.html";
+}
+
 async function loadUsers() {
     const storedUsers = await getItem('users');
     users = storedUsers ? JSON.parse(storedUsers) : [];

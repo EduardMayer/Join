@@ -1,15 +1,21 @@
 let firstLetters = [];
 
-function contactInit(){
+
+
+async function contactInit(){
+    await loadUsers();
+    getFirstLetters();
+}
+
+function getFirstLetters(){
     for (let i = 0; i < users.length; i++) {
         const name = users['name'];
         let firstletter = name.charAt(0);
         firstLetters.push(firstletter);
         sortArray();
         document.getElementById('contact-list-overview').innerHTML += letterHTML(firstLetters[i]);
-        
-    }
 
+    }
 }
 
 function sortArray(){
