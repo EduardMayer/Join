@@ -9,7 +9,7 @@ async function contactInit(){
 
 function getFirstLetters(){
     for (let i = 0; i < users.length; i++) {
-        const name = users['name'];
+        const name = users[i]['name'];
         let firstletter = name.charAt(0);
         firstLetters.push(firstletter);
         sortArray();
