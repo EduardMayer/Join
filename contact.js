@@ -9,12 +9,13 @@ async function contactInit(){
 
 function getFirstLetters(){
     for (let i = 0; i < users.length; i++) {
-        const name = users[i]['name'];
+        let name = users[i]['name'];
         let firstletter = name.charAt(0);
-        firstLetters.push(firstletter);
-        sortArray();
-        document.getElementById('contact-list-overview').innerHTML += letterHTML(firstLetters[i]);
-
+        if(firstletter != firstLetters.find(l => l[i] == firstletter)){
+            firstLetters.push(firstletter);
+            sortArray();
+            document.getElementById('contact-list-overview').innerHTML += letterHTML(firstLetters[i]);
+        }
     }
 }
 
