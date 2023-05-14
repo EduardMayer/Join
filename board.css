@@ -453,6 +453,11 @@ font-weight: bold;
   transition: all 150ms ease-in-out;
 }
 
+.popupCardprioBox:hover {
+  box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
+  scale: 1.05;
+}
+
 .popupSaveButton{
   border: 1px solid #2a3647;
   background-color: #2a3647;
