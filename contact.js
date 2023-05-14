@@ -1,24 +1,32 @@
+let firstLetters = [];
 
+function contactInit(){
+    for (let i = 0; i < users.length; i++) {
+        const name = users['name'];
+        let firstletter = name.charAt(0);
+        firstLetters.push(firstletter);
+        sortArray();
+        document.getElementById('contact-list-overview').innerHTML += letterHTML(firstLetters[i]);
+        
+    }
 
-function letterHTML(letter, i){
+}
+
+function sortArray(){
+    let unsort = firstLetters;
+    unsort.sort();
+    firstLetters = unsort; 
+}
+
+function letterHTML(letter){
     return /* html */ `
         <div>
             <h2>${letter}</h2>
             <div id="contact-${letter}">
-                <div>
-                    <img src="contact/person..." alt="">
-                </div>
-                <div>
-                    <h3>${name[i]}</h3>
-                    <a href="#">${email[i]}</a>
-                </div>
+                
             </div>
         </div>
     `;
-}
-
-function init(){
-
 }
 
 function newContactHTML(){
