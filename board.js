@@ -273,18 +273,52 @@ function showCard(taskId) {
     </div>
   `;
 }
+//Rendert die Dropbox der Category und fügt aus dem Array alle gespeicherten Werte ein
+async function renderCategory() {
+  await load();
+  let categoryBox = document.getElementById("categoryBox");
+  categoryBox.innerHTML = "";
+  for (let i = 0; i < allCategory.length; i++) {
+    const category = allCategory[i].category;
+    const color = allCategory[i].color;
+    categoryBox.innerHTML += `<div class="colorCategoryBox" onclick="selectCategory(${i})" id="selectCategory${i}"><div id="categoryText">${category}</div><div class="selectColorBox" id="selectColorBox" style="background-color:${color};"></div></div>`;
+  }
+}
+
+function setPopupCategoryCard() {
+  let popupCategoryBox = document.getElementById("popupCategoryBox");
+  popupCategoryBox.innerHTML = "";
+  for (let i = 0; i < allCategory.length; i++) {
+    const category = allCategory[i].category;
+    const color = allCategory[i].color;
+    popupCategoryBox.innerHTML += `<div class="colorPopupCategoryBox" style="background-color:${color}" onclick="selectPopupCategory(${i})" id="selectPopupCategory${i}"><div id="categoryPopupText">${category}</div><div class="selectColorBox" id="selectColorBox" style="background-color:${color};"></div></div>`;
+  }
+}
+
+function selectPopupCategory(i) {
+  let sourceDiv = document.getElementById(`selectPopupCategory${i}`);
+  let targetDiv = document.getElementById(`popupcardCategory`);
+  let backgroundColor = sourceDiv.style.backgroundColor;
+
+  targetDiv.innerHTML = sourceDiv.innerHTML;
+  targetDiv.style.backgroundColor = backgroundColor;
+  setPopupCategoryCard();
+  popupCategoryBox.innerHTML =``;
+  
+}
 
 function editPopupCard(taskId) {
   let task = allTasks.find((task) => task.id === taskId);
   let today = new Date();
   let popupCard = document.getElementById("popupContainer");
   checkPrioPopupCard(task);
-  
+
   popupCard.innerHTML = `
     <div class="popupCard">
       <div>
         <div class="cancelIconPopupCard" onclick="closePopupCard()"><img src="/img/cross.png"></div>
-        <div class="popupcardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div>
+        <div class="popupcardCategory" id="popupcardCategory" onclick="setPopupCategoryCard(${taskId})" style="background-color:${task.categoryColor}">${task.categoryText}</div>
+        <div id="popupCategoryBox" class="popupCategoryBox"></div>
       </div>
       <div class="popupCardtitleContainer">
           <label for="title">Title</label>
@@ -319,11 +353,11 @@ function editPopupCard(taskId) {
       <div class="popupCardEditImgContainer">
         <div><button class="popupSaveButton" onclick="savePopupCard(${taskId})">Save<img src="/img/akar-icons_check.svg"></button></div>
       </div>
-      
-  </div>
-  
+    </div>
   `;
 }
+
+
 
 function savePopupCard(taskId) {
   let task = allTasks.find((task) => task.id === taskId);
@@ -332,6 +366,8 @@ function savePopupCard(taskId) {
   let title = document.getElementById("popupCardTitle").value;
   let description = document.getElementById("popupcardDescription").value;
   let date = document.getElementById("popupCardDate").value;
+  let categoryText = document.getElementById("categoryPopupText").textContent;
+  let categoryColor = document.getElementById("selectColorBox");
   let priority = clickedId;
   
 
@@ -339,6 +375,8 @@ function savePopupCard(taskId) {
   task.title = title;
   task.description = description;
   task.date = date;
+  task.categoryText = categoryText;
+  task.categoryColor = categoryColor.style.backgroundColor;
   task.priority= priority
 
   // Find the index of the task in the allTasks array
@@ -462,17 +500,7 @@ function selectColor(i) {
   colorBox.appendChild(selectedColor);
 }
 
-//Rendert die Dropbox der Category und fügt aus dem Array alle gespeicherten Werte ein
-async function renderCategory() {
-  await load();
-  let categoryBox = document.getElementById("categoryBox");
-  categoryBox.innerHTML = "";
-  for (let i = 0; i < allCategory.length; i++) {
-    const category = allCategory[i].category;
-    const color = allCategory[i].color;
-    categoryBox.innerHTML += `<div class="colorCategoryBox" onclick="selectCategory(${i})" id="selectCategory${i}"><div id="categoryText">${category}</div><div class="selectColorBox" id="selectColorBox" style="background-color:${color};"></div></div>`;
-  }
-}
+
 //Lädt die Json aus dem Local Storage
 async function load() {
   allCategory = JSON.parse(localStorage.getItem(`allCategory`)) || [];
