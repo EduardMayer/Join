@@ -247,7 +247,7 @@ function showCard(taskId) {
   popupCard.innerHTML = `
     <div class="popupCard">
       <div>
-        <div class="cancelIconPopupCard" onclick="closePopupCard()"><img src="/img/cross.png"></div>
+        <div class="cancelPopupCardBox"><div onclick="closePopupCard()" class="cancelIconPopupCard"><img src="/img/cross.png"></div></div>
         <div class="popupcardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div>
       </div>
       <div class="popupCardTitle" id="popupCardTitle">${task.title}</div>
@@ -316,8 +316,8 @@ function editPopupCard(taskId) {
   popupCard.innerHTML = `
     <div class="popupCard">
       <div>
-        <div class="cancelIconPopupCard" onclick="closePopupCard()"><img src="/img/cross.png"></div>
-        <div class="popupcardCategory" id="popupcardCategory" onclick="setPopupCategoryCard(${taskId})" style="background-color:${task.categoryColor}">${task.categoryText}</div>
+      <div class="cancelPopupCardBox"><div onclick="closePopupCard()" class="cancelIconPopupCard"><img src="/img/cross.png"></div></div>
+        <div class="editPopupCardCategory" id="popupcardCategory" onclick="setPopupCategoryCard(${taskId})" style="background-color:${task.categoryColor}">${task.categoryText}</div>
         <div id="popupCategoryBox" class="popupCategoryBox"></div>
       </div>
       <div class="popupCardtitleContainer">
