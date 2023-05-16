@@ -3,7 +3,6 @@ let clickedId = null;
 let allTasks = [];
 let allCategory = [];
 let allSubtask = [];
-let subtaskChecked = [];
 let allColors = [
   "#E200BE",
   "#1FD7C1",
@@ -18,7 +17,6 @@ let currentDraggedElement;
 let currentTaskId;
 
 load();
-
 
 
 // Header und linke Navigationsleiste wird hinzugefügt
@@ -235,13 +233,18 @@ function showCard(taskId) {
   overlayDiv.classList.add("overlay");
   document.body.appendChild(overlayDiv);
   let subtask = '';
-  for (let i = 0; i < task.subtask.length; i++) {
-    subtask += `
-      <div class="popupCardSubItem">
-        <input type="checkbox" class="popupCardCheckbox">
-        <span class="popupCardSubtask">${task.subtask[i]}</span>
-      </div>
-    `;
+
+  if (task.subtask && task.subtask.length > 0) {
+    for (let i = 0; i < task.subtask.length; i++) {
+      let checkboxId = `checkbox-${taskId}-${i}`; // Eindeutige ID für jede Checkbox
+      let checkedAttribute = task.subtaskChecked && task.subtaskChecked[i] ? 'checked' : ''; // Überprüfen, ob Checkbox ausgewählt ist
+      subtask += `
+        <div class="popupCardSubItem">
+          <input type="checkbox" class="popupCardCheckbox" id="${checkboxId}" ${checkedAttribute} onclick="saveCheckboxState(${taskId}, ${i})">
+          <span class="popupCardSubtask">${task.subtask[i]}</span>
+        </div>
+      `;
+    }
   }
 
   popupCard.innerHTML = `
@@ -273,6 +276,25 @@ function showCard(taskId) {
     </div>
   `;
 }
+
+
+
+function saveCheckboxState(taskId, subtaskIndex) {
+  let checkboxId = `checkbox-${taskId}-${subtaskIndex}`;
+  let checkbox = document.getElementById(checkboxId);
+  let task = allTasks.find((task) => task.id === taskId);
+
+  // Initialize subtaskChecked array if it doesn't exist
+  if (!task.subtaskChecked) {
+    task.subtaskChecked = [];
+  }
+
+  task.subtaskChecked[subtaskIndex] = checkbox.checked; // Update the state in the task object
+
+  // Save the task in the Local Storage (optional)
+  localStorage.setItem('allTasks', JSON.stringify(allTasks));
+}
+
 //Rendert die Dropbox der Category und fügt aus dem Array alle gespeicherten Werte ein
 async function renderCategory() {
   await load();
@@ -366,8 +388,20 @@ function savePopupCard(taskId) {
   let title = document.getElementById("popupCardTitle").value;
   let description = document.getElementById("popupcardDescription").value;
   let date = document.getElementById("popupCardDate").value;
-  let categoryText = document.getElementById("categoryPopupText").textContent;
-  let categoryColor = document.getElementById("selectColorBox");
+  let categoryTextElement = document.getElementById("categoryPopupText");
+  let categoryText;
+  if (categoryTextElement && categoryTextElement.textContent) {
+    categoryText = categoryTextElement.textContent;
+  } else {
+    categoryText = task.categoryText;
+  }
+  let categoryColorElement = document.getElementById("selectColorBox");
+  let categoryColor;
+  if (categoryColorElement && categoryColorElement.style.backgroundColor) {
+    categoryColor = categoryColorElement.style.backgroundColor;
+  } else {
+    categoryColor = task.categoryColor;
+  }
   let priority = clickedId;
   
 
@@ -376,8 +410,8 @@ function savePopupCard(taskId) {
   task.description = description;
   task.date = date;
   task.categoryText = categoryText;
-  task.categoryColor = categoryColor.style.backgroundColor;
-  task.priority= priority
+  task.categoryColor = categoryColor;
+  task.priority = priority;
 
   // Find the index of the task in the allTasks array
   let taskIndex = allTasks.findIndex((task) => task.id === taskId);
@@ -389,9 +423,10 @@ function savePopupCard(taskId) {
   localStorage.setItem("allTasks", JSON.stringify(allTasks));
 
   // Close the popup card
-  renderBoardCards()
+  renderBoardCards();
   closePopupCard();
 }
+
 
 
 function closePopupCard() {
@@ -500,12 +535,11 @@ function selectColor(i) {
   colorBox.appendChild(selectedColor);
 }
 
-
-//Lädt die Json aus dem Local Storage
 async function load() {
-  allCategory = JSON.parse(localStorage.getItem(`allCategory`)) || [];
-  allTasks = JSON.parse(localStorage.getItem(`allTasks`)) || [];
+  allCategory = JSON.parse(localStorage.getItem('allCategory')) || [];
+  allTasks = JSON.parse(localStorage.getItem('allTasks')) || [];
 }
+
 // Speichert Json in das Local Storage
 function save() {
   localStorage.setItem(`allCategory`, JSON.stringify(allCategory));
