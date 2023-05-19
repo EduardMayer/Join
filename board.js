@@ -102,11 +102,26 @@ function searchCards() {
 }
 
 function generateCardHTML(task) {
-  return`
-    <div draggable="true" onclick="showCard(${task["id"]})" ondragstart="startDragging(${task["id"]})" class="card">
+  let completedSubtasks = task.subtaskChecked ? task.subtaskChecked.filter((checked) => checked).length : 0;
+  let totalSubtasks = task.subtask ? task.subtask.length : 0;
+  let progress = totalSubtasks > 0 ? (completedSubtasks / totalSubtasks) * 100 : 0;
+
+  let progressbarHTML = "";
+  let checkboxCountText = "";
+  if (task.subtask && task.subtask.length > 0) {
+    progressbarHTML = `<div class="cardProgress"><progress value="${progress}" max="100"></div>`;
+    checkboxCountText = `<div class="checkboxCount">${completedSubtasks}/${totalSubtasks} Done</div>`;
+  }
+
+  return `
+    <div draggable="true" onclick="showCard(${task.id})" ondragstart="startDragging(${task.id})" class="card">
       <div class="cardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div>
       <div class="cardTitle">${task.title}</div>
       <div class="cardDescription">${task.description}</div>
+      <div class="progressBarContainer">
+       ${progressbarHTML}
+       ${checkboxCountText}
+      </div>
       <div class="lowerCard">
         <div class="cardUser"></div>
         <div class="cardPrio"><img src="img/${task.priority}.svg"></div>
@@ -114,6 +129,7 @@ function generateCardHTML(task) {
     </div>
   `;
 }
+
 
 function checkPrioPopupCard(task) {
   let priorityImage, priorityText, backgroundColor;
@@ -239,11 +255,11 @@ function showCard(taskId) {
       let checkboxId = `checkbox-${taskId}-${i}`; // Eindeutige ID für jede Checkbox
       let checkedAttribute = task.subtaskChecked && task.subtaskChecked[i] ? 'checked' : ''; // Überprüfen, ob Checkbox ausgewählt ist
       subtask += `
-        <div class="popupCardSubItem">
-          <input type="checkbox" class="popupCardCheckbox" id="${checkboxId}" ${checkedAttribute} onclick="saveCheckboxState(${taskId}, ${i})">
-          <span class="popupCardSubtask">${task.subtask[i]}</span>
-        </div>
-      `;
+      <div class="popupCardSubItem">
+      <input type="checkbox" class="popupCardCheckbox" id="${checkboxId}" ${checkedAttribute} onclick="updateProgress(${taskId}, ${i})">
+      <span class="popupCardSubtask">${task.subtask[i]}</span>
+    </div>
+  `;
     }
   }
 
@@ -277,6 +293,15 @@ function showCard(taskId) {
   `;
 }
 
+function updateProgress(taskId, subtaskIndex) {
+  let task = allTasks.find((task) => task.id === taskId);
+  if (!task.subtaskChecked) {
+    task.subtaskChecked = [];
+  }
+  task.subtaskChecked[subtaskIndex] = !task.subtaskChecked[subtaskIndex];
+  renderBoardCards();
+  save();
+}
 
 
 function saveCheckboxState(taskId, subtaskIndex) {
@@ -402,6 +427,14 @@ function savePopupCard(taskId) {
   } else {
     categoryColor = task.categoryColor;
   }
+
+  if (!clickedId) {
+    document.getElementById(
+      "prioBoxAlarm"
+    ).innerHTML = `<div class="alarmBoxPrio">Select a priority!</div>`;
+    return;
+  }
+  
   let priority = clickedId;
   
 
