@@ -18,8 +18,9 @@ let currentTaskId;
 
 load();
 
-
-// Header und linke Navigationsleiste wird hinzugefügt
+/**
+ * Funktion zum Einbinden des HTML-Codes für den Header und die linke Navigationsleiste.
+ */
 async function includeHTML() {
   let includeElements = document.querySelectorAll("[w3-include-html]");
   for (let i = 0; i < includeElements.length; i++) {
@@ -33,9 +34,11 @@ async function includeHTML() {
     }
   }
 }
-
+/**
+ * Funktion zum Rendern der Karten auf dem Board.
+ * Lädt alle Tasks vom Local Storage und rendert die entsprechenden Karten für die verschiedenen Statusbereiche (todo, progress, feedback, done).
+ */
 async function renderBoardCards() {
-  // lade alle Tasks vom Local Storage
 
   // todo-Karten
   let todoTasks = allTasks.filter((task) => task.status === "todo");
@@ -73,19 +76,25 @@ async function renderBoardCards() {
     doneBox.innerHTML += generateCardHTML(task, i);
   }
 }
-
+/**
+ * Funktion zum Suchen und Filtern der Karten basierend auf dem eingegebenen Suchbegriff.
+ * Sucht nach Übereinstimmungen im Titel und der Beschreibung der Karten und blendet nicht übereinstimmende Karten aus.
+ */
 function searchCards() {
   let searchInput = document.querySelector(".searchBarContainer input");
   let searchValue = searchInput.value.trim().toLowerCase();
-
   let cards = document.querySelectorAll(".card");
   let matchedCards = [];
 
   cards.forEach((card) => {
     let cardTitle = card.querySelector(".cardTitle").textContent.toLowerCase();
-    let cardDescription = card.querySelector(".cardDescription").textContent.toLowerCase();
-
-    if (cardTitle.includes(searchValue) || cardDescription.includes(searchValue)) {
+    let cardDescription = card
+      .querySelector(".cardDescription")
+      .textContent.toLowerCase();
+    if (
+      cardTitle.includes(searchValue) ||
+      cardDescription.includes(searchValue)
+    ) {
       matchedCards.push(card);
     }
   });
@@ -101,27 +110,52 @@ function searchCards() {
   });
 }
 
-function generateCardHTML(task) {
-  let completedSubtasks = task.subtaskChecked ? task.subtaskChecked.filter((checked) => checked).length : 0;
+/**
+ * Funktion zur Berechnung des Fortschritts eines Tasks.
+ * Zählt die abgeschlossenen Unteraufgaben und die Gesamtanzahl der Unteraufgaben und berechnet den Fortschritt in Prozent.
+ * Gibt ein Objekt mit den Werten für abgeschlossene Unteraufgaben, Gesamtanzahl der Unteraufgaben und Fortschritt zurück.
+ */
+function generateProgress(task) {
+  let completedSubtasks = task.subtaskChecked
+    ? task.subtaskChecked.filter((checked) => checked).length
+    : 0;
   let totalSubtasks = task.subtask ? task.subtask.length : 0;
-  let progress = totalSubtasks > 0 ? (completedSubtasks / totalSubtasks) * 100 : 0;
+  let progress =
+    totalSubtasks > 0 ? (completedSubtasks / totalSubtasks) * 100 : 0;
 
-  let progressbarHTML = "";
-  let checkboxCountText = "";
+  return { completedSubtasks, totalSubtasks, progress };
+}
+/**
+ * Funktion zum Generieren des HTML-Codes für den Fortschrittsbalken-Container einer Aufgabenkarte.
+ * Nimmt eine Task-Objekt als Parameter und gibt den entsprechenden HTML-Code zurück.
+ */
+function generateProgressBarContainerHTML(task) {
+  let { completedSubtasks, totalSubtasks, progress } = generateProgress(task);
+
+  let progressBarContainerHTML = "";
   if (task.subtask && task.subtask.length > 0) {
-    progressbarHTML = `<div class="cardProgress"><progress value="${progress}" max="100"></div>`;
-    checkboxCountText = `<div class="checkboxCount">${completedSubtasks}/${totalSubtasks} Done</div>`;
+    progressBarContainerHTML = `
+      <div class="progressBarContainer" id="progressBarContainer">
+        <div class="cardProgress"><progress value="${progress}" max="100"></div>
+        <div class="checkboxCount">${completedSubtasks}/${totalSubtasks} Done</div>
+      </div>
+    `;
   }
+  return progressBarContainerHTML;
+}
+/**
+ * Funktion zum Generieren des HTML-Codes für eine Aufgabenkarte.
+ * Nimmt eine Task-Objekt als Parameter und gibt den entsprechenden HTML-Code zurück.
+ */
+function generateCardHTML(task) {
+  let progressBarContainerHTML = generateProgressBarContainerHTML(task);
 
   return `
     <div draggable="true" onclick="showCard(${task.id})" ondragstart="startDragging(${task.id})" class="card">
       <div class="cardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div>
       <div class="cardTitle">${task.title}</div>
       <div class="cardDescription">${task.description}</div>
-      <div class="progressBarContainer">
-       ${progressbarHTML}
-       ${checkboxCountText}
-      </div>
+      ${progressBarContainerHTML}
       <div class="lowerCard">
         <div class="cardUser"></div>
         <div class="cardPrio"><img src="img/${task.priority}.svg"></div>
@@ -129,8 +163,10 @@ function generateCardHTML(task) {
     </div>
   `;
 }
-
-
+/**
+ * Funktion zur Überprüfung der Priorität einer Aufgabenkarte.
+ * Nimmt eine Task-Objekt als Parameter und gibt die entsprechenden Prioritätsinformationen zurück.
+ */
 function checkPrioPopupCard(task) {
   let priorityImage, priorityText, backgroundColor;
   if (task.priority === "urgent") {
@@ -149,7 +185,10 @@ function checkPrioPopupCard(task) {
   return { priorityImage, priorityText, backgroundColor };
 }
 
-// Ein Json wird angelegt und in das Array AllTasks gepusht
+/**
+ * Funktion zum Erstellen einer neuen Aufgabe.
+ * Nimmt den Status als Parameter und erstellt eine Aufgabe mit den angegebenen Eigenschaften.
+ */
 function createTask(status) {
   const title = document.getElementById("title");
   const description = document.getElementById("description");
@@ -165,7 +204,7 @@ function createTask(status) {
     ).innerHTML = `<div class="alarmBoxPrio">Select a priority!</div>`;
     return;
   }
-
+  // Neue Aufgabe erstellen
   let allTask = {
     id: allTasks.length,
     title: title.value,
@@ -185,7 +224,9 @@ function createTask(status) {
   window.location.href = "board.html";
 }
 
-// Die Felder vom AddTask werden resettet
+/**
+ * Funktion zum Zurücksetzen der Eingabefelder für eine neue Aufgabe.
+ */
 function clearTask() {
   const title = document.getElementById("title");
   const description = document.getElementById("description");
@@ -208,52 +249,69 @@ function clearTask() {
   }
 }
 
-// Categoryfeld bekommt Standart Beschreibung
+/**
+ * Funktion zum Zurücksetzen der Kategorieauswahl.
+ */
 function clearCategory() {
   let category = document.getElementById("category");
   category.innerHTML = `<div id="categoryTextBox" class="categoryTextBox"><p>Select task category</p></div><div><img src="/img/arrowTask.svg"></div>`;
 }
 
+/**
+ * Funktion zum Öffnen des Popups zum Hinzufügen einer neuen Aufgabe.
+ * Nimmt den Status als Parameter und öffnet das entsprechende Popup-Fenster.
+ */
 function openAddTaskContainer(status) {
-  let popupAddTaskContainer = document.getElementById('popupAddTaskContainer');
-  popupAddTaskContainer.innerHTML=``;
+  let popupAddTaskContainer = document.getElementById("popupAddTaskContainer");
+  popupAddTaskContainer.innerHTML = ``;
   popupAddTaskContainer.innerHTML += popupAddTaskContainerTemplate(status);
-  slideAnimation()
+  renderCategory();
+  renderColorCategory();
+  slideAnimation();
 }
 
-function slideAnimation(){
+/**
+ * Funktion für die Schiebeanimation beim Öffnen des Aufgaben-Popups.
+ */
+function slideAnimation() {
   let mainAddTaskContainer = document.querySelector(".mainAddTaskContainer");
   let overlayDiv = document.createElement("div");
   mainAddTaskContainer.classList.add("open");
   mainAddTaskContainer.classList.remove("d-none");
   overlayDiv.classList.add("overlay");
   document.body.appendChild(overlayDiv);
-  setCurrentDate()
+  setCurrentDate();
 }
-
+/**
+ * Schließt das Popup-Fenster für die Aufgabenkarte.
+ */
 function closePopupTaskCard() {
   let mainAddTaskContainer = document.querySelector(".mainAddTaskContainer");
   let overlayDiv = document.querySelector(".overlay");
   document.body.removeChild(overlayDiv);
   mainAddTaskContainer.classList.remove("open");
   mainAddTaskContainer.classList.add("d-none");
-  
 }
 
-
+/**
+ * Zeigt die Details einer Aufgabenkarte an.
+ * @param {number} taskId - Die ID der Aufgabenkarte.
+ */
 function showCard(taskId) {
   let task = allTasks.find((task) => task.id === taskId);
   let overlayDiv = document.createElement("div");
   let popupCard = document.getElementById("popupContainer");
-  let { priorityImage, priorityText, backgroundColor } = checkPrioPopupCard(task);
+  let { priorityImage, priorityText, backgroundColor } =
+    checkPrioPopupCard(task);
   overlayDiv.classList.add("overlay");
   document.body.appendChild(overlayDiv);
-  let subtask = '';
+  let subtask = "";
 
   if (task.subtask && task.subtask.length > 0) {
     for (let i = 0; i < task.subtask.length; i++) {
       let checkboxId = `checkbox-${taskId}-${i}`; // Eindeutige ID für jede Checkbox
-      let checkedAttribute = task.subtaskChecked && task.subtaskChecked[i] ? 'checked' : ''; // Überprüfen, ob Checkbox ausgewählt ist
+      let checkedAttribute =
+        task.subtaskChecked && task.subtaskChecked[i] ? "checked" : ""; // Überprüfen, ob Checkbox ausgewählt ist
       subtask += `
       <div class="popupCardSubItem">
       <input type="checkbox" class="popupCardCheckbox" id="${checkboxId}" ${checkedAttribute} onclick="updateProgress(${taskId}, ${i})">
@@ -292,7 +350,11 @@ function showCard(taskId) {
     </div>
   `;
 }
-
+/**
+ * Aktualisiert den Fortschritt einer Unteraufgabe.
+ * @param {number} taskId - Die ID der Aufgabenkarte.
+ * @param {number} subtaskIndex - Der Index der Unteraufgabe.
+ */
 function updateProgress(taskId, subtaskIndex) {
   let task = allTasks.find((task) => task.id === taskId);
   if (!task.subtaskChecked) {
@@ -302,8 +364,11 @@ function updateProgress(taskId, subtaskIndex) {
   renderBoardCards();
   save();
 }
-
-
+/**
+ * Speichert den Zustand einer Checkbox.
+ * @param {number} taskId - Die ID der Aufgabenkarte.
+ * @param {number} subtaskIndex - Der Index der Unteraufgabe.
+ */
 function saveCheckboxState(taskId, subtaskIndex) {
   let checkboxId = `checkbox-${taskId}-${subtaskIndex}`;
   let checkbox = document.getElementById(checkboxId);
@@ -317,10 +382,12 @@ function saveCheckboxState(taskId, subtaskIndex) {
   task.subtaskChecked[subtaskIndex] = checkbox.checked; // Update the state in the task object
 
   // Save the task in the Local Storage (optional)
-  localStorage.setItem('allTasks', JSON.stringify(allTasks));
+  localStorage.setItem("allTasks", JSON.stringify(allTasks));
 }
 
-//Rendert die Dropbox der Category und fügt aus dem Array alle gespeicherten Werte ein
+/**
+ * Rendert die Auswahl der Kategorien.
+ */
 async function renderCategory() {
   await load();
   let categoryBox = document.getElementById("categoryBox");
@@ -332,6 +399,9 @@ async function renderCategory() {
   }
 }
 
+/**
+ * Setzt die Kategorienauswahl im Popup-Fenster.
+ */
 function setPopupCategoryCard() {
   let popupCategoryBox = document.getElementById("popupCategoryBox");
   popupCategoryBox.innerHTML = "";
@@ -342,6 +412,10 @@ function setPopupCategoryCard() {
   }
 }
 
+/**
+ * Wählt eine Kategorie im Popup-Fenster aus.
+ * @param {number} i - Der Index der ausgewählten Kategorie.
+ */
 function selectPopupCategory(i) {
   let sourceDiv = document.getElementById(`selectPopupCategory${i}`);
   let targetDiv = document.getElementById(`popupcardCategory`);
@@ -350,10 +424,13 @@ function selectPopupCategory(i) {
   targetDiv.innerHTML = sourceDiv.innerHTML;
   targetDiv.style.backgroundColor = backgroundColor;
   setPopupCategoryCard();
-  popupCategoryBox.innerHTML =``;
-  
+  popupCategoryBox.innerHTML = ``;
 }
 
+/**
+ * Funktion, um das Popup-Kartenelement zum Bearbeiten einer Aufgabe anzuzeigen.
+ * @param {number} taskId - Die ID der Aufgabe, die bearbeitet werden soll.
+ */
 function editPopupCard(taskId) {
   let task = allTasks.find((task) => task.id === taskId);
   let today = new Date();
@@ -364,20 +441,28 @@ function editPopupCard(taskId) {
     <div class="popupCard">
       <div>
       <div class="cancelPopupCardBox"><div onclick="closePopupCard()" class="cancelIconPopupCard"><img src="/img/cross.png"></div></div>
-        <div class="editPopupCardCategory" id="popupcardCategory" onclick="setPopupCategoryCard(${taskId})" style="background-color:${task.categoryColor}">${task.categoryText}</div>
+        <div class="editPopupCardCategory" id="popupcardCategory" onclick="setPopupCategoryCard(${taskId})" style="background-color:${
+    task.categoryColor
+  }">${task.categoryText}</div>
         <div id="popupCategoryBox" class="popupCategoryBox"></div>
       </div>
       <div class="popupCardtitleContainer">
           <label for="title">Title</label>
-          <input type="text" class="popupCardTitle" id="popupCardTitle" value="${task.title}">
+          <input type="text" class="popupCardTitle" id="popupCardTitle" value="${
+            task.title
+          }">
       </div>
       <div class="popupCarddescriptionContainer">
           <label for="description">Description</label>
-          <textarea class="popupcardDescription" id="popupcardDescription">${task.description}</textarea>
+          <textarea class="popupcardDescription" id="popupcardDescription">${
+            task.description
+          }</textarea>
       </div>
       <div class="popupCarddateContainer">
       <label for="date">Due date</label>
-      <input type="date" class="popupCardDate" id="popupCardDate" min="${today.toISOString().split('T')[0]}" value="${task.date}">
+      <input type="date" class="popupCardDate" id="popupCardDate" min="${
+        today.toISOString().split("T")[0]
+      }" value="${task.date}">
       </div>
       <div class="popupCardprioContainer" id="prioContainer">
       <label for="Prio">Prio</label>
@@ -404,8 +489,10 @@ function editPopupCard(taskId) {
   `;
 }
 
-
-
+/**
+* Speichert den Zustand einer Aufgabenkarte.
+* @param {number} taskId - Die ID der Aufgabenkarte.
+*/
 function savePopupCard(taskId) {
   let task = allTasks.find((task) => task.id === taskId);
 
@@ -434,9 +521,8 @@ function savePopupCard(taskId) {
     ).innerHTML = `<div class="alarmBoxPrio">Select a priority!</div>`;
     return;
   }
-  
+
   let priority = clickedId;
-  
 
   // Update the task object with the new values
   task.title = title;
@@ -460,8 +546,9 @@ function savePopupCard(taskId) {
   closePopupCard();
 }
 
-
-
+/**
+* Schließt das Popup-Fenster.
+*/
 function closePopupCard() {
   let popupCard = document.getElementById("popupContainer");
   let overlayDiv = document.querySelector(".overlay");
@@ -471,6 +558,10 @@ function closePopupCard() {
   popupCard.innerHTML = "";
 }
 
+/**
+* Löscht eine Aufgabenkarte.
+* @param {number} taskId - Die ID der Aufgabenkarte.
+*/
 function deletePopupCard(taskId) {
   // Finde den Index der zu löschenden Aufgabe im allTasks-Array
   const taskIndex = allTasks.findIndex((task) => task.id === taskId);
@@ -481,12 +572,12 @@ function deletePopupCard(taskId) {
     closePopupCard();
   }
 }
-function highlight(id){
-document.getElementById(id).classList.add('box-highlight');
+function highlight(id) {
+  document.getElementById(id).classList.add("box-highlight");
 }
 
-function removeHighlight(id){
-document.getElementById(id).classList.remove('box-highlight');
+function removeHighlight(id) {
+  document.getElementById(id).classList.remove("box-highlight");
 }
 
 function startDragging(id) {
@@ -495,7 +586,6 @@ function startDragging(id) {
 
 function allowDrop(ev) {
   ev.preventDefault();
-  
 }
 
 function moveTo(status) {
@@ -569,8 +659,8 @@ function selectColor(i) {
 }
 
 async function load() {
-  allCategory = JSON.parse(localStorage.getItem('allCategory')) || [];
-  allTasks = JSON.parse(localStorage.getItem('allTasks')) || [];
+  allCategory = JSON.parse(localStorage.getItem("allCategory")) || [];
+  allTasks = JSON.parse(localStorage.getItem("allTasks")) || [];
 }
 
 // Speichert Json in das Local Storage
@@ -724,18 +814,18 @@ function setCurrentDate() {
   let month = now.getMonth() + 1;
   let day = now.getDate();
   if (month < 10) {
-  month = "0" + month;
+    month = "0" + month;
   }
   if (day < 10) {
-  day = "0" + day;
+    day = "0" + day;
   }
   const currentDate = year + "-" + month + "-" + day;
   dateInput.min = currentDate; // set minimum date to current date
   dateInput.value = currentDate;
-  }
+}
 
 function popupAddTaskContainerTemplate(status) {
-  return`
+  return `
     <div class="mainAddTaskContainer ">
     <div class="cancelIconPopupCard" onclick="closePopupTaskCard()"><img src="/img/cross.png"></div>
     <div class="headAddTaskContainer">
@@ -821,5 +911,3 @@ function popupAddTaskContainerTemplate(status) {
 </div>
 </div>`;
 }
-
-
