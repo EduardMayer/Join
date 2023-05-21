@@ -53,12 +53,7 @@ function login(event){
 }
 
 function guestLogin(){
-    let email = document.getElementById('email');
-    let password = document.getElementById('password');
-    email.value = 'Guest@Guest.de';
-    password.value = '123456789';
-    let user = users.find(u => u.email == email.value && u.password == password.value);
-    trueOrFalse(email,password,user);
+    location.href = "summary.html";
 }
 
 function trueOrFalse(email,password,user){
