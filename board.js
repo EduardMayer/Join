@@ -3,16 +3,7 @@ let clickedId = null;
 let allTasks = [];
 let allCategory = [];
 let allSubtask = [];
-let allColors = [
-  "#E200BE",
-  "#1FD7C1",
-  "#0038FF",
-  "#FF8A00",
-  "#2AD300",
-  "#FF0000",
-  "#8AA4FF",
-];
-
+let allColors = ["#E200BE","#1FD7C1","#0038FF","#FF8A00","#2AD300","#FF0000","#8AA4FF",];
 let currentDraggedElement;
 let currentTaskId;
 
@@ -39,7 +30,6 @@ async function includeHTML() {
  * Lädt alle Tasks vom Local Storage und rendert die entsprechenden Karten für die verschiedenen Statusbereiche (todo, progress, feedback, done).
  */
 async function renderBoardCards() {
-
   // todo-Karten
   let todoTasks = allTasks.filter((task) => task.status === "todo");
   let todoBox = document.getElementById("todo");
@@ -91,12 +81,8 @@ function searchCards() {
     let cardDescription = card
       .querySelector(".cardDescription")
       .textContent.toLowerCase();
-    if (
-      cardTitle.includes(searchValue) ||
-      cardDescription.includes(searchValue)
-    ) {
-      matchedCards.push(card);
-    }
+    if (cardTitle.includes(searchValue) || cardDescription.includes(searchValue)) 
+    { matchedCards.push(card);}
   });
 
   // Verstecke alle Karten
@@ -116,13 +102,9 @@ function searchCards() {
  * Gibt ein Objekt mit den Werten für abgeschlossene Unteraufgaben, Gesamtanzahl der Unteraufgaben und Fortschritt zurück.
  */
 function generateProgress(task) {
-  let completedSubtasks = task.subtaskChecked
-    ? task.subtaskChecked.filter((checked) => checked).length
-    : 0;
+  let completedSubtasks = task.subtaskChecked ? task.subtaskChecked.filter((checked) => checked).length : 0;
   let totalSubtasks = task.subtask ? task.subtask.length : 0;
-  let progress =
-    totalSubtasks > 0 ? (completedSubtasks / totalSubtasks) * 100 : 0;
-
+  let progress = totalSubtasks > 0 ? (completedSubtasks / totalSubtasks) * 100 : 0;
   return { completedSubtasks, totalSubtasks, progress };
 }
 /**
@@ -143,32 +125,12 @@ function generateProgressBarContainerHTML(task) {
   }
   return progressBarContainerHTML;
 }
-/**
- * Funktion zum Generieren des HTML-Codes für eine Aufgabenkarte.
- * Nimmt eine Task-Objekt als Parameter und gibt den entsprechenden HTML-Code zurück.
- */
-function generateCardHTML(task) {
-  let progressBarContainerHTML = generateProgressBarContainerHTML(task);
 
-  return `
-    <div draggable="true" onclick="showCard(${task.id})" ondragstart="startDragging(${task.id})" class="card">
-      <div class="cardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div>
-      <div class="cardTitle">${task.title}</div>
-      <div class="cardDescription">${task.description}</div>
-      ${progressBarContainerHTML}
-      <div class="lowerCard">
-        <div class="cardUser"></div>
-        <div class="cardPrio"><img src="img/${task.priority}.svg"></div>
-      </div>
-    </div>
-  `;
-}
 /**
  * Funktion zur Überprüfung der Priorität einer Aufgabenkarte.
  * Nimmt eine Task-Objekt als Parameter und gibt die entsprechenden Prioritätsinformationen zurück.
  */
 function checkPrioPopupCard(task) {
-  let priorityImage, priorityText, backgroundColor;
   if (task.priority === "urgent") {
     priorityImage = "/img/Prio-urgent-white.png";
     priorityText = "Urgent";
@@ -301,55 +263,37 @@ function showCard(taskId) {
   let task = allTasks.find((task) => task.id === taskId);
   let overlayDiv = document.createElement("div");
   let popupCard = document.getElementById("popupContainer");
-  let { priorityImage, priorityText, backgroundColor } =
-    checkPrioPopupCard(task);
+  let { priorityImage, priorityText, backgroundColor } = checkPrioPopupCard(task);
+  let subtask = generateSubtaskHtml(task, taskId);
   overlayDiv.classList.add("overlay");
   document.body.appendChild(overlayDiv);
-  let subtask = "";
+  popupCard.innerHTML = generatePopupCardHtml(task, taskId, subtask, backgroundColor, priorityText, priorityImage);
+}
 
+/**
+ * Generates the HTML content for subtasks based on the task details.
+ * @param {object} task - The task object.
+ * @param {number} taskId - The ID of the task.
+ * @returns {string} - The HTML content for subtasks.
+ */
+function generateSubtaskHtml(task, taskId) {
+  let subtaskHtml = "";
   if (task.subtask && task.subtask.length > 0) {
     for (let i = 0; i < task.subtask.length; i++) {
-      let checkboxId = `checkbox-${taskId}-${i}`; // Eindeutige ID für jede Checkbox
+      let checkboxId = `checkbox-${taskId}-${i}`;
       let checkedAttribute =
-        task.subtaskChecked && task.subtaskChecked[i] ? "checked" : ""; // Überprüfen, ob Checkbox ausgewählt ist
-      subtask += `
-      <div class="popupCardSubItem">
-      <input type="checkbox" class="popupCardCheckbox" id="${checkboxId}" ${checkedAttribute} onclick="updateProgress(${taskId}, ${i})">
-      <span class="popupCardSubtask">${task.subtask[i]}</span>
-    </div>
-  `;
+        task.subtaskChecked && task.subtaskChecked[i] ? "checked" : "";
+      subtaskHtml += `
+        <div class="popupCardSubItem">
+          <input type="checkbox" class="popupCardCheckbox" id="${checkboxId}" ${checkedAttribute} onclick="updateProgress(${taskId}, ${i})">
+          <span class="popupCardSubtask">${task.subtask[i]}</span>
+        </div>
+      `;
     }
   }
-
-  popupCard.innerHTML = `
-    <div class="popupCard">
-      <div>
-        <div class="cancelPopupCardBox"><div onclick="closePopupCard()" class="cancelIconPopupCard"><img src="/img/cross.png"></div></div>
-        <div class="popupcardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div>
-      </div>
-      <div class="popupCardTitle" id="popupCardTitle">${task.title}</div>
-      <div class="popupcardDescription" id="popupcardDescription">${task.description}</div>
-      <div class="popupCardDate" id="popupCardDate"><b>Due date:</b><div>${task.date}</div></div>
-      <div class="popupPrioContainer" id="popupPrioContainer" ><b>Priority:</b>
-        <div class="popupPrioBox" id="popupPrioBox" style="background-color:${backgroundColor}">${priorityText} <img src="${priorityImage}"></div>
-      </div>
-
-      <div class="popupCardAssigned"><b>Assigned To:</b></div>
-      <div class="popupCardLowerContainer">
-        <div class="popupCardSubContainer">
-          <div><b>Subtasks</b></div>
-          <div id="popupCardSubBox" class="popupCardSubBox">${subtask}</div>
-        </div>
-        <div class="popupCardImgContainer">
-          <div class="popupCardImgBox">
-            <div class="popupDeletButton" onclick="deletePopupCard(${taskId})"><img src="/img/deletebuttonv1.png"></div>
-            <div class="popupEditButton" onclick="editPopupCard(${taskId})"><img src="/img/editbuttonv1.png"></div>
-          </div> 
-        </div>  
-      </div>  
-    </div>
-  `;
+  return subtaskHtml;
 }
+
 /**
  * Aktualisiert den Fortschritt einer Unteraufgabe.
  * @param {number} taskId - Die ID der Aufgabenkarte.
@@ -378,8 +322,8 @@ function saveCheckboxState(taskId, subtaskIndex) {
   if (!task.subtaskChecked) {
     task.subtaskChecked = [];
   }
-
-  task.subtaskChecked[subtaskIndex] = checkbox.checked; // Update the state in the task object
+  // Update the state in the task object
+  task.subtaskChecked[subtaskIndex] = checkbox.checked; 
 
   // Save the task in the Local Storage (optional)
   localStorage.setItem("allTasks", JSON.stringify(allTasks));
@@ -405,6 +349,7 @@ async function renderCategory() {
 function setPopupCategoryCard() {
   let popupCategoryBox = document.getElementById("popupCategoryBox");
   popupCategoryBox.innerHTML = "";
+
   for (let i = 0; i < allCategory.length; i++) {
     const category = allCategory[i].category;
     const color = allCategory[i].color;
@@ -436,94 +381,51 @@ function editPopupCard(taskId) {
   let today = new Date();
   let popupCard = document.getElementById("popupContainer");
   checkPrioPopupCard(task);
+  popupCard.innerHTML = generateEditPopupCardHtml(task, taskId, today, popupCard);
+}
 
-  popupCard.innerHTML = `
-    <div class="popupCard">
-      <div>
-      <div class="cancelPopupCardBox"><div onclick="closePopupCard()" class="cancelIconPopupCard"><img src="/img/cross.png"></div></div>
-        <div class="editPopupCardCategory" id="popupcardCategory" onclick="setPopupCategoryCard(${taskId})" style="background-color:${
-    task.categoryColor
-  }">${task.categoryText}</div>
-        <div id="popupCategoryBox" class="popupCategoryBox"></div>
-      </div>
-      <div class="popupCardtitleContainer">
-          <label for="title">Title</label>
-          <input type="text" class="popupCardTitle" id="popupCardTitle" value="${
-            task.title
-          }">
-      </div>
-      <div class="popupCarddescriptionContainer">
-          <label for="description">Description</label>
-          <textarea class="popupcardDescription" id="popupcardDescription">${
-            task.description
-          }</textarea>
-      </div>
-      <div class="popupCarddateContainer">
-      <label for="date">Due date</label>
-      <input type="date" class="popupCardDate" id="popupCardDate" min="${
-        today.toISOString().split("T")[0]
-      }" value="${task.date}">
-      </div>
-      <div class="popupCardprioContainer" id="prioContainer">
-      <label for="Prio">Prio</label>
-      <div class="prioChildContainer">
-          <div id="urgent" onclick="checkpriobox(event)" class="popupCardprioBox">
-              Urgent
-              <img src="/img/urgent.svg" data-default-img="/img/urgent.svg" alt="Urgent Priority">
-          </div>
-          <div id="medium" onclick="checkpriobox(event)" class="popupCardprioBox">
-              Medium
-              <img src="/img/medium.svg" data-default-img="/img/medium.svg" alt="Medium Priority">
-          </div>
-          <div id="low" onclick="checkpriobox(event)" class="popupCardprioBox">
-              Low
-              <img src="/img/low.svg" data-default-img="/img/low.svg" alt="Low Priority">
-          </div>
-      </div>
-      <div id="prioBoxAlarm"></div>
-      <div class="popupCardEditAssigned"><b>Assigned To:</b></div>
-      <div class="popupCardEditImgContainer">
-        <div><button class="popupSaveButton" onclick="savePopupCard(${taskId})">Save<img src="/img/akar-icons_check.svg"></button></div>
-      </div>
-    </div>
-  `;
+function getCategoryText(task, defaultTextElementId) {
+  let textElement = document.getElementById(defaultTextElementId);
+  let text;
+  if (textElement && textElement.textContent) {
+    text = textElement.textContent;
+  } else {
+    text = task.categoryText;
+  }
+  return text;
+}
+
+function getCategoryColor(task, defaultColorElementId) {
+  let colorElement = document.getElementById(defaultColorElementId);
+  let color;
+  if (colorElement && colorElement.style.backgroundColor) {
+    color = colorElement.style.backgroundColor;
+  } else {
+    color = task.categoryColor;
+  }
+  return color;
 }
 
 /**
-* Speichert den Zustand einer Aufgabenkarte.
-* @param {number} taskId - Die ID der Aufgabenkarte.
-*/
+ * Speichert den Zustand einer Aufgabenkarte.
+ * @param {number} taskId - Die ID der Aufgabenkarte.
+ */
 function savePopupCard(taskId) {
   let task = allTasks.find((task) => task.id === taskId);
-
-  // Retrieve the updated values from the form
   let title = document.getElementById("popupCardTitle").value;
   let description = document.getElementById("popupcardDescription").value;
   let date = document.getElementById("popupCardDate").value;
-  let categoryTextElement = document.getElementById("categoryPopupText");
-  let categoryText;
-  if (categoryTextElement && categoryTextElement.textContent) {
-    categoryText = categoryTextElement.textContent;
-  } else {
-    categoryText = task.categoryText;
-  }
-  let categoryColorElement = document.getElementById("selectColorBox");
-  let categoryColor;
-  if (categoryColorElement && categoryColorElement.style.backgroundColor) {
-    categoryColor = categoryColorElement.style.backgroundColor;
-  } else {
-    categoryColor = task.categoryColor;
-  }
-
+  let categoryText = getCategoryText(task, "categoryPopupText");
+  let categoryColor = getCategoryColor(task, "selectColorBox");  
+  let priority = clickedId;
+  
   if (!clickedId) {
     document.getElementById(
       "prioBoxAlarm"
     ).innerHTML = `<div class="alarmBoxPrio">Select a priority!</div>`;
     return;
   }
-
-  let priority = clickedId;
-
+  
   // Update the task object with the new values
   task.title = title;
   task.description = description;
@@ -532,23 +434,19 @@ function savePopupCard(taskId) {
   task.categoryColor = categoryColor;
   task.priority = priority;
 
-  // Find the index of the task in the allTasks array
-  let taskIndex = allTasks.findIndex((task) => task.id === taskId);
-
-  // Replace the old task object with the updated task object
-  allTasks.splice(taskIndex, 1, task);
-
-  // Save the updated allTasks array to local storage
-  localStorage.setItem("allTasks", JSON.stringify(allTasks));
-
-  // Close the popup card
-  renderBoardCards();
+  updateTaskInArray(allTasks, taskId, task);
   closePopupCard();
 }
 
+function updateTaskInArray(allTasks, taskId, updatedTask) {
+  let taskIndex = allTasks.findIndex((task) => task.id === taskId);
+  allTasks.splice(taskIndex, 1, updatedTask);
+  localStorage.setItem("allTasks", JSON.stringify(allTasks));
+}
+
 /**
-* Schließt das Popup-Fenster.
-*/
+ * Schließt das Popup-Fenster für die Aufgabenkarte.
+ */
 function closePopupCard() {
   let popupCard = document.getElementById("popupContainer");
   let overlayDiv = document.querySelector(".overlay");
@@ -556,12 +454,13 @@ function closePopupCard() {
     document.body.removeChild(overlayDiv);
   }
   popupCard.innerHTML = "";
+  renderBoardCards();
 }
 
 /**
-* Löscht eine Aufgabenkarte.
-* @param {number} taskId - Die ID der Aufgabenkarte.
-*/
+ * Löscht eine Aufgabenkarte.
+ * @param {number} taskId - Die ID der Aufgabenkarte.
+ */
 function deletePopupCard(taskId) {
   // Finde den Index der zu löschenden Aufgabe im allTasks-Array
   const taskIndex = allTasks.findIndex((task) => task.id === taskId);
@@ -572,6 +471,7 @@ function deletePopupCard(taskId) {
     closePopupCard();
   }
 }
+
 function highlight(id) {
   document.getElementById(id).classList.add("box-highlight");
 }
@@ -625,17 +525,7 @@ function newCategory() {
   newCategoryContainer.classList.remove("d-none");
   categoryColors.classList.remove("d-none");
   categoryColors.classList.add("colorsContainer");
-  document.getElementById(
-    "newCategoryContainer"
-  ).innerHTML = `<label for="Category">Category</label><div class="subtaskChildContainer" >
-<div id="colorBox" class="colorBox"></div>
-<input type="text" id="inputCategory" placeholder="New category name">
-<div class="subImgContainer">
-  <img onclick="closeNewCategory()" src="/img/iconoir_cancel_black.svg">
-  <div class="searchBarLine"></div>
-  <img onclick="addNewCategory()" id="subImg" src="/img/akar-icons_check_black.svg">
-</div>
-</div>`;
+  document.getElementById("newCategoryContainer").innerHTML = newCategoryHtml();
 }
 
 // Die Farben für Category wird gerendert
@@ -732,9 +622,7 @@ function openDropBoxAssigned() {
 
 // Wechselt die Symbole in der Subtaskleiste
 function changeSubImg() {
-  document.getElementById(
-    "subImgContainer"
-  ).innerHTML = `<div class="subImgContainer">
+  document.getElementById("subImgContainer").innerHTML = `<div class="subImgContainer">
   <img onclick="closeSubImg()" src="/img/iconoir_cancel_black.svg">
   <div class="searchBarLine"></div>
   <img onclick="addSubtask()" id="subImg" src="/img/akar-icons_check_black.svg">
@@ -743,9 +631,7 @@ function changeSubImg() {
 
 //Schließt die Subtaskleiste und standart Bild wird eingefügt
 function closeSubImg() {
-  document.getElementById(
-    "subImgContainer"
-  ).innerHTML = `<img src="/img/icon_cancel.svg">`;
+  document.getElementById("subImgContainer").innerHTML = `<img src="/img/icon_cancel.svg">`;
   document.getElementById("subtask").value = ``;
 }
 
@@ -822,92 +708,4 @@ function setCurrentDate() {
   const currentDate = year + "-" + month + "-" + day;
   dateInput.min = currentDate; // set minimum date to current date
   dateInput.value = currentDate;
-}
-
-function popupAddTaskContainerTemplate(status) {
-  return `
-    <div class="mainAddTaskContainer ">
-    <div class="cancelIconPopupCard" onclick="closePopupTaskCard()"><img src="/img/cross.png"></div>
-    <div class="headAddTaskContainer">
-    <p>Add Task</p>
-    </div>
-    <div class="bodyAddTaskCotnainer">
-      <div class="leftTaskContainer">
-        <div class="titleContainer">
-          <label for="title">Title</label>
-          <input type="text" id="title" placeholder="Enter a title">
-        </div>
-        <div class="descriptionContainer">
-          <label for="description">Description</label>
-          <textarea name="description" id="description" placeholder="Enter a Description"></textarea>
-        </div>
-        <div class="categoryContainer" id="categoryContainer">
-          <label for="Category">Category</label>
-          <div onclick="openDropBoxCategory()" class="childTaskContainer" id="category">
-            <div id="categoryTextBox" class="categoryTextBox">
-              <p>Select task category</p>
-            </div>
-            <div><img src="/img/arrowTask.svg"></div>
-          </div>
-          <div onclick="newCategory()" class="d-none" id="dropDownBox">
-            <div>New Category</div>
-          </div>
-          <div id="categoryBox" class="d-none"></div>
-        </div>
-        <div class="d-none" id="newCategoryContainer">
-        </div>
-        <div id="categoryColors" class="d-none">
-        </div>
-        <div class="assignedToContainer">
-          <label for="Category">Assigned to</label>
-          <div onclick="openDropBoxAssigned()" class="childTaskContainer" id="assigned">
-            <p>Select contacts to assign</p>
-            <img src="/img/arrowTask.svg">
-          </div>
-          <div class="d-none" id="dropDownUser"></div>
-        </div>
-      </div>
-      <div class="middleTaskContainer"></div>
-      <div class="rightAddTaskContainer">
-        <div>
-          <div class="dateContainer">
-            <label for="date">Due date</label>
-            <input type="date" id="date">
-          </div>
-        </div>
-        <div class="prioContainer" id="prioContainer">
-          <label for="Prio">Prio</label>
-          <div class="prioChildContainer">
-            <div id="urgent" onclick="checkpriobox(event)" class="prioBox">
-              Urgent
-              <img src="/img/urgent.svg" data-default-img="/img/urgent.svg" alt="Urgent Priority">
-            </div>
-            <div id="medium" onclick="checkpriobox(event)" class="prioBox">
-              Medium
-              <img src="/img/medium.svg" data-default-img="/img/medium.svg" alt="Medium Priority">
-            </div>
-            <div id="low" onclick="checkpriobox(event)" class="prioBox">
-              Low
-              <img src="/img/low.svg" data-default-img="/img/low.svg" alt="Low Priority">
-            </div>
-          </div>
-          <div id="prioBoxAlarm"></div>
-        </div>
-        <div class="subtaskContainer">
-          <label for="subtaskChildInput">Subtasks</label>
-          <div class="subtaskChildContainer">
-              <input onclick="changeSubImg()" id="subtask" type="text" placeholder="Add new subtask">
-              <div class="subImgContainer" id="subImgContainer"><img src="/img/icon_cancel.svg"></div>
-          </div>
-      </div>
-      <div id="subTaskDescription" class="subTaskDescription">
-      </div>
-    </div>
-  </div>
-  <div class="buttonTaskContainer">
-  <button class="buttonTask" onclick="clearTask()">Clear <img class="cancelIcon"
-    src="/img/iconoir_cancel.svg"></button>
-  <button class="buttonTask2" onclick="createTask('${status}')">Create Task<img src="/img/akar-icons_check.svg"></button>
-</div>
-</div>`;
 }

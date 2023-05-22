@@ -285,8 +285,11 @@ body {
 
 .popupPrioBox {
   color: white;
+  display: flex;
   padding: 4px 18px;
   border-radius: 10px;
+  align-items: center;
+  gap: 10px;
 }
 
 .popupCardAssigned {

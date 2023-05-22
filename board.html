@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="addtask.css">
     <script src="board.js"></script>
     <script src="summary.js"></script>
+    <script src="template.js"></script>
     <title>Join-Board</title>
 </head>
 
@@ -40,34 +41,44 @@
             <div class="statusContainer">
                 <div class="upperStatusBox">
                     <h3>To Do</h3>
-                    <div onclick="openAddTaskContainer('todo')"><img class="createTaskBox" src="/img/plus button v1.svg"></div>
+                    <div onclick="openAddTaskContainer('todo')"><img class="createTaskBox"
+                            src="/img/plus button v1.svg"></div>
                 </div>
-                <div class="box" ondragover="allowDrop(event); highlight('todo')" ondrop="moveTo('todo'); removeHighlight('todo')"ondragleave="removeHighlight('todo')" id="todo">
+                <div class="box" ondragover="allowDrop(event); highlight('todo')"
+                    ondrop="moveTo('todo'); removeHighlight('todo')" ondragleave="removeHighlight('todo')" id="todo">
                 </div>
             </div>
             <div class="statusContainer">
                 <div class="upperStatusBox">
-                    <h3>In Progress</h3> 
-                    <div onclick="openAddTaskContainer('progress')"><img class="createTaskBox" src="/img/plus button v1.svg"></div>
+                    <h3>In Progress</h3>
+                    <div onclick="openAddTaskContainer('progress')"><img class="createTaskBox"
+                            src="/img/plus button v1.svg"></div>
                 </div>
-                <div class="box" ondragover="allowDrop(event); highlight('progress')" ondrop="moveTo('progress'); removeHighlight('progress')" ondragleave="removeHighlight('progress')" id="progress">
+                <div class="box" ondragover="allowDrop(event); highlight('progress')"
+                    ondrop="moveTo('progress'); removeHighlight('progress')" ondragleave="removeHighlight('progress')"
+                    id="progress">
                 </div>
             </div>
             <div class="statusContainer">
                 <div class="upperStatusBox">
                     <h3>Awaiting Feedback</h3>
-                    <div onclick="openAddTaskContainer('feedback')"><img class="createTaskBox" src="/img/plus button v1.svg"></div>
+                    <div onclick="openAddTaskContainer('feedback')"><img class="createTaskBox"
+                            src="/img/plus button v1.svg"></div>
                 </div>
-                <div class="box" ondragover="allowDrop(event); highlight('feedback')" ondrop="moveTo('feedback'); removeHighlight('feedback')"ondragleave="removeHighlight('feedback')" id="feedback">
+                <div class="box" ondragover="allowDrop(event); highlight('feedback')"
+                    ondrop="moveTo('feedback'); removeHighlight('feedback')" ondragleave="removeHighlight('feedback')"
+                    id="feedback">
 
                 </div>
             </div>
             <div class="statusContainer">
                 <div class="upperStatusBox">
                     <h3>Done</h3>
-                    <div onclick="openAddTaskContainer('done')"><img class="createTaskBox" src="/img/plus button v1.svg"></div>
+                    <div onclick="openAddTaskContainer('done')"><img class="createTaskBox"
+                            src="/img/plus button v1.svg"></div>
                 </div>
-                <div class="box" ondragover="allowDrop(event); highlight('done')" ondrop="moveTo('done'); removeHighlight('done')" ondragleave="removeHighlight('done')" id="done">
+                <div class="box" ondragover="allowDrop(event); highlight('done')"
+                    ondrop="moveTo('done'); removeHighlight('done')" ondragleave="removeHighlight('done')" id="done">
                 </div>
             </div>
         </div>
@@ -76,6 +87,3 @@
 </body>
 
 </html>
-
-
-

@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="addtask.css">
     <script src="js/storage.js"></script>
     <script src="board.js"></script>
-    <script>src="summary.js"</script>
+    <script>src = "summary.js"</script>
+    <script src="template.js"></script>
     <title>AddTask</title>
 </head>
 
@@ -20,87 +21,91 @@
     <div class="headTaskContainer">
         <h1>Add Task</h1>
     </div>
-    <div class="mainTaskContainer">
-        <div class="leftTaskContainer">
-            <div class="titleContainer">
-                <label for="title">Title</label>
-                <input type="text" id="title" placeholder="Enter a title">
-            </div>
-            <div class="descriptionContainer">
-                <label for="description">Description</label>
-                <textarea name="description" id="description" placeholder="Enter a Description"></textarea>
-            </div>
-            <div class="categoryContainer" id="categoryContainer">
-                <label for="Category">Category</label>
-                <div onclick="openDropBoxCategory()" class="childTaskContainer" id="category">
-                    <div id="categoryTextBox" class="categoryTextBox">
-                        <p>Select task category</p>
+    <form>
+        <div class="mainTaskContainer">
+            <div class="leftTaskContainer">
+                <div class="titleContainer">
+                    <label for="title">Title</label>
+                    <input required type="text" id="title" placeholder="Enter a title" minlength="3">
+                </div>
+                <div class="descriptionContainer">
+                    <label for="description">Description</label>
+                    <textarea required name="description" id="description" placeholder="Enter a Description"
+                        minlength="3"></textarea>
+                </div>
+                <div class="categoryContainer" id="categoryContainer">
+                    <label for="Category">Category</label>
+                    <div onclick="openDropBoxCategory()" class="childTaskContainer" id="category">
+                        <div id="categoryTextBox" class="categoryTextBox">
+                            <p>Select task category</p>
+                        </div>
+                        <div><img src="/img/arrowTask.svg"></div>
                     </div>
-                    <div><img src="/img/arrowTask.svg"></div>
-                </div>
-                <div onclick="newCategory()" class="d-none" id="dropDownBox">
-                    <div>New Category</div>
-                </div>
-                <div id="categoryBox" class="d-none"></div>
-            </div>
-            <div class="d-none" id="newCategoryContainer">
-            </div>
-            <div id="categoryColors" class="d-none">
-            </div>
-            <div class="assignedToContainer">
-                <label for="Category">Assigned to</label>
-                <div onclick="openDropBoxAssigned()" class="childTaskContainer" id="assigned">
-                    <p>Select contacts to assign</p>
-                    <img src="/img/arrowTask.svg">
-                </div>
-                <div class="d-none" id="dropDownUser"></div>
-            </div>
-        </div>
-        <div class="middleTaskContainer"></div>
-        <div class="rightTaskContainer">
-            <div>
-                <div class="dateContainer">
-                    <label for="date">Due date</label>
-                    <input type="date" id="date">
-                </div>
-            </div>
-            <div class="prioContainer" id="prioContainer">
-                <label for="Prio">Prio</label>
-                <div class="prioChildContainer">
-                    <div id="urgent" onclick="checkpriobox(event)" class="prioBox">
-                        Urgent
-                        <img src="/img/urgent.svg" data-default-img="/img/urgent.svg" alt="Urgent Priority">
+                    <div onclick="newCategory()" class="d-none" id="dropDownBox">
+                        <div>New Category</div>
                     </div>
-                    <div id="medium" onclick="checkpriobox(event)" class="prioBox">
-                        Medium
-                        <img src="/img/medium.svg" data-default-img="/img/medium.svg" alt="Medium Priority">
+                    <div id="categoryBox" class="d-none"></div>
+                </div>
+                <div class="d-none" id="newCategoryContainer">
+                </div>
+                <div id="categoryColors" class="d-none">
+                </div>
+                <div class="assignedToContainer">
+                    <label for="Category">Assigned to</label>
+                    <div onclick="openDropBoxAssigned()" class="childTaskContainer" id="assigned">
+                        <p>Select contacts to assign</p>
+                        <img src="/img/arrowTask.svg">
                     </div>
-                    <div id="low" onclick="checkpriobox(event)" class="prioBox">
-                        Low
-                        <img src="/img/low.svg" data-default-img="/img/low.svg" alt="Low Priority">
+                    <div class="d-none" id="dropDownUser"></div>
+                </div>
+            </div>
+            <div class="middleTaskContainer"></div>
+            <div class="rightTaskContainer">
+                <div>
+                    <div class="dateContainer">
+                        <label for="date">Due date</label>
+                        <input type="date" id="date">
                     </div>
                 </div>
-                <div id="prioBoxAlarm"></div>
-            </div>
-            <div class="subtaskContainer">
-                <label for="subtaskChildInput">Subtasks</label>
-                <div class="subtaskChildContainer">
-                    <input onclick="changeSubImg()" id="subtask" type="text" placeholder="Add new subtask">
-                    <div class="subImgContainer" id="subImgContainer"><img src="/img/icon_cancel.svg"></div>
+                <div class="prioContainer" id="prioContainer">
+                    <label for="Prio">Prio</label>
+                    <div class="prioChildContainer">
+                        <div id="urgent" onclick="checkpriobox(event)" class="prioBox">
+                            Urgent
+                            <img src="/img/urgent.svg" data-default-img="/img/urgent.svg" alt="Urgent Priority">
+                        </div>
+                        <div id="medium" onclick="checkpriobox(event)" class="prioBox">
+                            Medium
+                            <img src="/img/medium.svg" data-default-img="/img/medium.svg" alt="Medium Priority">
+                        </div>
+                        <div id="low" onclick="checkpriobox(event)" class="prioBox">
+                            Low
+                            <img src="/img/low.svg" data-default-img="/img/low.svg" alt="Low Priority">
+                        </div>
+                    </div>
+                    <div id="prioBoxAlarm"></div>
                 </div>
-            </div>
-            <div id="subTaskDescription" class="subTaskDescription">
+                <div class="subtaskContainer">
+                    <label for="subtaskChildInput">Subtasks</label>
+                    <div class="subtaskChildContainer">
+                        <input onclick="changeSubImg()" id="subtask" type="text" placeholder="Add new subtask">
+                        <div class="subImgContainer" id="subImgContainer"><img src="/img/icon_cancel.svg"></div>
+                    </div>
+                </div>
+                <div id="subTaskDescription" class="subTaskDescription">
 
+                </div>
             </div>
         </div>
-    </div>
-    </div>
-    <div class="buttonTaskContainer">
-        <button class="buttonTask" onclick="clearTask()">Clear <img class="cancelIcon"
-                src="/img/iconoir_cancel.svg"></button>
-        <button class="buttonTask2" onclick="createTask('todo')">Create Task<img src="/img/akar-icons_check.svg"></button>
-    </div>
-    </div>
+        </div>
+        <div class="buttonTaskContainer">
+            <button class="buttonTask" onclick="clearTask()">Clear <img class="cancelIcon"
+                    src="/img/iconoir_cancel.svg"></button>
+            <button class="buttonTask2" onclick="createTask('todo')">Create Task<img
+                    src="/img/akar-icons_check.svg"></button>
+        </div>
+        </div>
+    </form>
 </body>
 
 </html>
