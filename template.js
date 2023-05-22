@@ -14,14 +14,7 @@ function generateCardHTML(task) {
     `;
 }
 
-function generatePopupCardHtml(
-  task,
-  taskId,
-  subtaskHtml,
-  backgroundColor,
-  priorityText,
-  priorityImage
-) {
+function generatePopupCardHtml(task,taskId,subtaskHtml,backgroundColor,priorityText,priorityImage) {
   return `
       <div class="popupCard">
         <div>
@@ -53,7 +46,7 @@ function generatePopupCardHtml(
 }
 
 function generateEditPopupCardHtml(task, taskId, today) {
-  return `
+  return `<form>
     <div class="popupCard">
       <div>
       <div class="cancelPopupCardBox"><div onclick="closePopupCard()" class="cancelIconPopupCard"><img src="/img/cross.png"></div></div>
@@ -64,13 +57,13 @@ function generateEditPopupCardHtml(task, taskId, today) {
       </div>
       <div class="popupCardtitleContainer">
           <label for="title">Title</label>
-          <input type="text" class="popupCardTitle" id="popupCardTitle" value="${
+          <input required type="text" class="popupCardTitle" id="popupCardTitle" minlength="3" value="${
             task.title
           }">
       </div>
       <div class="popupCarddescriptionContainer">
           <label for="description">Description</label>
-          <textarea class="popupcardDescription" id="popupcardDescription">${
+          <textarea required class="popupcardDescription" id="popupcardDescription" minlength="3">${
             task.description
           }</textarea>
       </div>
@@ -102,6 +95,7 @@ function generateEditPopupCardHtml(task, taskId, today) {
         <div><button class="popupSaveButton" onclick="savePopupCard(${taskId})">Save<img src="/img/akar-icons_check.svg"></button></div>
       </div>
     </div>
+    </form>
   `;
 }
 
