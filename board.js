@@ -466,7 +466,8 @@ function deletePopupCard(taskId) {
   const taskIndex = allTasks.findIndex((task) => task.id === taskId);
   if (taskIndex !== -1) {
     allTasks.splice(taskIndex, 1);
-  for (let i = 0; i < allTasks.length; i++) {
+
+    for (let i = 0; i < allTasks.length; i++) {
       allTasks[i].id = i;
     }
     save();

@@ -1,4 +1,5 @@
 let users = [];
+let initials = '';
 
 async function userInit(){
     await loadUsers();
@@ -24,18 +25,22 @@ async function loadUsers() {
 
 async function register() {
     Btn.disabled = true;
+    let name = inputName.value;
+    renderfirstNames(name);
     if (Array.isArray(users)) {
       users.push({
-        'name': inputName.value,
+        'name': name,
         'email': inputEmail.value,
         'password': password.value,
         'contact': [],
         'img': 'img/guest.png',
+        'firstLetter': initials,
       });
       await setItem('users', JSON.stringify(users))
       clearInput();
       render();
       back();
+      location.href = "summary.html";
     }
 }
 
@@ -44,4 +49,14 @@ function clearInput(){
     inputEmail.value = '';
     password.value = '';
     Btn.disabled = false;
+}
+
+function renderfirstNames(inputname){
+  let names = inputname.split(' ');
+
+  for(let i = 0; i < names.length; i++){
+      let name = names[i];
+      let initial = name.charAt(0);
+      initials += initial;
+  }
 }
