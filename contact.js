@@ -1,4 +1,5 @@
 let firstLetters = [];
+let sortLetter = [];
 
 async function contactInit(){
     await loadUsers();
@@ -7,14 +8,32 @@ async function contactInit(){
 
 function getFirstLetters() {
     for (let i = 0; i < users.length; i++) {
+        firstLetters.sort();
         let name = users[i]['name'];
         let firstletter = name.charAt(0);
         if (!firstLetters.includes(firstletter)) { // Überprüfe, ob der Buchstabe bereits im Array ist
             firstLetters.push(firstletter);
-            document.getElementById('contact-list-overview').innerHTML += letterHTML(firstletter).toUpperCase();
+            sortLetter.push(firstletter);
+            sortLetter.sort();
+            renderContactHTML(sortLetter);
         }
     }
     sortArray(); // Sortiere das Array außerhalb der Schleife, nachdem alle Buchstaben hinzugefügt wurden
+}
+
+function renderContactHTML(sortLetter){
+    let div = document.getElementById('contact-list-overview');
+    div.innerHTML = '';
+    for(let i = 0; i < sortLetter.length; i++){
+        div.innerHTML += /* html */`
+        <div>
+            <h3>${letterHTML(sortLetter[i]).toUpperCase()}</h3>
+            <div class="forh3"></div>
+            <div id="contact${i}">
+            </div>
+        </div>
+    `;
+    }
 }
 
 function sortArray(){
