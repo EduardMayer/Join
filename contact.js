@@ -1,22 +1,20 @@
 let firstLetters = [];
 
-
-
 async function contactInit(){
     await loadUsers();
     getFirstLetters();
 }
 
-function getFirstLetters(){
+function getFirstLetters() {
     for (let i = 0; i < users.length; i++) {
         let name = users[i]['name'];
         let firstletter = name.charAt(0);
-        if(firstletter != firstLetters.find(l => l[i] == firstletter)){
+        if (!firstLetters.includes(firstletter)) { // Überprüfe, ob der Buchstabe bereits im Array ist
             firstLetters.push(firstletter);
-            sortArray();
-            document.getElementById('contact-list-overview').innerHTML += letterHTML(firstLetters[i]);
+            document.getElementById('contact-list-overview').innerHTML += letterHTML(firstletter).toUpperCase();
         }
     }
+    sortArray(); // Sortiere das Array außerhalb der Schleife, nachdem alle Buchstaben hinzugefügt wurden
 }
 
 function sortArray(){
