@@ -117,10 +117,10 @@ function generateProgressBarContainerHTML(task) {
   let progressBarContainerHTML = "";
   if (task.subtask && task.subtask.length > 0) {
     progressBarContainerHTML = `
-      <div class="progressBarContainer" id="progressBarContainer">
-        <div class="cardProgress"><progress value="${progress}" max="100"></div>
-        <div class="checkboxCount">${completedSubtasks}/${totalSubtasks} Done</div>
-      </div>
+    <div class="progressBarContainer" id="progressBarContainer">
+    <div class="cardProgress"><progress value="${progress}" max="100"></progress></div>
+    <div class="checkboxCount">${completedSubtasks}/${totalSubtasks} Done</div>
+  </div>
     `;
   }
   return progressBarContainerHTML;
@@ -204,10 +204,16 @@ function clearTask() {
 
   setCurrentDate();
   clearCategory();
+  resetElement(currentElement);
+}
 
+function resetElement(currentElement) {
   if (currentElement !== null) {
     currentElement.style.backgroundColor = "";
     resetImage(currentElement);
+
+    currentElement = null;
+    clickedId = null;
   }
 }
 
@@ -435,6 +441,7 @@ function savePopupCard(taskId) {
   task.priority = priority;
 
   updateTaskInArray(allTasks, taskId, task);
+  resetElement(currentElement);
   closePopupCard();
 }
 

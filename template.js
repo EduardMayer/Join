@@ -95,8 +95,6 @@ function generateEditPopupCardHtml(task, taskId, today) {
   `;
 }
 
-
-
 function popupAddTaskContainerTemplate(status) {
   return `
     <div class="mainAddTaskContainer">
