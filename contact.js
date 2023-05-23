@@ -15,18 +15,20 @@ function getFirstLetters() {
         if (!firstLetters.includes(firstletter)) { // Überprüfe, ob der Buchstabe bereits im Array ist
             firstLetters.push(firstletter);
             sortLetter.push(firstletter);
+            usersLetter = [];
+            usersLetter.push(users.find(l=> l['name'].charAt(0) == sortLetter[i]));
             sortLetter.sort();
-            usersLetter.push(users.find(l=> l['name'].charAt(0) == sortLetter));
-            renderContactHTML(sortLetter);
+            renderContactHTML();
         }
     }
+    renderUser();
     sortArray(); // Sortiere das Array außerhalb der Schleife, nachdem alle Buchstaben hinzugefügt wurden
 }
 
-function renderUser(i){
-    let div = document.getElementById(`contact${i}`);
-    div.innerHTML = '';
+function renderUser(){
     for(let i = 0; i < usersLetter.length; i++){
+        let div = document.getElementById(`contact${i}`);
+        div.innerHTML = '';
         div.innerHTML += /* html */ `
             <div class="profile-div">
                 <div class="profilePicture">
@@ -41,7 +43,7 @@ function renderUser(i){
     }
 }
 
-function renderContactHTML(sortLetter){
+function renderContactHTML(){
     let div = document.getElementById('contact-list-overview');
     div.innerHTML = '';
     for(let i = 0; i < sortLetter.length; i++){
@@ -53,9 +55,8 @@ function renderContactHTML(sortLetter){
             </div>
         </div>
         `;
-        renderUser(i);
+        usersLetter.sort();
     }
-    
 }
 
 function sortArray(){
