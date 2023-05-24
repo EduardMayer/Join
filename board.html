@@ -18,9 +18,16 @@
 <body onload="includeHTML(), renderBoardCards(), load()">
     <div w3-include-html="head_navbar.html"></div>
     <div class="mainBoardContainer">
+        <div class="secondTitleContainer">
+            <p>Kanban Project Management Tool</p>
+        </div>
+        
         <div class="topBoardContainer">
             <div class="headlineContainer">
                 <p>Board</p>
+                <div class="addSecondButtonContainer">
+                    <div onclick="openAddTaskContainer('todo')"><b>Add task</b><img src="/img/crossboard.svg"></div>
+                </div>
             </div>
             <div class="searchBoardContainer">
                 <div class="searchBarContainer">

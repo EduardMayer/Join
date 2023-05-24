@@ -32,18 +32,30 @@ h3{
     padding: 16px;
 }
 
+.profile-div{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.profilePicture{
+    background-color: orange;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 100%;
+    letter-spacing: 1px;
+}
+
 .contact-list {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: auto;
-    
-}
-
-.contact-list-overview div{
-    margin-left: 15px ;
-    margin-right: 50px ;
 }
 
 .new-contact {
