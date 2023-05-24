@@ -150,7 +150,7 @@ header{
 }
 
 
-@media (max-width: 800px){
+@media (max-width: 768px){
   .joinLogoContainer{
     display: none;
   }

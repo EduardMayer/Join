@@ -368,14 +368,17 @@ textarea {
   .headTaskContainer {
     display: flex;
     justify-content: center;
+    margin-left: 0px;
 
 }
   .middleTaskContainer{
     display: none;
+    
   }
   .mainTaskContainer{
     flex-direction: column;
     align-items: center;
+    margin-left: 0px;
   }
   .titleContainer{
     width: 422px;
