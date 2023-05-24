@@ -24,10 +24,11 @@ function getFirstLetters() {
         }else{
             let recurringUser = users[i];
             let returnUser = usersLetter.findIndex(l => l['name'].charAt(0) === firstLetter);
+            let AllUserWithLetterX = usersLetter.find(l => l['name'].charAt(0) === firstLetter);
+            console.log(AllUserWithLetterX)
             renderRecurringUser(returnUser,recurringUser);
         }
     }
-     // Sortiere das Array außerhalb der Schleife, nachdem alle Buchstaben hinzugefügt wurden
 }
 
 function renderRecurringUser(i,recurringUser){
@@ -37,7 +38,7 @@ function renderRecurringUser(i,recurringUser){
                 <div class="profilePicture">
                     ${recurringUser['firstLetter']}
                 </div>
-                <div>
+                <div class="userInfomations">
                     <span>${recurringUser['name']}</span>
                     <a href="#">${recurringUser['email']}</a>
                 </div>
