@@ -19,10 +19,30 @@ function getFirstLetters() {
             usersLetter.sort((a, b) => a.name.localeCompare(b.name)); // Sortiere usersLetter nach dem Namen
             sortLetter.sort();
             renderContactHTML();
+            renderUser();
+            sortArray();
+        }else{
+            let recurringUser = users[i];
+            let returnUser = usersLetter.findIndex(l => l['name'].charAt(0) === firstLetter);
+            renderRecurringUser(returnUser,recurringUser);
         }
     }
-    renderUser();
-    sortArray(); // Sortiere das Array außerhalb der Schleife, nachdem alle Buchstaben hinzugefügt wurden
+     // Sortiere das Array außerhalb der Schleife, nachdem alle Buchstaben hinzugefügt wurden
+}
+
+function renderRecurringUser(i,recurringUser){
+    let div = document.getElementById(`contact${i}`);
+    div.innerHTML += /* html */ `
+            <div class="profile-div">
+                <div class="profilePicture">
+                    ${recurringUser['firstLetter']}
+                </div>
+                <div>
+                    <span>${recurringUser['name']}</span>
+                    <a href="#">${recurringUser['email']}</a>
+                </div>
+            </div>
+        `;
 }
 
 function renderUser(){
