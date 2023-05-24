@@ -150,11 +150,14 @@ header{
 }
 
 
-@media (max-width: 700px){
+@media (max-width: 768px){
   .joinLogoContainer{
     display: none;
   }
   .lowerNavbarSection{
+    display: none;
+  }
+  .firstTitleContainer{
     display: none;
   }
   .navbar-header {

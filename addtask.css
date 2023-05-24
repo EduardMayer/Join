@@ -3,6 +3,9 @@
   margin-top: 161px;
   margin-left: 124px;
 }
+.categorybox div {
+  height: 50px; /* Setze hier die gewünschte Höhe für die Divs innerhalb der Kategoriebox */
+}
 .headTaskContainer h1 {
   font-size: 61px;
   margin-top: 0px;
@@ -90,6 +93,7 @@ textarea {
   flex-direction: column;
   font-size: 21px;
   gap: 37px;
+  width: 422px;
   margin-right: 123px;
   margin-left: 59px;
 }
@@ -156,8 +160,10 @@ textarea {
 }
 .buttonTaskContainer {
   display: flex;
-  gap: 10px;
-  justify-content: flex-end;
+    gap: 10px;
+    position: absolute;
+    bottom: 30px;
+    right: 123px;
 }
 .buttonTask {
   border: 1px solid #2a3647;
@@ -265,7 +271,21 @@ textarea {
   cursor: pointer;
   border-top: none;
   flex-direction: column;
-  overflow: hidden;
+  height: 110px;
+  overflow: auto;
+}
+
+.categoryBox::-webkit-scrollbar {
+  width: 8px;
+}
+
+.categoryBox::-webkit-scrollbar-thumb {
+  background-color: rgba(9, 25, 49);
+  border-radius: 5px;
+}
+
+.categoryBox::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .subImgContainer {
@@ -310,8 +330,7 @@ textarea {
   display: flex;
   align-items: center;
   padding: 0px 21px;
-  width: 90%;
-  overflow:hidden;
+  width: 89%;
 }
 .colorCategoryBox:hover {
   background-color: #d1d1d1;
@@ -326,4 +345,49 @@ textarea {
 .categoryTextBox {
   display: flex;
   align-items: center;
+}
+
+@media (max-width: 1455px){
+  .buttonTaskContainer {
+    right: 10px;
+  }
+  .rightTaskContainer{
+    margin-right: 0px;
+  }
+}
+
+@media (max-width: 1335px){
+  .rightTaskContainer{
+    margin-left: 0px;
+  }
+  .leftTaskContainer{
+    margin-right: 0px;
+  }
+}
+@media (max-width: 1215px){
+  .headTaskContainer {
+    display: flex;
+    justify-content: center;
+    margin-left: 0px;
+
+}
+  .middleTaskContainer{
+    display: none;
+    
+  }
+  .mainTaskContainer{
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0px;
+  }
+  .titleContainer{
+    width: 422px;
+  }
+  .buttonTaskContainer {
+    position: unset;
+    justify-content: center;
+  }
+  .assignedToContainer{
+    margin-bottom: 30px;
+  }
 }

@@ -635,7 +635,7 @@ body {
 
 }
 
-@media (max-width: 700px){
+@media (max-width: 768px){
   body {
     margin-left: 0px;
     margin: 0px;
@@ -656,9 +656,7 @@ body {
 .helpIconContainer{
   display: none;
 }
-.firstTitleContainer{
-  display: none;
-}
+
 .topBoardContainer p{
 font-size: 47px;
 }
