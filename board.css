@@ -542,6 +542,11 @@ body {
   margin: 0px;
   height: 20px;
 }
+.secondTitleContainer p{
+  font-size: 16px;
+  margin-bottom: 19px;
+  display: none;
+}
 
 @media (max-width: 1047px) {
   .headlineContainer {
@@ -637,9 +642,8 @@ body {
     margin-top: 0px;
 }
 .mainBoardContainer{
-  margin-left: 33px;
+  margin-left: 20px;
   margin-right: 29px;
-  margin-top: 114px;
   padding-top: 0px
 }
 .bottomBoardContainer {
@@ -648,5 +652,28 @@ body {
 }
 .addSecondButtonContainer {
   margin-right: 0px;
+}
+.helpIconContainer{
+  display: none;
+}
+.firstTitleContainer{
+  display: none;
+}
+.topBoardContainer p{
+font-size: 47px;
+}
+.secondTitleContainer p{
+  font-size: 16px;
+  margin-bottom: 19px;
+  margin-top: 114px;
+  display: flex;
+}
+}
+
+@media (max-width: 360px){
+  .mainBoardContainer {
+    margin-left: 10px;
+    margin-right: 20px;
+    padding-top: 0px;
 }
 }
