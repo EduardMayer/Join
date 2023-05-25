@@ -15,7 +15,7 @@
 </head>
 
 <body onload="includeHTML(); contactInit();" >
-    <div class="overdiv d-none">
+    <div class="overdiv">
         <div class="Add-contact-div">
             <img src="" alt="">
             <div class="Add-contact">
@@ -26,14 +26,23 @@
                     <div class="addContact-line"></div>
                 </div>
             </div>
-            <div class="">
+            <div class="form-overdiv">
                 <div>
-                    <img src="" alt="">
+                    <img src="img/guest.png" alt="">
                 </div>
                 <form action="">
-                    <input type="text">
-                    <input type="email">
-                    <input type="number">
+                    <div>
+                        <input placeholder="Name" type="text">
+                        <img src="" alt="">
+                    </div>
+                    <div>
+                        <input placeholder="Email" type="email">
+                        <img src="" alt="">
+                    </div>
+                    <div>
+                        <input placeholder="Phone" type="number">
+                        <img src="" alt="">
+                    </div>
                     <button>Cancel <img src="" alt=""></button>
                     <button>Create contact <img src="" alt=""></button>
                 </form>

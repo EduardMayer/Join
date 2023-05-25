@@ -169,6 +169,7 @@ h3{
 
 .Add-contact{
     color: rgb(253, 253, 253);
+    font-size: 18px;
 }
 
 h4{
@@ -183,7 +184,26 @@ h4{
 .addContact-line{
     margin-top: 10px;
     height: 1px;
-    width: 30%;
+    width: 40%;
     background-color: rgb(35, 167, 232);
     margin-left: 0px !important;
+}
+
+.form-overdiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: 100%;
+    width: 60%;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+form div{
+    display: flex;
+    flex-direction: column;
 }
