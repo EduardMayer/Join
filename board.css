@@ -215,7 +215,7 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-.cardProgress{
+.cardProgress {
   display: flex;
   width: 100%;
 }
@@ -380,26 +380,23 @@ body {
 
 .mainAddTaskContainer {
   transform: translateX(150%);
-  transition: 825ms ease-in-out;
+  transition: 430ms ease-in-out;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 61px 74px;
+  padding: 61px 74px 61px 74px;
   background: #ffffff;
   border-radius: 30px;
   position: absolute;
-  top: 60px;
-  z-index: -15;
-  box-shadow: 0px 0px 14px 3px rgb(0 0 0 / 0.04);
-}
-
-.mainAddTaskContainer.open {
-  transform: translate(15%, -3%);
+  left: 16%;
+  top: 50px;
   z-index: 5;
+  width: 65%;
 }
 
 .bodyAddTaskCotnainer {
   display: flex;
+  justify-content: space-between;
 }
 
 .headAddTaskContainer {
@@ -413,6 +410,19 @@ body {
   font-size: 21px;
   gap: 37px;
   margin-left: 59px;
+  width: 422px;
+}
+.middleAddTaskContainer {
+  border-left: 1px solid #d1d1d1;
+  height: 551px;
+}
+
+.buttonAddTaskContainer {
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  bottom: 30px;
+  right: 61px;
 }
 
 .headAddTaskContainer p {
@@ -542,10 +552,30 @@ body {
   margin: 0px;
   height: 20px;
 }
-.secondTitleContainer p{
+.secondTitleContainer p {
   font-size: 16px;
   margin-bottom: 19px;
   display: none;
+}
+
+@media (max-width: 1335px) {
+  .middleAddTaskContainer {
+    display: none;
+  }
+}
+
+@media (max-width: 1275px) {
+  .bodyAddTaskCotnainer {
+    flex-direction: column;
+  }
+
+  .titleContainer {
+    width: 422px;
+  }
+
+  .rightAddTaskContainer {
+    margin-left: 0px;
+  }
 }
 
 @media (max-width: 1047px) {
@@ -555,7 +585,7 @@ body {
     width: 100%;
     justify-content: space-between;
     align-items: center;
-}
+  }
   .topBoardContainer {
     flex-direction: column;
     align-items: flex-start;
@@ -569,7 +599,7 @@ body {
     display: none;
   }
 
-  .addSecondButtonContainer{
+  .addSecondButtonContainer {
     display: flex;
     background-color: #2a3647;
     color: white;
@@ -585,7 +615,7 @@ body {
     margin-right: 65px;
     transition: background 200ms ease-in-out;
   }
-  
+
   .addSecondButtonContainer:hover {
     box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
     background-color: rgb(41, 171, 226);
@@ -595,14 +625,13 @@ body {
   .addSecondButtonContainer img {
     margin-left: 10px;
   }
-  .headlineContainer{
+  .headlineContainer {
     margin-bottom: 30px;
   }
   .bottomBoardContainer {
     margin-top: 22px;
     margin-right: 65px;
-}
-
+  }
 }
 
 @media (max-width: 975px) {
@@ -617,61 +646,62 @@ body {
     width: 93%;
   }
 }
-@media (max-width: 835px){
- 
+@media (max-width: 835px) {
   .addSecondButtonContainer {
     margin-left: 0px;
     width: 40px;
     height: 40px;
-    padding-left: 0px; 
+    padding-left: 0px;
     padding-right: 0px;
   }
-  .addSecondButtonContainer b{
+  .addSecondButtonContainer b {
     display: none;
   }
   .addSecondButtonContainer img {
     margin-left: 12px;
+  }
 }
 
-}
-
-@media (max-width: 768px){
+@media (max-width: 768px) {
   body {
     margin-left: 0px;
     margin: 0px;
     margin-top: 0px;
-}
-.mainBoardContainer{
-  margin-left: 20px;
-  margin-right: 29px;
-  padding-top: 0px
-}
-.bottomBoardContainer {
-  margin-top: 0px;
-  margin-right: 0px;
-}
-.addSecondButtonContainer {
-  margin-right: 0px;
-}
-.helpIconContainer{
-  display: none;
+    padding-bottom: 120px;
+  }
+
+  .mainBoardContainer {
+    margin-left: 20px;
+    margin-right: 29px;
+    padding-top: 0px;
+  }
+  .bottomBoardContainer {
+    margin-top: 0px;
+    margin-right: 0px;
+  }
+  .addSecondButtonContainer {
+    margin-right: 0px;
+  }
+  .helpIconContainer {
+    display: none;
+  }
+
+  .topBoardContainer p {
+    font-size: 47px;
+  }
+  .secondTitleContainer p {
+    font-size: 16px;
+    margin-bottom: 19px;
+    margin-top: 114px;
+    display: flex;
+    padding-left: 33px;
+  }
 }
 
-.topBoardContainer p{
-font-size: 47px;
-}
-.secondTitleContainer p{
-  font-size: 16px;
-  margin-bottom: 19px;
-  margin-top: 114px;
-  display: flex;
-}
-}
-
-@media (max-width: 360px){
+@media (max-width: 360px) {
   .mainBoardContainer {
     margin-left: 10px;
     margin-right: 20px;
     padding-top: 0px;
-}
+  }
 }

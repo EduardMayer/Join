@@ -31,7 +31,7 @@ input {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 13px 21px;
+  padding: 13px 21px 13px 21px;
   height: 51px;
   background: #ffffff;
   border: 1px solid #d1d1d1;
@@ -120,6 +120,7 @@ textarea {
   border: 1px solid #d1d1d1;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .subtaskChildContainer img {
@@ -129,6 +130,8 @@ textarea {
 }
 
 .subtaskChildContainer input {
+  display: flex;
+  width: 100%;
   border: none;
 }
 
@@ -160,11 +163,22 @@ textarea {
 }
 .buttonTaskContainer {
   display: flex;
-    gap: 10px;
-    position: absolute;
-    bottom: 30px;
-    right: 123px;
+  gap: 10px;
+  position: absolute;
+  bottom: 30px;
+  right: 123px;
 }
+
+.buttonTaskHeader{
+  display: none;
+}
+
+.buttonTaskHeader:hover {
+  box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
+  background-color: rgb(41, 171, 226);
+  border: 1px solid rgb(41, 171, 226);
+}
+
 .buttonTask {
   border: 1px solid #2a3647;
   background-color: #f5f5f5;
@@ -302,7 +316,6 @@ textarea {
 
 .colorsContainer {
   display: flex;
-  gap: 10px;
   margin-top: -25px;
 }
 
@@ -318,7 +331,6 @@ textarea {
   width: 15px;
   height: 15px;
   margin-left: 5px;
-  margin-right: -35px;
   z-index: 3;
 }
 .selected-color {
@@ -330,7 +342,7 @@ textarea {
   display: flex;
   align-items: center;
   padding: 0px 21px;
-  width: 89%;
+  width: 88%;
 }
 .colorCategoryBox:hover {
   background-color: #d1d1d1;
@@ -347,47 +359,124 @@ textarea {
   align-items: center;
 }
 
-@media (max-width: 1455px){
+@media (max-width: 1455px) {
   .buttonTaskContainer {
     right: 10px;
   }
-  .rightTaskContainer{
+  .rightTaskContainer {
     margin-right: 0px;
   }
 }
 
-@media (max-width: 1335px){
-  .rightTaskContainer{
+@media (max-width: 1335px) {
+  .rightTaskContainer {
     margin-left: 0px;
   }
-  .leftTaskContainer{
+  .leftTaskContainer {
     margin-right: 0px;
   }
+  .middleAddTaskContainer {
+    display: none;
+  }
 }
-@media (max-width: 1215px){
+
+@media (max-width: 1215px) {
   .headTaskContainer {
     display: flex;
     justify-content: center;
     margin-left: 0px;
-
-}
-  .middleTaskContainer{
-    display: none;
-    
   }
-  .mainTaskContainer{
+  .middleTaskContainer {
+    display: none;
+  }
+  .mainTaskContainer {
     flex-direction: column;
     align-items: center;
     margin-left: 0px;
   }
-  .titleContainer{
+  .titleContainer {
     width: 422px;
   }
   .buttonTaskContainer {
     position: unset;
     justify-content: center;
   }
-  .assignedToContainer{
+  .assignedToContainer {
     margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .headTaskContainer {
+    display: flex;
+    padding: 0px 34px 0px 33px;
+    justify-content: flex-start;
+  }
+  .mainTaskContainer {
+    display: flex;
+    padding: 0px 34px 0px 30px;
+    justify-content: flex-start;
+    align-items: start;
+  }
+  .buttonTaskContainer {
+    display: none;
+  }
+  .buttonTaskHeader{
+    border: 1px solid #2a3647;
+    background-color: #2a3647;
+    color: #f5f5f5;
+    width: 124px;
+    height: 51px;
+    padding: 18px, 10px, 18px, 10px;
+    border-radius: 10px;
+    font-size: 21px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 200ms ease-in-out;
+    z-index: 10;
+    gap: 10px;
+    position: fixed;
+    top: 20px;
+    right: 25px;
+  }
+  .headTaskContainer {
+    margin-top: 0px;
+  }
+
+  .rightTaskContainer {
+    width: 100%;
+    font-size: 16px;
+  }
+  .leftTaskContainer {
+    width: 100%;
+    font-size: 16px;
+  }
+  .titleContainer {
+    width: 100%;
+  }
+  .childTaskContainer {
+    width: 100%;
+  }
+  textarea {
+    width: 100%;
+  }
+  .dropDownBox {
+    width: 100%;
+  }
+  .categoryBox {
+    width: 100%;
+  }
+  .headTaskContainer h1 {
+    font-size: 41px;
+  }
+}
+@media (max-width: 428px) {
+  .prioChildContainer {
+    flex-direction: column;
+  }
+  .subtaskContainer {
+    padding-bottom: 100px;
   }
 }
