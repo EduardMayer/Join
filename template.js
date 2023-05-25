@@ -137,7 +137,7 @@ function popupAddTaskContainerTemplate(status) {
               <div class="d-none" id="dropDownUser"></div>
             </div>
           </div>
-          <div class="middleTaskContainer"></div>
+          <div class="middleAddTaskContainer"></div>
           <div class="rightAddTaskContainer">
             <div>
               <div class="dateContainer">
@@ -173,7 +173,7 @@ function popupAddTaskContainerTemplate(status) {
             <div id="subTaskDescription" class="subTaskDescription"></div>
           </div>
         </div>
-        <div class="buttonTaskContainer">
+        <div class="buttonAddTaskContainer">
           <button class="buttonTask" onclick="clearTask()">Clear <img class="cancelIcon" src="/img/iconoir_cancel.svg"></button>
           <button class="buttonTask2" type="submit">Create Task<img src="/img/akar-icons_check.svg"></button>
         </div>

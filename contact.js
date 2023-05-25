@@ -11,18 +11,39 @@ function getFirstLetters() {
     for (let i = 0; i < users.length; i++) {
         firstLetters.sort();
         let name = users[i]['name'];
-        let firstletter = name.charAt(0);
-        if (!firstLetters.includes(firstletter)) { // Überprüfe, ob der Buchstabe bereits im Array ist
-            firstLetters.push(firstletter);
-            sortLetter.push(firstletter);
-            usersLetter = [];
-            usersLetter.push(users.find(l=> l['name'].charAt(0) == sortLetter[i]));
+        let firstLetter = name.charAt(0);
+        if (!firstLetters.includes(firstLetter)) {
+            firstLetters.push(firstLetter);
+            sortLetter.push(firstLetter);
+            usersLetter.push(users.find(l => l['name'].charAt(0) === sortLetter[i]));
+            usersLetter.sort((a, b) => a.name.localeCompare(b.name)); // Sortiere usersLetter nach dem Namen
             sortLetter.sort();
             renderContactHTML();
+            renderUser();
+            sortArray();
+        }else{
+            let recurringUser = users[i];
+            let returnUser = usersLetter.findIndex(l => l['name'].charAt(0) === firstLetter);
+            let AllUserWithLetterX = usersLetter.find(l => l['name'].charAt(0) === firstLetter);
+            console.log(AllUserWithLetterX)
+            renderRecurringUser(returnUser,recurringUser);
         }
     }
-    renderUser();
-    sortArray(); // Sortiere das Array außerhalb der Schleife, nachdem alle Buchstaben hinzugefügt wurden
+}
+
+function renderRecurringUser(i,recurringUser){
+    let div = document.getElementById(`contact${i}`);
+    div.innerHTML += /* html */ `
+            <div class="profile-div">
+                <div class="profilePicture">
+                    ${recurringUser['firstLetter']}
+                </div>
+                <div class="userInfomations">
+                    <span>${recurringUser['name']}</span>
+                    <a href="#">${recurringUser['email']}</a>
+                </div>
+            </div>
+        `;
 }
 
 function renderUser(){

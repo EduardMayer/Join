@@ -244,11 +244,16 @@ function openAddTaskContainer(status) {
 function slideAnimation() {
   let mainAddTaskContainer = document.querySelector(".mainAddTaskContainer");
   let overlayDiv = document.createElement("div");
-  mainAddTaskContainer.classList.add("open");
-  mainAddTaskContainer.classList.remove("d-none");
+  
+  mainAddTaskContainer.style.transform = "translateX(150%)";
   overlayDiv.classList.add("overlay");
   document.body.appendChild(overlayDiv);
   setCurrentDate();
+  
+  // Warte kurz, um die Animation zu verzögern
+  setTimeout(function() {
+    mainAddTaskContainer.style.transform = "translate(5%)";
+  }, 100);
 }
 /**
  * Schließt das Popup-Fenster für die Aufgabenkarte.

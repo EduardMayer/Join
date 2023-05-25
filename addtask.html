@@ -18,10 +18,15 @@
 
 <body onload="includeHTML(), setCurrentDate(), renderCategory(), renderColorCategory()">
     <div w3-include-html="head_navbar.html"></div>
+    <div class="secondTitleContainer">
+        <p>Kanban Project Management Tool</p>
+    </div>
     <div class="headTaskContainer">
         <h1>Add Task</h1>
     </div>
     <form>
+        <button class="buttonTaskHeader" onclick="createTask('todo')">Create<img
+                src="/img/akar-icons_check.svg"></button>
         <div class="mainTaskContainer">
             <div class="leftTaskContainer">
                 <div class="titleContainer">
@@ -46,8 +51,7 @@
                     </div>
                     <div id="categoryBox" class="d-none"></div>
                 </div>
-                <div class="d-none" id="newCategoryContainer">
-                </div>
+                <div class="d-none" id="newCategoryContainer"></div>
                 <div id="categoryColors" class="d-none">
                 </div>
                 <div class="assignedToContainer">
@@ -93,16 +97,16 @@
                     </div>
                 </div>
                 <div id="subTaskDescription" class="subTaskDescription">
-
+                </div>
+                <div class="buttonTaskContainer">
+                    <button class="buttonTask" onclick="clearTask()">Clear <img class="cancelIcon"
+                            src="/img/iconoir_cancel.svg"></button>
+                    <button class="buttonTask2" onclick="createTask('todo')">Create Task<img
+                            src="/img/akar-icons_check.svg"></button>
                 </div>
             </div>
+
         </div>
-        </div>
-        <div class="buttonTaskContainer">
-            <button class="buttonTask" onclick="clearTask()">Clear <img class="cancelIcon"
-                    src="/img/iconoir_cancel.svg"></button>
-            <button class="buttonTask2" onclick="createTask('todo')">Create Task<img
-                    src="/img/akar-icons_check.svg"></button>
         </div>
         </div>
     </form>
