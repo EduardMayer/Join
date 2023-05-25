@@ -340,6 +340,7 @@ p {
 @media (max-width: 1000px) {
   .headline {
     align-items: center;
+    width: 500px;
   }
   .headline h1{
     font-size: 40px;
@@ -352,5 +353,56 @@ p {
 }
 
 @media (max-width: 935px) {
+  .main {
+    margin-left: 250px;
+  }
+}
+
+@media (max-width: 855px) {
+  .tasks-urgent-deadline {
+    width: 450px;
+  }
+
+  .tasks-container {
+    width: 450px;
+  }
+
+  .task-boxes {
+    width: 125px;
+  }
+
+  .todo-done {
+    width: 450px;
+  }
+
+  .todo {
+    width: 205px;
+  }
+ 
+  .done {
+    width: 205px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    margin-left: 150px;
+  }
   
+  .tasks-container{
+    width: 450px;
+  }
+
+  .todo-done {
+    width: 450px;
+  }
+}
+
+@media (max-width: 650px) {
+  .main {
+    margin-left: 50px;
+  }
+  .headline {
+    width: 400px;
+  }
 }
