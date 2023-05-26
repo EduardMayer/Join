@@ -15,9 +15,9 @@
 </head>
 
 <body onload="includeHTML(); contactInit();" >
-    <div id="overdiv" class="overdiv">
-        <div class="Add-contact-div">
-            <img onclick="close()" class="cancel-overbutton" src="img/Cancel-greay.svg" alt="">
+    <div onclick="closeOverdiv()" id="overdiv" class="overdiv">
+        <div onclick="doNotClose(event)" class="Add-contact-div">
+            <img onclick="closeOverdiv()" class="cancel-overbutton" src="img/Cancel-greay.svg" alt="">
             <div class="Add-contact">
                 <div>
                     <img src="img/logoJoin.svg" alt="">
@@ -60,7 +60,7 @@
             <div class="contact-list" id="contact-list"></div>
         </div>
         <div class="contact-info">
-            <button class="new-contact button desktop-only" onclick="">
+            <button class="new-contact button desktop-only" onclick="opnenOverdiv()">
                 <span>New Contact</span>
                 <img src="img/addContact.svg"></button>
         </div>

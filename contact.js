@@ -194,7 +194,16 @@ function editContactHTML(){
     `;
 }
 
-function close(){
+function closeOverdiv(){
     let div = document.getElementById('overdiv');
     div.classList.add('d-none');
+}
+
+function opnenOverdiv(){
+    let div = document.getElementById('overdiv');
+    div.classList.remove('d-none');
+}
+
+function doNotClose(event) {
+    event.stopPropagation();
 }
