@@ -15,9 +15,9 @@
 </head>
 
 <body onload="includeHTML(); contactInit();" >
-    <div class="overdiv">
+    <div id="overdiv" class="overdiv">
         <div class="Add-contact-div">
-            <img src="" alt="">
+            <img onclick="close()" class="cancel-overbutton" src="img/Cancel-greay.svg" alt="">
             <div class="Add-contact">
                 <div>
                     <img src="img/logoJoin.svg" alt="">
@@ -44,8 +44,8 @@
                         <img src="img/phone.svg" alt="">
                     </div>
                     <div class="buttons">
-                        <button class="cancelButton">Cancel <img src="" alt=""></button>
-                        <button class="create-contactButton">Create contact <img src="" alt=""></button>
+                        <button onclick="close()" class="cancelButton">Cancel <img id="Cancel" class="cancelImg" src="img/cancel.svg" alt=""></button>
+                        <button class="create-contactButton">Create contact <img src="img/hook.svg" alt=""></button>
                     </div>
                 </form>
             </div>

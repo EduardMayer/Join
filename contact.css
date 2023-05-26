@@ -138,12 +138,23 @@ h3{
 }
 
 .Add-contact-div{
+    position: relative;
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 50%;
     width: 70%;
+}
+
+.cancel-overbutton{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.cancel-overbutton:hover{
+    cursor: pointer;
 }
 
 .Add-contact{
@@ -230,6 +241,7 @@ form img{
 }
 
 .cancelButton{
+    position: relative;
     border: 1px solid rgb(42, 54, 71);
     color: rgb(42, 54, 71);
     background-color: white;
@@ -253,6 +265,7 @@ form img{
 }
 
 .create-contactButton{
+    position: relative;
     border: none;
     padding: 12px;
     background-color: rgb(42, 54, 71);
@@ -269,7 +282,15 @@ form img{
     justify-content: center;
 }
 
+.buttons img{
+    height: 14px;
+    position: absolute;
+    top: 13px;
+    right: 12px;
+}
+
 .buttons button{
+    text-align: left;
     margin-left: 20px;
     margin-right: 20px;
 }

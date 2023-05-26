@@ -5,6 +5,20 @@ let usersLetter = [];
 async function contactInit(){
     await loadUsers();
     getFirstLetters();
+    hover();
+}
+
+function hover(){
+    let image = document.getElementById('Cancel');
+    let hoverTrigger = document.querySelector('.cancelButton');
+
+    hoverTrigger.addEventListener('mouseenter', function() {
+        image.src = ' img/BlueCancel.svg';
+    });
+
+    hoverTrigger.addEventListener('mouseleave', function() {
+        image.src = 'img/cancel.svg';
+    });
 }
 
 function getFirstLetters() {
@@ -25,7 +39,6 @@ function getFirstLetters() {
             let recurringUser = users[i];
             let returnUser = usersLetter.findIndex(l => l['name'].charAt(0) === firstLetter);
             let AllUserWithLetterX = usersLetter.find(l => l['name'].charAt(0) === firstLetter);
-            console.log(AllUserWithLetterX)
             renderRecurringUser(returnUser,recurringUser);
         }
     }
@@ -179,4 +192,9 @@ function editContactHTML(){
             </div>
         </div>
     `;
+}
+
+function close(){
+    let div = document.getElementById('overdiv');
+    div.classList.add('d-none');
 }
