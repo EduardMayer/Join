@@ -104,7 +104,7 @@ function popupAddTaskContainerTemplate(status) {
       </div>
       <form onsubmit="event.preventDefault(); createTask('${status}')">
         <div class="bodyAddTaskCotnainer">
-          <div class="leftTaskContainer">
+          <div class="leftAddTaskContainer">
             <div class="titleContainer">
               <label for="title">Title</label>
               <input required type="text" id="title" placeholder="Enter a title" minlength="3">

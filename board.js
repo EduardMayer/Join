@@ -252,7 +252,7 @@ function slideAnimation() {
   
   // Warte kurz, um die Animation zu verzögern
   setTimeout(function() {
-    mainAddTaskContainer.style.transform = "translate(5%)";
+    mainAddTaskContainer.style.transform = "translate(0%)";
   }, 100);
 }
 /**

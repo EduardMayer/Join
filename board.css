@@ -79,6 +79,10 @@ body {
   display: none;
 }
 
+.addTitleContainer {
+  display: none;
+}
+
 .bottomBoardContainer {
   display: flex;
   flex-wrap: wrap;
@@ -118,6 +122,18 @@ body {
   margin-bottom: 124px;
   text-align: justify;
 }
+
+.titleArrowConntainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 19px;
+  margin-top: 114px;
+}
+
+.helpTitleContainer {
+  display: none;
+}
+
 .backArrow {
   display: flex;
   width: 100%;
@@ -565,6 +581,9 @@ body {
 }
 
 @media (max-width: 1275px) {
+  .mainAddTaskContainer {
+    left: 7%;
+  }
   .bodyAddTaskCotnainer {
     flex-direction: column;
   }
@@ -575,6 +594,22 @@ body {
 
   .rightAddTaskContainer {
     margin-left: 0px;
+  }
+  .bodyAddTaskCotnainer {
+    align-items: center;
+  }
+  .buttonAddTaskContainer {
+    display: flex;
+    gap: 10px;
+    position: static;
+    bottom: 30px;
+    right: 61px;
+    padding-top: 25px;
+    justify-content: center;
+  }
+
+  .headAddTaskContainer {
+    justify-content: center;
   }
 }
 
@@ -682,6 +717,19 @@ body {
   .addSecondButtonContainer {
     margin-right: 0px;
   }
+  .mainHelpContainer {
+    margin-top: 101px;
+    margin-left: 33px;
+    margin-right: 33px;
+    margin-bottom: 0px;
+    text-align: justify;
+  }
+
+  .helpTitleContainer {
+    font-size: 16px;
+    display: flex;
+    white-space: nowrap;
+  }
   .helpIconContainer {
     display: none;
   }
@@ -694,7 +742,54 @@ body {
     margin-bottom: 19px;
     margin-top: 114px;
     display: flex;
+  }
+
+  .mainAddTaskContainer {
+    transform: translateX(150%);
+    transition: 400ms ease-in-out;
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    background: #ffffff;
+    border-radius: 0;
+    position: absolute;
+    left: 0px;
+    top: 0;
+    z-index: 5;
+    width: 100%;
+    height: 1650px;
+    justify-content: flex-start;
+}
+
+  .leftAddTaskContainer {
+    width: 90%;
+  }
+
+  .rightAddTaskContainer {
+    width: 90%;
+  }
+
+  .cancelIconPopupCard {
+    padding-right: 15px;
+    padding-top: 15px;
+  }
+
+  .addTitleContainer {
+    font-size: 16px;
+    margin-bottom: 19px;
+    margin-top: 114px;
+    display: flex;
     padding-left: 33px;
+  }
+
+  .buttonAddTaskContainer {
+    display: flex;
+    gap: 10px;
+    position: static;
+    bottom: 30px;
+    right: 61px;
+    padding-top: 0px;
+    justify-content: center;
   }
 }
 
@@ -703,5 +798,18 @@ body {
     margin-left: 10px;
     margin-right: 20px;
     padding-top: 0px;
+  }
+  .helpTitleContainer {
+    font-size: 16px;
+    display: flex;
+    white-space: normal;
+  }
+  .buttonAddTaskContainer {
+    display: flex;
+    gap: 10px;
+    bottom: 30px;
+    right: 61px;
+    padding-top: 0px;
+    justify-content: center;
   }
 }
