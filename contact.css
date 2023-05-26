@@ -135,6 +135,7 @@ h3{
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all 250ms ease-in-out;
 }
 
 .Add-contact-div{
