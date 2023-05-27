@@ -30,6 +30,15 @@ h3{
     flex-direction: column;
     justify-content: flex-start;
     padding: 16px;
+    overflow: auto;
+}
+
+.contact-list-overview::-webkit-scrollbar {
+    width: 7px;
+}
+.contact-list-overview::-webkit-scrollbar-thumb {
+    background: #29ABE2;
+    border-radius: 8px;
 }
 
 .profile-div{
