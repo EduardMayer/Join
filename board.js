@@ -11,6 +11,7 @@ load();
 
 /**
  * Funktion zum Einbinden des HTML-Codes für den Header und die linke Navigationsleiste.
+ * Ruft eine Liste von Elementen ab, die das Attribut 'w3-include-html' haben, und lädt den entsprechenden HTML-Code für jedes Element.
  */
 async function includeHTML() {
   let includeElements = document.querySelectorAll("[w3-include-html]");
@@ -26,63 +27,47 @@ async function includeHTML() {
   }
 }
 /**
- * Funktion zum Rendern der Karten auf dem Board.
- * Lädt alle Tasks vom Local Storage und rendert die entsprechenden Karten für die verschiedenen Statusbereiche (todo, progress, feedback, done).
+ * Funktion zum Rendern der Aufgabenkarten auf dem Board basierend auf dem Status.
+ * Ruft die Funktion 'renderTasksByStatus' für jeden Status auf und rendert die entsprechenden Aufgabenkarten in den entsprechenden Containern.
  */
-async function renderBoardCards() {
-  // todo-Karten
-  let todoTasks = allTasks.filter((task) => task.status === "todo");
-  let todoBox = document.getElementById("todo");
-  todoBox.innerHTML = "";
-  for (let i = 0; i < todoTasks.length; i++) {
-    let task = todoTasks[i];
-    todoBox.innerHTML += generateCardHTML(task, i);
-  }
-
-  // progress-Karten
-  let progressTasks = allTasks.filter((task) => task.status === "progress");
-  let progressBox = document.getElementById("progress");
-  progressBox.innerHTML = "";
-  for (let i = 0; i < progressTasks.length; i++) {
-    let task = progressTasks[i];
-    progressBox.innerHTML += generateCardHTML(task, i);
-  }
-
-  // feedback-Karten
-  let feedbackTasks = allTasks.filter((task) => task.status === "feedback");
-  let feedbackBox = document.getElementById("feedback");
-  feedbackBox.innerHTML = "";
-  for (let i = 0; i < feedbackTasks.length; i++) {
-    let task = feedbackTasks[i];
-    feedbackBox.innerHTML += generateCardHTML(task, i);
-  }
-
-  // done-Karten
-  let doneTasks = allTasks.filter((task) => task.status === "done");
-  let doneBox = document.getElementById("done");
-  doneBox.innerHTML = "";
-  for (let i = 0; i < doneTasks.length; i++) {
-    let task = doneTasks[i];
-    doneBox.innerHTML += generateCardHTML(task, i);
-  }
+function renderBoardCards() {
+  renderTasksByStatus("todo", "todo");
+  renderTasksByStatus("progress", "progress");
+  renderTasksByStatus("feedback", "feedback");
+  renderTasksByStatus("done", "done");
 }
+
 /**
- * Funktion zum Suchen und Filtern der Karten basierend auf dem eingegebenen Suchbegriff.
- * Sucht nach Übereinstimmungen im Titel und der Beschreibung der Karten und blendet nicht übereinstimmende Karten aus.
+ * Funktion zum Rendern der Aufgabenkarten basierend auf dem Status.
+ * Filtert alle Aufgaben nach dem angegebenen Status und rendert die entsprechenden Aufgabenkarten im angegebenen Container.
+ * @param {string} status - Der Status der Aufgaben.
+ * @param {string} containerId - Die ID des Containers, in dem die Aufgabenkarten gerendert werden sollen.
+ */
+function renderTasksByStatus(status, containerId) {
+  const tasks = allTasks.filter((task) => task.status === status);
+  const container = document.getElementById(containerId);
+  container.innerHTML = "";
+  tasks.forEach((task, index) => {
+    container.innerHTML += generateCardHTML(task, index);
+  });
+}
+
+/**
+ * Funktion zum Suchen und Filtern der Aufgabenkarten basierend auf dem eingegebenen Suchbegriff.
+ * Sucht nach Übereinstimmungen im Titel und der Beschreibung der Aufgabenkarten und blendet nicht übereinstimmende Aufgabenkarten aus.
  */
 function searchCards() {
-  let searchInput = document.querySelector(".searchBarContainer input");
-  let searchValue = searchInput.value.trim().toLowerCase();
-  let cards = document.querySelectorAll(".card");
-  let matchedCards = [];
+  const searchInput = document.querySelector(".searchBarContainer input");
+  const searchValue = searchInput.value.trim().toLowerCase();
+  const cards = document.querySelectorAll(".card");
+  const matchedCards = [];
 
   cards.forEach((card) => {
-    let cardTitle = card.querySelector(".cardTitle").textContent.toLowerCase();
-    let cardDescription = card
-      .querySelector(".cardDescription")
-      .textContent.toLowerCase();
-    if (cardTitle.includes(searchValue) || cardDescription.includes(searchValue)) 
-    { matchedCards.push(card);}
+    const cardTitle = card.querySelector(".cardTitle").textContent.toLowerCase();
+    const cardDescription = card.querySelector(".cardDescription").textContent.toLowerCase();
+    if (cardTitle.includes(searchValue) || cardDescription.includes(searchValue)) {
+      matchedCards.push(card);
+    }
   });
 
   // Verstecke alle Karten
@@ -97,9 +82,11 @@ function searchCards() {
 }
 
 /**
- * Funktion zur Berechnung des Fortschritts eines Tasks.
+ * Funktion zur Berechnung des Fortschritts einer Aufgabe.
  * Zählt die abgeschlossenen Unteraufgaben und die Gesamtanzahl der Unteraufgaben und berechnet den Fortschritt in Prozent.
  * Gibt ein Objekt mit den Werten für abgeschlossene Unteraufgaben, Gesamtanzahl der Unteraufgaben und Fortschritt zurück.
+ * @param {object} task - Das Task-Objekt.
+ * @returns {object} - Ein Objekt mit den Werten für abgeschlossene Unteraufgaben, Gesamtanzahl der Unteraufgaben und Fortschritt.
  */
 function generateProgress(task) {
   let completedSubtasks = task.subtaskChecked ? task.subtaskChecked.filter((checked) => checked).length : 0;
@@ -109,7 +96,9 @@ function generateProgress(task) {
 }
 /**
  * Funktion zum Generieren des HTML-Codes für den Fortschrittsbalken-Container einer Aufgabenkarte.
- * Nimmt eine Task-Objekt als Parameter und gibt den entsprechenden HTML-Code zurück.
+ * Nimmt ein Task-Objekt als Parameter und gibt den entsprechenden HTML-Code zurück.
+ * @param {object} task - Das Task-Objekt.
+ * @returns {string} - Der generierte HTML-Code für den Fortschrittsbalken-Container.
  */
 function generateProgressBarContainerHTML(task) {
   let { completedSubtasks, totalSubtasks, progress } = generateProgress(task);
@@ -117,18 +106,20 @@ function generateProgressBarContainerHTML(task) {
   let progressBarContainerHTML = "";
   if (task.subtask && task.subtask.length > 0) {
     progressBarContainerHTML = `
-    <div class="progressBarContainer" id="progressBarContainer">
+  <div class="progressBarContainer" id="progressBarContainer">
     <div class="cardProgress"><progress value="${progress}" max="100"></progress></div>
     <div class="checkboxCount">${completedSubtasks}/${totalSubtasks} Done</div>
   </div>
-    `;
+`;
   }
   return progressBarContainerHTML;
 }
 
 /**
  * Funktion zur Überprüfung der Priorität einer Aufgabenkarte.
- * Nimmt eine Task-Objekt als Parameter und gibt die entsprechenden Prioritätsinformationen zurück.
+ * Nimmt ein Task-Objekt als Parameter und gibt die entsprechenden Prioritätsinformationen zurück.
+ * @param {object} task - Das Task-Objekt.
+ * @returns {object} - Ein Objekt mit den Prioritätsinformationen (Bild, Text und Hintergrundfarbe).
  */
 function checkPrioPopupCard(task) {
   if (task.priority === "urgent") {
@@ -150,6 +141,7 @@ function checkPrioPopupCard(task) {
 /**
  * Funktion zum Erstellen einer neuen Aufgabe.
  * Nimmt den Status als Parameter und erstellt eine Aufgabe mit den angegebenen Eigenschaften.
+ * @param {string} status - Der Status der Aufgabe.
  */
 function createTask(status) {
   const title = document.getElementById("title");
@@ -207,6 +199,10 @@ function clearTask() {
   resetElement(currentElement);
 }
 
+/**
+ * Funktion zum Zurücksetzen des ausgewählten Elements und des Hintergrunds.
+ * @param {object} currentElement - Das aktuelle ausgewählte Element.
+ */
 function resetElement(currentElement) {
   if (currentElement !== null) {
     currentElement.style.backgroundColor = "";
@@ -271,6 +267,9 @@ function closePopupTaskCard() {
  * @param {number} taskId - Die ID der Aufgabenkarte.
  */
 function showCard(taskId) {
+  let screenWidth = window.innerWidth;
+  
+  if (screenWidth >= 769) {
   let task = allTasks.find((task) => task.id === taskId);
   let overlayDiv = document.createElement("div");
   let popupCard = document.getElementById("popupContainer");
@@ -279,6 +278,15 @@ function showCard(taskId) {
   overlayDiv.classList.add("overlay");
   document.body.appendChild(overlayDiv);
   popupCard.innerHTML = generatePopupCardHtml(task, taskId, subtask, backgroundColor, priorityText, priorityImage);
+  }else{
+  let task = allTasks.find((task) => task.id === taskId);
+  let showMainBoardContainer = document.getElementById("showMainBoardContainer");
+  let mainBoardContainer = document.getElementById("mainBoardContainer");
+  let { priorityImage, priorityText, backgroundColor } = checkPrioPopupCard(task);
+  let subtask = generateSubtaskHtml(task, taskId);
+  mainBoardContainer.style.display = "none";
+  showMainBoardContainer.innerHTML = generateShowCardHtml(task, taskId, subtask, backgroundColor, priorityText, priorityImage);
+  }
 }
 
 /**
@@ -395,6 +403,27 @@ function editPopupCard(taskId) {
   popupCard.innerHTML = generateEditPopupCardHtml(task, taskId, today, popupCard);
 }
 
+/**
+ * Funktion, um das Popup-Kartenelement zum Bearbeiten einer Aufgabe anzuzeigen.
+ * @param {number} taskId - Die ID der Aufgabe, die bearbeitet werden soll.
+ */
+function editShowCard(taskId) {
+  let task = allTasks.find((task) => task.id === taskId);
+  let today = new Date();
+  let showCard = document.getElementById("showCard");
+  checkPrioPopupCard(task);
+  showCard.innerHTML = generateEditShowCardHtml(task, taskId, today, showCard);
+}
+
+/**
+ * Funktion zum Abrufen des Kategorietexts für eine Aufgabenkarte.
+ * Nimmt ein Task-Objekt und die ID des Standard-Textelements entgegen.
+ * Ruft das Textelement anhand der angegebenen ID ab und gibt den darin enthaltenen Text zurück.
+ * Wenn das Textelement nicht gefunden wird oder keinen Text enthält, wird der Kategorietext aus dem Task-Objekt verwendet.
+ * @param {object} task - Das Task-Objekt.
+ * @param {string} defaultTextElementId - Die ID des Standard-Textelements.
+ * @returns {string} - Der Kategorietext.
+ */
 function getCategoryText(task, defaultTextElementId) {
   let textElement = document.getElementById(defaultTextElementId);
   let text;
@@ -406,6 +435,15 @@ function getCategoryText(task, defaultTextElementId) {
   return text;
 }
 
+/**
+ * Funktion zum Abrufen der Kategoriefarbe für eine Aufgabenkarte.
+ * Nimmt ein Task-Objekt und die ID des Standard-Farbelements entgegen.
+ * Ruft das Farbelement anhand der angegebenen ID ab und gibt die Hintergrundfarbe zurück.
+ * Wenn das Farbelement nicht gefunden wird oder keine Hintergrundfarbe enthält, wird die Kategoriefarbe aus dem Task-Objekt verwendet.
+ * @param {object} task - Das Task-Objekt.
+ * @param {string} defaultColorElementId - Die ID des Standard-Farbelements.
+ * @returns {string} - Die Kategoriefarbe.
+ */
 function getCategoryColor(task, defaultColorElementId) {
   let colorElement = document.getElementById(defaultColorElementId);
   let color;
@@ -448,8 +486,14 @@ function savePopupCard(taskId) {
   updateTaskInArray(allTasks, taskId, task);
   resetElement(currentElement);
   closePopupCard();
+  closeShowCard();
 }
 
+/**
+ * Funktion zum Aktualisieren der Beschreibung für eine Aufgabenkarte.
+ * Aktualisiert die Beschreibung für die gegebene Aufgabenkarte.
+ * @param {string} taskId - Die ID der Aufgabenkarte.
+ */
 function updateTaskInArray(allTasks, taskId, updatedTask) {
   let taskIndex = allTasks.findIndex((task) => task.id === taskId);
   allTasks.splice(taskIndex, 1, updatedTask);
@@ -469,6 +513,15 @@ function closePopupCard() {
   renderBoardCards();
 }
 
+
+function closeShowCard() {
+  let showMainBoardContainer = document.getElementById("showMainBoardContainer");
+  let mainBoardContainer = document.getElementById("mainBoardContainer");
+  mainBoardContainer.style.display = "block";
+  showMainBoardContainer.innerHTML = "";
+  renderBoardCards();
+}
+
 /**
  * Löscht eine Aufgabenkarte.
  * @param {number} taskId - Die ID der Aufgabenkarte.
@@ -485,33 +538,53 @@ function deletePopupCard(taskId) {
     save();
     renderBoardCards();
     closePopupCard();
+    closeShowCard();
     load();
   }
 }
-
+/**
+ * Fügt der Element-ID die CSS-Klasse "box-highlight" hinzu, um das Element hervorzuheben.
+ * @param {string} id - Die ID des Elements, das hervorgehoben werden soll.
+ */
 function highlight(id) {
   document.getElementById(id).classList.add("box-highlight");
 }
-
+/**
+ * Entfernt die CSS-Klasse "box-highlight" von der Element-ID, um das Element nicht mehr hervorzuheben.
+ * @param {string} id - Die ID des Elements, von dem die Hervorhebung entfernt werden soll.
+ */
 function removeHighlight(id) {
   document.getElementById(id).classList.remove("box-highlight");
 }
-
+/**
+ * Setzt das aktuell gezogene Element auf die angegebene ID.
+ * @param {string} id - Die ID des gezogenen Elements.
+ */
 function startDragging(id) {
   currentDraggedElement = id;
 }
-
+/**
+ * Erlaubt das Ablegen von Elementen in einem Drop-Bereich.
+ * @param {object} ev - Das Ereignisobjekt für das Drag & Drop-Ereignis.
+ */
 function allowDrop(ev) {
   ev.preventDefault();
 }
-
+/**
+ * Ändert den Status einer Aufgabe auf den angegebenen Wert.
+ * Aktualisiert die Aufgabenliste im Local Storage und die Benutzeroberfläche.
+ * @param {string} status - Der neue Status der Aufgabe.
+ */
 function moveTo(status) {
   allTasks[currentDraggedElement]["status"] = status;
-  save(); // Save the updated task list to local storage
-  renderBoardCards(); // Update the UI with the new task status
+  save();
+  renderBoardCards();
 }
 
-// Dropbox für die Category
+/**
+ * Öffnet oder schließt die Dropdown-Box für die Kategorieauswahl.
+ * Zeigt die Kategorien anhand der renderCategory-Funktion an.
+ */
 function openDropBoxCategory() {
   let dropDownBox = document.getElementById("dropDownBox");
   let childTaskContainer = document.getElementById("category");
@@ -532,7 +605,9 @@ function openDropBoxCategory() {
   }
 }
 
-//Neue Container für newCategory wird angezeigt / ausgeblendet
+/**
+ * Zeigt den Container für die Erstellung einer neuen Kategorie an und rendert die Farben für die Kategorieauswahl.
+ */
 function newCategory() {
   let categoryContainer = document.getElementById("categoryContainer");
   let newCategoryContainer = document.getElementById("newCategoryContainer");
@@ -545,7 +620,9 @@ function newCategory() {
   document.getElementById("newCategoryContainer").innerHTML = newCategoryHtml();
 }
 
-// Die Farben für Category wird gerendert
+/**
+ * Rendert die Farben für die Kategorieauswahl.
+ */
 function renderColorCategory() {
   let categoryColors = document.getElementById("categoryColors");
   for (let i = 0; i < allColors.length; i++) {
@@ -554,7 +631,10 @@ function renderColorCategory() {
   }
 }
 
-// Farbe für Category wird ausgewählt
+/**
+ * Wählt eine Farbe für die Kategorieauswahl aus und aktualisiert die Anzeige.
+ * @param {number} i - Der Index der ausgewählten Farbe.
+ */
 function selectColor(i) {
   let colorBox = document.getElementById("colorBox");
   colorBox.innerHTML = "";
@@ -564,19 +644,27 @@ function selectColor(i) {
   selectedColor.classList.add("selected-color");
   colorBox.appendChild(selectedColor);
 }
-
+/**
+ * Lädt die gespeicherten Daten aus dem Local Storage.
+ * Ruft die Funktionen "renderCategory" auf, um die Kategorien anzuzeigen.
+ */
 async function load() {
   allCategory = JSON.parse(localStorage.getItem("allCategory")) || [];
   allTasks = JSON.parse(localStorage.getItem("allTasks")) || [];
 }
 
-// Speichert Json in das Local Storage
+/**
+ * Speichert die aktuellen Daten im Local Storage.
+ */
 function save() {
   localStorage.setItem(`allCategory`, JSON.stringify(allCategory));
   localStorage.setItem(`allTasks`, JSON.stringify(allTasks));
 }
 
-//Pusht die neue Category in das Array und Ausgangsbeschreibug wird angezeigt
+/**
+ * Fügt eine neue Kategorie basierend auf den Eingaben hinzu.
+ * Speichert die Kategorie im Array "allCategory" und aktualisiert die Benutzeroberfläche.
+ */
 function addNewCategory() {
   let newCategory = document.getElementById("inputCategory").value;
   let colorBox = document.getElementById("colorBox");
@@ -590,7 +678,10 @@ function addNewCategory() {
   openDropBoxCategory();
 }
 
-// Category wird ausgewählt und hinzugefügt
+/**
+ * Wählt eine Kategorie aus und fügt sie in das Textfeld ein.
+ * Entfernt die ausgewählte Kategorie aus der Dropdown-Box.
+ */
 function selectCategory(i) {
   let sourceDiv = document.getElementById(`selectCategory${i}`);
   let targetDiv = document.getElementById(`categoryTextBox`);
@@ -600,7 +691,9 @@ function selectCategory(i) {
   openDropBoxCategory();
 }
 
-// Category Container wird geschlossen
+/**
+ * Schließt den Container für die Erstellung einer neuen Kategorie und setzt die Anzeige zurück.
+ */
 function closeNewCategory() {
   let categoryContainer = document.getElementById("categoryContainer");
   let newCategoryContainer = document.getElementById("newCategoryContainer");
@@ -621,7 +714,9 @@ function closeNewCategory() {
   clearCategory();
 }
 
-// Dropbox öffnet/schließt sich
+/**
+ * Öffnet oder schließt die Dropdown-Box für die Zuweisung an einen Benutzer.
+ */
 function openDropBoxAssigned() {
   let dropDownUser = document.getElementById("dropDownUser");
   let childUserContainer = document.getElementById("assigned");
@@ -637,7 +732,9 @@ function openDropBoxAssigned() {
   }
 }
 
-// Wechselt die Symbole in der Subtaskleiste
+/**
+ * Ändert die Symbole in der Subtask-Leiste, um die Subtask-Eingabe anzuzeigen.
+ */
 function changeSubImg() {
   document.getElementById("subImgContainer").innerHTML = `<div class="subImgContainer">
   <img onclick="closeSubImg()" src="/img/iconoir_cancel_black.svg">
@@ -646,13 +743,18 @@ function changeSubImg() {
 </div>`;
 }
 
-//Schließt die Subtaskleiste und standart Bild wird eingefügt
+/**
+ * Schließt die Subtask-Leiste und setzt das Standardbild ein.
+ */
 function closeSubImg() {
   document.getElementById("subImgContainer").innerHTML = `<img src="/img/icon_cancel.svg">`;
   document.getElementById("subtask").value = ``;
 }
 
-//Subtask wird gerendert und hinzugefügt
+
+/**
+ * Fügt einen Subtask hinzu und aktualisiert die Anzeige.
+ */
 function addSubtask() {
   let subtask = document.getElementById("subtask").value;
   document.getElementById(
@@ -662,7 +764,9 @@ function addSubtask() {
   pushSubtask();
 }
 
-//Pusht den Subtask in das SubtaskArray
+/**
+ * Aktualisiert das Subtask-Array mit den aktuellen Subtask-Informationen.
+ */
 function pushSubtask() {
   let subtaskElements = document.querySelectorAll(".subBox");
   let subtaskInfo = [];
@@ -672,14 +776,19 @@ function pushSubtask() {
   allSubtask = subtaskInfo;
 }
 
-// Die Buttons für die Priorität zeigen Standartwert wieder an
+/**
+ * Setzt das Standardbild für die Prioritätsbuttons wieder ein.
+ * @param {object} box - Das HTML-Element des Prioritätsbuttons.
+ */
 function resetImage(box) {
   const img = box.querySelector("img");
   const defaultImg = img.dataset.defaultImg;
   img.src = defaultImg;
 }
-
-// Die Buttons für die Priorität bekommen nach anklicken eine neue Farbe
+/**
+ * Ändert die Hintergrundfarbe und das Symbolbild des ausgewählten Prioritätsbuttons.
+ * @param {object} event - Das Ereignisobjekt für das Klicken auf den Prioritätsbutton.
+ */
 function checkpriobox(event) {
   let element = event.target;
 
@@ -709,7 +818,9 @@ function checkpriobox(event) {
   }
 }
 
-//Setzt das aktuelle Datum in das Datumfeld
+/**
+ * Setzt das aktuelle Datum als Standardwert im Datumfeld.
+ */
 function setCurrentDate() {
   const dateInput = document.getElementById("date");
   const now = new Date();
