@@ -6,12 +6,7 @@ let sortedContacts = {};
 function sortUsers() {
     usersLetter.forEach(user => {
       const firstLetter = user.name.charAt(0).toUpperCase();
-      if (!sortedContacts[firstLetter]) {
-        sortedContacts[firstLetter] = [];
-      }
-      if (!sortedContacts[firstLetter].includes(user)) {
-        sortedContacts[firstLetter].push(user);
-      }
+      SortUserIf(firstLetter,user);
     });
     const sortedContactsArray = Object.entries(sortedContacts)
       .map(([letter, contacts]) => ({
@@ -30,7 +25,18 @@ function sortContactsByName() {
     for (const letter in sortedContacts) {
       sortedContacts[letter].sort((a, b) => a.name.localeCompare(b.name));
     }
-        //renderUser();
+    for(let i = 0; i < firstLetters.length; i++){
+        renderUser(i);
+    }
+}
+
+function SortUserIf(firstLetter,user){
+    if (!sortedContacts[firstLetter]) {
+        sortedContacts[firstLetter] = [];
+    }
+    if (!sortedContacts[firstLetter].includes(user)) {
+        sortedContacts[firstLetter].push(user);
+    }
 }
 
 async function contactInit(){
@@ -73,33 +79,19 @@ function getFirstLetters() {
     }
 }
 
-function renderRecurringUser(i,recurringUser){
-    let div = document.getElementById(`contact${i}`);
-    div.innerHTML += /* html */ `
-            <div class="profile-div">
-                <div class="profilePicture">
-                    ${recurringUser['firstLetter']}
-                </div>
-                <div class="userInfomations">
-                    <span>${recurringUser['name']}</span>
-                    <a href="#">${recurringUser['email']}</a>
-                </div>
-            </div>
-        `;
-}
-
-function renderUser(){
-    for(let i = 0; i < usersLetter.length; i++){
-        let div = document.getElementById(`contact${i}`);
-        div.innerHTML = '';
+function renderUser(index){
+    let div = document.getElementById(`contact${index}`);
+    div.innerHTML = '';
+    let indextwo = firstLetters[index]
+    for(let i = 0; i < sortedContacts[indextwo].length; i++){
         div.innerHTML += /* html */ `
             <div class="profile-div">
                 <div class="profilePicture">
-                    ${usersLetter[i]['firstLetter']}
+                    ${sortedContacts[indextwo][i]['firstLetter']}
                 </div>
                 <div>
-                    <span>${usersLetter[i]['name']}</span>
-                    <a href="#">${usersLetter[i]['email']}</a>
+                    <span>${sortedContacts[indextwo][i]['name']}</span>
+                    <a href="#">${sortedContacts[indextwo][i]['email']}</a>
                 </div>
             </div>
         `;
