@@ -33,7 +33,7 @@ async function register() {
         'email': inputEmail.value,
         'password': password.value,
         'contact': [],
-        'img': 'img/guest.png',
+        'tel': 000,
         'firstLetter': initials,
       });
       await setItem('users', JSON.stringify(users))
