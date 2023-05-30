@@ -30,22 +30,22 @@
                 <div class="bigImg">
                     <img src="img/guest.png" alt="">
                 </div>
-                <form action="">
+                <form>
                     <div class="relativ-for-icon">
-                        <input placeholder="Name" type="text">
+                        <input minlength="2" required placeholder="Name" type="text">
                         <img src="img/people.svg" alt="">
                     </div>
                     <div class="relativ-for-icon">
-                        <input placeholder="Email" type="email">
+                        <input required placeholder="Email" type="email">
                         <img src="img/emailicon.svg" alt="">
                     </div>
                     <div class="relativ-for-icon"> 
-                        <input placeholder="Phone" type="number">
+                        <input required placeholder="Phone" type="number">
                         <img src="img/phone.svg" alt="">
                     </div>
                     <div class="buttons">
-                        <button onclick="close()" class="cancelButton">Cancel <img id="Cancel" class="cancelImg" src="img/cancel.svg" alt=""></button>
-                        <button class="create-contactButton">Create contact <img src="img/hook.svg" alt=""></button>
+                        <button type="button" onclick="close();" class="cancelButton">Cancel <img id="Cancel" class="cancelImg" src="img/cancel.svg" alt=""></button>
+                        <button type="submit" class="create-contactButton">Create contact <img src="img/hook.svg" alt=""></button>
                     </div>
                 </form>
             </div>
