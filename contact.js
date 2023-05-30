@@ -4,9 +4,12 @@ let usersLetter = [];
 let sortedContacts = {};
 
 function sortUsers() {
-    usersLetter.forEach(user => {
-      const firstLetter = user.name.charAt(0).toUpperCase();
-      SortUserIf(firstLetter,user);
+    users.sort((a, b) => a.name.localeCompare(b.name)); // Kontakte vor dem Hinzufügen nach dem Namen sortieren
+    users.forEach(user => {
+        if(user != undefined){
+            const firstLetter = user.name.charAt(0).toUpperCase();
+            SortUserIf(firstLetter, user);
+        }
     });
     const sortedContactsArray = Object.entries(sortedContacts)
       .map(([letter, contacts]) => ({
@@ -19,7 +22,8 @@ function sortUsers() {
       sortedContacts[letter] = contacts;
     });
     sortContactsByName();
-}
+  }
+  
 
 function sortContactsByName() {
     for (const letter in sortedContacts) {
@@ -30,14 +34,14 @@ function sortContactsByName() {
     }
 }
 
-function SortUserIf(firstLetter,user){
+function SortUserIf(firstLetter, user) {
     if (!sortedContacts[firstLetter]) {
-        sortedContacts[firstLetter] = [];
+      sortedContacts[firstLetter] = [];
     }
     if (!sortedContacts[firstLetter].includes(user)) {
-        sortedContacts[firstLetter].push(user);
+      sortedContacts[firstLetter].push(user);
     }
-}
+  }
 
 async function contactInit(){
     await loadUsers();
@@ -62,36 +66,38 @@ function getFirstLetters() {
     for (let i = 0; i < users.length; i++) {
         firstLetters.sort();
         let name = users[i]['name'];
-        let firstLetter = name.charAt(0);
+        let firstLetter = name.charAt(0).toUpperCase();
         if (!firstLetters.includes(firstLetter)) {
             firstLetters.push(firstLetter);
             sortLetter.push(firstLetter);
-            usersLetter.push(users.find(l => l['name'].charAt(0) === sortLetter[i]));
             sortLetter.sort();
             sortArray();
-            renderContactHTML();
-            sortUsers();
         }else{
             let recurringUser = users[i];
             usersLetter.push(recurringUser);
-            sortUsers();
         }
     }
+    firstLettersForContact();
+}
+
+function firstLettersForContact(){
+    renderContactHTML();
+    sortUsers();
 }
 
 function renderUser(index){
     let div = document.getElementById(`contact${index}`);
     div.innerHTML = '';
-    let indextwo = firstLetters[index]
-    for(let i = 0; i < sortedContacts[indextwo].length; i++){
+    let indexLetter = firstLetters[index];
+    for(let i = 0; i < sortedContacts[indexLetter].length; i++){
         div.innerHTML += /* html */ `
             <div class="profile-div">
                 <div class="profilePicture">
-                    ${sortedContacts[indextwo][i]['firstLetter']}
+                    ${sortedContacts[indexLetter][i]['firstLetter']}
                 </div>
                 <div>
-                    <span>${sortedContacts[indextwo][i]['name']}</span>
-                    <a href="#">${sortedContacts[indextwo][i]['email']}</a>
+                    <span>${sortedContacts[indexLetter][i]['name']}</span>
+                    <a href="#">${sortedContacts[indexLetter][i]['email']}</a>
                 </div>
             </div>
         `;
