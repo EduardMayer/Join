@@ -598,6 +598,30 @@ body {
   margin-bottom: 19px;
   display: none;
 }
+.statusButtonsContainer{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.popupCardStatus b{
+  font-size: 21px;
+}
+.statusButtonsContainer button{
+  margin-top: 10px;
+  width : 100px;
+  height: 50px;
+  background-color: white;
+  border: 1px solid #091931;
+  border-radius: 10px;
+  cursor: pointer;
+
+}
+
+.statusButtonsContainer button:hover{
+color: white;
+background-color: rgb(41, 171, 226);
+border: 1px solid rgb(41, 171, 226);
+}
 
 @media (max-width: 1335px) {
   .middleAddTaskContainer {
@@ -830,8 +854,12 @@ body {
 
   .popupCardImgBox {
     flex-direction: column;
-    width: auto;
   }
+  
+  .popupCardImgBox img{
+    display: block;
+  }
+
   .popupCardImgContainer {
     position: static;
   }

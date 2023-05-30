@@ -175,7 +175,7 @@ function createTask(status) {
   save();
   allSubtask = [];
   clearTask();
-  window.location.href = "board.html";
+  showPopup(); 
 }
 
 /**
@@ -581,6 +581,13 @@ function moveTo(status) {
   renderBoardCards();
 }
 
+function moveToStatus(taskId, status) {
+  allTasks[taskId].status = status;
+  save();
+  renderBoardCards();
+  closeShowCard()
+}
+
 /**
  * Öffnet oder schließt die Dropdown-Box für die Kategorieauswahl.
  * Zeigt die Kategorien anhand der renderCategory-Funktion an.
@@ -837,3 +844,16 @@ function setCurrentDate() {
   dateInput.min = currentDate; // set minimum date to current date
   dateInput.value = currentDate;
 }
+
+function showPopup() {
+  const popup = document.querySelector('.popupAddTaskBoard');
+  popup.style.transform = 'translate(-50%, -50%)';
+  setTimeout(hidePopup, 2000); 
+}
+
+function hidePopup() {
+  const popup = document.querySelector('.popupAddTaskBoard');
+  popup.style.transform = 'translate(-50%, 500%)';
+  window.location.href = "board.html"
+}
+
