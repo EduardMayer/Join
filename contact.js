@@ -66,7 +66,7 @@ function getFirstLetters() {
     for (let i = 0; i < users.length; i++) {
         firstLetters.sort();
         let name = users[i]['name'];
-        let firstLetter = name.charAt(0);
+        let firstLetter = name.charAt(0).toUpperCase();
         if (!firstLetters.includes(firstLetter)) {
             firstLetters.push(firstLetter);
             sortLetter.push(firstLetter);
