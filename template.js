@@ -14,7 +14,14 @@ function generateCardHTML(task) {
     `;
 }
 
-function generatePopupCardHtml(task,taskId,subtaskHtml,backgroundColor,priorityText,priorityImage) {
+function generatePopupCardHtml(
+  task,
+  taskId,
+  subtaskHtml,
+  backgroundColor,
+  priorityText,
+  priorityImage
+) {
   return `
       <div class="popupCard">
         <div>
@@ -51,20 +58,28 @@ function generateEditPopupCardHtml(task, taskId, today) {
     <form onsubmit="event.preventDefault(); savePopupCard(${taskId})">
       <div>
         <div class="cancelPopupCardBox"><div onclick="closePopupCard()" class="cancelIconPopupCard"><img src="/img/cross.png"></div></div>
-        <div class="editPopupCardCategory" id="popupcardCategory" onclick="setPopupCategoryCard(${taskId})" style="background-color:${task.categoryColor}">${task.categoryText}</div>
+        <div class="editPopupCardCategory" id="popupcardCategory" onclick="setPopupCategoryCard(${taskId})" style="background-color:${
+    task.categoryColor
+  }">${task.categoryText}</div>
         <div id="popupCategoryBox" class="popupCategoryBox"></div>
       </div>
       <div class="popupCardtitleContainer">
           <label for="title">Title</label>
-          <input required type="text" class="popupCardTitle" id="popupCardTitle" minlength="3" value="${task.title}">
+          <input required type="text" class="popupCardTitle" id="popupCardTitle" minlength="3" value="${
+            task.title
+          }">
       </div>
       <div class="popupCarddescriptionContainer">
           <label for="description">Description</label>
-          <textarea required class="popupcardDescription" id="popupcardDescription" minlength="3">${task.description}</textarea>
+          <textarea required class="popupcardDescription" id="popupcardDescription" minlength="3">${
+            task.description
+          }</textarea>
       </div>
       <div class="popupCarddateContainer">
         <label for="date">Due date</label>
-        <input type="date" class="popupCardDate" id="popupCardDate" min="${today.toISOString().split("T")[0]}" value="${task.date}">
+        <input type="date" class="popupCardDate" id="popupCardDate" min="${
+          today.toISOString().split("T")[0]
+        }" value="${task.date}">
       </div>
       <div class="popupCardprioContainer" id="prioContainer">
         <label for="Prio">Prio</label>
@@ -85,6 +100,7 @@ function generateEditPopupCardHtml(task, taskId, today) {
         <div id="prioBoxAlarm"></div>
       </div>
       <div class="popupCardEditAssigned"><b>Assigned To:</b></div>
+
       <div class="popupCardEditImgContainer">
         <div>
           <button class="popupSaveButton" type="submit">Ok<img src="/img/akar-icons_check.svg"></button>
@@ -95,34 +111,51 @@ function generateEditPopupCardHtml(task, taskId, today) {
   `;
 }
 
-function generateShowCardHtml(task,taskId,subtaskHtml,backgroundColor,priorityText,priorityImage) {
+function generateShowCardHtml(
+  task,
+  taskId,
+  subtaskHtml,
+  backgroundColor,
+  priorityText,
+  priorityImage
+) {
   return `
-      <div class="showCard" id="showCard">
-        <div class="showCategoryContainer">
-          <div class="popupcardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div><div onclick="closeShowCard()" class="cancelIconShowCard"><img src="/img/blackarrowicon.svg"></div>
-        </div>
-        <div class="popupCardTitle" id="popupCardTitle">${task.title}</div>
-        <div class="popupcardDescription" id="popupcardDescription">${task.description}</div>
-        <div class="popupCardDate" id="popupCardDate"><b>Due date:</b><div>${task.date}</div></div>
-        <div class="popupPrioContainer" id="popupPrioContainer" ><b>Priority:</b>
-          <div class="popupPrioBox" id="popupPrioBox" style="background-color:${backgroundColor}">${priorityText} <img src="${priorityImage}"></div>
-        </div>
-  
-        <div class="popupCardAssigned"><b>Assigned To:</b></div>
-        <div class="popupCardLowerContainer">
-          <div class="popupCardSubContainer">
-            <div><b>Subtasks</b></div>
-            <div id="popupCardSubBox" class="popupCardSubBox">${subtaskHtml}</div>
-          </div>
-          </div>
-          <div class="popupCardImgContainer">
-            <div class="popupCardImgBox">
-              <div class="popupDeletButton" onclick="deletePopupCard(${taskId})"><img src="/img/deletebuttonv1.png"></div>
-              <div class="popupEditButton" onclick="editShowCard(${taskId})"><img src="/img/editbuttonv1.png"></div>
-          </div>   
-          </div>  
+    <div class="showCard" id="showCard">
+      <div class="showCategoryContainer">
+        <div class="popupcardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div>
+        <div onclick="closeShowCard()" class="cancelIconShowCard"><img src="/img/blackarrowicon.svg"></div>
       </div>
-    `;
+      <div class="popupCardTitle" id="popupCardTitle">${task.title}</div>
+      <div class="popupcardDescription" id="popupcardDescription">${task.description}</div>
+      <div class="popupCardDate" id="popupCardDate"><b>Due date:</b><div>${task.date}</div></div>
+      <div class="popupPrioContainer" id="popupPrioContainer" ><b>Priority:</b>
+        <div class="popupPrioBox" id="popupPrioBox" style="background-color:${backgroundColor}">${priorityText} <img src="${priorityImage}"></div>
+      </div>
+
+      <div class="popupCardAssigned"><b>Assigned To:</b></div>
+      <div class="popupCardLowerContainer">
+        <div class="popupCardSubContainer">
+          <div><b>Subtasks</b></div>
+          <div id="popupCardSubBox" class="popupCardSubBox">${subtaskHtml}</div>
+        </div>
+      </div>
+      <div class="popupCardStatus">
+        <b>Switch Status</b>
+        <div class="statusButtonsContainer">
+          <button onclick="moveToStatus('${taskId}', 'todo')">To Do</button>
+          <button onclick="moveToStatus('${taskId}', 'progress')">In Progress</button>
+          <button onclick="moveToStatus('${taskId}', 'feedback')">Awaiting Feedback</button>
+          <button onclick="moveToStatus('${taskId}', 'done')">Done</button>
+        </div>
+      </div>
+      <div class="popupCardImgContainer">
+        <div class="popupCardImgBox">
+          <div class="popupDeletButton" onclick="deletePopupCard(${taskId})"><img src="/img/deletebuttonv1.png"></div>
+          <div class="popupEditButton" onclick="editShowCard(${taskId})"><img src="/img/editbuttonv1.png"></div>
+        </div>
+      </div>
+    </div>
+  `;
 }
 
 function generateEditShowCardHtml(task, taskId, today) {
@@ -130,20 +163,28 @@ function generateEditShowCardHtml(task, taskId, today) {
     <form onsubmit="event.preventDefault(); savePopupCard(${taskId})">
       <div>
         <div class="cancelPopupCardBox"><div onclick="closeShowCard()" class="cancelIconPopupCard"><img src="/img/cross.png"></div></div>
-        <div class="editPopupCardCategory" id="popupcardCategory" onclick="setPopupCategoryCard(${taskId})" style="background-color:${task.categoryColor}">${task.categoryText}</div>
+        <div class="editPopupCardCategory" id="popupcardCategory" onclick="setPopupCategoryCard(${taskId})" style="background-color:${
+    task.categoryColor
+  }">${task.categoryText}</div>
         <div id="popupCategoryBox" class="popupCategoryBox"></div>
       </div>
       <div class="popupCardtitleContainer">
           <label for="title">Title</label>
-          <input required type="text" class="popupCardTitle" id="popupCardTitle" minlength="3" value="${task.title}">
+          <input required type="text" class="popupCardTitle" id="popupCardTitle" minlength="3" value="${
+            task.title
+          }">
       </div>
       <div class="popupCarddescriptionContainer">
           <label for="description">Description</label>
-          <textarea required class="popupcardDescription" id="popupcardDescription" minlength="3">${task.description}</textarea>
+          <textarea required class="popupcardDescription" id="popupcardDescription" minlength="3">${
+            task.description
+          }</textarea>
       </div>
       <div class="popupCarddateContainer">
         <label for="date">Due date</label>
-        <input type="date" class="popupCardDate" id="popupCardDate" min="${today.toISOString().split("T")[0]}" value="${task.date}">
+        <input type="date" class="popupCardDate" id="popupCardDate" min="${
+          today.toISOString().split("T")[0]
+        }" value="${task.date}">
       </div>
       <div class="popupCardprioContainer" id="prioContainer">
         <label for="Prio">Prio</label>
@@ -173,7 +214,6 @@ function generateEditShowCardHtml(task, taskId, today) {
     </div>
   `;
 }
-
 
 function popupAddTaskContainerTemplate(status) {
   return `
@@ -261,8 +301,9 @@ function popupAddTaskContainerTemplate(status) {
     </div>
   `;
 }
-  
-  function newCategoryHtml(){return`<label for="Category">Category</label><div class="subtaskChildContainer" >
+
+function newCategoryHtml() {
+  return `<label for="Category">Category</label><div class="subtaskChildContainer" >
   <div id="colorBox" class="colorBox"></div>
   <input type="text" id="inputCategory" placeholder="New category name">
   <div class="subImgContainer">
