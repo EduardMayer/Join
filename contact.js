@@ -3,24 +3,34 @@ let sortLetter = [];
 let usersLetter = [];
 let sortedContacts = {};
 
-function sortUsers(){
+function sortUsers() {
     usersLetter.forEach(user => {
-        const firstLetter = user.name.charAt(0).toUpperCase();
-        
-        if (!sortedContacts[firstLetter]) {
-          sortedContacts[firstLetter] = [];
-        }
-        
+      const firstLetter = user.name.charAt(0).toUpperCase();
+      if (!sortedContacts[firstLetter]) {
+        sortedContacts[firstLetter] = [];
+      }
+      if (!sortedContacts[firstLetter].includes(user)) {
         sortedContacts[firstLetter].push(user);
-      });
-      
-      const sortedContactsArray = Object.entries(sortedContacts).map(([letter, contacts]) => ({
+      }
+    });
+    const sortedContactsArray = Object.entries(sortedContacts)
+      .map(([letter, contacts]) => ({
         letter,
         contacts
-      }));
-      
-      const sortedContactsJSON = JSON.stringify(sortedContactsArray);
-      console.log(sortedContactsJSON);
+      }))
+      .sort((a, b) => a.letter.localeCompare(b.letter));
+    sortedContacts = {};
+    sortedContactsArray.forEach(({ letter, contacts }) => {
+      sortedContacts[letter] = contacts;
+    });
+    sortContactsByName();
+}
+
+function sortContactsByName() {
+    for (const letter in sortedContacts) {
+      sortedContacts[letter].sort((a, b) => a.name.localeCompare(b.name));
+    }
+        //renderUser();
 }
 
 async function contactInit(){
@@ -54,9 +64,11 @@ function getFirstLetters() {
             sortLetter.sort();
             sortArray();
             renderContactHTML();
+            sortUsers();
         }else{
             let recurringUser = users[i];
-            usersLetter.push(recurringUser)
+            usersLetter.push(recurringUser);
+            sortUsers();
         }
     }
 }
