@@ -10,13 +10,15 @@
     <link rel="stylesheet" href="fonts.css">
     <link rel="stylesheet" href="addtask.css">
     <script src="js/storage.js"></script>
+    <script src="js/register.js"></script>
     <script src="board.js"></script>
-    <script>src = "summary.js"</script>
+    <script src="summary.js"></script>
     <script src="template.js"></script>
+    <script src="contact.js"></script>
     <title>AddTask</title>
 </head>
 
-<body onload="includeHTML(), setCurrentDate(), renderCategory(), renderColorCategory()">
+<body onload="includeHTML(); setCurrentDate(); renderCategory(); renderColorCategory(); rendercontactsArray();">
     <div w3-include-html="head_navbar.html"></div>
     <div class="addTitleContainer">
         <p>Kanban Project Management Tool</p>
@@ -26,7 +28,7 @@
     </div>
     <form>
         <button class="buttonTaskHeader" onclick="createTask('todo')">Create<img
-                src="/img/akar-icons_check.svg"></button>
+                src="img/akar-icons_check.svg"></button>
         <div class="mainTaskContainer">
             <div class="leftTaskContainer">
                 <div class="titleContainer">
@@ -44,7 +46,7 @@
                         <div id="categoryTextBox" class="categoryTextBox">
                             <p>Select task category</p>
                         </div>
-                        <div><img src="/img/arrowTask.svg"></div>
+                        <div><img src="img/arrowTask.svg"></div>
                     </div>
                     <div onclick="newCategory()" class="d-none" id="dropDownBox">
                         <div>New Category</div>
@@ -58,7 +60,7 @@
                     <label for="Category">Assigned to</label>
                     <div onclick="openDropBoxAssigned()" class="childTaskContainer" id="assigned">
                         <p>Select contacts to assign</p>
-                        <img src="/img/arrowTask.svg">
+                        <img src="img/arrowTask.svg">
                     </div>
                     <div class="d-none" id="dropDownUser"></div>
                 </div>
@@ -76,15 +78,15 @@
                     <div class="prioChildContainer">
                         <div id="urgent" onclick="checkpriobox(event)" class="prioBox">
                             Urgent
-                            <img src="/img/urgent.svg" data-default-img="/img/urgent.svg" alt="Urgent Priority">
+                            <img src="img/urgent.svg" data-default-img="img/urgent.svg" alt="Urgent Priority">
                         </div>
                         <div id="medium" onclick="checkpriobox(event)" class="prioBox">
                             Medium
-                            <img src="/img/medium.svg" data-default-img="/img/medium.svg" alt="Medium Priority">
+                            <img src="img/medium.svg" data-default-img="img/medium.svg" alt="Medium Priority">
                         </div>
                         <div id="low" onclick="checkpriobox(event)" class="prioBox">
                             Low
-                            <img src="/img/low.svg" data-default-img="/img/low.svg" alt="Low Priority">
+                            <img src="img/low.svg" data-default-img="img/low.svg" alt="Low Priority">
                         </div>
                     </div>
                     <div id="prioBoxAlarm"></div>
@@ -93,16 +95,16 @@
                     <label for="subtaskChildInput">Subtasks</label>
                     <div class="subtaskChildContainer">
                         <input onclick="changeSubImg()" id="subtask" type="text" placeholder="Add new subtask">
-                        <div class="subImgContainer" id="subImgContainer"><img src="/img/icon_cancel.svg"></div>
+                        <div class="subImgContainer" id="subImgContainer"><img src="img/icon_cancel.svg"></div>
                     </div>
                 </div>
                 <div id="subTaskDescription" class="subTaskDescription">
                 </div>
                 <div class="buttonTaskContainer">
                     <button class="buttonTask" onclick="clearTask()">Clear <img class="cancelIcon"
-                            src="/img/iconoir_cancel.svg"></button>
+                            src="img/iconoir_cancel.svg"></button>
                     <button class="buttonTask2" onclick="createTask('todo')">Create Task<img
-                            src="/img/akar-icons_check.svg"></button>
+                            src="img/akar-icons_check.svg"></button>
                 </div>
             </div>
         </div>
