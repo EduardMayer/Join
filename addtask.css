@@ -196,7 +196,7 @@ textarea {
   transition: background 200ms ease-in-out;
 }
 .buttonTask:hover .cancelIcon {
-  content: url("/img/iconoir_cancel_hover.svg");
+  content: url("img/iconoir_cancel_hover.svg");
 }
 .buttonTask:hover {
   box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);

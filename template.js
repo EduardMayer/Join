@@ -25,7 +25,7 @@ function generatePopupCardHtml(
   return `
       <div class="popupCard">
         <div>
-          <div class="cancelPopupCardBox"><div onclick="closePopupCard()" class="cancelIconPopupCard"><img src="/img/cross.png"></div></div>
+          <div class="cancelPopupCardBox"><div onclick="closePopupCard()" class="cancelIconPopupCard"><img src="img/cross.png"></div></div>
           <div class="popupcardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div>
         </div>
         <div class="popupCardTitle" id="popupCardTitle">${task.title}</div>

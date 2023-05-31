@@ -162,7 +162,7 @@ body {
   font-size: 27px;
 }
 .createTaskBox:hover {
-  content: url("/img/blueplusicon.svg");
+  content: url("img/blueplusicon.svg");
 }
 
 .searchBarContainer:focus-within {
@@ -396,11 +396,11 @@ body {
 }
 
 .popupDeletButton:hover {
-  content: url("/img/deletbuttonhover.png");
+  content: url("img/deletbuttonhover.png");
 }
 
 .popupEditButton:hover {
-  content: url("/img/editbuttonhover.png");
+  content: url("img/editbuttonhover.png");
 }
 
 .popupCardLowerContainer {
