@@ -44,6 +44,7 @@ function SortUserIf(firstLetter, user) {
   }
 
 async function contactInit(){
+    sortedContacts = {};
     await loadUsers();
     getFirstLetters();
     hover();
@@ -233,4 +234,35 @@ function opnenOverdiv(){
 
 function doNotClose(event) {
     event.stopPropagation();
+}
+
+function createNewContact(){
+    let name = document.getElementById('name');
+    let email = document.getElementById('email')
+    let phone = document.getElementById('phone')
+    registerForContacts(name,email,phone);
+    clearInputContacts(name,email,phone);
+}
+
+function clearInputContacts(name,email,phone){
+    name.value = '';
+    email.value = '';
+    phone.value = '';
+}
+
+async function registerForContacts(name,email,phone) {
+    renderfirstNames(name.value);
+    if (Array.isArray(users)) {
+      users.push({
+        'name': name.value,
+        'email': email.value,
+        'password': 'StartPassword' + `${email.value}`,
+        'contact': [],
+        'tel': phone.value,
+        'firstLetter': initials,
+      });
+      await setItem('users', JSON.stringify(users));
+      contactInit();
+      closeOverdiv();
+    }
 }

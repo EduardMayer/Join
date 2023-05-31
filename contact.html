@@ -32,20 +32,20 @@
                 </div>
                 <form>
                     <div class="relativ-for-icon">
-                        <input minlength="2" required placeholder="Name" type="text">
+                        <input id="name" minlength="2" required placeholder="Name" type="text">
                         <img src="img/people.svg" alt="">
                     </div>
                     <div class="relativ-for-icon">
-                        <input required placeholder="Email" type="email">
+                        <input id="email" required placeholder="Email" type="email">
                         <img src="img/emailicon.svg" alt="">
                     </div>
                     <div class="relativ-for-icon"> 
-                        <input required placeholder="Phone" type="number">
+                        <input id="phone" required placeholder="Phone" type="number">
                         <img src="img/phone.svg" alt="">
                     </div>
                     <div class="buttons">
-                        <button type="button" onclick="close();" class="cancelButton">Cancel <img id="Cancel" class="cancelImg" src="img/cancel.svg" alt=""></button>
-                        <button type="submit" class="create-contactButton">Create contact <img src="img/hook.svg" alt=""></button>
+                        <button type="button" onclick="closeOverdiv();" class="cancelButton">Cancel <img id="Cancel" class="cancelImg" src="img/cancel.svg" alt=""></button>
+                        <button type="submit" onclick="createNewContact(); return false;" class="create-contactButton">Create contact <img src="img/hook.svg" alt=""></button>
                     </div>
                 </form>
             </div>
