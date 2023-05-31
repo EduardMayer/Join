@@ -123,15 +123,15 @@ function generateProgressBarContainerHTML(task) {
  */
 function checkPrioPopupCard(task) {
   if (task.priority === "urgent") {
-    priorityImage = "/img/Prio-urgent-white.png";
+    priorityImage = "img/Prio-urgent-white.png";
     priorityText = "Urgent";
     backgroundColor = "rgb(255, 61, 0)";
   } else if (task.priority === "medium") {
-    priorityImage = "/img/Prio-medium-white.png";
+    priorityImage = "img/Prio-medium-white.png";
     priorityText = "Medium";
     backgroundColor = "rgb(255, 168, 0)";
   } else {
-    priorityImage = "/img/Prio-low-white.png";
+    priorityImage = "img/Prio-low-white.png";
     priorityText = "Low";
     backgroundColor = "rgb(122,226,41)";
   }
@@ -174,8 +174,8 @@ function createTask(status) {
   allTasks.push(allTask);
   save();
   allSubtask = [];
-  clearTask();
-  showPopup(); 
+  showPopup();
+  clearTask(); 
 }
 
 /**
@@ -218,7 +218,7 @@ function resetElement(currentElement) {
  */
 function clearCategory() {
   let category = document.getElementById("category");
-  category.innerHTML = `<div id="categoryTextBox" class="categoryTextBox"><p>Select task category</p></div><div><img src="/img/arrowTask.svg"></div>`;
+  category.innerHTML = `<div id="categoryTextBox" class="categoryTextBox"><p>Select task category</p></div><div><img src="img/arrowTask.svg"></div>`;
 }
 
 /**
@@ -744,9 +744,9 @@ function openDropBoxAssigned() {
  */
 function changeSubImg() {
   document.getElementById("subImgContainer").innerHTML = `<div class="subImgContainer">
-  <img onclick="closeSubImg()" src="/img/iconoir_cancel_black.svg">
+  <img onclick="closeSubImg()" src="img/iconoir_cancel_black.svg">
   <div class="searchBarLine"></div>
-  <img onclick="addSubtask()" id="subImg" src="/img/akar-icons_check_black.svg">
+  <img onclick="addSubtask()" id="subImg" src="img/akar-icons_check_black.svg">
 </div>`;
 }
 
@@ -754,7 +754,7 @@ function changeSubImg() {
  * Schließt die Subtask-Leiste und setzt das Standardbild ein.
  */
 function closeSubImg() {
-  document.getElementById("subImgContainer").innerHTML = `<img src="/img/icon_cancel.svg">`;
+  document.getElementById("subImgContainer").innerHTML = `<img src="img/icon_cancel.svg">`;
   document.getElementById("subtask").value = ``;
 }
 
@@ -812,13 +812,13 @@ function checkpriobox(event) {
 
     if (element.id === "urgent") {
       element.style.backgroundColor = "rgb(255, 61, 0)";
-      element.querySelector("img").src = "/img/Prio-urgent-white.png";
+      element.querySelector("img").src = "img/Prio-urgent-white.png";
     } else if (element.id === "medium") {
       element.style.backgroundColor = "rgb(255, 168, 0)";
-      element.querySelector("img").src = "/img/Prio-medium-white.png";
+      element.querySelector("img").src = "img/Prio-medium-white.png";
     } else if (element.id === "low") {
       element.style.backgroundColor = "rgb(122,226,41)";
-      element.querySelector("img").src = "/img/Prio-low-white.png";
+      element.querySelector("img").src = "img/Prio-low-white.png";
     }
     currentElement = element;
     clickedId = event.target.id;
@@ -856,4 +856,3 @@ function hidePopup() {
   popup.style.transform = 'translate(-50%, 500%)';
   window.location.href = "board.html"
 }
-

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+    
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,13 +9,16 @@
     <link rel="stylesheet" href="headnav.css">
     <link rel="stylesheet" href="fonts.css">
     <link rel="stylesheet" href="addtask.css">
+    <script src="js/storage.js"></script>
+    <script src="js/register.js"></script>
     <script src="board.js"></script>
     <script src="summary.js"></script>
     <script src="template.js"></script>
+    <script src="contact.js"></script>
     <title>Join-Board</title>
 </head>
 
-<body onload="includeHTML(), renderBoardCards(), load()">
+<body onload="includeHTML(); renderBoardCards(); load()">
     <div w3-include-html="head_navbar.html"></div>
     <div class="showMainBoardContainer" id="showMainBoardContainer"></div>
     <div class="mainBoardContainer" id="mainBoardContainer">
@@ -27,7 +30,7 @@
             <div class="headlineContainer">
                 <p>Board</p>
                 <div class="addSecondButtonContainer">
-                    <div onclick="openAddTaskContainer('todo')"><b>Add task</b><img src="/img/crossboard.svg"></div>
+                    <div onclick="openAddTaskContainer('todo')"><b>Add task</b><img src="img/crossboard.svg"></div>
                 </div>
             </div>
             <div class="searchBoardContainer">
@@ -41,7 +44,7 @@
                     </div>
                 </div>
                 <div class="addButtonContainer">
-                    <div onclick="openAddTaskContainer('todo')"><b>Add task</b><img src="/img/crossboard.svg"></div>
+                    <div onclick="openAddTaskContainer('todo')"><b>Add task</b><img src="img/crossboard.svg"></div>
                 </div>
             </div>
         </div>
@@ -50,7 +53,7 @@
                 <div class="upperStatusBox">
                     <h3>To Do</h3>
                     <div onclick="openAddTaskContainer('todo')"><img class="createTaskBox"
-                            src="/img/plus button v1.svg"></div>
+                            src="img/plus button v1.svg"></div>
                 </div>
                 <div class="box" ondragover="allowDrop(event); highlight('todo')"
                     ondrop="moveTo('todo'); removeHighlight('todo')" ondragleave="removeHighlight('todo')" id="todo">
@@ -71,7 +74,7 @@
                 <div class="upperStatusBox">
                     <h3>Awaiting Feedback</h3>
                     <div onclick="openAddTaskContainer('feedback')"><img class="createTaskBox"
-                            src="/img/plus button v1.svg"></div>
+                            src="img/plus button v1.svg"></div>
                 </div>
                 <div class="box" ondragover="allowDrop(event); highlight('feedback')"
                     ondrop="moveTo('feedback'); removeHighlight('feedback')" ondragleave="removeHighlight('feedback')"
@@ -83,7 +86,7 @@
                 <div class="upperStatusBox">
                     <h3>Done</h3>
                     <div onclick="openAddTaskContainer('done')"><img class="createTaskBox"
-                            src="/img/plus button v1.svg"></div>
+                            src="img/plus button v1.svg"></div>
                 </div>
                 <div class="box" ondragover="allowDrop(event); highlight('done')"
                     ondrop="moveTo('done'); removeHighlight('done')" ondragleave="removeHighlight('done')" id="done">
