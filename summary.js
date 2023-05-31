@@ -158,6 +158,26 @@ function getGreeting() {
   }
 }
 
+// function changeGreetingName() {
+//   let cookieValue = document.cookie;
+//   let nameFromCookie = cookieValue.split(';').find(cookie => cookie.includes('users='));
+
+//   showsGreetingName(nameFromCookie);
+// }
+
+// function showsGreetingName(nameFromCookie) {
+//   if (nameFromCookie === undefined) {
+//       document.getElementById('greeting-user').innerHTML = 'Guest';
+//       document.getElementById('summary-greeting-name-responsive').innerHTML = 'Guest';
+//   } else {
+//       let nameCookieFormatted = nameFromCookie.split('=')[1];
+//       const selectedUser = users.find(user => user.name.toLowerCase().replace(' ', '') === nameCookieFormatted);
+
+//       document.getElementById('greeting-user').innerHTML = selectedUser.name;
+//       document.getElementById('summary-greeting-name-responsive').innerHTML = selectedUser.name;
+//   }
+// }
+
 function linkToBoard() {
   window.location.href = "../board.html";
 }

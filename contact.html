@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="contact.css">
 </head>
 
-<body onload="includeHTML(); contactInit();" >
+<body onload="includeHTML(); contactInit();">
     <div onclick="closeOverdiv()" id="overdiv" class="overdiv d-none">
         <div onclick="doNotClose(event)" class="Add-contact-div">
             <img onclick="closeOverdiv()" class="cancel-overbutton" src="img/Cancel-greay.svg" alt="">
@@ -39,13 +39,15 @@
                         <input id="email" required placeholder="Email" type="email">
                         <img src="img/emailicon.svg" alt="">
                     </div>
-                    <div class="relativ-for-icon"> 
+                    <div class="relativ-for-icon">
                         <input id="phone" required placeholder="Phone" type="number">
                         <img src="img/phone.svg" alt="">
                     </div>
                     <div class="buttons">
-                        <button type="button" onclick="closeOverdiv();" class="cancelButton">Cancel <img id="Cancel" class="cancelImg" src="img/cancel.svg" alt=""></button>
-                        <button type="submit" onclick="createNewContact(); return false;" class="create-contactButton">Create contact <img src="img/hook.svg" alt=""></button>
+                        <button type="button" onclick="closeOverdiv();" class="cancelButton">Cancel <img id="Cancel"
+                                class="cancelImg" src="img/cancel.svg" alt=""></button>
+                        <button type="submit" onclick="createNewContact(); return false;"
+                            class="create-contactButton">Create contact <img src="img/hook.svg" alt=""></button>
                     </div>
                 </form>
             </div>
@@ -59,12 +61,18 @@
                 <img src="img/addContact.svg"></button>
             <div class="contact-list" id="contact-list"></div>
         </div>
-        <div class="contact-info">
+        <div class="contact-info-container">
+            <div class="contact-info">
+                <h1 class="contact-headline-left">Contact</h1>
+                <div class="contact-headline-vertical-line"></div>
+                <h3 class="contact-headline-right">Better with a team</h3>
+            </div>
+            <div class="contact-details-container"></div>
             <button class="new-contact button desktop-only" onclick="opnenOverdiv()">
                 <span>New Contact</span>
                 <img src="img/addContact.svg"></button>
         </div>
-       
+
     </div>
 </body>
 
