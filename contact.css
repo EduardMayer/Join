@@ -81,6 +81,12 @@ h3{
     overflow: auto;
 }
 
+.ContactHover div:hover{
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: lightgray;
+}
+
 .new-contact {
     height: 53px;
     align-self: flex-end;

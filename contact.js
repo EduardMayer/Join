@@ -88,6 +88,7 @@ function firstLettersForContact(){
 
 function renderUser(index){
     let div = document.getElementById(`contact${index}`);
+    div.classList.add('ContactHover')
     div.innerHTML = '';
     let indexLetter = firstLetters[index];
     for(let i = 0; i < sortedContacts[indexLetter].length; i++){
