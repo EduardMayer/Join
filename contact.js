@@ -92,7 +92,7 @@ function renderUser(index){
     let indexLetter = firstLetters[index];
     for(let i = 0; i < sortedContacts[indexLetter].length; i++){
         div.innerHTML += /* html */ `
-            <div onclick="openContact(${indexLetter},${i})" class="profile-div">
+            <div onclick="openContact('${indexLetter}',${i})" class="profile-div">
                 <div class="profilePicture">
                     ${sortedContacts[indexLetter][i]['firstLetter']}
                 </div>
@@ -110,6 +110,7 @@ function openContact(Letter,i){
     let firstandSecoundLetters = sortedContacts[`${Letter}`][i]['firstLetter'];
     let email = sortedContacts[`${Letter}`][i]['email'];
     let phone = sortedContacts[`${Letter}`][i]['phone'];
+    document.getElementById('informationsContacts').innerHTML = openContactHTML(name,firstandSecoundLetters,email,phone);
 }
 
 function renderContactHTML(){
@@ -272,4 +273,31 @@ async function registerForContacts(name,email,phone) {
       contactInit();
       closeOverdiv();
     }
+}
+
+function openContactHTML(name,firstandSecoundLetters,email,phone){
+    return `
+        <div class="contact-Name">
+            <div class="profilepicture">${firstandSecoundLetters}</div>
+            <div class="showname">
+                <span>${name}</span>
+                <a href="#">+ Add Task</a>
+            </div>
+        </div>
+        <div class="contacts-infomations">
+            <span>Contact Information</span>
+            <div>
+                <img src="img/Edit.svg" alt="">
+                <a href="#">Edit contact</a>
+            </div>
+        </div>
+        <div class="contacts-adress">
+            <span>Email</span>
+            <a href="#">${email}</a>
+        </div>
+        <div class="contacts-adress">
+            <span>Phone</span>
+            <a href="#">${phone}</a>
+        </div>
+    `;
 }
