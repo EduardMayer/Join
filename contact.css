@@ -5,7 +5,6 @@ body {
 h3{
     display: flex;
     justify-content: flex-start;
-    margin-bottom: 3px;
     margin-left: +20px;
 }
 
@@ -131,6 +130,7 @@ h3{
 }
 
 .contact-info {
+    flex-direction: column;
     display: flex;
     align-items: center;
     margin-bottom: 40px;
@@ -331,4 +331,44 @@ form img{
 
 .bigImg{
     margin-right: 20px;
+}
+
+.Contacts-overview-container{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.Contact-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.contact-Name{
+    display: flex;
+    justify-content: space-around;
+}
+
+.profilepicture{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 128px;
+    height: 128px;
+    background-color: chocolate;
+    border-radius: 100%;
+    font-size: 28px;
+    margin-right: 50px;
+}
+
+.showname{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.showname span{
+    font-size: 42px;
 }

@@ -92,7 +92,7 @@ function renderUser(index){
     let indexLetter = firstLetters[index];
     for(let i = 0; i < sortedContacts[indexLetter].length; i++){
         div.innerHTML += /* html */ `
-            <div class="profile-div">
+            <div onclick="openContact(${indexLetter},${i})" class="profile-div">
                 <div class="profilePicture">
                     ${sortedContacts[indexLetter][i]['firstLetter']}
                 </div>
@@ -103,6 +103,13 @@ function renderUser(index){
             </div>
         `;
     }
+}
+
+function openContact(Letter,i){
+    let name = sortedContacts[`${Letter}`][i]['name'];
+    let firstandSecoundLetters = sortedContacts[`${Letter}`][i]['firstLetter'];
+    let email = sortedContacts[`${Letter}`][i]['email'];
+    let phone = sortedContacts[`${Letter}`][i]['phone'];
 }
 
 function renderContactHTML(){
