@@ -138,7 +138,7 @@ function renderUser(index){
                 </div>
                 <div>
                     <span>${sortedContacts[indexLetter][i]['name']}</span>
-                    <a href="#">${sortedContacts[indexLetter][i]['email']}</a>
+                    <a class="email-link" href="#">${sortedContacts[indexLetter][i]['email']}</a>
                 </div>
             </div>
         `;
