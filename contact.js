@@ -37,11 +37,12 @@ function loadUserInformations(email) {
     const index = users.findIndex(user => user.email === email);
     if (index !== -1) {
       u = users[index];
-      const { name, email: emailC, tel } = u;
+      const { name, email: emailC, tel, firstLetter } = u;
       console.log(index); // Index des Benutzers basierend auf der Email
       document.getElementById('name').value = name;
       document.getElementById('email').value = emailC;
       document.getElementById('phone').value = tel;
+      document.getElementById('twoLettersForEdit').innerHTML = firstLetter;
     } else {
       console.log('Benutzer nicht gefunden.');
     }
@@ -143,7 +144,7 @@ function openContact(Letter,i){
     let name = sortedContacts[`${Letter}`][i]['name'];
     let firstandSecoundLetters = sortedContacts[`${Letter}`][i]['firstLetter'];
     let email = sortedContacts[`${Letter}`][i]['email'];
-    let phone = sortedContacts[`${Letter}`][i]['phone'];
+    let phone = sortedContacts[`${Letter}`][i]['tel'];
     document.getElementById('informationsContacts').innerHTML = openContactHTML(name,firstandSecoundLetters,email,phone);
 }
 
@@ -228,13 +229,12 @@ function editContactHTML(twoLetters,email){
             <div class="Add-contact">
                 <div>
                     <img src="img/logoJoin.svg" alt="">
-                    <span>Edit contact</span>
+                    <h4>Edit contact</h4>
                     <div style="height:2px; width:50px; background-color:rgb(40, 172, 226);"></div>
                 </div>
             </div>
             <div class="form-overdiv">
-                <div class="bigImg">
-                    ${twoLetters}
+                <div class="profilepicture" id="twoLettersForEdit" class="bigImg">
                 </div>
                 <form >
                     <div class="relativ-for-icon">
