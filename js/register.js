@@ -1,4 +1,5 @@
 let users = [];
+let allContacts = [];
 let initials = '';
 
 async function userInit(){
@@ -21,7 +22,12 @@ function logout(){
 async function loadUsers() {
     const storedUsers = await getItem('users');
     users = storedUsers ? JSON.parse(storedUsers) : [];
-  }
+    updateAllContacts();
+}
+
+function updateAllContacts() {
+    allContacts = users.map(user => user.name).sort();
+}
 
 async function register() {
     Btn.disabled = true;
@@ -59,4 +65,6 @@ function renderfirstNames(inputname){
       let initial = name.charAt(0);
       initials += initial;
   }
+
+  updateAllContacts(); // Sortiere und aktualisiere allContacts nach Hinzufügen neuer Initialen
 }

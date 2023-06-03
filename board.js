@@ -6,8 +6,8 @@ let allSubtask = [];
 let allColors = ["#E200BE","#1FD7C1","#0038FF","#FF8A00","#2AD300","#FF0000","#8AA4FF",];
 let currentDraggedElement;
 let currentTaskId;
-
 load();
+loadUsers();
 
 /**
  * Funktion zum Einbinden des HTML-Codes für den Header und die linke Navigationsleiste.
@@ -26,6 +26,8 @@ async function includeHTML() {
     }
   }
 }
+
+
 /**
  * Funktion zum Rendern der Aufgabenkarten auf dem Board basierend auf dem Status.
  * Ruft die Funktion 'renderTasksByStatus' für jeden Status auf und rendert die entsprechenden Aufgabenkarten in den entsprechenden Containern.
@@ -359,6 +361,16 @@ async function renderCategory() {
     const category = allCategory[i].category;
     const color = allCategory[i].color;
     categoryBox.innerHTML += `<div class="colorCategoryBox" onclick="selectCategory(${i})" id="selectCategory${i}"><div id="categoryText">${category}</div><div class="selectColorBox" id="selectColorBox" style="background-color:${color};"></div></div>`;
+  }
+}
+
+function renderAllContacts() {
+  let dropDownUser = document.getElementById("dropDownUser");
+  dropDownUser.innerHTML = "";
+
+  for (let i = 0; i < allContacts.length; i++) {
+    const name = allContacts[i];
+    dropDownUser.innerHTML += `<div>${name}</div>`;
   }
 }
 
@@ -727,7 +739,7 @@ function closeNewCategory() {
 function openDropBoxAssigned() {
   let dropDownUser = document.getElementById("dropDownUser");
   let childUserContainer = document.getElementById("assigned");
-
+  renderAllContacts();
   if (dropDownUser.classList.contains("d-none")) {
     dropDownUser.classList.remove("d-none");
     dropDownUser.classList.add("dropDownBox");

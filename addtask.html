@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,8 +16,7 @@
     <script src="contact.js"></script>
     <title>AddTask</title>
 </head>
-
-<body onload="includeHTML(); setCurrentDate(); renderCategory(); renderColorCategory(); rendercontactsArray();">
+<body onload="includeHTML(); setCurrentDate(); renderCategory(); renderAllContacts();">
     <div w3-include-html="head_navbar.html"></div>
     <div class="addTitleContainer">
         <p>Kanban Project Management Tool</p>
@@ -54,7 +52,7 @@
                     <div id="categoryBox" class="d-none"></div>
                 </div>
                 <div class="d-none" id="newCategoryContainer"></div>
-                <div id="categoryColors" class="d-none">
+                <div class="d-none" id="categoryColors">
                 </div>
                 <div class="assignedToContainer">
                     <label for="Category">Assigned to</label>
