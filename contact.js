@@ -29,6 +29,22 @@ function openEdit(form){
     let twoLetters = document.getElementById('twoLettersContact').innerHTML;
     loadContactForm(form,twoLetters,email);
     opnenOverdiv();
+    loadUserInformations(email);
+}
+
+function loadUserInformations(email) {
+    let u;
+    const index = users.findIndex(user => user.email === email);
+    if (index !== -1) {
+      u = users[index];
+      const { name, email: emailC, tel } = u;
+      console.log(index); // Index des Benutzers basierend auf der Email
+      document.getElementById('name').value = name;
+      document.getElementById('email').value = emailC;
+      document.getElementById('phone').value = tel;
+    } else {
+      console.log('Benutzer nicht gefunden.');
+    }
 }
   
 
@@ -65,7 +81,6 @@ function loadContactForm(form,twoLetters,email){
     }else{
         div.innerHTML = editContactHTML(twoLetters,email);
     }
-    
 }
 
 function hover(){
@@ -252,6 +267,7 @@ function closeOverdiv(){
 }
 
 function opnenOverdiv(form){
+    loadContactForm(form);
     let div = document.getElementById('overdiv');
     div.classList.remove('d-none');
 }
