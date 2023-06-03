@@ -26,8 +26,7 @@ function sortUsers() {
 
 function openEdit(form){
     let email = document.getElementById('contactEmail').innerHTML;
-    let twoLetters = document.getElementById('twoLettersContact').innerHTML;
-    loadContactForm(form,twoLetters,email);
+    loadContactForm(form,email);
     opnenOverdiv();
     loadUserInformations(email);
 }
@@ -43,11 +42,17 @@ function loadUserInformations(email) {
       document.getElementById('email').value = emailC;
       document.getElementById('phone').value = tel;
       document.getElementById('twoLettersForEdit').innerHTML = firstLetter;
+      document.getElementById('deleteButton').setAttribute('onclick', `deleteContact(${index})`);
     } else {
       console.log('Benutzer nicht gefunden.');
     }
 }
-  
+
+async function deleteContact(i){ 
+    users.splice(i,1);
+    await setItem('users', JSON.stringify(users))
+    contactInit();
+}
 
 function sortContactsByName() {
     for (const letter in sortedContacts) {
@@ -75,12 +80,12 @@ async function contactInit(){
     hover();
 }
 
-function loadContactForm(form,twoLetters,email){
+function loadContactForm(form,email){
     let div = document.getElementById('overdiv');
     if(form == 'newContactHTML'){
         div.innerHTML = newContactHTML();
     }else{
-        div.innerHTML = editContactHTML(twoLetters,email);
+        div.innerHTML = editContactHTML(email);
     }
 }
 
@@ -222,7 +227,7 @@ function newContactHTML(){
     `;
 }
 
-function editContactHTML(twoLetters,email){
+function editContactHTML(email){
     return /* html */ `
        <div onclick="doNotClose(event)" class="Add-contact-div">
             <img onclick="closeOverdiv()" class="cancel-overbutton" src="img/Cancel-greay.svg" alt="">
@@ -250,10 +255,10 @@ function editContactHTML(twoLetters,email){
                         <img src="img/phone.svg" alt="">
                     </div>
                     <div class="buttons">
-                        <button type="button" onclick="closeOverdiv();" class="cancelButton">Cancel <img id="Cancel"
+                        <button type="button" id="deleteButton" class="cancelButton">Delete<img id="Cancel"
                                 class="cancelImg" src="img/cancel.svg" alt=""></button>
-                        <button type="submit" onclick="saveContact(${email})"; return false;"
-                            class="create-contactButton">Create contact <img src="img/hook.svg" alt=""></button>
+                        <button type="submit" onclick="saveContact(${email})"; return false;
+                            class="create-contactButton">Save<img src="img/hook.svg" alt=""></button>
                     </div>
                 </form>
             </div>
