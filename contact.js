@@ -22,7 +22,14 @@ function sortUsers() {
       sortedContacts[letter] = contacts;
     });
     sortContactsByName();
-  }
+}
+
+function openEdit(form){
+    let email = document.getElementById('contactEmail').innerHTML;
+    let twoLetters = document.getElementById('twoLettersContact').innerHTML;
+    loadContactForm(form,twoLetters,email);
+    opnenOverdiv();
+}
   
 
 function sortContactsByName() {
@@ -47,7 +54,18 @@ async function contactInit(){
     sortedContacts = {};
     await loadUsers();
     getFirstLetters();
+    loadContactForm('newContactHTML');
     hover();
+}
+
+function loadContactForm(form,twoLetters,email){
+    let div = document.getElementById('overdiv');
+    if(form == 'newContactHTML'){
+        div.innerHTML = newContactHTML();
+    }else{
+        div.innerHTML = editContactHTML(twoLetters,email);
+    }
+    
 }
 
 function hover(){
@@ -149,41 +167,38 @@ function letterHTML(letter){
 
 function newContactHTML(){
     return /* html */ `
-        <div>
-            <div class="newContact-logo">
+       <div onclick="doNotClose(event)" class="Add-contact-div">
+            <img onclick="closeOverdiv()" class="cancel-overbutton" src="img/Cancel-greay.svg" alt="">
+            <div class="Add-contact">
                 <div>
                     <img src="img/logoJoin.svg" alt="">
-                </div>
-                <div>
-                    <span>Add contact</span>
+                    <h4>Add contact</h4>
                     <span>Tasks are better with a team!</span>
-                    <div style="height:2px; width:50px; background-color:rgb(40, 172, 226);"></div>
+                    <div class="addContact-line"></div>
                 </div>
-            </div>  
-            <div>
-                <div>
-                    <img src="profile picture" alt="">
+            </div>
+            <div class="form-overdiv">
+                <div class="bigImg">
+                    <img src="img/guest.png" alt="">
                 </div>
-                <form onsubmit="createContact()">
-                    <div>
-                        <input required type="text" placeholder="Name" pattern="[a-zA-ZÄäÜüÖöß ]*" minlength="2" maxlength="30">
+                <form>
+                    <div class="relativ-for-icon">
+                        <input id="name" minlength="2" required placeholder="Name" type="text">
                         <img src="img/people.svg" alt="">
                     </div>
-                    <div>
-                        <input required type="email" placeholder="Email">
+                    <div class="relativ-for-icon">
+                        <input id="email" required placeholder="Email" type="email">
                         <img src="img/emailicon.svg" alt="">
                     </div>
-                    <div>
-                        <input required type="number" placeholder="Email" minlength="11" maxlength="16">
-                        <img src="img/Vector.svg" alt="">
+                    <div class="relativ-for-icon">
+                        <input id="phone" required placeholder="Phone" type="number">
+                        <img src="img/phone.svg" alt="">
                     </div>
-                    <div>
-                        <div>
-                            <button type="button">Cancel <img src="img/cancel.svg" alt=""></button>
-                        </div>
-                        <div>
-                            <button type="submit">Create contact <img src="img/chop.svg" alt=""></button>
-                        </div>
+                    <div class="buttons">
+                        <button type="button" onclick="closeOverdiv();" class="cancelButton">Cancel <img id="Cancel"
+                                class="cancelImg" src="img/cancel.svg" alt=""></button>
+                        <button type="submit" onclick="createNewContact(); return false;"
+                            class="create-contactButton">Create contact <img src="img/hook.svg" alt=""></button>
                     </div>
                 </form>
             </div>
@@ -191,39 +206,39 @@ function newContactHTML(){
     `;
 }
 
-function editContactHTML(){
+function editContactHTML(twoLetters,email){
     return /* html */ `
-        <div>
-            <img src="img/cancel.svg" alt="">
-            <div>
-                <img src="img/logoJoin.svg" alt="">
-                <span>Edit contact</span>
-                <div style="height:2px; width:50px; background-color:rgb(40, 172, 226);"></div>
-            </div>
-            <div>
+       <div onclick="doNotClose(event)" class="Add-contact-div">
+            <img onclick="closeOverdiv()" class="cancel-overbutton" src="img/Cancel-greay.svg" alt="">
+            <div class="Add-contact">
                 <div>
-                    <img src="" alt="">
+                    <img src="img/logoJoin.svg" alt="">
+                    <span>Edit contact</span>
+                    <div style="height:2px; width:50px; background-color:rgb(40, 172, 226);"></div>
                 </div>
-                <form onsubmit="createContact()">
-                    <div>
-                        <input required type="text" placeholder="Name" pattern="[a-zA-ZÄäÜüÖöß ]*" minlength="2" maxlength="30">
+            </div>
+            <div class="form-overdiv">
+                <div class="bigImg">
+                    ${twoLetters}
+                </div>
+                <form >
+                    <div class="relativ-for-icon">
+                        <input id="name" minlength="2" required placeholder="Name" type="text">
                         <img src="img/people.svg" alt="">
                     </div>
-                    <div>
-                        <input required type="email" placeholder="Email">
+                    <div class="relativ-for-icon">
+                        <input id="email" required placeholder="Email" type="email">
                         <img src="img/emailicon.svg" alt="">
                     </div>
-                    <div>
-                        <input required type="number" placeholder="Email" minlength="11" maxlength="16">
-                        <img src="img/Vector.svg" alt="">
+                    <div class="relativ-for-icon">
+                        <input id="phone" required placeholder="Phone" type="number">
+                        <img src="img/phone.svg" alt="">
                     </div>
-                    <div>
-                        <div>
-                            <button type="button">Delete </button>
-                        </div>
-                        <div>
-                            <button type="submit">Save</button>
-                        </div>
+                    <div class="buttons">
+                        <button type="button" onclick="closeOverdiv();" class="cancelButton">Cancel <img id="Cancel"
+                                class="cancelImg" src="img/cancel.svg" alt=""></button>
+                        <button type="submit" onclick="saveContact(${email})"; return false;"
+                            class="create-contactButton">Create contact <img src="img/hook.svg" alt=""></button>
                     </div>
                 </form>
             </div>
@@ -236,7 +251,7 @@ function closeOverdiv(){
     div.classList.add('d-none');
 }
 
-function opnenOverdiv(){
+function opnenOverdiv(form){
     let div = document.getElementById('overdiv');
     div.classList.remove('d-none');
 }
@@ -279,7 +294,7 @@ async function registerForContacts(name,email,phone) {
 function openContactHTML(name,firstandSecoundLetters,email,phone){
     return `
         <div class="contact-Name">
-            <div class="profilepicture">${firstandSecoundLetters}</div>
+            <div id="twoLettersContact" class="profilepicture">${firstandSecoundLetters}</div>
             <div class="showname">
                 <span>${name}</span>
                 <a href="#">+ Add Task</a>
@@ -289,12 +304,12 @@ function openContactHTML(name,firstandSecoundLetters,email,phone){
             <span>Contact Information</span>
             <div>
                 <img src="img/Edit.svg" alt="">
-                <a href="#">Edit contact</a>
+                <a onclick="openEdit('other')" href="#">Edit contact</a>
             </div>
         </div>
         <div class="contacts-adress">
             <span>Email</span>
-            <a href="#">${email}</a>
+            <a id="contactEmail" href="#">${email}</a>
         </div>
         <div class="contacts-adress">
             <span>Phone</span>
