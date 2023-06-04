@@ -10,11 +10,12 @@
     <script src="js/storage.js"></script>
     <script src="js/register.js"></script>
     <script src="board.js"></script>
+    <script src="js/logtinAcc.js"></script>
     <script src="contact.js"></script>
     <link rel="stylesheet" href="contact.css">
 </head>
 
-<body onload="includeHTML(); contactInit();">
+<body onload="includeHTML(); contactInit(); loadLogtinUser();">
     <div onclick="closeOverdiv()" id="overdiv" class="overdiv">
         <div onclick="doNotClose(event)" class="Add-contact-div">
             <img onclick="closeOverdiv()" class="cancel-overbutton" src="img/Cancel-greay.svg" alt="">

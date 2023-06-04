@@ -9,13 +9,15 @@
     <link rel="stylesheet" href="summary.css">
     <link rel="stylesheet" href="headnav.css">
     <link rel="stylesheet" href="fonts.css">
+    <script src="js/storage.js"></script>
     <script src="js/register.js"></script>
     <script src="js/login.js"></script>
     <script src="board.js"></script>
+    <script src="js/logtinAcc.js"></script>
     <script src="summary.js"></script>
 </head>
 
-<body onload="includeHTML(), init(), setDate()">
+<body onload="includeHTML(); init(); setDate();loadLogtinUser()">
     <div w3-include-html="head_navbar.html"></div>
     <div class="main">
         <div class="headline">
