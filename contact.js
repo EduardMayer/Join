@@ -61,7 +61,7 @@ async function SaveUser(i){
         document.getElementById('informationsContacts').innerHTML = '';
         contactInit();
     }
-    return false
+    return false;
 }
 
 async function deleteContact(i){ 

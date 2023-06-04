@@ -16,7 +16,6 @@ h3{
 .parent-Container {
     background-color: #F5F5F5;
     height: calc(100vh - 89px);
-    margin: 89px 0 0 232px;
     display: flex;
 }
 
