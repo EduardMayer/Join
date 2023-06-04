@@ -223,7 +223,7 @@ function newContactHTML(){
                 <div class="bigImg">
                     <img src="img/guest.png" alt="">
                 </div>
-                <form>
+                <form class="form">
                     <div class="relativ-for-icon">
                         <input id="name" minlength="2" required placeholder="Name" type="text">
                         <img src="img/people.svg" alt="">
@@ -262,7 +262,7 @@ function editContactHTML(email){
             <div class="form-overdiv">
                 <div class="profilepicture" id="twoLettersForEdit" class="bigImg">
                 </div>
-                <form >
+                <form class="form">
                     <div class="relativ-for-icon">
                         <input id="name" minlength="2" required placeholder="Name" type="text">
                         <img src="img/people.svg" alt="">
