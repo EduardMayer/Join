@@ -37,20 +37,35 @@ function loadUserInformations(email) {
     if (index !== -1) {
       u = users[index];
       const { name, email: emailC, tel, firstLetter } = u;
-      console.log(index); // Index des Benutzers basierend auf der Email
       document.getElementById('name').value = name;
       document.getElementById('email').value = emailC;
       document.getElementById('phone').value = tel;
       document.getElementById('twoLettersForEdit').innerHTML = firstLetter;
       document.getElementById('deleteButton').setAttribute('onclick', `deleteContact(${index})`);
+      document.getElementById('SaveUserButton').setAttribute('onclick', `SaveUser(${index})`);
     } else {
       console.log('Benutzer nicht gefunden.');
     }
 }
 
+async function SaveUser(i){
+    let name = document.getElementById('name').value;
+    let email = document.getElementById('email').value;
+    let phone = document.getElementById('phone').value;
+    users[i]['name'] = name;
+    users[i]['email'] = email;
+    users[i]['tel'] = phone;
+    await setItem('users', JSON.stringify(users));
+    closeOverdiv();
+    document.getElementById('informationsContacts').innerHTML = '';
+    contactInit();
+}
+
 async function deleteContact(i){ 
     users.splice(i,1);
     await setItem('users', JSON.stringify(users))
+    closeOverdiv();
+    document.getElementById('informationsContacts').innerHTML = '';
     contactInit();
 }
 
@@ -73,6 +88,9 @@ function SortUserIf(firstLetter, user) {
   }
 
 async function contactInit(){
+    firstLetters = [];
+    sortLetter = [];
+    usersLetter = [];
     sortedContacts = {};
     await loadUsers();
     getFirstLetters();
@@ -257,7 +275,7 @@ function editContactHTML(email){
                     <div class="buttons">
                         <button type="button" id="deleteButton" class="cancelButton">Delete<img id="Cancel"
                                 class="cancelImg" src="img/cancel.svg" alt=""></button>
-                        <button type="submit" onclick="saveContact(${email})"; return false;
+                        <button type="submit" id="SaveUserButton"
                             class="create-contactButton">Save<img src="img/hook.svg" alt=""></button>
                     </div>
                 </form>
