@@ -52,13 +52,16 @@ async function SaveUser(i){
     let name = document.getElementById('name').value;
     let email = document.getElementById('email').value;
     let phone = document.getElementById('phone').value;
-    users[i]['name'] = name;
-    users[i]['email'] = email;
-    users[i]['tel'] = phone;
-    await setItem('users', JSON.stringify(users));
-    closeOverdiv();
-    document.getElementById('informationsContacts').innerHTML = '';
-    contactInit();
+    if(email && name && phone != ''){
+        users[i]['name'] = name;
+        users[i]['email'] = email;
+        users[i]['tel'] = phone;
+        await setItem('users', JSON.stringify(users));
+        closeOverdiv();
+        document.getElementById('informationsContacts').innerHTML = '';
+        contactInit();
+    }
+    return false;
 }
 
 async function deleteContact(i){ 
@@ -342,7 +345,7 @@ function openContactHTML(name,firstandSecoundLetters,email,phone){
         <div class="contacts-infomations">
             <span>Contact Information</span>
             <div>
-                <img src="img/Edit.svg" alt="">
+                <img src="img/Edit2.svg" alt="">
                 <a onclick="openEdit('other')" href="#">Edit contact</a>
             </div>
         </div>
