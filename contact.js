@@ -348,11 +348,11 @@ function openContactHTML(name,firstandSecoundLetters,email,phone){
         </div>
         <div class="contacts-adress">
             <span>Email</span>
-            <a id="contactEmail" href="#">${email}</a>
+            <a id="contactEmail" href="mailto:${email}">${email}</a>
         </div>
         <div class="contacts-adress">
             <span>Phone</span>
-            <a href="#">${phone}</a>
+            <a href="tel:${phone}">${phone}</a>
         </div>
     `;
 }
