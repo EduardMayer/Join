@@ -336,7 +336,7 @@ function openContactHTML(name,firstandSecoundLetters,email,phone){
             <div id="twoLettersContact" class="profilepicture">${firstandSecoundLetters}</div>
             <div class="showname">
                 <span>${name}</span>
-                <a href="#">+ Add Task</a>
+                <a onclick="openAddTaskContainer('todo')">+ Add Task</a>
             </div>
         </div>
         <div class="contacts-infomations">
