@@ -106,7 +106,7 @@ function loadContactForm(form,email){
     if(form == 'newContactHTML'){
         div.innerHTML = newContactHTML();
     }else{
-        div.innerHTML = editContactHTML(email);
+        div.innerHTML = editContactHTML();
     }
 }
 
@@ -248,7 +248,7 @@ function newContactHTML(){
     `;
 }
 
-function editContactHTML(email){
+function editContactHTML(){
     return /* html */ `
        <div onclick="doNotClose(event)" class="Add-contact-div">
             <img onclick="closeOverdiv()" class="cancel-overbutton" src="img/Cancel-greay.svg" alt="">
