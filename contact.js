@@ -286,13 +286,13 @@ function editContactHTML(email){
 
 function closeOverdiv(){
     let div = document.getElementById('overdiv');
-    div.classList.add('d-none');
+    div.classList.remove('overdiv-slide');
 }
 
 function opnenOverdiv(form){
     loadContactForm(form);
     let div = document.getElementById('overdiv');
-    div.classList.remove('d-none');
+    div.classList.add('overdiv-slide');
 }
 
 function doNotClose(event) {
