@@ -29,25 +29,42 @@ function updateAllContacts() {
     allContacts = users.map(user => user.name).sort();
 }
 
+function getRandomColor() {
+    var colors = ["orange", "hsl(193.32deg 88.4% 45.3%)", "hsl(330.81deg 88.4% 45.3%)", "hsl(0deg 97.03% 50.22%)"];
+    var randomIndex = Math.floor(Math.random() * colors.length);
+    var randomColor = colors[randomIndex];
+    return randomColor;
+}
+
 async function register() {
     Btn.disabled = true;
     let name = inputName.value;
+    let email = inputEmail.value
     renderfirstNames(name);
+    let rendomColor = getRandomColor();
     if (Array.isArray(users)) {
       users.push({
         'name': name,
-        'email': inputEmail.value,
+        'email': email,
         'password': password.value,
         'contact': [],
         'tel': 000,
         'firstLetter': initials,
+        'color': rendomColor,
       });
       await setItem('users', JSON.stringify(users))
       clearInput();
       render();
       back();
-      location.href = "summary.html";
+      setinLocalstorage(email)
     }
+}
+
+function setinLocalstorage(email){
+    let user =  users.find(u => u.email == email);
+    let userAsString = JSON.stringify(user);
+    localStorage.setItem('user', userAsString);
+    location.href = "summary.html";
 }
 
 function clearInput(){
@@ -66,5 +83,5 @@ function renderfirstNames(inputname){
       initials += initial;
   }
 
-  updateAllContacts(); // Sortiere und aktualisiere allContacts nach Hinzufügen neuer Initialen
+  updateAllContacts(); 
 }
