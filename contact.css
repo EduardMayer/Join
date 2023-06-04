@@ -58,6 +58,7 @@ h3{
     width: 250px;
     display: flex;
     align-items: flex-start;
+    margin-left: 20px;
 }
 
 
@@ -71,6 +72,7 @@ h3{
     height: 64px;
     border-radius: 100%;
     letter-spacing: 1px;
+    margin: 15px;
 }
 
 .contact-list {
@@ -84,7 +86,8 @@ h3{
 .ContactHover div:hover{
     border-radius: 7px;
     cursor: pointer;
-    background-color: lightgray;
+    background-color: #2A3647;
+    color: white;
 }
 
 .new-contact {
@@ -418,4 +421,8 @@ form img{
     margin-top: 10px;
     color: rgb(40, 172, 226);
     text-decoration: none;
+}
+
+.email-link {
+    color: #007CEE;
 }
