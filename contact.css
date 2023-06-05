@@ -435,3 +435,88 @@ h4{
 .contactAddTask{
     cursor: pointer;
 }
+
+@media (max-width: 1300px){
+    .contact-list-overview{
+        width: 45%;
+    }
+    .contact-headline-left{
+        font-size: 38px;
+    }
+
+    .contact-headline-right{
+        font-size: 22px;
+        margin-left: 10px !important;
+    }
+}
+
+@media (max-width: 1160px){
+    .contact-list-overview{
+        width: 48%;
+    }
+    .overview-Informations a{
+        margin-top: 5px;
+        font-size: 11px;
+    }
+
+    .profile-div div:last-child{
+        margin-right: 0px;
+    }
+
+    .profilePicture{
+        width: 49px;
+        height: 49px;
+    }
+
+    .profile-div div:last-child{
+        width: 180px;
+        margin-left: 10px;
+    }
+}
+
+@media (max-width: 920px){
+    .contact-headline-vertical-line{
+        border: 2px solid #29ABE2;
+        height: 40px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .contact-headline-left{
+        font-size: 28px;
+    }
+
+    .contact-headline-right{
+        font-size: 16px;
+        margin-left: 10px !important;
+    }
+    .contact-list-overview{
+        width: 70%;
+    }
+    .profilePicture{
+        margin: 5px;
+    }
+}
+
+@media (max-width: 815px){
+    .contact-list-overview{
+        width: 90%;
+    }
+    .contact-headline-left{
+        font-size: 24px;
+    }
+    .contact-headline-right{
+        font-size: 14px;
+        margin-left: 0px !important;
+    }
+}
+
+@media (max-width: 769px){
+    .parent-Container{
+        display: flex;
+        align-items: center;
+    }
+    .contact-list-overview{
+        height: calc(100vh - 89px) !important;
+    }
+}
