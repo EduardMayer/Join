@@ -243,7 +243,7 @@ function popupAddTaskContainerTemplate(status) {
                 </div>
                 <div><img src="img/arrowTask.svg"></div>
               </div>
-              <div onclick="newCategory()" class="d-none" id="dropDownBox">
+              <div onclick="newCategory()" class="d-none" id="newCategoryBox">
                 <div>New Category</div>
               </div>
               <div id="categoryBox" class="d-none"></div>
@@ -257,6 +257,7 @@ function popupAddTaskContainerTemplate(status) {
                 <img src="img/arrowTask.svg">
               </div>
               <div class="d-none" id="dropDownUser"></div>
+              <p class="error-message" id="assigned-error"></p>
             </div>
           </div>
           <div class="middleAddTaskContainer"></div>

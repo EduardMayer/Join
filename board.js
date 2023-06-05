@@ -147,8 +147,6 @@ function checkPrioPopupCard(task) {
  * @param {string} status - Der Status der Aufgabe.
  */
 function createTask(status) {
-  event.preventDefault(); // Prevent the default form submission behavior
-
   const title = document.getElementById("title");
   const description = document.getElementById("description");
   const date = document.getElementById("date");
@@ -182,6 +180,7 @@ function createTask(status) {
   allSubtask = [];
   clearTask(); 
 }
+
 
 function checkPrioritySelected() {
   if (!clickedId) {
@@ -424,7 +423,7 @@ function renderAllContacts() {
 
   for (let i = 0; i < allContacts.length; i++) {
     const name = allContacts[i];
-    dropDownUser.innerHTML += `<div><input type="checkbox" id="contact${i}" name="contact${i}"><label for="contact${i}">${name}</label></div>`;
+    dropDownUser.innerHTML += `<div class="contactBox"><input type="checkbox" id="contact${i}" name="contact${i}"><label for="contact${i}">${name}</label></div>`;
   }
 }
 
@@ -654,29 +653,6 @@ function moveToStatus(taskId, status) {
   closeShowCard()
 }
 
-/**
- * Öffnet oder schließt die Dropdown-Box für die Kategorieauswahl.
- * Zeigt die Kategorien anhand der renderCategory-Funktion an.
- */
-function openDropBoxCategory() {
-  let dropDownBox = document.getElementById("dropDownBox");
-  let childTaskContainer = document.getElementById("category");
-  let categoryBox = document.getElementById("categoryBox");
-  renderCategory();
-  if (dropDownBox.classList.contains("d-none")) {
-    dropDownBox.classList.remove("d-none");
-    dropDownBox.classList.add("dropDownBox");
-    childTaskContainer.classList.add("b-none");
-    categoryBox.classList.remove("d-none");
-    categoryBox.classList.add("categoryBox");
-  } else {
-    dropDownBox.classList.add("d-none");
-    dropDownBox.classList.remove("dropDownBox");
-    childTaskContainer.classList.remove("b-none");
-    categoryBox.classList.add("d-none");
-    categoryBox.classList.remove("categoryBox");
-  }
-}
 
 /**
  * Zeigt den Container für die Erstellung einer neuen Kategorie an und rendert die Farben für die Kategorieauswahl.
@@ -802,6 +778,30 @@ function openDropBoxAssigned() {
     dropDownUser.classList.add("d-none");
     dropDownUser.classList.remove("dropDownBox");
     childUserContainer.classList.remove("b-none");
+  }
+}
+
+/**
+ * Öffnet oder schließt die Dropdown-Box für die Kategorieauswahl.
+ * Zeigt die Kategorien anhand der renderCategory-Funktion an.
+ */
+function openDropBoxCategory() {
+  let dropDownBox = document.getElementById("newCategoryBox");
+  let childTaskContainer = document.getElementById("category");
+  let categoryBox = document.getElementById("categoryBox");
+  renderCategory();
+  if (dropDownBox.classList.contains("d-none")) {
+    dropDownBox.classList.remove("d-none");
+    dropDownBox.classList.add("newCategoryBox");
+    childTaskContainer.classList.add("b-none");
+    categoryBox.classList.remove("d-none");
+    categoryBox.classList.add("categoryBox");
+  } else {
+    dropDownBox.classList.add("d-none");
+    dropDownBox.classList.remove("newCategoryBox");
+    childTaskContainer.classList.remove("b-none");
+    categoryBox.classList.add("d-none");
+    categoryBox.classList.remove("categoryBox");
   }
 }
 

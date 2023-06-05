@@ -23,9 +23,7 @@
   gap: 34px;
   margin-right: 59px;
 }
-label {
-  margin-bottom: 8px;
-}
+
 input {
   box-sizing: border-box;
   display: flex;
@@ -257,19 +255,30 @@ textarea {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 5px 21px 5px;
   width: 422px;
   background: #ffffff;
   border: 1px solid #d1d1d1;
   cursor: pointer;
   border-top: none;
-  border-bottom: none;
-  gap: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   flex-direction: column;
+  height: 150px;
+  overflow: auto;
+  overflow-x: hidden;
 }
 
-.dropDownBox:hover {
-  background-color: #d1d1d1;
+.dropDownBox::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dropDownBox::-webkit-scrollbar-thumb {
+  background-color: rgba(9, 25, 49);
+  border-radius: 5px;
+}
+
+.dropDownBox::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .categoryBox {
@@ -368,10 +377,50 @@ textarea {
   margin-right: 59px;
 }
 
-.error-message{
+.error-message {
   font-size: 16px;
   color: red;
   margin-top: 5px;
+}
+
+.contactBox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0px 21px;
+  width: 90%;
+}
+
+
+
+.contactBox:hover {
+  background-color: #d1d1d1;
+}
+
+.contactBox input{
+  margin: 0px;
+}
+
+
+.newCategoryBox{
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 5px 21px 5px;
+  width: 422px;
+  background: #ffffff;
+  border: 1px solid #d1d1d1;
+  cursor: pointer;
+  border-top: none;
+  border-bottom: none;
+  gap: 10px;
+  flex-direction: column;
+  width: 100%;
+}
+
+.newCategoryBox:hover{
+  background-color: #d1d1d1;
 }
 
 @media (max-width: 1455px) {
