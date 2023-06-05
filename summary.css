@@ -33,12 +33,18 @@ h1 {
 }
 
 .verticalline-summary {
-  width: 0px;
   height: 59px;
-  border: 3px solid #29ABE2;
+  border: 2px solid #29ABE2;
+  text-align: center;
+}
+
+.verticalline-summary-media {
+  display: none;
 }
 
 h4 {
+  align-items: center;
+  display: flex;
   width: 306px;
   height: 32px;
   font-family: 'Inter';
@@ -239,10 +245,12 @@ p {
 .todo:hover .pensil {
   display: none;
 }
+
 .todo:hover .d-none {
   height: 65px;
   display: block;
 }
+
 .todo:hover div {
   color: #FFFFFF;
 }
@@ -342,11 +350,13 @@ p {
     align-items: center;
     width: 500px;
   }
-  .headline h1{
+
+  .headline h1 {
     font-size: 40px;
     width: 190px;
   }
-  .headline h4{
+
+  .headline h4 {
     font-size: 20px;
     height: 22px;
   }
@@ -378,7 +388,7 @@ p {
   .todo {
     width: 205px;
   }
- 
+
   .done {
     width: 205px;
   }
@@ -388,8 +398,8 @@ p {
   .main {
     margin-left: 150px;
   }
-  
-  .tasks-container{
+
+  .tasks-container {
     width: 450px;
   }
 
@@ -402,7 +412,64 @@ p {
   .main {
     margin-left: 50px;
   }
+
   .headline {
     width: 400px;
+  }
+}
+
+@media (max-width: 520px) {
+  .main {
+    margin-left: 20px;
+  }
+
+  .tasks-container {
+    width: 350px;
+  }
+
+  .task-box {
+    font-size: 48px;
+  }
+
+  .task-boxes p {
+    font-size: 18px;
+  }
+
+  .tasks-urgent-deadline {
+    width: 350px;
+    gap: 20px;
+  }
+
+  .todo-done {
+    width: 350px;
+    font-size: 16px;
+  }
+
+  .todo-done img {
+    width: 55px;
+  }
+
+  .headline {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .verticalline-summary {
+    display: none;
+  }
+
+  .verticalline-summary-media {
+    display: flex;
+    border: 2px solid #29ABE2;
+    width: 90px;
+  }
+  h1 {
+    line-height: 0px;
+  }
+
+  h4 {
+    text-align: center;
   }
 }
