@@ -1,18 +1,20 @@
 body {
     overflow: hidden;
+    margin-right: 0px;
 }
 
-h3{
+h3 {
     display: flex;
     justify-content: flex-start;
     margin-left: +20px;
 }
 
-.forh3{
+.forh3 {
     height: 1px;
     width: 100%;
     background-color: lightgrey;
 }
+
 .parent-Container {
     background-color: #F5F5F5;
     height: calc(100vh - 89px);
@@ -34,25 +36,26 @@ h3{
 .contact-list-overview::-webkit-scrollbar {
     width: 7px;
 }
+
 .contact-list-overview::-webkit-scrollbar-thumb {
     background: #a8a8a8;
     border-radius: 8px;
 }
 
-.profile-div{
+.profile-div {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
 }
 
-.profile-div div{
+.profile-div div {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    
+
 }
 
-.profile-div div:last-child{
+.profile-div div:last-child {
     margin-right: 50px;
     width: 250px;
     display: flex;
@@ -61,7 +64,7 @@ h3{
 }
 
 
-.profilePicture{
+.profilePicture {
     background-color: orange;
     color: black;
     display: flex;
@@ -82,7 +85,7 @@ h3{
     overflow: auto;
 }
 
-.ContactHover div:hover{
+.ContactHover div:hover {
     border-radius: 7px;
     cursor: pointer;
     background-color: #2A3647;
@@ -165,7 +168,7 @@ h3{
     font-weight: 400;
 }
 
-.overdiv{
+.overdiv {
     position: absolute;
     top: 0;
     right: -100%;
@@ -176,15 +179,15 @@ h3{
     justify-content: center;
     align-items: center;
     transition: all 250ms ease-in-out;
-} 
+}
 
-.overdiv-slide{
+.overdiv-slide {
     position: absolute;
     top: 0;
     right: 0 !important;
 }
 
-.Add-contact-div{
+.Add-contact-div {
     position: relative;
     border-radius: 10px;
     display: flex;
@@ -194,17 +197,17 @@ h3{
     width: 70%;
 }
 
-.cancel-overbutton{
+.cancel-overbutton {
     position: absolute;
     top: 20px;
     right: 20px;
 }
 
-.cancel-overbutton:hover{
+.cancel-overbutton:hover {
     cursor: pointer;
 }
 
-.Add-contact{
+.Add-contact {
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     display: flex;
@@ -216,23 +219,23 @@ h3{
     background-color: rgb(50, 63, 82);
 }
 
-.Add-contact div{
+.Add-contact div {
     margin-left: 20px;
 }
 
-.Add-contact img{
+.Add-contact img {
     display: flex;
     justify-content: flex-start;
     height: 60px;
     width: 60px;
 }
 
-.Add-contact{
+.Add-contact {
     color: rgb(253, 253, 253);
     font-size: 18px;
 }
 
-h4{
+h4 {
     margin-top: 10px !important;
     margin-bottom: 10px !important;
     color: rgb(253, 253, 253);
@@ -241,7 +244,7 @@ h4{
     margin-block-end: 0;
 }
 
-.addContact-line{
+.addContact-line {
     margin-top: 10px;
     height: 1px;
     width: 40%;
@@ -249,7 +252,7 @@ h4{
     margin-left: 0px !important;
 }
 
-.form-overdiv{
+.form-overdiv {
     border-radius: 20px;
     display: flex;
     justify-content: center;
@@ -259,19 +262,19 @@ h4{
     width: 60%;
 }
 
-.form{
+.form {
     display: flex;
     flex-direction: column;
 }
 
-.form input{
+.form input {
     font-size: 16px;
     margin-top: 32px;
     height: 25px;
     width: 350px;
 }
 
-.form img{
+.form img {
     object-fit: contain;
     height: 20px;
     width: 20px;
@@ -287,7 +290,7 @@ h4{
     justify-content: center;
 }
 
-.cancelButton{
+.cancelButton {
     position: relative;
     border: 1px solid rgb(42, 54, 71);
     color: rgb(42, 54, 71);
@@ -297,21 +300,21 @@ h4{
     border-radius: 7px;
 }
 
-.cancelButton:hover{
+.cancelButton:hover {
     cursor: pointer;
-    box-shadow: 0px 8px 8px -3px rgb(174, 174, 174);   
-    border-color:  rgba(41,171,225,255);
-    color: rgba(41,171,225,255);
+    box-shadow: 0px 8px 8px -3px rgb(174, 174, 174);
+    border-color: rgba(41, 171, 225, 255);
+    color: rgba(41, 171, 225, 255);
 }
 
-.create-contactButton:hover{
+.create-contactButton:hover {
     cursor: pointer;
-    background-color: rgba(41,171,225,255);
-    box-shadow: 0px 8px 8px -3px rgb(174, 174, 174);   
-    border-color:  rgba(41,171,225,255);
+    background-color: rgba(41, 171, 225, 255);
+    box-shadow: 0px 8px 8px -3px rgb(174, 174, 174);
+    border-color: rgba(41, 171, 225, 255);
 }
 
-.create-contactButton{
+.create-contactButton {
     position: relative;
     border: none;
     padding: 12px;
@@ -323,47 +326,47 @@ h4{
     border: 1px solid rgb(42, 54, 71);
 }
 
-.buttons{
+.buttons {
     margin-top: 30px;
     display: flex;
     justify-content: center;
 }
 
-.buttons img{
+.buttons img {
     height: 14px;
     position: absolute;
     top: 13px;
     right: 12px;
 }
 
-.buttons button{
+.buttons button {
     text-align: left;
     margin-left: 20px;
     margin-right: 20px;
 }
 
-.bigImg{
+.bigImg {
     margin-right: 20px;
 }
 
-.Contacts-overview-container{
+.Contacts-overview-container {
     display: flex;
     flex-direction: column-reverse;
 }
 
-.Contact-header{
+.Contact-header {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
 
-.contact-Name{
+.contact-Name {
     display: flex;
     justify-content: space-around;
 }
 
-.profilepicture{
+.profilepicture {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -375,54 +378,54 @@ h4{
     margin-right: 50px;
 }
 
-.showname{
+.showname {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
 }
 
-.showname span{
+.showname span {
     font-size: 42px;
 }
 
-.showname a{
+.showname a {
     color: rgb(40, 172, 226);
     margin-top: 10px;
     text-decoration: none;
 }
 
-.contacts-infomations{
+.contacts-infomations {
     margin-top: 50px;
     display: flex;
     align-items: center;
 }
 
-.contacts-infomations span{
+.contacts-infomations span {
     font-size: 26px;
 }
 
-.contacts-infomations div{
+.contacts-infomations div {
     margin-left: 50px;
 }
 
-.contacts-infomations a{
+.contacts-infomations a {
     font-size: 18px;
     color: black;
     text-decoration: none;
 }
 
-.contacts-adress{
+.contacts-adress {
     display: flex;
     flex-direction: column;
     margin-top: 30px;
 }
 
-.contacts-adress span{
+.contacts-adress span {
     font-weight: 700;
 }
 
-.contacts-adress a{
+.contacts-adress a {
     margin-top: 10px;
     color: rgb(40, 172, 226);
     text-decoration: none;
@@ -432,91 +435,114 @@ h4{
     color: #007CEE;
 }
 
-.contactAddTask{
+.contactAddTask {
     cursor: pointer;
 }
 
-@media (max-width: 1300px){
-    .contact-list-overview{
+@media (max-width: 1300px) {
+    .contact-list-overview {
         width: 45%;
     }
-    .contact-headline-left{
+
+    .contact-headline-left {
         font-size: 38px;
     }
 
-    .contact-headline-right{
+    .contact-headline-right {
         font-size: 22px;
         margin-left: 10px !important;
     }
 }
 
-@media (max-width: 1160px){
-    .contact-list-overview{
-        width: 48%;
+@media (max-width: 1160px) {
+    .contact-info-container {
+        display: none;
     }
-    .overview-Informations a{
+    .contact-list-overview {
+        width: 100%;
+        max-width: none;
+    }
+
+    .overview-Informations a {
         margin-top: 5px;
         font-size: 11px;
     }
 
-    .profile-div div:last-child{
+    .profile-div div:last-child {
         margin-right: 0px;
     }
 
-    .profilePicture{
+    .profile-div {
+        justify-content: flex-start;
+    }
+
+    .profilePicture {
         width: 49px;
         height: 49px;
     }
 
-    .profile-div div:last-child{
+    .profile-div div:last-child {
         width: 180px;
         margin-left: 10px;
     }
 }
 
-@media (max-width: 920px){
-    .contact-headline-vertical-line{
+@media (max-width: 920px) {
+    .contact-info-container {
+        display: none;
+    }
+
+    .contact-headline-vertical-line {
         border: 2px solid #29ABE2;
         height: 40px;
         margin-left: 10px;
         margin-right: 10px;
     }
 
-    .contact-headline-left{
+    .contact-headline-left {
         font-size: 28px;
     }
 
-    .contact-headline-right{
+    .contact-headline-right {
         font-size: 16px;
         margin-left: 10px !important;
     }
-    .contact-list-overview{
-        width: 70%;
+
+    .contact-list-overview {
+        width: 100%;
+        max-width: none;
     }
-    .profilePicture{
+
+    .profile-div {
+        justify-content: flex-start;
+    }
+    .profilePicture {
         margin: 5px;
     }
 }
 
-@media (max-width: 815px){
-    .contact-list-overview{
-        width: 90%;
+@media (max-width: 815px) {
+    .contact-list-overview {
+        width: 100%;
     }
-    .contact-headline-left{
+
+    .contact-headline-left {
         font-size: 24px;
     }
-    .contact-headline-right{
+
+    .contact-headline-right {
         font-size: 14px;
         margin-left: 0px !important;
     }
 }
 
-@media (max-width: 769px){
-    .parent-Container{
+@media (max-width: 769px) {
+    .parent-Container {
         display: flex;
         align-items: center;
     }
-    .contact-list-overview{
-        height: calc(100vh - 89px) !important;
+
+    .contact-list-overview {
+        height: none;
     }
 }
