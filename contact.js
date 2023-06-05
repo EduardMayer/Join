@@ -171,7 +171,7 @@ function openContact(Letter,i){
     let firstandSecoundLetters = sortedContacts[`${Letter}`][i]['firstLetter'];
     let email = sortedContacts[`${Letter}`][i]['email'];
     let phone = sortedContacts[`${Letter}`][i]['tel'];
-    document.getElementById('informationsContacts').innerHTML = openContactHTML(name,firstandSecoundLetters,email,phone);
+    document.getElementById('informationsContacts').innerHTML = openContactHTML(name,firstandSecoundLetters,email,phone,Letter,i);
 }
 
 function renderContactHTML(){
@@ -333,10 +333,10 @@ async function registerForContacts(name,email,phone) {
     }
 }
 
-function openContactHTML(name,firstandSecoundLetters,email,phone){
+function openContactHTML(name,firstandSecoundLetters,email,phone,Letter,i){
     return `
         <div class="contact-Name">
-            <div id="twoLettersContact" class="profilepicture">${firstandSecoundLetters}</div>
+            <div style="background-color: ${sortedContacts[`${Letter}`][i]['color']}!important;" id="twoLettersContact" class="profilepicture">${firstandSecoundLetters}</div>
             <div class="showname">
                 <span>${name}</span>
                 <a class="contactAddTask" onclick="openAddTaskContainer('todo')">+ Add Task</a>
