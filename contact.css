@@ -431,3 +431,7 @@ h4{
 .email-link {
     color: #007CEE;
 }
+
+.contactAddTask{
+    cursor: pointer;
+}

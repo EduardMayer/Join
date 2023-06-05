@@ -147,20 +147,21 @@ function checkPrioPopupCard(task) {
  * @param {string} status - Der Status der Aufgabe.
  */
 function createTask(status) {
+  event.preventDefault(); // Prevent the default form submission behavior
+
   const title = document.getElementById("title");
   const description = document.getElementById("description");
   const date = document.getElementById("date");
   const categoryText = document.getElementById("categoryText");
   const categoryColor = document.getElementById("selectColorBox");
+  let selectedContacts = getSelectedContacts();
   let priority = clickedId;
-
+  
   // Überprüfen, ob ein Ziel angeklickt wurde
-  if (!clickedId) {
-    document.getElementById(
-      "prioBoxAlarm"
-    ).innerHTML = `<div class="alarmBoxPrio">Select a priority!</div>`;
+  if (checkPrioritySelected()) {
     return;
   }
+  
   // Neue Aufgabe erstellen
   let allTask = {
     id: allTasks.length,
@@ -172,13 +173,43 @@ function createTask(status) {
     priority: priority,
     status: status,
     subtask: allSubtask,
+    contacts: selectedContacts,
   };
 
+  showPopup();
   allTasks.push(allTask);
   save();
   allSubtask = [];
-  showPopup();
   clearTask(); 
+}
+
+function checkPrioritySelected() {
+  if (!clickedId) {
+    document.getElementById(
+      "prioBoxAlarm"
+    ).innerHTML = `<div class="alarmBoxPrio">Select a priority!</div>`;
+    return true; // Gibt true zurück, wenn keine Priorität ausgewählt wurde
+  }
+  return false; // Gibt false zurück, wenn eine Priorität ausgewählt wurde
+}
+
+function getSelectedContacts() {
+  let selectedContacts = [];
+  let checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+  
+  if (checkboxes.length === 0) {
+    let errorMessage = document.getElementById("assigned-error");
+    errorMessage.textContent = "Please select at least one contact.";
+    errorMessage.style.color = "red";
+    return selectedContacts;
+  }
+
+  checkboxes.forEach((checkbox) => {
+    let contactId = checkbox.id.replace("contact", "");
+    selectedContacts.push(allContacts[contactId]);
+  });
+
+  return selectedContacts;
 }
 
 /**
@@ -265,30 +296,52 @@ function closePopupTaskCard() {
   mainAddTaskContainer.classList.add("d-none");
 }
 
+
+function generateInitialsAndFullName(name) {
+  const names = name.split(' ');
+  const firstNameInitial = names[0].charAt(0);
+  const lastNameInitial = names.length > 1 ? names[1].charAt(0) : '';
+  const initials = `${firstNameInitial}${lastNameInitial}`;
+  return `<div>${initials}  ${name}</div>`;
+}
+
+function generateInitials(name) {
+  let names = name.split(' ');
+  let firstNameInitial = names[0].charAt(0);
+  let lastNameInitial = names.length > 1 ? names[1].charAt(0) : '';
+  return `<div>${firstNameInitial}${lastNameInitial}</div>`;
+}
+
+function generateFullName(name) {
+  return `<div>${name}</div>`;
+}
+
 /**
  * Zeigt die Details einer Aufgabenkarte an.
  * @param {number} taskId - Die ID der Aufgabenkarte.
  */
 function showCard(taskId) {
   let screenWidth = window.innerWidth;
-  
+
   if (screenWidth >= 769) {
-  let task = allTasks.find((task) => task.id === taskId);
-  let overlayDiv = document.createElement("div");
-  let popupCard = document.getElementById("popupContainer");
-  let { priorityImage, priorityText, backgroundColor } = checkPrioPopupCard(task);
-  let subtask = generateSubtaskHtml(task, taskId);
-  overlayDiv.classList.add("overlay");
-  document.body.appendChild(overlayDiv);
-  popupCard.innerHTML = generatePopupCardHtml(task, taskId, subtask, backgroundColor, priorityText, priorityImage);
-  }else{
-  let task = allTasks.find((task) => task.id === taskId);
-  let showMainBoardContainer = document.getElementById("showMainBoardContainer");
-  let mainBoardContainer = document.getElementById("mainBoardContainer");
-  let { priorityImage, priorityText, backgroundColor } = checkPrioPopupCard(task);
-  let subtask = generateSubtaskHtml(task, taskId);
-  mainBoardContainer.style.display = "none";
-  showMainBoardContainer.innerHTML = generateShowCardHtml(task, taskId, subtask, backgroundColor, priorityText, priorityImage);
+    let task = allTasks.find((task) => task.id === taskId);
+    let overlayDiv = document.createElement("div");
+    let popupCard = document.getElementById("popupContainer");
+    let { priorityImage, priorityText, backgroundColor } = checkPrioPopupCard(task);
+    let subtask = generateSubtaskHtml(task, taskId);
+    let assignedContactsHtml = task.contacts.map((contact) => generateInitialsAndFullName(contact)).join('');
+    overlayDiv.classList.add("overlay");
+    document.body.appendChild(overlayDiv);
+    popupCard.innerHTML = generatePopupCardHtml(task, taskId, subtask, backgroundColor, priorityText, priorityImage, assignedContactsHtml);
+  } else {
+    let task = allTasks.find((task) => task.id === taskId);
+    let showMainBoardContainer = document.getElementById("showMainBoardContainer");
+    let mainBoardContainer = document.getElementById("mainBoardContainer");
+    let { priorityImage, priorityText, backgroundColor } = checkPrioPopupCard(task);
+    let subtask = generateSubtaskHtml(task, taskId);
+    let assignedContactsHtml = task.contacts.map((contact) => generateInitialsAndFullName(contact)).join('');
+    mainBoardContainer.style.display = "none";
+    showMainBoardContainer.innerHTML = generateShowCardHtml(task, taskId, subtask, backgroundColor, priorityText, priorityImage, assignedContactsHtml);
   }
 }
 
@@ -371,7 +424,7 @@ function renderAllContacts() {
 
   for (let i = 0; i < allContacts.length; i++) {
     const name = allContacts[i];
-    dropDownUser.innerHTML += `<div>${name}</div>`;
+    dropDownUser.innerHTML += `<div><input type="checkbox" id="contact${i}" name="contact${i}"><label for="contact${i}">${name}</label></div>`;
   }
 }
 

@@ -368,6 +368,12 @@ textarea {
   margin-right: 59px;
 }
 
+.error-message{
+  font-size: 16px;
+  color: red;
+  margin-top: 5px;
+}
+
 @media (max-width: 1455px) {
   .buttonTaskContainer {
     right: 10px;
