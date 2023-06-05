@@ -20,37 +20,39 @@ function generatePopupCardHtml(
   subtaskHtml,
   backgroundColor,
   priorityText,
-  priorityImage
+  priorityImage,
+  assignedContactsHtml
 ) {
   return `
-      <div class="popupCard">
-        <div>
-          <div class="cancelPopupCardBox"><div onclick="closePopupCard()" class="cancelIconPopupCard"><img src="img/cross.png"></div></div>
-          <div class="popupcardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div>
-        </div>
-        <div class="popupCardTitle" id="popupCardTitle">${task.title}</div>
-        <div class="popupcardDescription" id="popupcardDescription">${task.description}</div>
-        <div class="popupCardDate" id="popupCardDate"><b>Due date:</b><div>${task.date}</div></div>
-        <div class="popupPrioContainer" id="popupPrioContainer" ><b>Priority:</b>
-          <div class="popupPrioBox" id="popupPrioBox" style="background-color:${backgroundColor}">${priorityText} <img src="${priorityImage}"></div>
-        </div>
-  
-        <div class="popupCardAssigned"><b>Assigned To:</b></div>
-        <div class="popupCardLowerContainer">
-          <div class="popupCardSubContainer">
-            <div><b>Subtasks</b></div>
-            <div id="popupCardSubBox" class="popupCardSubBox">${subtaskHtml}</div>
-          </div>
-          <div class="popupCardImgContainer">
-            <div class="popupCardImgBox">
-              <div class="popupDeletButton" onclick="deletePopupCard(${taskId})"><img src="img/deletebuttonv1.png"></div>
-              <div class="popupEditButton" onclick="editPopupCard(${taskId})"><img src="img/editbuttonv1.png"></div>
-            </div> 
-          </div>  
-        </div>  
+    <div class="popupCard">
+      <div>
+        <div class="cancelPopupCardBox"><div onclick="closePopupCard()" class="cancelIconPopupCard"><img src="img/cross.png"></div></div>
+        <div class="popupcardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div>
       </div>
-    `;
+      <div class="popupCardTitle" id="popupCardTitle">${task.title}</div>
+      <div class="popupcardDescription" id="popupcardDescription">${task.description}</div>
+      <div class="popupCardDate" id="popupCardDate"><b>Due date:</b><div>${task.date}</div></div>
+      <div class="popupPrioContainer" id="popupPrioContainer" ><b>Priority:</b>
+        <div class="popupPrioBox" id="popupPrioBox" style="background-color:${backgroundColor}">${priorityText} <img src="${priorityImage}"></div>
+      </div>
+
+      <div class="popupCardAssigned"><b>Assigned To:</b>${assignedContactsHtml}</div>
+      <div class="popupCardLowerContainer">
+        <div class="popupCardSubContainer">
+          <div><b>Subtasks</b></div>
+          <div id="popupCardSubBox" class="popupCardSubBox">${subtaskHtml}</div>
+        </div>
+        <div class="popupCardImgContainer">
+          <div class="popupCardImgBox">
+            <div class="popupDeletButton" onclick="deletePopupCard(${taskId})"><img src="img/deletebuttonv1.png"></div>
+            <div class="popupEditButton" onclick="editPopupCard(${taskId})"><img src="img/editbuttonv1.png"></div>
+          </div> 
+        </div>  
+      </div>  
+    </div>
+  `;
 }
+
 
 function generateEditPopupCardHtml(task, taskId, today) {
   return `
