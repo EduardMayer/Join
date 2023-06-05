@@ -302,12 +302,18 @@ function doNotClose(event) {
     event.stopPropagation();
 }
 
+async function getRandomColorContact() {
+    let colors = ["orange", "hsl(193.32deg 88.4% 45.3%)", "hsl(330.81deg 88.4% 45.3%)", "hsl(0deg 97.03% 50.22%)","rgb(221, 23, 221)","rgb(31, 196, 31)"];
+    let randomIndex = Math.floor(Math.random() * colors.length);
+    let randomColor = colors[randomIndex];
+    return randomColor;
+}
+
 function createNewContact(){
     let name = document.getElementById('name');
     let email = document.getElementById('email')
     let phone = document.getElementById('phone')
     registerForContacts(name,email,phone);
-    clearInputContacts(name,email,phone);
 }
 
 function clearInputContacts(name,email,phone){
@@ -318,7 +324,7 @@ function clearInputContacts(name,email,phone){
 
 async function registerForContacts(name,email,phone) {
     renderfirstNames(name.value);
-    let rendomColor = await getRandomColor();
+    let rendomColor = await getRandomColorContact();
     if (Array.isArray(users)) {
       users.push({
         'name': name.value,
@@ -332,7 +338,8 @@ async function registerForContacts(name,email,phone) {
       await setItem('users', JSON.stringify(users));
       contactInit();
       closeOverdiv();
-    }
+      clearInputContacts(name,email,phone);
+    } 
 }
 
 function openContactHTML(name,firstandSecoundLetters,email,phone,Letter,i){
