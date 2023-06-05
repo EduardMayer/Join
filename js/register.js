@@ -30,9 +30,9 @@ function updateAllContacts() {
 }
 
 async function getRandomColor() {
-    var colors = ["orange", "hsl(193.32deg 88.4% 45.3%)", "hsl(330.81deg 88.4% 45.3%)", "hsl(0deg 97.03% 50.22%),rgb(221, 23, 221),rgb(31, 196, 31)"];
-    var randomIndex = Math.floor(Math.random() * colors.length);
-    var randomColor = colors[randomIndex];
+    let colors = ["orange", "hsl(193.32deg 88.4% 45.3%)", "hsl(330.81deg 88.4% 45.3%)", "hsl(0deg 97.03% 50.22%),rgb(221, 23, 221),rgb(31, 196, 31)"];
+    let randomIndex = Math.floor(Math.random() * colors.length);
+    let randomColor = colors[randomIndex];
     return randomColor;
 }
 
