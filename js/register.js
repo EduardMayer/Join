@@ -29,7 +29,7 @@ function updateAllContacts() {
     allContacts = users.map(user => user.name).sort();
 }
 
-function getRandomColor() {
+async function getRandomColor() {
     var colors = ["orange", "hsl(193.32deg 88.4% 45.3%)", "hsl(330.81deg 88.4% 45.3%)", "hsl(0deg 97.03% 50.22%)"];
     var randomIndex = Math.floor(Math.random() * colors.length);
     var randomColor = colors[randomIndex];
@@ -41,7 +41,7 @@ async function register() {
     let name = inputName.value;
     let email = inputEmail.value
     renderfirstNames(name);
-    let rendomColor = getRandomColor();
+    let rendomColor = await getRandomColor();
     if (Array.isArray(users)) {
       users.push({
         'name': name,

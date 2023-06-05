@@ -154,7 +154,7 @@ function renderUser(index){
     for(let i = 0; i < sortedContacts[indexLetter].length; i++){
         div.innerHTML += /* html */ `
             <div onclick="openContact('${indexLetter}',${i})" class="profile-div">
-                <div class="profilePicture">
+                <div style="background-color: ${sortedContacts[indexLetter][i]['color']}!important" class="profilePicture">
                     ${sortedContacts[indexLetter][i]['firstLetter']}
                 </div>
                 <div>
