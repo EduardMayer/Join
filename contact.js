@@ -318,6 +318,7 @@ function clearInputContacts(name,email,phone){
 
 async function registerForContacts(name,email,phone) {
     renderfirstNames(name.value);
+    let rendomColor = await getRandomColor();
     if (Array.isArray(users)) {
       users.push({
         'name': name.value,
@@ -326,6 +327,7 @@ async function registerForContacts(name,email,phone) {
         'contact': [],
         'tel': phone.value,
         'firstLetter': initials,
+        'color': rendomColor,
       });
       await setItem('users', JSON.stringify(users));
       contactInit();
