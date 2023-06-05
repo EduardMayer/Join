@@ -158,7 +158,7 @@ function renderUser(index){
                 <div style="background-color: ${sortedContacts[indexLetter][i]['color']}!important" class="profilePicture">
                     ${sortedContacts[indexLetter][i]['firstLetter']}
                 </div>
-                <div>
+                <div class="overview-Informations">
                     <span>${sortedContacts[indexLetter][i]['name']}</span>
                     <a class="email-link" href="#">${sortedContacts[indexLetter][i]['email']}</a>
                 </div>

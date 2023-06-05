@@ -11,3 +11,16 @@
 h1{
     font-size: 52px;
 }
+
+@media (max-width: 769px){
+    .mainContainer{
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 100px;
+        margin-left: 50px;
+        flex-direction: column;
+        margin-right: 50px;
+        margin-bottom: 100px;
+    }
+}
+
