@@ -147,7 +147,7 @@ h3 {
 }
 
 .desktop-only {
-    display: flex;
+    display: felx;
 }
 
 .contact-headline-left {
@@ -452,12 +452,17 @@ h4 {
         font-size: 22px;
         margin-left: 10px !important;
     }
+
+    .overdiv {
+        display: none;
+    }
 }
 
 @media (max-width: 1160px) {
     .contact-info-container {
         display: none;
     }
+
     .contact-list-overview {
         width: 100%;
         max-width: none;
@@ -484,6 +489,27 @@ h4 {
     .profile-div div:last-child {
         width: 180px;
         margin-left: 10px;
+    }
+
+    .mobile-only {
+        display: block;
+        top: 110px;
+        right: 15px;
+        color: white;
+        background-color: #2A3647;
+        border-radius: 10px;
+        border: none;
+        transition: 100ms ease-in-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px 10px;
+        gap: 10px;
+        white-space: nowrap;
+    }
+
+    .desktop-only {
+        display: none;
     }
 }
 
@@ -516,6 +542,7 @@ h4 {
     .profile-div {
         justify-content: flex-start;
     }
+
     .profilePicture {
         margin: 5px;
     }

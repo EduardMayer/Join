@@ -183,9 +183,11 @@ function renderContactHTML(){
         <div>
             <h3>${letterHTML(sortLetter[i]).toUpperCase()}</h3>
             <div class="forh3"></div>
-            <div id="contact${i}">
-            </div>
+            <div id="contact${i}"></div>
         </div>
+        <button class="new-contact button mobile-only" onclick="openOverdiv('newContactHTML')">
+                <span>New Contact</span>
+                <img src="img/addContact.svg"></button>
         `;
         usersLetter.sort();
     }
@@ -293,7 +295,7 @@ function closeOverdiv(){
     div.classList.remove('overdiv-slide');
 }
 
-function opnenOverdiv(form){
+function openOverdiv(form){
     loadContactForm(form);
     let div = document.getElementById('overdiv');
     div.classList.add('overdiv-slide');
