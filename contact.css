@@ -463,7 +463,14 @@ h4 {
 }
 
 @media (max-width: 1160px) {
-
+    .closeArrow{
+        position: relative;
+        height: 30px;
+        width: 30px;
+        top: 10px;
+        right: 0;
+        z-index: 9;
+    }
     .Contact-header{
         display: flex;
         justify-content: flex-start;
