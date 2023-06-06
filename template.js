@@ -1,17 +1,19 @@
 function generateCardHTML(task) {
   let progressBarContainerHTML = generateProgressBarContainerHTML(task);
+  let assignedContactsHtml = task.contacts.map((contact) => generateInitials(contact)).join('');
+
   return `
-      <div draggable="true" onclick="showCard(${task.id})" ondragstart="startDragging(${task.id})" class="card">
-        <div class="cardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div>
-        <div class="cardTitle">${task.title}</div>
-        <div class="cardDescription">${task.description}</div>
-        ${progressBarContainerHTML}
-        <div class="lowerCard">
-          <div class="cardUser"></div>
-          <div class="cardPrio"><img src="img/${task.priority}.svg"></div>
-        </div>
+    <div draggable="true" onclick="showCard(${task.id})" ondragstart="startDragging(${task.id})" class="card">
+      <div class="cardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div>
+      <div class="cardTitle">${task.title}</div>
+      <div class="cardDescription">${task.description}</div>
+      ${progressBarContainerHTML}
+      <div class="lowerCard">
+        <div class="cardUser">${assignedContactsHtml}</div>
+        <div class="cardPrio"><img src="img/${task.priority}.svg"></div>
       </div>
-    `;
+    </div>
+  `;
 }
 
 function generatePopupCardHtml(
@@ -119,7 +121,8 @@ function generateShowCardHtml(
   subtaskHtml,
   backgroundColor,
   priorityText,
-  priorityImage
+  priorityImage,
+  assignedContactsHtml,
 ) {
   return `
     <div class="showCard" id="showCard">
@@ -134,7 +137,7 @@ function generateShowCardHtml(
         <div class="popupPrioBox" id="popupPrioBox" style="background-color:${backgroundColor}">${priorityText} <img src="${priorityImage}"></div>
       </div>
 
-      <div class="popupCardAssigned"><b>Assigned To:</b></div>
+      <div class="popupCardAssigned"><b>Assigned To:</b>${assignedContactsHtml}</div>
       <div class="popupCardLowerContainer">
         <div class="popupCardSubContainer">
           <div><b>Subtasks</b></div>

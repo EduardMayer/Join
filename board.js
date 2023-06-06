@@ -4,6 +4,7 @@ let allTasks = [];
 let allCategory = [];
 let allSubtask = [];
 let allColors = ["#E200BE","#1FD7C1","#0038FF","#FF8A00","#2AD300","#FF0000","#8AA4FF",];
+let initialsColors = {};
 let currentDraggedElement;
 let currentTaskId;
 load();
@@ -300,19 +301,41 @@ function generateInitialsAndFullName(name) {
   const names = name.split(' ');
   const firstNameInitial = names[0].charAt(0);
   const lastNameInitial = names.length > 1 ? names[1].charAt(0) : '';
-  const initials = `${firstNameInitial}${lastNameInitial}`;
-  return `<div>${initials}  ${name}</div>`;
+
+  // Überprüfe, ob die Farbe für die Initialen bereits vorhanden ist, sonst generiere eine neue
+  const initialsBackgroundColor = initialsColors[name] || getRandomColor();
+
+  // Speichere die Farbe im Objekt
+  initialsColors[name] = initialsBackgroundColor;
+
+  return `<div class="initialsNameBox"><div class="initials" style="background-color:${initialsBackgroundColor}">${firstNameInitial}${lastNameInitial}</div><div>${name}</div></div>`;
 }
 
 function generateInitials(name) {
   let names = name.split(' ');
   let firstNameInitial = names[0].charAt(0);
   let lastNameInitial = names.length > 1 ? names[1].charAt(0) : '';
-  return `<div>${firstNameInitial}${lastNameInitial}</div>`;
+
+  // Hole die gespeicherte Farbe für die Initialen oder generiere eine neue zufällige Farbe
+  const initialsBackgroundColor = initialsColors[name] || getRandomColor();
+
+  // Aktualisiere die Farbe im Objekt
+  initialsColors[name] = initialsBackgroundColor;
+
+  return `<div class="initialsSecond" style="background-color:${initialsBackgroundColor}">${firstNameInitial}${lastNameInitial}</div>`;
 }
 
 function generateFullName(name) {
   return `<div>${name}</div>`;
+}
+
+function getRandomColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
 }
 
 /**
