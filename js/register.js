@@ -76,12 +76,11 @@ function clearInput(){
 
 function renderfirstNames(inputname){
   let names = inputname.split(' ');
-
+  initials = '';
   for(let i = 0; i < names.length; i++){
       let name = names[i];
       let initial = name.charAt(0);
       initials += initial;
   }
-
   updateAllContacts(); 
 }
