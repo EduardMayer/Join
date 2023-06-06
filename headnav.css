@@ -12,7 +12,7 @@
   left: 0px;
   top: 0px;
   right: 0px;
-  z-index: 1;
+  z-index: 8;
 }
 
 .HeadProfile{
@@ -56,7 +56,7 @@
   border-radius: 0px;
   font-size: 16px;
   line-height: 170%;
-  z-index: 3;
+  z-index: 9;
   align-items: center;
 }
 
@@ -205,7 +205,7 @@ header {
     left: 0px;
     top: 0px;
     right: 0px;
-    z-index: 1;
+    z-index: 8;
   }
 
   .navbarMainContainer {

@@ -167,7 +167,20 @@ function renderUser(index){
     }
 }
 
+function isWindowBelowWidth(width) {
+    return window.innerWidth < width;
+}
+
 function openContact(Letter,i){
+    if (!isWindowBelowWidth(1160)) {
+        setInformationsForContact(Letter, i);
+    }else{
+        setInformationsForContact(Letter, i);
+        document.getElementById('contact-info-container').classList.replace('contact-info-container', 'contact-info-container-new');
+    }
+}
+
+function setInformationsForContact(Letter, i){
     let name = sortedContacts[`${Letter}`][i]['name'];
     let firstandSecoundLetters = sortedContacts[`${Letter}`][i]['firstLetter'];
     let email = sortedContacts[`${Letter}`][i]['email'];
