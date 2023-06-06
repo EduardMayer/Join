@@ -62,10 +62,8 @@
     <div w3-include-html="head_navbar.html"></div>
     <div class="parent-Container">
         <div class="contact-list-overview" id="contact-list-overview">
-            <button class="new-contact button mobile-only" onclick="">
-                <span>New Contact</span>
-                <img src="img/addContact.svg"></button>
             <div class="contact-list" id="contact-list"></div>
+            
         </div>
         <div class="contact-info-container">
             <div class="contact-info">
@@ -75,17 +73,15 @@
                     <h3 class="contact-headline-right">Better with a team</h3>
                 </div>
                 <div id="informationsContacts" style="margin-top: 50px;">
-                    
                 </div>
             </div>
             <div class="contact-details-container"></div>
-            <button class="new-contact button desktop-only" onclick="opnenOverdiv('newContactHTML')">
+            <button class="new-contact button desktop-only" onclick="openOverdiv('newContactHTML')">
                 <span>New Contact</span>
                 <img src="img/addContact.svg"></button>
         </div>
         <div class="popupAddTaskContainer" id="popupAddTaskContainer"></div>
     </div>
-    
 </body>
 
 </html>
