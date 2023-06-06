@@ -421,10 +421,12 @@ p {
 @media (max-width: 520px) {
   .main {
     margin-left: 20px;
+    display: flex;
+    align-items: center;
   }
 
   .tasks-container {
-    width: 350px;
+    width: 320px;
   }
 
   .task-box {
@@ -436,12 +438,12 @@ p {
   }
 
   .tasks-urgent-deadline {
-    width: 350px;
+    width: 320px;
     gap: 20px;
   }
 
   .todo-done {
-    width: 350px;
+    width: 320px;
     font-size: 16px;
   }
 
@@ -454,6 +456,7 @@ p {
     align-items: flex-start;
     flex-direction: column;
     gap: 1px;
+    margin-left: 65px;
   }
 
   .verticalline-summary {
@@ -472,5 +475,50 @@ p {
 
   h4 {
     text-align: center;
+  }
+}
+
+@media (max-width: 350px) {
+  .main {
+    margin-left: 0px;
+  }
+
+  .headline {
+    margin-left: 100px;
+  }
+  .todo-done img {
+    width: 50px;
+  }
+
+  .todo-done {
+    width: 300px;
+    font-size: 14px;
+  }
+
+  .tasks-urgent-deadline {
+    width: 300px;
+    gap: 20px;
+  }
+
+  .tasks-urgent {
+    display: flex;
+    gap: 10px;
+    margin-left: 5px;
+  }
+
+  .tasks-urgent img {
+    width: 40px;
+  }
+
+  .deadline-upcoming {
+    font-size: 14px;
+  }
+
+  .tasks-container {
+    width: 300px;
+  }
+
+  .task-boxes p {
+    font-size: 14px;
   }
 }
