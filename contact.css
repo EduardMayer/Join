@@ -471,8 +471,11 @@ h4 {
         margin-left: 50px;
     }
     .underInformation{
-        width: 50%;
+        width: 100%;
         margin-left: 50px;
+    }
+    .contact-Name{
+        justify-content: flex-start;
     }
     .contact-info-container {
         position: absolute;
@@ -530,6 +533,9 @@ h4 {
 
     .desktop-only {
         display: none;
+    }
+    .showname span{
+        font-size: 36px;
     }
 }
 
