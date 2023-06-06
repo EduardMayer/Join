@@ -27,7 +27,7 @@ function sortUsers() {
 function openEdit(form){
     let email = document.getElementById('contactEmail').innerHTML;
     loadContactForm(form,email);
-    opnenOverdiv();
+    openOverdiv();
     loadUserInformations(email);
 }
 
