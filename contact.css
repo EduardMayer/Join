@@ -131,7 +131,7 @@ h3 {
 }
 
 .underInformation{
-    margin-top: 50px;
+    margin-top: 150px;
 }
 
 .contact-info-container {
@@ -144,6 +144,7 @@ h3 {
 }
 
 .contact-info {
+    position: relative;
     flex-direction: column;
     display: flex;
     align-items: center;
@@ -448,6 +449,14 @@ h4 {
     justify-content: space-between;
 }
 
+.closeArrow{
+    display: none ;
+}
+
+.closeArrow img{
+    cursor: pointer;
+}
+
 @media (max-width: 1300px) {
     .contact-list-overview {
         width: 45%;
@@ -462,9 +471,6 @@ h4 {
         margin-left: 10px !important;
     }
 
-    .overdiv {
-        display: none;
-    }
 }
 
 @media (max-width: 1160px) {
@@ -559,9 +565,23 @@ h4 {
     .showname span{
         font-size: 36px;
     }
+    .overheader-Div{
+        position: absolute;
+        top:5px;
+        left: 5px;
+    }
 }
 
 @media (max-width: 920px) {
+    .Add-contact{
+        width: 500px;
+        height:  700px !important;
+    }
+    .Add-contact-div{
+        display: flex;
+        flex-direction: column;
+        
+    }
     .contact-info-container {
         display: none;
     }
@@ -574,11 +594,11 @@ h4 {
     }
 
     .contact-headline-left {
-        font-size: 28px;
+        font-size: 32px;
     }
 
     .contact-headline-right {
-        font-size: 16px;
+        font-size: 22px;
         margin-left: 10px !important;
     }
 
@@ -600,24 +620,109 @@ h4 {
     .contact-list-overview {
         width: 100%;
     }
-
-    .contact-headline-left {
-        font-size: 24px;
-    }
-
-    .contact-headline-right {
-        font-size: 14px;
-        margin-left: 0px !important;
-    }
 }
 
 @media (max-width: 769px) {
+
+
+    h2{
+        font-size: 28px;
+    }
+
+    .contact-list-overview{
+        height: calc(100vh - 169px);
+        margin-top: 89px;
+    }
+
+    .profilePicture{
+        height: 69px;
+        width: 69px;
+    }
+
+    .overview-Informations a{
+        font-size: 12px;
+    }
+    .overview-Informations span{
+        font-size: 22px;
+        width: max-content;
+    }
+    .contact-info{
+        margin-top: 160px;
+        margin-bottom: 320px;
+    }
+
+    .contact-info-container-new{
+        margin-top: 70px;
+        margin-bottom: 140px;
+    }
     .parent-Container {
         display: flex;
         align-items: center;
     }
 
+    .navbarMainContainer{
+        z-index: 20;
+    }
+
     .contact-list-overview {
         height: none;
+    }
+}
+
+@media (max-width: 530px){
+    .contacts-infomations{
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .Contact-header{
+        margin-left: 10px;
+    }
+
+    .contacts-infomations span{
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .contacts-infomations div{
+        margin-left: 0px;
+        margin-bottom: 20px;
+    }
+    .showname span{
+        font-size: 22px;
+    }
+
+    .profilepicture{
+        height: 120px;
+        width: 120px;
+    }
+
+    .contact-headline-left{
+        font-size: 28px;
+    }
+
+    .contact-headline-right{
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 440px){
+    .overheader-Div{
+        top: 10px;
+    }
+    .contact-headline-left{
+        font-size: 22px;
+    }
+
+    .contact-headline-right{
+        font-size: 16px;
+    }
+
+    .profilepicture{
+        height: 80px;
+        width: 80px;
     }
 }
