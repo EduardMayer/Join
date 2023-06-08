@@ -82,6 +82,25 @@ textarea {
   border-radius: 10px;
   cursor: pointer;
 }
+
+.childPopupTaskContainer {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 21px;
+  height: 51px;
+  background: #ffffff;
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.assignedToContainer {
+  font-size: 21px;
+}
+
 .middleTaskContainer {
   border-left: 1px solid #d1d1d1;
   height: 551px;
@@ -255,7 +274,6 @@ textarea {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  width: 422px;
   background: #ffffff;
   border: 1px solid #d1d1d1;
   cursor: pointer;

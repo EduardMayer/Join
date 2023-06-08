@@ -103,8 +103,15 @@ function generateEditPopupCardHtml(task, taskId, today) {
         </div>
         <div id="prioBoxAlarm"></div>
       </div>
-      <div class="popupCardEditAssigned"><b>Assigned To:</b></div>
-
+      <div class="assignedToContainer">
+                    <label for="Category"><b>Assigned to</b></label>
+                    <div onclick="openDropBoxAssigned()" class="childPopupTaskContainer" id="assigned">
+                        <p>Select contacts to assign</p>
+                        <img src="img/arrowTask.svg">
+                    </div>
+                    <div class="d-none" id="dropDownUser"></div>
+                    <p class="error-message" id="assigned-error"></p>
+                </div>  
       <div class="popupCardEditImgContainer">
         <div>
           <button class="popupSaveButton" type="submit">Ok<img src="img/akar-icons_check.svg"></button>
@@ -209,7 +216,15 @@ function generateEditShowCardHtml(task, taskId, today) {
         </div>
         <div id="prioBoxAlarm"></div>
       </div>
-      <div class="popupCardEditAssigned"><b>Assigned To:</b></div>
+      <div class="assignedToContainer">
+                    <label for="Category"><b>Assigned to</b></label>
+                    <div onclick="openDropBoxAssigned()" class="childPopupTaskContainer" id="assigned">
+                        <p>Select contacts to assign</p>
+                        <img src="img/arrowTask.svg">
+                    </div>
+                    <div class="d-none" id="dropDownUser"></div>
+                    <p class="error-message" id="assigned-error"></p>
+                </div>  
       <div class="popupCardEditImgContainer">
         <div>
           <button class="popupSaveButton" type="submit">Ok<img src="img/akar-icons_check.svg"></button>

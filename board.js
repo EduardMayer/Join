@@ -4,6 +4,7 @@ let allTasks = [];
 let allCategory = [];
 let allSubtask = [];
 let allColors = ["#E200BE","#1FD7C1","#0038FF","#FF8A00","#2AD300","#FF0000","#8AA4FF",];
+let selectedContacts = [];
 let initialsColors = {};
 let currentDraggedElement;
 let currentTaskId;
@@ -446,7 +447,35 @@ function renderAllContacts() {
 
   for (let i = 0; i < allContacts.length; i++) {
     const name = allContacts[i];
-    dropDownUser.innerHTML += `<div class="contactBox"><input type="checkbox" id="contact${i}" name="contact${i}"><label for="contact${i}">${name}</label></div>`;
+    const isChecked = selectedContacts.includes(name) ? "checked" : ""; // Überprüfe, ob der Kontakt ausgewählt ist
+    dropDownUser.innerHTML += `<div class="contactBox"><input type="checkbox" id="contact${i}" name="contact${i}" ${isChecked} onchange="saveSelectedContact(${i})"><label for="contact${i}">${name}</label></div>`;
+  }
+}
+function saveSelectedContact(index) {
+  const checkbox = document.getElementById(`contact${index}`);
+  const contactName = allContacts[index];
+
+  if (checkbox.checked) {
+    // Checkbox wurde ausgewählt, füge den Kontakt zur Liste hinzu
+    selectedContacts.push(contactName);
+  } else {
+    // Checkbox wurde abgewählt, entferne den Kontakt aus der Liste
+    const contactIndex = selectedContacts.indexOf(contactName);
+    if (contactIndex !== -1) {
+      selectedContacts.splice(contactIndex, 1);
+    }
+  }
+}
+
+function showAllContacts(selectedContacts) {
+  const dropDownUser = document.getElementById("dropDownUser");
+  const contactBoxes = dropDownUser.getElementsByClassName("contactBox");
+
+  for (let i = 0; i < contactBoxes.length; i++) {
+    const checkbox = contactBoxes[i].querySelector("input[type='checkbox']");
+    const contactName = allContacts[i];
+
+    checkbox.checked = selectedContacts.includes(contactName);
   }
 }
 
@@ -489,6 +518,7 @@ function editPopupCard(taskId) {
   let popupCard = document.getElementById("popupContainer");
   checkPrioPopupCard(task);
   popupCard.innerHTML = generateEditPopupCardHtml(task, taskId, today, popupCard);
+  showAllContacts(selectedContacts);
 }
 
 /**
@@ -553,16 +583,17 @@ function savePopupCard(taskId) {
   let description = document.getElementById("popupcardDescription").value;
   let date = document.getElementById("popupCardDate").value;
   let categoryText = getCategoryText(task, "categoryPopupText");
-  let categoryColor = getCategoryColor(task, "selectColorBox");  
+  let categoryColor = getCategoryColor(task, "selectColorBox");
+  let selectedContacts = getSelectedContacts(); // Speichert die ausgewählten Kontakte in einer Variablen
   let priority = clickedId;
-  
+
   if (!clickedId) {
     document.getElementById(
       "prioBoxAlarm"
     ).innerHTML = `<div class="alarmBoxPrio">Select a priority!</div>`;
     return;
   }
-  
+
   // Update the task object with the new values
   task.title = title;
   task.description = description;
@@ -570,6 +601,7 @@ function savePopupCard(taskId) {
   task.categoryText = categoryText;
   task.categoryColor = categoryColor;
   task.priority = priority;
+  task.contacts = selectedContacts; // Aktualisiert die ausgewählten Kontakte in der Aufgabe
 
   updateTaskInArray(allTasks, taskId, task);
   resetElement(currentElement);
@@ -803,6 +835,23 @@ function openDropBoxAssigned() {
     childUserContainer.classList.remove("b-none");
   }
 }
+
+function openDropBoxEditAssigned() {
+  let dropDownUser = document.getElementById("dropDownUser");
+  let childUserContainer = document.getElementById("assigned");
+  renderAllContacts();
+  if (dropDownUser.classList.contains("d-none")) {
+    dropDownUser.classList.remove("d-none");
+    dropDownUser.classList.add("dropDownBox");
+    childUserContainer.classList.add("b-none");
+  } else {
+    dropDownUser.classList.add("d-none");
+    dropDownUser.classList.remove("dropDownBox");
+    childUserContainer.classList.remove("b-none");
+  }
+}
+
+
 
 /**
  * Öffnet oder schließt die Dropdown-Box für die Kategorieauswahl.

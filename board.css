@@ -312,6 +312,7 @@ body {
   font-weight: bold;
   font-size: 61px;
   word-break: break-word;
+
 }
 .popupcardDescription {
   color: #000000;
@@ -487,6 +488,8 @@ body {
   flex-direction: column;
   font-weight: bold;
   font-size: 21px;
+  gap: 5px;
+  margin-bottom: 10px;
 }
 
 .popupCarddescriptionContainer {
@@ -494,6 +497,8 @@ body {
   flex-direction: column;
   font-weight: bold;
   font-size: 21px;
+  gap: 5px;
+  margin-bottom: 10px;
 }
 
 .popupCarddateContainer {
@@ -501,11 +506,15 @@ body {
   flex-direction: column;
   font-weight: bold;
   font-size: 21px;
+  gap: 5px;
+  margin-bottom: 10px;
 }
 .popupCardprioContainer {
   display: flex;
   flex-direction: column;
   font-size: 21px;
+  gap: 5px;
+  margin-bottom: 10px;
 }
 
 .popupCardprioContainer label {
