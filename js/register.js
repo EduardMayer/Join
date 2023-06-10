@@ -15,6 +15,14 @@ function showLogOut(){
     };
 }
 
+function openhelp(){
+  location.href = "help.html";
+}
+
+function openlegal(){
+  location.href = "legal.html";
+}
+
 function logout(){
   location.href = "index.html";
 }
@@ -48,7 +56,7 @@ async function register() {
         'email': email,
         'password': password.value,
         'contact': [],
-        'tel': 000,
+        'tel': '000',
         'firstLetter': initials,
         'color': rendomColor,
       });

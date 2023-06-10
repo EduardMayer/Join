@@ -8,9 +8,17 @@
       <div class="helpIconContainer"><a href="help.html"><img src="img/helpicon.svg"></a></div>
       <div class="logout">
         <a style="text-decoration: none;" class="guestIcon" href="#"><div class="HeadProfile" id="headProfile" onclick="showLogOut()"></div> </a>
-        <span class="d-none" id="logout" onclick="logout()">
-          Log out
-        </span>
+        <div class="d-none logoutdiv" id="logout">
+          <span id="openhelp" class="d-none" onclick="openhelp()">
+            Help
+          </span>
+          <span id="openlegal" class="d-none" onclick="openlegal()">
+            Legal notice
+          </span>
+          <span  onclick="logout()">
+            Log out
+          </span>
+        </div>
       </div>
   </header>
   <nav class="navbarMainContainer">

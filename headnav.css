@@ -132,19 +132,32 @@ header {
   position: relative;
 }
 
+.logoutdiv{
+  position: absolute;
+  bottom: -134px;
+  width: 80px;
+
+}
+
+.logoutdiv span:first-child{
+  border-top-left-radius: 20px;
+}
+
+.logoutdiv span:last-child{
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+
 .logout span {
   background-color: rgb(41, 55, 71);
-  position: absolute;
-  bottom: -40px;
   width: 70px;
   color: rgb(144, 149, 155);
   padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  text-align: center;
 }
 
 .logout span:hover {
