@@ -265,6 +265,7 @@ h4 {
     background-color: white;
     height: 100%;
     width: 60%;
+    border-top-left-radius: 0;
 }
 
 .form {
@@ -377,7 +378,17 @@ h4 {
     align-items: center;
     width: 128px;
     height: 128px;
-    background-color: rgb(255, 165, 0);
+    border-radius: 100%;
+    font-size: 28px;
+    margin-right: 50px;
+}
+
+.profilepictureEdit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 128px;
+    height: 128px;
     border-radius: 100%;
     font-size: 28px;
     margin-right: 50px;
@@ -619,6 +630,9 @@ h4 {
     .bigImg{
         margin-top: -75px;
     }
+    .profilepictureEdit{
+        margin-top: -75px;
+    }
     h4{
         font-size: 38px;
     }
@@ -809,11 +823,15 @@ h4 {
 }
 
 @media (max-width: 440px){
+    .cancel-overbutton{
+        right: -30px;
+        top: -35px;
+    }
     .Add-contact{
-        width: 130%;
+        width: 140%;
     }
     .form-overdiv{
-        width: 130%;
+        width: 140%;
     }
     .overheader-Div{
         top: 10px;

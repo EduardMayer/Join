@@ -278,7 +278,7 @@ function editContactHTML(){
                 </div>
             </div>
             <div class="form-overdiv">
-                <div class="profilepicture" id="twoLettersForEdit" class="bigImg">
+                <div class="profilepictureEdit" id="twoLettersForEdit" class="bigImg">
                 </div>
                 <form class="form">
                     <div class="relativ-for-icon">
