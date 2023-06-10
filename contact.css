@@ -592,6 +592,9 @@ h4 {
 }
 
 @media (max-width: 1100px){
+    .buttons{
+        margin-bottom: 20px;
+    }
     .bright{
         display: block;
     }
