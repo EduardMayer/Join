@@ -8,11 +8,30 @@ async function userInit(){
 
 function showLogOut(){
     let logOutButton =  document.getElementById('logout');
-    if(logOutButton.classList.contains('d-none')){
-        logOutButton.classList.remove('d-none')
+    let helpButton = document.getElementById('openhelp');
+    let legalButton = document.getElementById('openlegal');
+    if(window.innerWidth <= 768) {
+      if(logOutButton.classList.contains('d-none')){
+        logOutButton.classList.remove('d-none');
+        helpButton.classList.remove('d-none');
+        legalButton.classList.remove('d-none');
+      }else{
+        logOutButton.classList.add('d-none');
+        helpButton.classList.add('d-none');
+        legalButton.classList.add('d-none');
+      };
     }else{
-      logOutButton.classList.add('d-none');
-    };
+      if(logOutButton.classList.contains('d-none')){
+        document.getElementById('logout').classList.remove('logoutdiv')
+        document.getElementById('logout').classList.add('logoutdivOne')
+        logOutButton.classList.remove('d-none')
+      }else{
+        document.getElementById('logout').classList.add('logoutdiv')
+        document.getElementById('logout').classList.remove('logoutdivOne')
+        logOutButton.classList.add('d-none');
+      };
+    }
+    
 }
 
 function openhelp(){

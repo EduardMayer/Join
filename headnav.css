@@ -136,7 +136,18 @@ header {
   position: absolute;
   bottom: -134px;
   width: 80px;
+}
 
+.logoutdivOne{
+  position: absolute;
+  bottom: -40px;
+  width: 80px;
+}
+
+.logoutdivOne span{
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 .logoutdiv span:first-child{
