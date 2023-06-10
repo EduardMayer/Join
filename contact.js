@@ -226,7 +226,8 @@ function letterHTML(letter){
 function newContactHTML(){
     return /* html */ `
        <div onclick="doNotClose(event)" class="Add-contact-div">
-            <img onclick="closeOverdiv()" class="cancel-overbutton" src="img/Cancel-greay.svg" alt="">
+            <img onclick="closeOverdiv()" class="cancel-overbutton dark" src="img/Cancel-greay.svg" alt="">
+            <img onclick="closeOverdiv()" class="cancel-overbutton bright" src="img/WhiteC.svg" alt="">
             <div class="Add-contact">
                 <div>
                     <img src="img/logoJoin.svg" alt="">
@@ -267,7 +268,8 @@ function newContactHTML(){
 function editContactHTML(){
     return /* html */ `
        <div onclick="doNotClose(event)" class="Add-contact-div">
-            <img onclick="closeOverdiv()" class="cancel-overbutton" src="img/Cancel-greay.svg" alt="">
+            <img onclick="closeOverdiv()" class="cancel-overbutton dark" src="img/Cancel-greay.svg" alt="">
+            <img onclick="closeOverdiv()" class="cancel-overbutton bright " src="img/WhiteC.svg" alt="">
             <div class="Add-contact">
                 <div>
                     <img src="img/logoJoin.svg" alt="">
