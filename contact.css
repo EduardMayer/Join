@@ -592,6 +592,13 @@ h4 {
 }
 
 @media (max-width: 1100px){
+    .overdiv-slide{
+        top: 0 !important;
+    }
+    .overdiv{
+        top: 100vh;
+        left: 0;
+    }
     .buttons{
         margin-bottom: 20px;
     }
@@ -688,6 +695,16 @@ h4 {
 }
 
 @media (max-width: 769px) {
+    .Add-contact{
+        width: 100%;
+    }
+    .cancel-overbutton{
+        top: -60px;
+        right: 20px;
+    }
+    .form-overdiv{
+        width: 100%;
+    }
     .parent-Container{
         background-color: white;
     }
@@ -743,6 +760,15 @@ h4 {
 }
 
 @media (max-width: 530px){
+    .cancel-overbutton{
+        right: -20px;
+    }
+    .Add-contact{
+        width: 120%;
+    }
+    .form-overdiv{
+        width: 120%;
+    }
     .contacts-infomations{
         display: flex;
         justify-content: flex-start;
@@ -783,6 +809,12 @@ h4 {
 }
 
 @media (max-width: 440px){
+    .Add-contact{
+        width: 130%;
+    }
+    .form-overdiv{
+        width: 130%;
+    }
     .overheader-Div{
         top: 10px;
     }

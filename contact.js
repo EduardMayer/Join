@@ -306,13 +306,11 @@ function editContactHTML(){
 }
 
 function closeOverdiv(){
-    if (!isWindowBelowWidth(1160)) {
-        let div = document.getElementById('overdiv');
-        div.classList.remove('overdiv-slide');
-    }else{
-        document.getElementById('contact-info-container').classList.replace('contact-info-container-new','contact-info-container');
-    }
-    
+    let div = document.getElementById('overdiv');
+    div.classList.remove('overdiv-slide');
+}
+function closeOverdivArrow(){
+    document.getElementById('contact-info-container').classList.replace('contact-info-container-new','contact-info-container');
 }
 
 function openOverdiv(form){
