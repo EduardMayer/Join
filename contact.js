@@ -389,3 +389,6 @@ function openContactHTML(name,firstandSecoundLetters,email,phone,Letter,i){
         </div>
     `;
 }
+
+    
+  

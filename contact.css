@@ -470,14 +470,25 @@ h4 {
         font-size: 22px;
         margin-left: 10px !important;
     }
-
-    .overdiv{
-        display: none;
+    h4{
+        font-size: 38px;
     }
-
+    .Add-contact{
+        font-size: 16px;
+        width: 30%;
+    }
+    .form-overdiv{
+        width: 70%;
+    }
 }
 
 @media (max-width: 1160px) {
+    .Add-contact{
+        font-size: 14px;
+    }
+    h4{
+        font-size: 32px;
+    }
     .contact-info{
         position: relative;
     }
@@ -576,16 +587,53 @@ h4 {
     }
 }
 
-@media (max-width: 920px) {
-    .Add-contact{
-        width: 500px;
-        height:  700px !important;
+@media (max-width: 1100px){
+    .cancel-overbutton{
+        top: -40px;
+        right: 85px;
+    }
+    .form-overdiv{
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+    }
+    .bigImg{
+        margin-top: -75px;
+    }
+    h4{
+        font-size: 38px;
+    }
+    .addContact-line{
+        margin-top: 10px !important;
+    }
+    .Add-contact div{
+        margin-top: 30px;
+    }
+    .Add-contact img{
+        display: none;
     }
     .Add-contact-div{
         display: flex;
         flex-direction: column;
-        
     }
+    .Add-contact{
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 0px;
+        font-size: 16px;
+        width: 80%;
+        min-height: 250px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .form-overdiv{
+        width: 80%;
+    }
+    .form-overdiv{
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 920px) {
     .contact-info-container {
         display: none;
     }
