@@ -391,7 +391,6 @@ h4 {
     height: 128px;
     border-radius: 100%;
     font-size: 28px;
-    margin-right: 50px;
 }
 
 .showname {
@@ -470,6 +469,22 @@ h4 {
 
 .bright{
     display: none;
+}
+
+.mobileEdit{
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    bottom: -10px;
+    right: 10px;
+}
+
+.mobileEdit img{
+    padding: 8px;
+}
+
+.mobileEdit img:hover{
+    cursor: pointer;
 }
 
 @media (max-width: 1300px) {
@@ -709,6 +724,12 @@ h4 {
 }
 
 @media (max-width: 769px) {
+    .openContactOnlyDesk{
+        display: none;
+    }
+    .mobileEdit{
+        display: flex;
+    }
     .Add-contact{
         width: 100%;
     }

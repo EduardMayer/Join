@@ -71,6 +71,7 @@ async function deleteContact(i){
     closeOverdiv();
     document.getElementById('informationsContacts').innerHTML = '';
     contactInit();
+    closeOverdivArrow();
 }
 
 function sortContactsByName() {
@@ -186,6 +187,7 @@ function setInformationsForContact(Letter, i){
     let email = sortedContacts[`${Letter}`][i]['email'];
     let phone = sortedContacts[`${Letter}`][i]['tel'];
     document.getElementById('informationsContacts').innerHTML = openContactHTML(name,firstandSecoundLetters,email,phone,Letter,i);
+    mobileDelButton(email);
 }
 
 function renderContactHTML(){
@@ -374,7 +376,7 @@ function openContactHTML(name,firstandSecoundLetters,email,phone,Letter,i){
         </div>
         <div class="contacts-infomations">
             <span>Contact Information</span>
-            <div>
+            <div class="openContactOnlyDesk">
                 <img src="img/Edit2.svg" alt="">
                 <a onclick="openEdit('other')" href="#">Edit contact</a>
             </div>
@@ -390,5 +392,11 @@ function openContactHTML(name,firstandSecoundLetters,email,phone,Letter,i){
     `;
 }
 
-    
+function mobileDelButton(email){
+    if(window.innerWidth <= 768){
+        let index = users.findIndex(u => u['email'] == email);
+        let button = document.getElementById('delMobile');
+        button.setAttribute('onclick', `deleteContact(${index})`);
+    }
+}
   
