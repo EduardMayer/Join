@@ -792,6 +792,16 @@ h4 {
     .contact-list-overview {
         height: none;
     }
+    .navbarMainContainer{
+        z-index: 20 !important;
+    }
+    .mainAddTaskContainer{
+        overflow: scroll;
+        height: 85vh !important;
+    }
+    .buttonAddTaskContainer{
+        margin-bottom: 20px;
+    }
 }
 
 @media (max-width: 530px){
