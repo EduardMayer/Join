@@ -301,20 +301,21 @@ textarea {
 
 .categoryBox {
   box-sizing: border-box;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  width: 422px;
-  background: #ffffff;
-  border: 1px solid #d1d1d1;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  cursor: pointer;
-  border-top: none;
-  flex-direction: column;
-  height: 110px;
-  overflow: auto;
-  overflow-x: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 422px;
+    background: #ffffff;
+    border: 1px solid #d1d1d1;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    cursor: pointer;
+    border-top: none;
+    flex-direction: column;
+    max-height: 100px;
+    min-height: 10px;
+    overflow: auto;
+    overflow-x: hidden;
 }
 
 .categoryBox::-webkit-scrollbar {
