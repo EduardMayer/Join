@@ -312,7 +312,7 @@ textarea {
     cursor: pointer;
     border-top: none;
     flex-direction: column;
-    max-height: 100px;
+    max-height: 110px;
     min-height: 10px;
     overflow: auto;
     overflow-x: hidden;
