@@ -440,6 +440,7 @@ function saveSelectedContact(index) {
   if (checkbox.checked) {
     // Checkbox wurde ausgewählt, füge den Kontakt zur Liste hinzu
     selectedContacts.push(contactName);
+    startFunction();
   } else {
     // Checkbox wurde abgewählt, entferne den Kontakt aus der Liste
     const contactIndex = selectedContacts.indexOf(contactName);
@@ -982,4 +983,25 @@ function hidePopup() {
   const popup = document.querySelector('.popupAddTaskBoard');
   popup.style.transform = 'translate(-50%, 500%)';
   window.location.href = "board.html"
+}
+
+
+function startFunction(){
+  filterContacts();
+}
+
+
+
+function filterContacts(){
+  const positionen = [];
+  for (let index = 0; index < selectedContacts.length; index++){
+      let contact = selectedContacts[index];
+      for (let i = 0; i < allContacts.length; i++) {
+        if (allContacts[i] === contact) {
+          positionen.push(i);
+        }
+      }
+      console.log(positionen);
+  }
+  
 }
