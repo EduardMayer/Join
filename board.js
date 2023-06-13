@@ -327,7 +327,6 @@ function getRandomColor() {
  */
 function showCard(taskId) {
   let screenWidth = window.innerWidth;
-
   if (screenWidth >= 769) {
     let task = allTasks.find((task) => task.id === taskId);
     let overlayDiv = document.createElement("div");
@@ -348,6 +347,8 @@ function showCard(taskId) {
     mainBoardContainer.style.display = "none";
     showMainBoardContainer.innerHTML = generateShowCardHtml(task, taskId, subtask, backgroundColor, priorityText, priorityImage, assignedContactsHtml);
   }
+
+  
 }
 
 /**
@@ -440,7 +441,6 @@ function saveSelectedContact(index) {
   if (checkbox.checked) {
     // Checkbox wurde ausgewählt, füge den Kontakt zur Liste hinzu
     selectedContacts.push(contactName);
-    startFunction();
   } else {
     // Checkbox wurde abgewählt, entferne den Kontakt aus der Liste
     const contactIndex = selectedContacts.indexOf(contactName);
@@ -509,6 +509,9 @@ function editPopupCard(taskId) {
   let popupCard = document.getElementById("popupContainer");
   checkPrioPopupCard(task);
   popupCard.innerHTML = generateEditPopupCardHtml(task, taskId, today);
+  let PositionContacts = filterContacts();
+  let PositionContactsAsString = JSON.stringify(PositionContacts);
+  checkRightContacts(PositionContactsAsString);
 }
 
 /**
@@ -521,6 +524,21 @@ function editShowCard(taskId) {
   let showCard = document.getElementById("showCard");
   checkPrioPopupCard(task);
   showCard.innerHTML = generateEditShowCardHtml(task, taskId, today, showCard);
+}
+
+function checkRightContacts(PositionContacts){
+  let PositionContactsAsArray = JSON.parse(PositionContacts);
+  for(let i = 0; i < PositionContactsAsArray.length; i++){
+      if(i == PositionContactsAsArray[i]){
+        document.getElementById('dropDownUser').classList.remove('d-none');
+        let checkbox =  document.getElementById(`contact${i}`);
+        if(checkbox){
+          checkbox.checked = true;
+        }else{
+          console.error(`Element with ID 'contact${i}' not found.`);
+        }
+      }
+  }
 }
 
 /**
@@ -986,21 +1004,16 @@ function hidePopup() {
 }
 
 
-function startFunction(){
-  filterContacts();
-}
-
-
 
 function filterContacts(){
   const positionen = [];
-  for (let index = 0; index < selectedContacts.length; index++){
-      let contact = selectedContacts[index];
+  for (let index = 0; index < users.length; index++){
+      let contact = users[index];
       for (let i = 0; i < allContacts.length; i++) {
-        if (allContacts[i] === contact) {
+        if (allContacts[i] === contact['name']) {
           positionen.push(i);
         }
       }
-      console.log(positionen); 
+      return positionen;
   }
 }
