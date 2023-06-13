@@ -218,7 +218,7 @@ function generateEditShowCardHtml(task, taskId, today) {
       </div>
       <div class="assignedToContainer">
                     <label for="Category"><b>Assigned to</b></label>
-                    <div onclick="openDropBoxAssigned()" class="childPopupTaskContainer" id="assigned">
+                    <div onclick="openDropBoxAssigned(${taskId})" class="childPopupTaskContainer" id="assigned">
                         <p>Select contacts to assign</p>
                         <img src="img/arrowTask.svg">
                     </div>

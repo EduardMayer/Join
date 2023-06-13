@@ -1025,21 +1025,3 @@ function hidePopup() {
   popup.style.transform = 'translate(-50%, 500%)';
   window.location.href = "board.html"
 }
-
-<<<<<<< HEAD
-=======
-
-
-function filterContacts(){
-  const positionen = [];
-  for (let index = 0; index < users.length; index++){
-      let contact = users[index];
-      for (let i = 0; i < allContacts.length; i++) {
-        if (allContacts[i] === contact['name']) {
-          positionen.push(i);
-        }
-      }
-      return positionen;
-  }
-}
->>>>>>> cc3523415d7aca25e526ef9e8e3dae6262fffa7e
