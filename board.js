@@ -194,24 +194,6 @@ function checkPrioritySelected() {
   return false; // Gibt false zurück, wenn eine Priorität ausgewählt wurde
 }
 
-function getSelectedContacts() {
-  let selectedContacts = [];
-  let checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-  
-  if (checkboxes.length === 0) {
-    let errorMessage = document.getElementById("assigned-error");
-    errorMessage.textContent = "Please select at least one contact.";
-    errorMessage.style.color = "red";
-    return selectedContacts;
-  }
-
-  checkboxes.forEach((checkbox) => {
-    let contactId = checkbox.id.replace("contact", "");
-    selectedContacts.push(allContacts[contactId]);
-  });
-
-  return selectedContacts;
-}
 
 /**
  * Funktion zum Zurücksetzen der Eingabefelder für eine neue Aufgabe.
@@ -309,7 +291,7 @@ function generateInitialsAndFullName(name) {
   // Speichere die Farbe im Objekt
   initialsColors[name] = initialsBackgroundColor;
 
-  return `<div class="initialsNameBox"><div class="initials" style="background-color:${initialsBackgroundColor}">${firstNameInitial}${lastNameInitial}</div><div>${name}</div></div>`;
+  return `<div class="initialsNameBox"><div class="initials" id="initials" style="background-color:${initialsBackgroundColor}">${firstNameInitial}${lastNameInitial}</div><div id="initialsName">${name}</div></div>`;
 }
 
 function generateInitials(name) {
@@ -323,7 +305,7 @@ function generateInitials(name) {
   // Aktualisiere die Farbe im Objekt
   initialsColors[name] = initialsBackgroundColor;
 
-  return `<div class="initialsSecond" style="background-color:${initialsBackgroundColor}">${firstNameInitial}${lastNameInitial}</div>`;
+  return `<div class="initialsSecond" id="initials" style="background-color:${initialsBackgroundColor}">${firstNameInitial}${lastNameInitial}</div>`;
 }
 
 function generateFullName(name) {
@@ -467,16 +449,24 @@ function saveSelectedContact(index) {
   }
 }
 
-function showAllContacts(selectedContacts) {
-  const dropDownUser = document.getElementById("dropDownUser");
-  const contactBoxes = dropDownUser.getElementsByClassName("contactBox");
 
-  for (let i = 0; i < contactBoxes.length; i++) {
-    const checkbox = contactBoxes[i].querySelector("input[type='checkbox']");
-    const contactName = allContacts[i];
-
-    checkbox.checked = selectedContacts.includes(contactName);
+function getSelectedContacts() {
+  let selectedContacts = [];
+  let checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+  
+  if (checkboxes.length === 0) {
+    let errorMessage = document.getElementById("assigned-error");
+    errorMessage.textContent = "Please select at least one contact.";
+    errorMessage.style.color = "red";
+    return selectedContacts;
   }
+
+  checkboxes.forEach((checkbox) => {
+    let contactId = checkbox.id.replace("contact", "");
+    selectedContacts.push(allContacts[contactId]);
+  });
+
+  return selectedContacts;
 }
 
 /**
@@ -517,8 +507,7 @@ function editPopupCard(taskId) {
   let today = new Date();
   let popupCard = document.getElementById("popupContainer");
   checkPrioPopupCard(task);
-  popupCard.innerHTML = generateEditPopupCardHtml(task, taskId, today, popupCard);
-  showAllContacts(selectedContacts);
+  popupCard.innerHTML = generateEditPopupCardHtml(task, taskId, today);
 }
 
 /**
