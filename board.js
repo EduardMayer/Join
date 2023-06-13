@@ -532,9 +532,7 @@ function editPopupCard(taskId) {
   let popupCard = document.getElementById("popupContainer");
   checkPrioPopupCard(task);
   popupCard.innerHTML = generateEditPopupCardHtml(task, taskId, today);
-  let PositionContacts = filterContacts();
-  let PositionContactsAsString = JSON.stringify(PositionContacts);
-  checkRightContacts(PositionContactsAsString);
+  renderAllContacts(taskId);
 }
 
 /**
@@ -547,6 +545,7 @@ function editShowCard(taskId) {
   let showCard = document.getElementById("showCard");
   checkPrioPopupCard(task);
   showCard.innerHTML = generateEditShowCardHtml(task, taskId, today, showCard);
+  renderAllContacts(taskId);
 }
 
 function checkRightContacts(PositionContacts){
