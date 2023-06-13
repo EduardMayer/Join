@@ -423,7 +423,7 @@ async function renderCategory() {
   }
 }
 
-function renderAllContacts() {
+function renderAllContacts(taskId) {
   let dropDownUser = document.getElementById("dropDownUser");
   dropDownUser.innerHTML = "";
 
@@ -432,7 +432,30 @@ function renderAllContacts() {
     const isChecked = selectedContacts.includes(name) ? "checked" : ""; // Überprüfe, ob der Kontakt ausgewählt ist
     dropDownUser.innerHTML += `<div class="contactBox"><input type="checkbox" id="contact${i}" name="contact${i}" ${isChecked} onchange="saveSelectedContact(${i})"><label for="contact${i}">${name}</label></div>`;
   }
+
+  markMatchingContacts(taskId);
 }
+
+function markMatchingContacts(taskId) {
+  const task = allTasks.find(task => task.id === taskId);
+
+  if (task) {
+    const taskContacts = task.contacts;
+
+    for (let i = 0; i < allContacts.length; i++) {
+      const contact = allContacts[i];
+      const checkboxId = `contact${i}`;
+      const checkbox = document.getElementById(checkboxId);
+
+      if (taskContacts.includes(contact)) {
+        checkbox.checked = true;
+      } else {
+        checkbox.checked = false;
+      }
+    }
+  }
+}
+
 function saveSelectedContact(index) {
   const checkbox = document.getElementById(`contact${index}`);
   const contactName = allContacts[index];
@@ -440,7 +463,6 @@ function saveSelectedContact(index) {
   if (checkbox.checked) {
     // Checkbox wurde ausgewählt, füge den Kontakt zur Liste hinzu
     selectedContacts.push(contactName);
-    startFunction();
   } else {
     // Checkbox wurde abgewählt, entferne den Kontakt aus der Liste
     const contactIndex = selectedContacts.indexOf(contactName);
@@ -811,10 +833,10 @@ function closeNewCategory() {
 /**
  * Öffnet oder schließt die Dropdown-Box für die Zuweisung an einen Benutzer.
  */
-function openDropBoxAssigned() {
+function openDropBoxAssigned(taskId) {
   let dropDownUser = document.getElementById("dropDownUser");
   let childUserContainer = document.getElementById("assigned");
-  renderAllContacts();
+  renderAllContacts(taskId);
   if (dropDownUser.classList.contains("d-none")) {
     dropDownUser.classList.remove("d-none");
     dropDownUser.classList.add("dropDownBox");
@@ -826,10 +848,10 @@ function openDropBoxAssigned() {
   }
 }
 
-function openDropBoxEditAssigned() {
+function openDropBoxEditAssigned(taskId) {
   let dropDownUser = document.getElementById("dropDownUser");
   let childUserContainer = document.getElementById("assigned");
-  renderAllContacts();
+  renderAllContacts(taskId);
   if (dropDownUser.classList.contains("d-none")) {
     dropDownUser.classList.remove("d-none");
     dropDownUser.classList.add("dropDownBox");
@@ -985,23 +1007,3 @@ function hidePopup() {
   window.location.href = "board.html"
 }
 
-
-function startFunction(){
-  filterContacts();
-}
-
-
-
-function filterContacts(){
-  const positionen = [];
-  for (let index = 0; index < selectedContacts.length; index++){
-      let contact = selectedContacts[index];
-      for (let i = 0; i < allContacts.length; i++) {
-        if (allContacts[i] === contact) {
-          positionen.push(i);
-        }
-      }
-      console.log(positionen);
-  }
-  
-}
