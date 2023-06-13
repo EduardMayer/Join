@@ -206,13 +206,14 @@ function clearTask() {
   const subtaskDescription = document.getElementById("subTaskDescription");
 
   alarmbox.innerHTML = ``;
-  title.value = "";
-  description.value = "";
+  title.value = ``;
+  description.value = ``;
   subtask.value = ``;
   subtaskDescription.innerHTML = ``;
 
   setCurrentDate();
   clearCategory();
+  clearDropBoxAssigned();
   resetElement(currentElement);
 }
 
@@ -548,20 +549,6 @@ function editShowCard(taskId) {
   renderAllContacts(taskId);
 }
 
-function checkRightContacts(PositionContacts){
-  let PositionContactsAsArray = JSON.parse(PositionContacts);
-  for(let i = 0; i < PositionContactsAsArray.length; i++){
-      if(i == PositionContactsAsArray[i]){
-        document.getElementById('dropDownUser').classList.remove('d-none');
-        let checkbox =  document.getElementById(`contact${i}`);
-        if(checkbox){
-          checkbox.checked = true;
-        }else{
-          console.error(`Element with ID 'contact${i}' not found.`);
-        }
-      }
-  }
-}
 
 /**
  * Funktion zum Abrufen des Kategorietexts für eine Aufgabenkarte.
@@ -881,7 +868,14 @@ function openDropBoxEditAssigned(taskId) {
   }
 }
 
-
+function clearDropBoxAssigned(){
+  let dropDownUser = document.getElementById("dropDownUser");
+  let childUserContainer = document.getElementById("assigned");
+  selectedContacts = [];
+  dropDownUser.classList.add("d-none");
+  dropDownUser.classList.remove("dropDownBox");
+  childUserContainer.classList.remove("b-none");
+}
 
 /**
  * Öffnet oder schließt die Dropdown-Box für die Kategorieauswahl.
@@ -932,11 +926,13 @@ function closeSubImg() {
  */
 function addSubtask() {
   let subtask = document.getElementById("subtask").value;
-  document.getElementById(
-    "subTaskDescription"
-  ).innerHTML += `<div class="checkContainer"><input type="checkbox"><div class="subBox">${subtask}</div></div>`;
-  document.getElementById("subtask").value = ``;
-  pushSubtask();
+  if (subtask.trim() !== '') {
+    document.getElementById(
+      "subTaskDescription"
+    ).innerHTML += `<div class="checkContainer"><input type="checkbox"><div class="subBox">${subtask}</div></div>`;
+    document.getElementById("subtask").value = ``;
+    pushSubtask();
+  }
 }
 
 /**
@@ -1016,7 +1012,7 @@ function setCurrentDate() {
 function showPopup() {
   const popup = document.querySelector('.popupAddTaskBoard');
   popup.style.transform = 'translate(-50%, -50%)';
-  setTimeout(hidePopup, 2000); 
+  setTimeout(hidePopup, 1000); 
 }
 
 function hidePopup() {

@@ -251,7 +251,7 @@ header {
     flex-direction: row;
     width: 100%;
     height: 50px;
-    gap: 15px;
+    gap: 5px;
     justify-content: space-around;
   }
   .navbarSection {
