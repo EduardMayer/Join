@@ -1001,7 +1001,6 @@ function filterContacts(){
           positionen.push(i);
         }
       }
-      console.log(positionen);
+      console.log(positionen); 
   }
-  
 }
