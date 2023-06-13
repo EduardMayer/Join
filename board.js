@@ -733,7 +733,7 @@ function newCategory() {
   let categoryContainer = document.getElementById("categoryContainer");
   let newCategoryContainer = document.getElementById("newCategoryContainer");
   let categoryColors = document.getElementById("categoryColors");
-
+  renderColorCategory();
   categoryContainer.classList.add("d-none");
   newCategoryContainer.classList.remove("d-none");
   categoryColors.classList.remove("d-none");
@@ -746,6 +746,8 @@ function newCategory() {
  */
 function renderColorCategory() {
   let categoryColors = document.getElementById("categoryColors");
+  categoryColors.innerHTML = '';
+
   for (let i = 0; i < allColors.length; i++) {
     categoryColors.innerHTML += `<div onclick="selectColor(${i})" id="selectColor${i}" class="color" style="background-color: ${allColors[i]}">
     </div>`;
@@ -818,20 +820,21 @@ function selectCategory(i) {
 function closeNewCategory() {
   let categoryContainer = document.getElementById("categoryContainer");
   let newCategoryContainer = document.getElementById("newCategoryContainer");
-  let dropDownBox = document.getElementById("dropDownBox");
+  let dropDownBox = document.getElementById("newCategoryBox");
   let childTaskContainer = document.getElementById("category");
   let categoryColors = document.getElementById("categoryColors");
   let categoryBox = document.getElementById("categoryBox");
 
   categoryBox.classList.add("d-none");
   categoryBox.classList.remove("categoryBox");
-  categoryContainer.classList.remove("d-none");
-  newCategoryContainer.classList.add("d-none");
-  dropDownBox.classList.add("d-none");
-  dropDownBox.classList.remove("dropDownBox");
-  childTaskContainer.classList.remove("b-none");
   categoryColors.classList.add("d-none");
   categoryColors.classList.remove("colorsContainer");
+  categoryContainer.classList.remove("d-none");
+  newCategoryContainer.classList.add("d-none");
+  childTaskContainer.classList.remove("b-none");
+  dropDownBox.classList.add("d-none");
+  dropDownBox.classList.remove("dropDownBox");
+
   clearCategory();
 }
 
