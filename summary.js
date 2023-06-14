@@ -115,7 +115,6 @@ function renderSummaryCards(totalCount, todoCount, progressCount, feedbackCount,
 }
 
 function renderGreetingMessage() {
- // let user = getUser();
   let message = getGreeting();
   if (message) {
     document.getElementById("greeting-message").innerHTML = message;
@@ -171,7 +170,7 @@ let nameFromCookie = cookieValue.split(';').find(cookie => cookie.includes('user
  function showsGreetingName(nameFromCookie) {
    if (nameFromCookie === undefined) {
        document.getElementById('greeting-user').innerHTML = 'Guest';
-  //     document.getElementById('overlay').innerHTML = 'Guest';
+ //      document.getElementById('overlay').innerHTML = 'Guest';
   } else {
        let nameCookieFormatted = nameFromCookie.split('=')[1];
        const selectedUser = users.find(user => user.name.toLowerCase().replace(' ', '') === nameCookieFormatted);
@@ -188,16 +187,30 @@ function linkToBoard() {
 
 function mobileGreet() {
   if (window.innerWidth < 768) {
-      let overlay = document.getElementById("overlay");
+      let overlayContainer = document.getElementById("overlayContainer");
       let mainContainer = document.getElementsByClassName('main')[0];
       if (document.referrer.includes("index.html")) {
-          overlay.classList.remove('d-none');
-          overlay.classList.add('overlay');
+        overlayContainer.classList.remove('d-none');
+        overlayContainer.classList.add('overlayContainer');
           mainContainer.classList.add('d-none');
+          greetText();
           setTimeout(function() {
-              overlay.classList.add('d-none');
+            overlayContainer.classList.add('d-none');
               mainContainer.classList.remove('d-none');
           }, 2500);
       }
   }
+}
+
+function greetText(){
+  let user = renderOverlayProfile();
+  let message = getGreeting();
+  if (message) {
+    document.getElementById("overlay").innerHTML = message;
+    document.getElementById('overlayUser').innerHTML = '';
+  } else {
+    document.getElementById("overlay").innerHTML = message + ",";
+    document.getElementById('overlayUser').innerHTML = user;
+  }
+ 
 }

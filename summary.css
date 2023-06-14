@@ -339,16 +339,24 @@ p {
   color: #29ABE2;
 }
 
-.overlay {
-  position: fixed;
-  right: 0;
-  bottom: 80px;
-  width: 100%;
-  height: 85%;
+.overlayContainer {
+  display: flex;
   background-color: white;
-  opacity: 1;
-  transition: opacity 1s ease-out;
-  z-index: 9999;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.overlay{
+  font-weight: 500;
+  font-size: 44px;
+  color: var(--dark-grey);
+}
+.overlayUser{
+  font-weight: 700;
+  font-size: 50px;
+  color: #29ABE2;
 }
 
 @media (max-width: 1300px) {

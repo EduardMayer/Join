@@ -20,3 +20,11 @@ async function renderUserProfile() {
 }
 
 
+async function renderOverlayProfile() {
+  await loadLogtinUser(); // Warten, bis logtinUser geladen ist
+  let profileDiv = document.getElementById('overlayUser');
+  let name = logtinUser['name'];
+  profileDiv.innerHTML = name;
+}
+
+
