@@ -350,12 +350,12 @@ p {
 
 .overlay{
   font-weight: 500;
-  font-size: 44px;
+  font-size: 40px;
   color: var(--dark-grey);
 }
 .overlayUser{
   font-weight: 700;
-  font-size: 50px;
+  font-size: 45px;
   color: #29ABE2;
 }
 
