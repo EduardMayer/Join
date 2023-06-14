@@ -124,6 +124,7 @@ function renderGreetingMessage() {
     document.getElementById("greeting-message").innerHTML = message + ",";
      document.getElementById('greeting-user').innerHTML = user;
   }
+  mobileGreet();
 }
 
 function getGreeting() {
@@ -139,6 +140,7 @@ function getGreeting() {
   if ((time >= 18 && time < 24) || (time >= 0 && time < 6)) {
     return "Good evening,";
   }
+  
 }
 
 function setDate() {
@@ -169,17 +171,33 @@ let nameFromCookie = cookieValue.split(';').find(cookie => cookie.includes('user
  function showsGreetingName(nameFromCookie) {
    if (nameFromCookie === undefined) {
        document.getElementById('greeting-user').innerHTML = 'Guest';
-       document.getElementById('summary-greeting-name-responsive').innerHTML = 'Guest';
+  //     document.getElementById('overlay').innerHTML = 'Guest';
   } else {
        let nameCookieFormatted = nameFromCookie.split('=')[1];
        const selectedUser = users.find(user => user.name.toLowerCase().replace(' ', '') === nameCookieFormatted);
 
       document.getElementById('greeting-user').innerHTML = selectedUser.name;
-      document.getElementById('summary-greeting-name-responsive').innerHTML = selectedUser.name;
+  //    document.getElementById('overlay').innerHTML = selectedUser.name;
    }
  }
- 
+
 
 function linkToBoard() {
   window.location.href = "/Join/board.html";
+}
+
+function mobileGreet() {
+  if (window.innerWidth < 768) {
+      let overlay = document.getElementById("overlay");
+      let mainContainer = document.getElementsByClassName('main')[0];
+      if (document.referrer.includes("index.html")) {
+          overlay.classList.remove('d-none');
+          overlay.classList.add('overlay');
+          mainContainer.classList.add('d-none');
+          setTimeout(function() {
+              overlay.classList.add('d-none');
+              mainContainer.classList.remove('d-none');
+          }, 2500);
+      }
+  }
 }
