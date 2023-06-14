@@ -179,5 +179,5 @@ function getGreeting() {
 // }
 
 function linkToBoard() {
-  window.location.href = "../board.html";
+  window.location.href = "/Join/board.html";
 }
