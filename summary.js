@@ -15,8 +15,9 @@ const monthNames = [
 
 function init() {
   renderSummaryCards();
-  renderGreetingMessage();
   countTaskStatuses();
+  renderGreetingMessage();
+  changeGreetingName();
 }
 
 function countTaskStatuses() {
@@ -106,22 +107,37 @@ function renderSummaryCards(totalCount, todoCount, progressCount, feedbackCount,
         </div>
         
         </div><div class="greet">
-          <div class="greeting-message" id="greeting-message">Good evening</div>
-          <div class"gretting-user" id="greeting-user"></div>
+          <div class="greeting-message" id="greeting-message"></div>
+          <div class="gretting-user" id="greeting-user"></div>
         </div>
       </div>
     </div>`;
 }
 
 function renderGreetingMessage() {
-  // let user = getUser();
+ // let user = getUser();
   let message = getGreeting();
   if (message) {
     document.getElementById("greeting-message").innerHTML = message;
-    // document.getElementById('greeting-user').innerHTML = '';
+     document.getElementById('greeting-user').innerHTML = '';
   } else {
     document.getElementById("greeting-message").innerHTML = message + ",";
-    // document.getElementById('greeting-user').innerHTML = user;
+     document.getElementById('greeting-user').innerHTML = user;
+  }
+}
+
+function getGreeting() {
+  let time = new Date();
+  time = time.getHours();
+
+  if (time >= 6 && time < 12) {
+    return "Good morning,";
+  }
+  if (time >= 12 && time < 18) {
+    return "Good afternoon,";
+  }
+  if ((time >= 18 && time < 24) || (time >= 0 && time < 6)) {
+    return "Good evening,";
   }
 }
 
@@ -143,40 +159,26 @@ function setDate() {
   document.getElementById("date").innerHTML = `${closestDateString}`;
 }
 
-function getGreeting() {
-  let time = new Date();
-  time = time.getHours();
+function changeGreetingName() {
+let cookieValue = document.cookie;
+let nameFromCookie = cookieValue.split(';').find(cookie => cookie.includes('users='));
 
-  if (time >= 6 && time < 12) {
-    return "Good morning";
-  }
-  if (time >= 12 && time < 18) {
-    return "Good afternoon";
-  }
-  if ((time >= 18 && time < 24) || (time >= 0 && time < 6)) {
-    return "Good evening";
-  }
-}
+ showsGreetingName(nameFromCookie);
+ }
 
-// function changeGreetingName() {
-//   let cookieValue = document.cookie;
-//   let nameFromCookie = cookieValue.split(';').find(cookie => cookie.includes('users='));
+ function showsGreetingName(nameFromCookie) {
+   if (nameFromCookie === undefined) {
+       document.getElementById('greeting-user').innerHTML = 'Guest';
+       document.getElementById('summary-greeting-name-responsive').innerHTML = 'Guest';
+  } else {
+       let nameCookieFormatted = nameFromCookie.split('=')[1];
+       const selectedUser = users.find(user => user.name.toLowerCase().replace(' ', '') === nameCookieFormatted);
 
-//   showsGreetingName(nameFromCookie);
-// }
-
-// function showsGreetingName(nameFromCookie) {
-//   if (nameFromCookie === undefined) {
-//       document.getElementById('greeting-user').innerHTML = 'Guest';
-//       document.getElementById('summary-greeting-name-responsive').innerHTML = 'Guest';
-//   } else {
-//       let nameCookieFormatted = nameFromCookie.split('=')[1];
-//       const selectedUser = users.find(user => user.name.toLowerCase().replace(' ', '') === nameCookieFormatted);
-
-//       document.getElementById('greeting-user').innerHTML = selectedUser.name;
-//       document.getElementById('summary-greeting-name-responsive').innerHTML = selectedUser.name;
-//   }
-// }
+      document.getElementById('greeting-user').innerHTML = selectedUser.name;
+      document.getElementById('summary-greeting-name-responsive').innerHTML = selectedUser.name;
+   }
+ }
+ 
 
 function linkToBoard() {
   window.location.href = "/Join/board.html";

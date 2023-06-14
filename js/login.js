@@ -53,7 +53,7 @@ function login(event){
 }
 
 function guestLogin(){
-    let guestUser = {name: 'Guest Profile', email: 'Guest@Guest.de', password: '1234', contact: Array(0), tel: 0, firstLetter: 'Guest'}
+    let guestUser = {name: 'Guest', email: 'Guest@Guest.de', password: '1234', contact: Array(0), tel: 0, firstLetter: 'Guest'}
     let userAsString = JSON.stringify(guestUser);
     localStorage.setItem('user', userAsString);
     location.href = "summary.html";

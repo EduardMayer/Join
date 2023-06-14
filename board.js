@@ -30,7 +30,6 @@ async function includeHTML() {
   renderUserProfileHead();
 }
 
-
 /**
  * Funktion zum Rendern der Aufgabenkarten auf dem Board basierend auf dem Status.
  * Ruft die Funktion 'renderTasksByStatus' für jeden Status auf und rendert die entsprechenden Aufgabenkarten in den entsprechenden Containern.
