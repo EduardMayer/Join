@@ -121,7 +121,22 @@ textarea {
 .prioContainer {
   display: flex;
   flex-direction: column;
+  margin-bottom: 5px;
 }
+.prioContainerPopup{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+
+.prioContainerPopup label{
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  font-size: 21px;
+  gap: 5px;
+}
+
 .prioChildContainer {
   display: flex;
   gap: 8px;

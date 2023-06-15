@@ -86,7 +86,7 @@ function generateEditPopupCardHtml(task, taskId, today) {
           today.toISOString().split("T")[0]
         }" value="${task.date}">
       </div>
-      <div class="prioContainer" id="prioContainer">
+      <div class="prioContainerPopup" id="prioContainer">
                     <label for="Prio">Prio</label>
                     <div class="prioChildContainer">
                         <div id="urgent" onclick="checkpriobox('urgent')" class="prioBox">
@@ -197,7 +197,7 @@ function generateEditShowCardHtml(task, taskId, today) {
           today.toISOString().split("T")[0]
         }" value="${task.date}">
       </div>
-      <div class="prioContainer" id="prioContainer">
+      <div class="prioContainerPopup" id="prioContainer">
                     <label for="Prio">Prio</label>
                     <div class="prioChildContainer">
                         <div id="urgent" onclick="checkpriobox('urgent')" class="prioBox">
@@ -286,23 +286,23 @@ function popupAddTaskContainerTemplate(status) {
               </div>
             </div>
             <div class="prioContainer" id="prioContainer">
-              <label for="Prio">Prio</label>
-              <div class="prioChildContainer">
-                <div id="urgent" onclick="checkpriobox(event)" class="prioBox">
-                  Urgent
-                  <img src="img/urgent.svg" data-default-img="img/urgent.svg" alt="Urgent Priority">
+                    <label for="Prio">Prio</label>
+                    <div class="prioChildContainer">
+                        <div id="urgent" onclick="checkpriobox('urgent')" class="prioBox">
+                            Urgent
+                            <img src="img/urgent.svg" data-default-img="img/urgent.svg" alt="Urgent Priority">
+                        </div>
+                        <div id="medium" onclick="checkpriobox('medium')" class="prioBox">
+                            Medium
+                            <img src="img/medium.svg" data-default-img="img/medium.svg" alt="Medium Priority">
+                        </div>
+                        <div id="low" onclick="checkpriobox('low')" class="prioBox">
+                            Low
+                            <img src="img/low.svg" data-default-img="img/low.svg" alt="Low Priority">
+                        </div>
+                    </div>
+                    <div id="prioBoxAlarm"></div>
                 </div>
-                <div id="medium" onclick="checkpriobox(event)" class="prioBox">
-                  Medium
-                  <img src="img/medium.svg" data-default-img="img/medium.svg" alt="Medium Priority">
-                </div>
-                <div id="low" onclick="checkpriobox(event)" class="prioBox">
-                  Low
-                  <img src="img/low.svg" data-default-img="img/low.svg" alt="Low Priority">
-                </div>
-              </div>
-              <div id="prioBoxAlarm"></div>
-            </div>
             <div class="subtaskContainer">
               <label for="subtaskChildInput">Subtasks</label>
               <div class="subtaskChildContainer">
