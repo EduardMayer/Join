@@ -12,7 +12,7 @@ const monthNames = [
   "November",
   "Dezember",
 ];
-renderUserProfile();
+
 
 async function init() {
   await load();
@@ -23,6 +23,7 @@ async function init() {
   renderGreetingMessage();
   changeGreetingName();
   setDate();
+  renderUserProfileHead();
 }
 
 function countTaskStatuses() {
