@@ -12,14 +12,17 @@ const monthNames = [
   "November",
   "Dezember",
 ];
+renderUserProfile();
 
-
-function init() {
+async function init() {
+  await load();
+  renderUserProfile();
+  loadLogtinUser();
   renderSummaryCards();
   countTaskStatuses();
   renderGreetingMessage();
   changeGreetingName();
-  renderUserProfile();
+  setDate();
 }
 
 function countTaskStatuses() {
