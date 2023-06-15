@@ -13,15 +13,15 @@ const monthNames = [
   "Dezember",
 ];
 
-async function init() {
-  await load();
+
+function init() {
   renderSummaryCards();
   countTaskStatuses();
   renderGreetingMessage();
   changeGreetingName();
 }
 
-async function countTaskStatuses() {
+function countTaskStatuses() {
   let totalCount = allTasks.length;
   let todoCount = 0;
   let progressCount = 0;
@@ -59,6 +59,7 @@ async function countTaskStatuses() {
     doneCount,
     urgentCount
   );
+  load();
 }
 
 function renderSummaryCards(

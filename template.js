@@ -176,9 +176,7 @@ function generateEditShowCardHtml(task, taskId, today) {
     <form onsubmit="event.preventDefault(); savePopupCard(${taskId})">
       <div>
         <div class="cancelPopupCardBox"><div onclick="closeShowCard()" class="cancelIconPopupCard"><img src="img/cross.png"></div></div>
-        <div class="editPopupCardCategory" id="popupcardCategory" onclick="setPopupCategoryCard(${taskId})" style="background-color:${
-    task.categoryColor
-  }">${task.categoryText}</div>
+        <div class="editPopupCardCategory" id="popupcardCategory" onclick="setPopupCategoryCard(${taskId})" style="background-color:${task.categoryColor}">${task.categoryText}</div>
         <div id="popupCategoryBox" class="popupCategoryBox"></div>
       </div>
       <div class="popupCardtitleContainer">

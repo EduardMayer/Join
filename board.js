@@ -533,8 +533,14 @@ function getSelectedContacts() {
  */
 function setPopupCategoryCard() {
   let popupCategoryBox = document.getElementById("popupCategoryBox");
-  popupCategoryBox.innerHTML = "";
 
+  // Überprüfe, ob der Popup-Container bereits sichtbar ist
+  if (popupCategoryBox.innerHTML !== "") {
+    popupCategoryBox.innerHTML = ""; // Wenn sichtbar, leere den Inhalt und beende die Funktion
+    return;
+  }
+
+  // Wenn nicht sichtbar, erzeuge den Inhalt wie zuvor
   for (let i = 0; i < allCategory.length; i++) {
     const category = allCategory[i].category;
     const color = allCategory[i].color;
