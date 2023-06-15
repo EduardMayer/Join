@@ -13,11 +13,12 @@ const monthNames = [
   "Dezember",
 ];
 
-function init() {
+async function init() {
+  await load();
   renderSummaryCards();
+  countTaskStatuses();
   renderGreetingMessage();
   changeGreetingName();
-  countTaskStatuses();
 }
 
 async function countTaskStatuses() {
