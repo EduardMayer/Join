@@ -17,7 +17,6 @@ const monthNames = [
 async function init() {
   await load();
   renderUserProfile();
-  loadLogtinUser();
   renderSummaryCards();
   countTaskStatuses();
   renderGreetingMessage();
