@@ -170,7 +170,6 @@ async function setDate() {
     .sort((a, b) => a.getTime() - b.getTime());
 
   if (sortedUrgentTasks.length === 0) {
-    console.log("No urgent tasks found.");
     return;
   }
 
