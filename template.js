@@ -86,24 +86,24 @@ function generateEditPopupCardHtml(task, taskId, today) {
           today.toISOString().split("T")[0]
         }" value="${task.date}">
       </div>
-      <div class="popupCardprioContainer" id="prioContainer">
-        <label for="Prio">Prio</label>
-        <div class="prioChildContainer">
-          <div id="urgent" onclick="checkpriobox(event)" class="popupCardprioBox">
-              Urgent
-              <img src="img/urgent.svg" data-default-img="img/urgent.svg" alt="Urgent Priority">
-          </div>
-          <div id="medium" onclick="checkpriobox(event)" class="popupCardprioBox">
-              Medium
-              <img src="img/medium.svg" data-default-img="img/medium.svg" alt="Medium Priority">
-          </div>
-          <div id="low" onclick="checkpriobox(event)" class="popupCardprioBox">
-              Low
-              <img src="img/low.svg" data-default-img="img/low.svg" alt="Low Priority">
-          </div>
-        </div>
-        <div id="prioBoxAlarm"></div>
-      </div>
+      <div class="prioContainer" id="prioContainer">
+                    <label for="Prio">Prio</label>
+                    <div class="prioChildContainer">
+                        <div id="urgent" onclick="checkpriobox('urgent')" class="prioBox">
+                            Urgent
+                            <img src="img/urgent.svg" data-default-img="img/urgent.svg" alt="Urgent Priority">
+                        </div>
+                        <div id="medium" onclick="checkpriobox('medium')" class="prioBox">
+                            Medium
+                            <img src="img/medium.svg" data-default-img="img/medium.svg" alt="Medium Priority">
+                        </div>
+                        <div id="low" onclick="checkpriobox('low')" class="prioBox">
+                            Low
+                            <img src="img/low.svg" data-default-img="img/low.svg" alt="Low Priority">
+                        </div>
+                    </div>
+                    <div id="prioBoxAlarm"></div>
+                </div>
       <div class="assignedToContainer">
                     <label for="Category"><b>Assigned to</b></label>
                     <div onclick="openDropBoxAssigned(${taskId})" class="childPopupTaskContainer" id="assigned">
@@ -197,24 +197,24 @@ function generateEditShowCardHtml(task, taskId, today) {
           today.toISOString().split("T")[0]
         }" value="${task.date}">
       </div>
-      <div class="popupCardprioContainer" id="prioContainer">
-        <label for="Prio">Prio</label>
-        <div class="prioChildContainer">
-          <div id="urgent" onclick="checkpriobox(event)" class="popupCardprioBox">
-              Urgent
-              <img src="img/urgent.svg" data-default-img="img/urgent.svg" alt="Urgent Priority">
-          </div>
-          <div id="medium" onclick="checkpriobox(event)" class="popupCardprioBox">
-              Medium
-              <img src="img/medium.svg" data-default-img="img/medium.svg" alt="Medium Priority">
-          </div>
-          <div id="low" onclick="checkpriobox(event)" class="popupCardprioBox">
-              Low
-              <img src="img/low.svg" data-default-img="img/low.svg" alt="Low Priority">
-          </div>
-        </div>
-        <div id="prioBoxAlarm"></div>
-      </div>
+      <div class="prioContainer" id="prioContainer">
+                    <label for="Prio">Prio</label>
+                    <div class="prioChildContainer">
+                        <div id="urgent" onclick="checkpriobox('urgent')" class="prioBox">
+                            Urgent
+                            <img src="img/urgent.svg" data-default-img="img/urgent.svg" alt="Urgent Priority">
+                        </div>
+                        <div id="medium" onclick="checkpriobox('medium')" class="prioBox">
+                            Medium
+                            <img src="img/medium.svg" data-default-img="img/medium.svg" alt="Medium Priority">
+                        </div>
+                        <div id="low" onclick="checkpriobox('low')" class="prioBox">
+                            Low
+                            <img src="img/low.svg" data-default-img="img/low.svg" alt="Low Priority">
+                        </div>
+                    </div>
+                    <div id="prioBoxAlarm"></div>
+                </div>
       <div class="assignedToContainer">
                     <label for="Category"><b>Assigned to</b></label>
                     <div onclick="openDropBoxAssigned(${taskId})" class="childPopupTaskContainer" id="assigned">

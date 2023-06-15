@@ -144,7 +144,9 @@ function generateProgressBarContainerHTML(task) {
  * @param {object} task - Das Task-Objekt.
  * @returns {object} - Ein Objekt mit den Prioritätsinformationen (Bild, Text und Hintergrundfarbe).
  */
-async function checkPrioPopupCard(task) {
+function checkPrioPopupCard(task) {
+  let priorityImage, priorityText, backgroundColor;
+
   if (task.priority === "urgent") {
     priorityImage = "img/Prio-urgent-white.png";
     priorityText = "Urgent";
@@ -156,8 +158,9 @@ async function checkPrioPopupCard(task) {
   } else {
     priorityImage = "img/Prio-low-white.png";
     priorityText = "Low";
-    backgroundColor = "rgb(122,226,41)";
+    backgroundColor = "rgb(122, 226, 41)";
   }
+
   return { priorityImage, priorityText, backgroundColor };
 }
 
@@ -1006,33 +1009,36 @@ function resetImage(box) {
  * Ändert die Hintergrundfarbe und das Symbolbild des ausgewählten Prioritätsbuttons.
  * @param {object} event - Das Ereignisobjekt für das Klicken auf den Prioritätsbutton.
  */
-function checkpriobox(event) {
-  let element = event.target;
 
-  if (currentElement === element) {
-    element.style.backgroundColor = "";
-    resetImage(element);
-    currentElement = null;
-    clickedId = null;
-  } else {
-    if (currentElement !== null) {
-      currentElement.style.backgroundColor = "";
-      resetImage(currentElement);
-    }
 
-    if (element.id === "urgent") {
-      element.style.backgroundColor = "rgb(255, 61, 0)";
-      element.querySelector("img").src = "img/Prio-urgent-white.png";
-    } else if (element.id === "medium") {
-      element.style.backgroundColor = "rgb(255, 168, 0)";
-      element.querySelector("img").src = "img/Prio-medium-white.png";
-    } else if (element.id === "low") {
-      element.style.backgroundColor = "rgb(122,226,41)";
-      element.querySelector("img").src = "img/Prio-low-white.png";
+function checkpriobox(elementId) {
+    let element = document.getElementById(elementId);
+
+    if (currentElement === element) {
+        element.style.backgroundColor = "";
+        resetImage(element);
+        currentElement = null;
+        clickedId = null;
+    } else {
+        if (currentElement !== null) {
+            currentElement.style.backgroundColor = "";
+            resetImage(currentElement);
+        }
+
+        if (elementId === "urgent") {
+            element.style.backgroundColor = "rgb(255, 61, 0)";
+            element.querySelector("img").src = "img/Prio-urgent-white.png";
+        } else if (elementId === "medium") {
+            element.style.backgroundColor = "rgb(255, 168, 0)";
+            element.querySelector("img").src = "img/Prio-medium-white.png";
+        } else if (elementId === "low") {
+            element.style.backgroundColor = "rgb(122, 226, 41)";
+            element.querySelector("img").src = "img/Prio-low-white.png";
+        }
+
+        currentElement = element;
+        clickedId = elementId;
     }
-    currentElement = element;
-    clickedId = event.target.id;
-  }
 }
 
 /**
