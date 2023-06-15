@@ -144,7 +144,7 @@ function generateProgressBarContainerHTML(task) {
  * @param {object} task - Das Task-Objekt.
  * @returns {object} - Ein Objekt mit den Prioritätsinformationen (Bild, Text und Hintergrundfarbe).
  */
-function checkPrioPopupCard(task) {
+async function checkPrioPopupCard(task) {
   if (task.priority === "urgent") {
     priorityImage = "img/Prio-urgent-white.png";
     priorityText = "Urgent";
@@ -340,14 +340,14 @@ function getRandomColor() {
  * Zeigt die Details einer Aufgabenkarte an.
  * @param {number} taskId - Die ID der Aufgabenkarte.
  */
-function showCard(taskId) {
+async function showCard(taskId) {
   let screenWidth = window.innerWidth;
   if (screenWidth >= 769) {
     let task = allTasks.find((task) => task.id === taskId);
     let overlayDiv = document.createElement("div");
     let popupCard = document.getElementById("popupContainer");
     let { priorityImage, priorityText, backgroundColor } =
-      checkPrioPopupCard(task);
+      await checkPrioPopupCard(task);
     let subtask = generateSubtaskHtml(task, taskId);
     let assignedContactsHtml = task.contacts
       .map((contact) => generateInitialsAndFullName(contact))
@@ -569,11 +569,11 @@ function selectPopupCategory(i) {
  * Funktion, um das Popup-Kartenelement zum Bearbeiten einer Aufgabe anzuzeigen.
  * @param {number} taskId - Die ID der Aufgabe, die bearbeitet werden soll.
  */
-function editPopupCard(taskId) {
+async function editPopupCard(taskId) {
   let task = allTasks.find((task) => task.id === taskId);
   let today = new Date();
   let popupCard = document.getElementById("popupContainer");
-  checkPrioPopupCard(task);
+  await checkPrioPopupCard(task);
   popupCard.innerHTML = generateEditPopupCardHtml(task, taskId, today);
   renderAllContacts(taskId);
 }
@@ -582,11 +582,11 @@ function editPopupCard(taskId) {
  * Funktion, um das Popup-Kartenelement zum Bearbeiten einer Aufgabe anzuzeigen.
  * @param {number} taskId - Die ID der Aufgabe, die bearbeitet werden soll.
  */
-function editShowCard(taskId) {
+async function editShowCard(taskId) {
   let task = allTasks.find((task) => task.id === taskId);
   let today = new Date();
   let showCard = document.getElementById("showCard");
-  checkPrioPopupCard(task);
+  await checkPrioPopupCard(task);
   showCard.innerHTML = generateEditShowCardHtml(task, taskId, today, showCard);
   renderAllContacts(taskId);
 }
@@ -1014,6 +1014,7 @@ function checkpriobox(event) {
 
   if (currentElement === element) {
     element.style.backgroundColor = "";
+    document.getElementById('low').classList.add('img')
     resetImage(element);
     currentElement = null;
     clickedId = null;
