@@ -246,7 +246,11 @@ p {
   display: none;
 }
 
-.todo:hover .d-none {
+.todo .dis-none {
+  display: none;
+}
+
+.todo:hover .dis-none {
   height: 65px;
   display: block;
 }
@@ -282,11 +286,15 @@ p {
   color: white;
 }
 
-.done:hover .done-btn {
+.done:hover .dis-none-btn {
   display: none;
 }
 
-.done:hover .d-none {
+.done .dis-none {
+  display: none;
+}
+
+.done:hover .dis-none {
   height: 65px;
   display: block;
 }
@@ -348,12 +356,13 @@ p {
   height: 100vh;
 }
 
-.overlay{
+.overlay {
   font-weight: 500;
   font-size: 40px;
   color: var(--dark-grey);
 }
-.overlayUser{
+
+.overlayUser {
   font-weight: 700;
   font-size: 45px;
   color: #29ABE2;
@@ -488,7 +497,7 @@ p {
     border: 2px solid #29ABE2;
     width: 90px;
   }
-  
+
   h1 {
     line-height: 0px;
   }
@@ -506,6 +515,7 @@ p {
   .headline {
     margin-left: 100px;
   }
+
   .todo-done img {
     width: 50px;
   }

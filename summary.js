@@ -110,15 +110,15 @@ function renderSummaryCards(
       <div class="todo-done">
         <div class="todo" onclick="linkToBoard()">
             <img class="pensil" src="img/Group 7.svg">
-            <img class="d-none" src="img/pencilInverted.png">
+            <img class="dis-none" src="img/pencilInverted.png">
             <div class="todo-done-ticket">
               <div class="todo-done-number">${todoCount}</div>
               <p>To-do</p>
             </div>
           </div>
           <div class="done" onclick="linkToBoard()">
-            <img class="done-btn" src="img/done-button.svg">
-            <img class="d-none" src="img/checkInverted.png">
+            <img class="dis-none-btn" src="img/done-button.svg">
+            <img class="dis-none" src="img/checkInverted.png">
             <div class="todo-done-ticket">
               <div class="todo-done-number">${doneCount}</div>
               <p>Done</p>
