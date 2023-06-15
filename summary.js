@@ -19,6 +19,7 @@ async function init() {
   countTaskStatuses();
   renderGreetingMessage();
   changeGreetingName();
+  renderUserProfile();
 }
 
 async function countTaskStatuses() {
