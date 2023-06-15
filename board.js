@@ -788,13 +788,13 @@ async function save() {
  * Fügt eine neue Kategorie basierend auf den Eingaben hinzu.
  * Speichert die Kategorie im Array "allCategory" und aktualisiert die Benutzeroberfläche.
  */
-function addNewCategory() {
+async function addNewCategory() {
   let newCategory = document.getElementById("inputCategory").value;
   let colorBox = document.getElementById("colorBox");
   let selectedColor = colorBox.querySelector(".selected-color");
   let newColor = selectedColor.getAttribute("data-color");
   allCategory.push({ category: newCategory, color: newColor });
-  save();
+  await save();
   document.getElementById("inputCategory").value = ``;
   closeNewCategory();
   renderCategory();

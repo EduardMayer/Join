@@ -15,12 +15,12 @@ const monthNames = [
 
 function init() {
   renderSummaryCards();
-  countTaskStatuses();
   renderGreetingMessage();
   changeGreetingName();
+  countTaskStatuses();
 }
 
-function countTaskStatuses() {
+async function countTaskStatuses() {
   let totalCount = allTasks.length;
   let todoCount = 0;
   let progressCount = 0;
