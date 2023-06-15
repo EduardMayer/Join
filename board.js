@@ -315,7 +315,7 @@ function generateInitials(name) {
   const lastnames = name.substring(name.indexOf(" ") + 1).charAt(0);
 
   // Hole die gespeicherte Farbe für die Initialen oder generiere eine neue zufällige Farbe
-  const initialsBackgroundColor = initialsColors[name] || getRandomColor();
+  const initialsBackgroundColor = initialsColors[name] || getRandomColor(name);
 
   // Aktualisiere die Farbe im Objekt
   initialsColors[name] = initialsBackgroundColor;
@@ -327,12 +327,9 @@ function generateFullName(name) {
   return `<div>${name}</div>`;
 }
 
-function getRandomColor() {
-  const letters = "0123456789ABCDEF";
-  let color = "#";
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
+function getRandomColor(name) {
+  let User = users.find(u => u.name == name)
+  let color = User['color'];
   return color;
 }
 
@@ -1014,7 +1011,6 @@ function checkpriobox(event) {
 
   if (currentElement === element) {
     element.style.backgroundColor = "";
-    document.getElementById('low').classList.add('img')
     resetImage(element);
     currentElement = null;
     clickedId = null;
