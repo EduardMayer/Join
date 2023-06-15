@@ -48,6 +48,7 @@ async function renderBoardCards() {
   renderTasksByStatus("progress", "progress");
   renderTasksByStatus("feedback", "feedback");
   renderTasksByStatus("done", "done");
+  renderUserProfileHead();
 }
 
 /**
@@ -266,6 +267,7 @@ function openAddTaskContainer(status) {
   renderCategory();
   renderColorCategory();
   slideAnimation();
+  
 }
 
 /**
@@ -385,6 +387,7 @@ function showCard(taskId) {
       assignedContactsHtml
     );
   }
+  
 }
 
 /**
