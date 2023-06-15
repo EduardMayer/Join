@@ -44,8 +44,6 @@ function loadUserInformations(email) {
       document.getElementById('deleteButton').setAttribute('onclick', `deleteContact(${index})`);
       document.getElementById('SaveUserButton').setAttribute('onclick', `SaveUser(${index})`);
       document.getElementById('twoLettersForEdit').style.backgroundColor = users[index]['color'];
-    } else {
-      console.log('Benutzer nicht gefunden.');
     }
 }
 
