@@ -211,7 +211,7 @@ function showsGreetingName(nameFromCookie) {
 }
 
 function linkToBoard() {
-  window.location.href = "/Join/board.html";
+  window.location.href = "board.html";
 }
 
 function mobileGreet() {
