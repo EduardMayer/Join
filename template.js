@@ -1,6 +1,8 @@
 function generateCardHTML(task) {
   let progressBarContainerHTML = generateProgressBarContainerHTML(task);
-  let assignedContactsHtml = task.contacts.map((contact) => generateInitials(contact)).join('');
+  let assignedContactsHtml = task.contacts
+    .map((contact) => generateInitials(contact))
+    .join("");
 
   return `
     <div draggable="true" onclick="showCard(${task.id})" ondragstart="startDragging(${task.id})" class="card">
@@ -54,7 +56,6 @@ function generatePopupCardHtml(
     </div>
   `;
 }
-
 
 function generateEditPopupCardHtml(task, taskId, today) {
   return `
@@ -129,7 +130,7 @@ function generateShowCardHtml(
   backgroundColor,
   priorityText,
   priorityImage,
-  assignedContactsHtml,
+  assignedContactsHtml
 ) {
   return `
     <div class="showCard" id="showCard">

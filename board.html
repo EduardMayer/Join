@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,6 +20,7 @@
     <link rel="icon" type="image/svg" href="img/Join-logo.svg">
     <title>Join-Board</title>
 </head>
+
 <body onload="includeHTML();loadLogtinUser(); renderBoardCards(); load(); ">
     <div w3-include-html="head_navbar.html"></div>
     <div class="showMainBoardContainer" id="showMainBoardContainer"></div>
@@ -26,7 +28,7 @@
         <div class="secondTitleContainer">
             <p>Kanban Project Management Tool</p>
         </div>
-        
+
         <div class="topBoardContainer">
             <div class="headlineContainer">
                 <p>Board</p>
@@ -53,8 +55,8 @@
             <div class="statusContainer">
                 <div class="upperStatusBox">
                     <h3>To Do</h3>
-                    <div onclick="openAddTaskContainer('todo')"><img class="createTaskBox"
-                            src="img/plus button v1.svg"></div>
+                    <div onclick="openAddTaskContainer('todo')"><img class="createTaskBox" src="img/plus button v1.svg">
+                    </div>
                 </div>
                 <div class="box" ondragover="allowDrop(event); highlight('todo')"
                     ondrop="moveTo('todo'); removeHighlight('todo')" ondragleave="removeHighlight('todo')" id="todo">
@@ -86,8 +88,8 @@
             <div class="statusContainer">
                 <div class="upperStatusBox">
                     <h3>Done</h3>
-                    <div onclick="openAddTaskContainer('done')"><img class="createTaskBox"
-                            src="img/plus button v1.svg"></div>
+                    <div onclick="openAddTaskContainer('done')"><img class="createTaskBox" src="img/plus button v1.svg">
+                    </div>
                 </div>
                 <div class="box" ondragover="allowDrop(event); highlight('done')"
                     ondrop="moveTo('done'); removeHighlight('done')" ondragleave="removeHighlight('done')" id="done">
