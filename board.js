@@ -34,7 +34,8 @@ async function includeHTML() {
  * Funktion zum Rendern der Aufgabenkarten auf dem Board basierend auf dem Status.
  * Ruft die Funktion 'renderTasksByStatus' für jeden Status auf und rendert die entsprechenden Aufgabenkarten in den entsprechenden Containern.
  */
-function renderBoardCards() {
+async function renderBoardCards() {
+  await load();
   renderTasksByStatus("todo", "todo");
   renderTasksByStatus("progress", "progress");
   renderTasksByStatus("feedback", "feedback");
@@ -407,7 +408,7 @@ function saveCheckboxState(taskId, subtaskIndex) {
   task.subtaskChecked[subtaskIndex] = checkbox.checked; 
 
   // Save the task in the Local Storage (optional)
-  localStorage.setItem("allTasks", JSON.stringify(allTasks));
+  setItem('allTasks', JSON.stringify(allTasks));
 }
 
 /**
@@ -633,7 +634,7 @@ function savePopupCard(taskId) {
 function updateTaskInArray(allTasks, taskId, updatedTask) {
   let taskIndex = allTasks.findIndex((task) => task.id === taskId);
   allTasks.splice(taskIndex, 1, updatedTask);
-  localStorage.setItem("allTasks", JSON.stringify(allTasks));
+  setItem('allTasks', JSON.stringify(allTasks));
 }
 
 /**
@@ -771,16 +772,18 @@ function selectColor(i) {
  * Ruft die Funktionen "renderCategory" auf, um die Kategorien anzuzeigen.
  */
 async function load() {
-  allCategory = JSON.parse(localStorage.getItem("allCategory")) || [];
-  allTasks = JSON.parse(localStorage.getItem("allTasks")) || [];
+  let allCategoryInString = await getItem('allCategory');
+  allCategory = JSON.parse(allCategoryInString) || [];
+  let allTaskInString = await getItem('allTasks');
+  allTasks = JSON.parse(allTaskInString) || [];
 }
 
 /**
  * Speichert die aktuellen Daten im Local Storage.
  */
-function save() {
-  localStorage.setItem(`allCategory`, JSON.stringify(allCategory));
-  localStorage.setItem(`allTasks`, JSON.stringify(allTasks));
+async function save() {
+  await setItem('allTasks', JSON.stringify(allTasks));
+  await setItem('allCategory', JSON.stringify(allCategory));
 }
 
 /**
