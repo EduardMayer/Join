@@ -35,7 +35,7 @@ async function includeHTML() {
       element.innerHTML = "Page not found";
     }
   }
-  
+  renderUserProfileHead();
 }
 
 /**
@@ -48,7 +48,6 @@ async function renderBoardCards() {
   renderTasksByStatus("progress", "progress");
   renderTasksByStatus("feedback", "feedback");
   renderTasksByStatus("done", "done");
-  renderUserProfileHead();
 }
 
 /**
@@ -267,7 +266,7 @@ function openAddTaskContainer(status) {
   renderCategory();
   renderColorCategory();
   slideAnimation();
-  
+
 }
 
 /**

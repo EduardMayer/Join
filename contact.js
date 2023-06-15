@@ -101,7 +101,6 @@ async function contactInit(){
     getFirstLetters();
     loadContactForm('newContactHTML');
     hover();
-    renderUserProfileHead();
 }
 
 function loadContactForm(form,email){
