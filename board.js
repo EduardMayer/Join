@@ -282,9 +282,8 @@ function closePopupTaskCard() {
 
 
 function generateInitialsAndFullName(name) {
-  const names = name.split(' ');
-  const firstNameInitial = names[0].charAt(0);
-  const lastNameInitial = names.length > 1 ? names[1].charAt(0) : '';
+  const names = name.substring(0, name.indexOf(" ")).charAt(0);
+  const lastnames = name.substring(name.indexOf(" ") + 1).charAt(0);
 
   // Überprüfe, ob die Farbe für die Initialen bereits vorhanden ist, sonst generiere eine neue
   const initialsBackgroundColor = initialsColors[name] || getRandomColor();
@@ -292,13 +291,12 @@ function generateInitialsAndFullName(name) {
   // Speichere die Farbe im Objekt
   initialsColors[name] = initialsBackgroundColor;
 
-  return `<div class="initialsNameBox"><div class="initials" id="initials" style="background-color:${initialsBackgroundColor}">${firstNameInitial}${lastNameInitial}</div><div id="initialsName">${name}</div></div>`;
+  return `<div class="initialsNameBox"><div class="initials" id="initials" style="background-color:${initialsBackgroundColor}">${names}${lastnames}</div><div id="initialsName">${name}</div></div>`;
 }
 
 function generateInitials(name) {
-  let names = name.split(' ');
-  let firstNameInitial = names[0].charAt(0);
-  let lastNameInitial = names.length > 1 ? names[1].charAt(0) : '';
+  const names = name.substring(0, name.indexOf(" ")).charAt(0);
+  const lastnames = name.substring(name.indexOf(" ") + 1).charAt(0);
 
   // Hole die gespeicherte Farbe für die Initialen oder generiere eine neue zufällige Farbe
   const initialsBackgroundColor = initialsColors[name] || getRandomColor();
@@ -306,7 +304,7 @@ function generateInitials(name) {
   // Aktualisiere die Farbe im Objekt
   initialsColors[name] = initialsBackgroundColor;
 
-  return `<div class="initialsSecond" id="initials" style="background-color:${initialsBackgroundColor}">${firstNameInitial}${lastNameInitial}</div>`;
+  return `<div class="initialsSecond" id="initials" style="background-color:${initialsBackgroundColor}">${names}${lastnames}</div>`;
 }
 
 function generateFullName(name) {
