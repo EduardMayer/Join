@@ -156,7 +156,8 @@ function getGreeting() {
   }
 }
 
-function setDate() {
+async function setDate() {
+  await load();
   let urgentTasks = allTasks.filter((t) => t.priority === "urgent" && t.date);
   let sortedUrgentTasks = urgentTasks
     .map((t) => new Date(t.date))
