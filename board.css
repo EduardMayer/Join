@@ -36,6 +36,12 @@ body {
   border: none;
   font-size: 16px;
 }
+.popupCategoryBox{
+display: flex;
+flex-direction: row;
+gap: 4px;
+flex-wrap: wrap;
+}
 
 .searchBarLine {
   border-left: 1px solid #d1d1d1;
@@ -592,10 +598,15 @@ body {
   font-size: 27px;
   padding: 4px 35px;
   border-radius: 8px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   width: fit-content;
   color: white;
   cursor: pointer;
+  border: 4px ridge black;
+}
+
+.editPopupCardCategory:hover{
+  scale: 1.1;
 }
 
 .popupCardCheckbox {
