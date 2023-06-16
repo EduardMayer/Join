@@ -291,7 +291,7 @@ function editContactHTML(){
                         <input id="email" required placeholder="Email" type="email">
                         <img src="img/emailicon.svg" alt="">
                     </div>
-                    <div class="relativ-for-icon">
+                    <div class="relativ-for-icon imgPhone">
                         <input id="phone" required placeholder="Phone" type="number">
                         <img src="img/phone.svg" alt="">
                     </div>
