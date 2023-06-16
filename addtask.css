@@ -269,7 +269,7 @@ textarea {
   width: 100%;
   overflow: auto;
   overflow-x: hidden;
-  height: 150px;
+  max-height: 150px;
 }
 
 .subTaskDescription::-webkit-scrollbar-track {
