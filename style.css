@@ -454,3 +454,37 @@ h1{
         min-width: 300px;
     }
 }
+
+@media (max-height: 800px){
+    .login-buttons{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+    .login-button{
+        width: 100px !important;
+    }
+    .guest-button{
+        margin-top: 0;
+        width: 130px !important;
+    }
+
+    .login-value img{
+        right: 15px !important;
+        top: 21px !important;
+    }
+
+    .password-options{
+        margin-top: 20px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .checkbox span {
+        margin-top: 15px !important;
+    }
+
+    .login-value input{
+        margin-top: 15px !important;
+    }
+}
