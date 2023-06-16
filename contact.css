@@ -119,7 +119,7 @@ h3 {
     padding: 15px 10px;
     gap: 10px;
     white-space: nowrap;
-    z-index: 999;
+    z-index: 4;
 }
 
 .new-contact span {
@@ -331,6 +331,10 @@ h4 {
     width: 180px;
     border-radius: 7px;
     border: 1px solid rgb(42, 54, 71);
+}
+
+.openContactOnlyDesk{
+    cursor: pointer;
 }
 
 .buttons {
@@ -556,7 +560,7 @@ h4 {
         width: 100%;
         height: 100%;
         opacity: 1;
-        z-index: 2;
+        z-index: 5;
         background-color: white;
     }
 
@@ -879,5 +883,15 @@ h4 {
     .profilepicture{
         height: 80px;
         width: 80px;
+    }
+}
+
+@media (max-height: 700px){
+    .underInformation{
+        margin-top: 90px !important;
+    }
+
+    .cancel-overbutton{
+        top: -100px;
     }
 }
