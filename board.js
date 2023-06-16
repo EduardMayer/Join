@@ -204,14 +204,20 @@ function createTask(status) {
   clearTask();
 }
 
+/**
+ * Überprüft, ob eine Priorität ausgewählt wurde.
+ * Wenn keine Priorität ausgewählt wurde, wird eine Warnung angezeigt und true zurückgegeben.
+ * Andernfalls wird false zurückgegeben.
+ * @returns {boolean} - true, wenn keine Priorität ausgewählt wurde, sonst false.
+ */
 function checkPrioritySelected() {
   if (!clickedId) {
     document.getElementById(
       "prioBoxAlarm"
     ).innerHTML = `<div class="alarmBoxPrio">Select a priority!</div>`;
-    return true; // Gibt true zurück, wenn keine Priorität ausgewählt wurde
+    return true;
   }
-  return false; // Gibt false zurück, wenn eine Priorität ausgewählt wurde
+  return false;
 }
 
 /**
@@ -269,7 +275,6 @@ function openAddTaskContainer(status) {
   renderCategory();
   renderColorCategory();
   slideAnimation();
-
 }
 
 /**
@@ -300,39 +305,51 @@ function closePopupTaskCard() {
   mainAddTaskContainer.classList.add("d-none");
 }
 
+/**
+ * Generiert Initialen und den vollständigen Namen basierend auf dem gegebenen Namen.
+ * @param {string} name - Der Name, aus dem Initialen und der vollständige Name generiert werden sollen.
+ * @returns {string} - HTML-Code, der die Initialen und den vollständigen Namen enthält.
+ */
 function generateInitialsAndFullName(name) {
   const names = name.substring(0, name.indexOf(" ")).charAt(0);
   const lastnames = name.substring(name.indexOf(" ") + 1).charAt(0);
-
   // Überprüfe, ob die Farbe für die Initialen bereits vorhanden ist, sonst generiere eine neue
   const initialsBackgroundColor = initialsColors[name] || getRandomColor();
-
   // Speichere die Farbe im Objekt
   initialsColors[name] = initialsBackgroundColor;
-
   return `<div class="initialsNameBox"><div class="initials" id="initials" style="background-color:${initialsBackgroundColor}">${names}${lastnames}</div><div id="initialsName">${name}</div></div>`;
 }
-
+/**
+ * Generiert Initialen basierend auf dem gegebenen Namen.
+ * @param {string} name - Der Name, aus dem Initialen generiert werden sollen.
+ * @returns {string} - HTML-Code, der die Initialen enthält.
+ */
 function generateInitials(name) {
   const names = name.substring(0, name.indexOf(" ")).charAt(0);
   const lastnames = name.substring(name.indexOf(" ") + 1).charAt(0);
-
   // Hole die gespeicherte Farbe für die Initialen oder generiere eine neue zufällige Farbe
   const initialsBackgroundColor = initialsColors[name] || getRandomColor(name);
-
   // Aktualisiere die Farbe im Objekt
   initialsColors[name] = initialsBackgroundColor;
-
   return `<div class="initialsSecond" id="initials" style="background-color:${initialsBackgroundColor}">${names}${lastnames}</div>`;
 }
-
+/**
+ * Generiert den vollständigen Namen.
+ * @param {string} name - Der vollständige Name.
+ * @returns {string} - HTML-Code, der den vollständigen Namen enthält.
+ */
 function generateFullName(name) {
   return `<div>${name}</div>`;
 }
 
+/**
+ * Generiert eine zufällige Farbe basierend auf dem gegebenen Namen.
+ * @param {string} name - Der Name, für den eine Farbe generiert werden soll.
+ * @returns {string} - Eine zufällig generierte Farbe.
+ */
 function getRandomColor(name) {
-  let User = users.find(u => u.name == name)
-  let color = User['color'];
+  let User = users.find((u) => u.name == name);
+  let color = User["color"];
   return color;
 }
 
@@ -343,50 +360,65 @@ function getRandomColor(name) {
 async function showCard(taskId) {
   let screenWidth = window.innerWidth;
   if (screenWidth >= 769) {
-    let task = allTasks.find((task) => task.id === taskId);
-    let overlayDiv = document.createElement("div");
-    let popupCard = document.getElementById("popupContainer");
-    let { priorityImage, priorityText, backgroundColor } =
-      await checkPrioPopupCard(task);
-    let subtask = generateSubtaskHtml(task, taskId);
-    let assignedContactsHtml = task.contacts
-      .map((contact) => generateInitialsAndFullName(contact))
-      .join("");
-    overlayDiv.classList.add("overlay");
-    document.body.appendChild(overlayDiv);
-    popupCard.innerHTML = generatePopupCardHtml(
-      task,
-      taskId,
-      subtask,
-      backgroundColor,
-      priorityText,
-      priorityImage,
-      assignedContactsHtml
-    );
+    await showCardPopup(taskId);
   } else {
-    let task = allTasks.find((task) => task.id === taskId);
-    let showMainBoardContainer = document.getElementById(
-      "showMainBoardContainer"
-    );
-    let mainBoardContainer = document.getElementById("mainBoardContainer");
-    let { priorityImage, priorityText, backgroundColor } =
-      checkPrioPopupCard(task);
-    let subtask = generateSubtaskHtml(task, taskId);
-    let assignedContactsHtml = task.contacts
-      .map((contact) => generateInitialsAndFullName(contact))
-      .join("");
-    mainBoardContainer.style.display = "none";
-    showMainBoardContainer.innerHTML = generateShowCardHtml(
-      task,
-      taskId,
-      subtask,
-      backgroundColor,
-      priorityText,
-      priorityImage,
-      assignedContactsHtml
-    );
+    showCardMainBoard(taskId);
   }
-  
+}
+
+/**
+ * Zeigt die Details einer Aufgabenkarte als Popup-Fenster an.
+ * @param {number} taskId - Die ID der Aufgabenkarte.
+ */
+async function showCardPopup(taskId) {
+  let task = allTasks.find((task) => task.id === taskId);
+  let overlayDiv = document.createElement("div");
+  let popupCard = document.getElementById("popupContainer");
+  let { priorityImage, priorityText, backgroundColor } =
+    await checkPrioPopupCard(task);
+  let subtask = generateSubtaskHtml(task, taskId);
+  let assignedContactsHtml = task.contacts
+    .map((contact) => generateInitialsAndFullName(contact))
+    .join("");
+  overlayDiv.classList.add("overlay");
+  document.body.appendChild(overlayDiv);
+  popupCard.innerHTML = generatePopupCardHtml(
+    task,
+    taskId,
+    subtask,
+    backgroundColor,
+    priorityText,
+    priorityImage,
+    assignedContactsHtml
+  );
+}
+
+/**
+ * Zeigt die Details einer Aufgabenkarte im Hauptbereich der Seite an.
+ * @param {number} taskId - Die ID der Aufgabenkarte.
+ */
+function showCardMainBoard(taskId) {
+  let task = allTasks.find((task) => task.id === taskId);
+  let showMainBoardContainer = document.getElementById(
+    "showMainBoardContainer"
+  );
+  let mainBoardContainer = document.getElementById("mainBoardContainer");
+  let { priorityImage, priorityText, backgroundColor } =
+    checkPrioPopupCard(task);
+  let subtask = generateSubtaskHtml(task, taskId);
+  let assignedContactsHtml = task.contacts
+    .map((contact) => generateInitialsAndFullName(contact))
+    .join("");
+  mainBoardContainer.style.display = "none";
+  showMainBoardContainer.innerHTML = generateShowCardHtml(
+    task,
+    taskId,
+    subtask,
+    backgroundColor,
+    priorityText,
+    priorityImage,
+    assignedContactsHtml
+  );
 }
 
 /**
@@ -462,6 +494,10 @@ async function renderCategory() {
   }
 }
 
+/**
+ * Rendert alle Kontakte in der Dropdown-Liste und markiert ausgewählte Kontakte.
+ * @param {number} taskId - Die ID der Aufgabenkarte.
+ */
 function renderAllContacts(taskId) {
   let dropDownUser = document.getElementById("dropDownUser");
   dropDownUser.innerHTML = "";
@@ -471,21 +507,21 @@ function renderAllContacts(taskId) {
     const isChecked = selectedContacts.includes(name) ? "checked" : ""; // Überprüfe, ob der Kontakt ausgewählt ist
     dropDownUser.innerHTML += `<div class="contactBox"><input type="checkbox" id="contact${i}" name="contact${i}" ${isChecked} onchange="saveSelectedContact(${i})"><label for="contact${i}">${name}</label></div>`;
   }
-
   markMatchingContacts(taskId);
 }
 
+/**
+ * Markiert die Kontakte in der Dropdown-Liste, die der Aufgabenkarte zugewiesen sind.
+ * @param {number} taskId - Die ID der Aufgabenkarte.
+ */
 function markMatchingContacts(taskId) {
   const task = allTasks.find((task) => task.id === taskId);
-
   if (task) {
     const taskContacts = task.contacts;
-
     for (let i = 0; i < allContacts.length; i++) {
       const contact = allContacts[i];
       const checkboxId = `contact${i}`;
       const checkbox = document.getElementById(checkboxId);
-
       if (taskContacts.includes(contact)) {
         checkbox.checked = true;
       } else {
@@ -495,6 +531,10 @@ function markMatchingContacts(taskId) {
   }
 }
 
+/**
+ * Speichert den ausgewählten Kontakt in der Liste der ausgewählten Kontakte oder entfernt ihn aus der Liste.
+ * @param {number} index - Der Index des Kontakts.
+ */
 function saveSelectedContact(index) {
   const checkbox = document.getElementById(`contact${index}`);
   const contactName = allContacts[index];
@@ -510,7 +550,10 @@ function saveSelectedContact(index) {
     }
   }
 }
-
+/**
+ * Gibt eine Liste der ausgewählten Kontakte zurück.
+ * @returns {Array} - Eine Liste der ausgewählten Kontakte.
+ */
 function getSelectedContacts() {
   let selectedContacts = [];
   let checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
@@ -651,7 +694,6 @@ function savePopupCard(taskId) {
     ).innerHTML = `<div class="alarmBoxPrio">Select a priority!</div>`;
     return;
   }
-
   // Update the task object with the new values
   task.title = title;
   task.description = description;
@@ -691,6 +733,9 @@ function closePopupCard() {
   renderBoardCards();
 }
 
+/**
+ * Schließt die Anzeige der Aufgabenkarte und kehrt zum Hauptboard zurück.
+ */
 function closeShowCard() {
   let showMainBoardContainer = document.getElementById(
     "showMainBoardContainer"
@@ -760,6 +805,11 @@ function moveTo(status) {
   renderBoardCards();
 }
 
+/**
+ * Verschiebt eine Aufgabenkarte in einen neuen Status.
+ * @param {number} taskId - Die ID der Aufgabenkarte.
+ * @param {string} status - Der neue Status, in den die Aufgabenkarte verschoben werden soll.
+ */
 function moveToStatus(taskId, status) {
   allTasks[taskId].status = status;
   save();
@@ -899,6 +949,10 @@ function openDropBoxAssigned(taskId) {
   }
 }
 
+/**
+ * Öffnet die Dropdown-Box zur Bearbeitung der zugewiesenen Kontakte.
+ * @param {number} taskId - Die ID der Aufgabenkarte.
+ */
 function openDropBoxEditAssigned(taskId) {
   let dropDownUser = document.getElementById("dropDownUser");
   let childUserContainer = document.getElementById("assigned");
@@ -914,6 +968,9 @@ function openDropBoxEditAssigned(taskId) {
   }
 }
 
+/**
+ * Leert die Dropdown-Box für die zugewiesenen Kontakte.
+ */
 function clearDropBoxAssigned() {
   let dropDownUser = document.getElementById("dropDownUser");
   let childUserContainer = document.getElementById("assigned");
@@ -1009,36 +1066,34 @@ function resetImage(box) {
  * Ändert die Hintergrundfarbe und das Symbolbild des ausgewählten Prioritätsbuttons.
  * @param {object} event - Das Ereignisobjekt für das Klicken auf den Prioritätsbutton.
  */
-
-
 function checkpriobox(elementId) {
-    let element = document.getElementById(elementId);
+  let element = document.getElementById(elementId);
 
-    if (currentElement === element) {
-        element.style.backgroundColor = "";
-        resetImage(element);
-        currentElement = null;
-        clickedId = null;
-    } else {
-        if (currentElement !== null) {
-            currentElement.style.backgroundColor = "";
-            resetImage(currentElement);
-        }
-
-        if (elementId === "urgent") {
-            element.style.backgroundColor = "rgb(255, 61, 0)";
-            element.querySelector("img").src = "img/Prio-urgent-white.png";
-        } else if (elementId === "medium") {
-            element.style.backgroundColor = "rgb(255, 168, 0)";
-            element.querySelector("img").src = "img/Prio-medium-white.png";
-        } else if (elementId === "low") {
-            element.style.backgroundColor = "rgb(122, 226, 41)";
-            element.querySelector("img").src = "img/Prio-low-white.png";
-        }
-
-        currentElement = element;
-        clickedId = elementId;
+  if (currentElement === element) {
+    element.style.backgroundColor = "";
+    resetImage(element);
+    currentElement = null;
+    clickedId = null;
+  } else {
+    if (currentElement !== null) {
+      currentElement.style.backgroundColor = "";
+      resetImage(currentElement);
     }
+
+    if (elementId === "urgent") {
+      element.style.backgroundColor = "rgb(255, 61, 0)";
+      element.querySelector("img").src = "img/Prio-urgent-white.png";
+    } else if (elementId === "medium") {
+      element.style.backgroundColor = "rgb(255, 168, 0)";
+      element.querySelector("img").src = "img/Prio-medium-white.png";
+    } else if (elementId === "low") {
+      element.style.backgroundColor = "rgb(122, 226, 41)";
+      element.querySelector("img").src = "img/Prio-low-white.png";
+    }
+
+    currentElement = element;
+    clickedId = elementId;
+  }
 }
 
 /**
@@ -1061,12 +1116,18 @@ function setCurrentDate() {
   dateInput.value = currentDate;
 }
 
+/**
+ * Zeigt das Popup an.
+ */
 function showPopup() {
   const popup = document.querySelector(".popupAddTaskBoard");
   popup.style.transform = "translate(-50%, -50%)";
   setTimeout(hidePopup, 1000);
 }
 
+/**
+ * Blendet das Popup aus und leitet zur Seite "board.html" weiter.
+ */
 function hidePopup() {
   const popup = document.querySelector(".popupAddTaskBoard");
   popup.style.transform = "translate(-50%, 500%)";
