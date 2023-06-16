@@ -361,6 +361,7 @@ function getRandomColor(name) {
  * @param {number} taskId - Die ID der Aufgabenkarte.
  */
 async function showCard(taskId) {
+  document.getElementById('body').style.overflow = 'hidden';
   let screenWidth = window.innerWidth;
   if (screenWidth >= 769) {
     await showCardPopup(taskId);
@@ -727,6 +728,7 @@ function updateTaskInArray(allTasks, taskId, updatedTask) {
  * Schließt das Popup-Fenster für die Aufgabenkarte.
  */
 function closePopupCard() {
+  document.getElementById('body').style.overflow = 'auto';
   let popupCard = document.getElementById("popupContainer");
   let overlayDiv = document.querySelector(".overlay");
   if (overlayDiv) {
