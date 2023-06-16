@@ -217,7 +217,7 @@ function mobileGreet() {
   if (window.innerWidth < 768) {
     let overlayContainer = document.getElementById("overlayContainer");
     let mainContainer = document.getElementsByClassName("main")[0];
-    if (document.referrer.includes("index.html")) {
+    if (document.referrer.includes('index.html')) {
       overlayContainer.classList.remove("d-none");
       overlayContainer.classList.add("overlayContainer");
       mainContainer.classList.add("d-none");
