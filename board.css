@@ -359,9 +359,13 @@ flex-wrap: wrap;
   z-index: 4;
 }
 .popupCardSubBox {
-  height: 120px;
-  width: 400px;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  width: 75%;
+  overflow: auto;
+  overflow-x: hidden;
+  max-height: 150px;
 }
 
 /* Hiermit passt du das Aussehen der Scrollbar an */
@@ -380,16 +384,15 @@ flex-wrap: wrap;
 
 .popupCardSubItem {
   display: flex;
-  align-items: center;
+  word-break: break-all;
   gap: 10px;
-  height: 30px;
+  margin-bottom: 10px;
 }
 
 .popupCardImgContainer {
   display: flex;
   justify-content: end;
   width: 100%;
-  position: absolute;
   bottom: 50px;
   left: -50px;
   cursor: pointer;
@@ -414,7 +417,7 @@ flex-wrap: wrap;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: -1;
+  z-index: 0;
 }
 
 .cancelIconPopupCard {

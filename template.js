@@ -45,14 +45,14 @@ function generatePopupCardHtml(
         <div class="popupCardSubContainer">
           <div><b>Subtasks</b></div>
           <div id="popupCardSubBox" class="popupCardSubBox">${subtaskHtml}</div>
-        </div>
-        <div class="popupCardImgContainer">
+        </div>  
+      </div>  
+      <div class="popupCardImgContainer">
           <div class="popupCardImgBox">
             <div class="popupDeletButton" onclick="deletePopupCard(${taskId})"><img src="img/deletebuttonv1.png"></div>
             <div class="popupEditButton" onclick="editPopupCard(${taskId})"><img src="img/editbuttonv1.png"></div>
           </div> 
-        </div>  
-      </div>  
+      </div>
     </div>
   `;
 }

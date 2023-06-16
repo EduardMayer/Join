@@ -173,6 +173,10 @@ textarea {
 .subtaskChildContainer input:focus {
   outline: none;
 }
+
+.subBox{
+  word-break: break-all;
+}
 .prioBox {
   box-sizing: border-box;
   display: flex;
@@ -262,12 +266,27 @@ textarea {
   display: flex;
   flex-direction: column;
   font-size: 16px;
+  width: 100%;
+  overflow: auto;
+  overflow-x: hidden;
+  height: 150px;
 }
+
+.subTaskDescription::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.subTaskDescription::-webkit-scrollbar-thumb {
+  background-color: rgba(9, 25, 49);
+  border-radius: 5px;
+}
+.subTaskDescription::-webkit-scrollbar {
+  width: 8px;
+}
+
 .checkContainer {
   display: flex;
-  align-items: center;
   gap: 13px;
-  height: 25px;
 }
 .checkContainer input {
   height: 25px;
