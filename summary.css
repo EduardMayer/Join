@@ -424,6 +424,10 @@ p {
 }
 
 @media (max-width: 768px) {
+  .content-summary{
+    padding-top: 15px;
+  }
+
   .main {
     margin-left: 150px;
   }
@@ -448,10 +452,27 @@ p {
 }
 
 @media (max-width: 520px) {
+  h1{
+    font-size: 28px !important;
+  }
+
+  .content-summary{
+    padding-top: 30px;
+  }
+
+  h4{
+    font-size: 16px !important;
+  }
   .main {
+    max-width: 330px;
     margin-left: 20px;
     display: flex;
     align-items: center;
+  }
+
+  .headline{
+    margin-top: -10px;
+    gap: 0px;
   }
 
   .tasks-container {
@@ -504,6 +525,17 @@ p {
 
   h4 {
     text-align: center;
+  }
+}
+
+@media (max-width: 420px){
+  h1{
+    width: min-content !important;
+  }
+
+  .headline{
+    width: min-content !important;
+    margin-left: 10px;
   }
 }
 
