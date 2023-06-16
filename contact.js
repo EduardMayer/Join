@@ -29,6 +29,8 @@ function openEdit(form){
     loadContactForm(form,email);
     openOverdiv();
     loadUserInformations(email);
+    let WithoutTitel = document.getElementById('phone');
+    WithoutTitel.title = '';
 }
 
 function loadUserInformations(email) {
