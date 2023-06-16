@@ -119,6 +119,7 @@ h3 {
     padding: 15px 10px;
     gap: 10px;
     white-space: nowrap;
+    z-index: 999;
 }
 
 .new-contact span {
