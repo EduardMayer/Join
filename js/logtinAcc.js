@@ -26,5 +26,3 @@ async function renderOverlayProfile() {
   let name = logtinUser['name'];
   profileDiv.innerHTML = name;
 }
-
-
