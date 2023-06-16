@@ -477,6 +477,7 @@ p {
 
   .tasks-container {
     width: 320px;
+    height: 130px;
   }
 
   .task-box {
@@ -487,14 +488,46 @@ p {
     font-size: 18px;
   }
 
+  .task-boxes {
+    height: 150px;
+  }
+
   .tasks-urgent-deadline {
     width: 320px;
     gap: 20px;
+    height: 115px;
+  }
+
+  .todo {
+    height: 100px;
+  }
+
+  .todo:hover {
+    font-size: 14px;
+  }
+
+  .todo:hover .dis-none {
+    width: 50px;
+    height: 50px;
+  }
+
+  .done {
+    height: 100px;
+  }
+
+  .done:hover {
+    font-size: 14px;
+  }
+
+  .done:hover .dis-none {
+    width: 50px;
+    height: 50px;
   }
 
   .todo-done {
     width: 320px;
     font-size: 16px;
+    height: 100px;
   }
 
   .todo-done img {
