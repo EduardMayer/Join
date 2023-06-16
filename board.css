@@ -671,6 +671,12 @@ body {
   color: white;
 }
 
+.popupCard {
+  position: fixed;
+  max-height: 700px;
+  overflow-y: scroll !important;
+}
+
 @media (max-width: 1335px) {
   .middleAddTaskContainer {
     display: none;
@@ -766,12 +772,6 @@ body {
   .bottomBoardContainer {
     margin-top: 22px;
     margin-right: 65px;
-  }
-
-  .popupCard {
-    position: fixed;
-    max-height: 700px;
-    overflow-y: scroll !important;
   }
 }
 
