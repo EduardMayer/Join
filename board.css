@@ -36,11 +36,11 @@ body {
   border: none;
   font-size: 16px;
 }
-.popupCategoryBox{
-display: flex;
-flex-direction: row;
-gap: 4px;
-flex-wrap: wrap;
+.popupCategoryBox {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  flex-wrap: wrap;
 }
 
 .searchBarLine {
@@ -285,21 +285,22 @@ flex-wrap: wrap;
   gap: 25px;
 }
 
-.cancelIconShowCard{
+.cancelIconShowCard {
   cursor: pointer;
   padding-top: 5px;
 }
 
-.showMainBoardContainer{
+.showMainBoardContainer {
   margin-left: 33px;
   margin-right: 33px;
 }
 
-.showCategoryContainer{
+.showCategoryContainer {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
+  gap: 15px;
 }
 
 .popupcardCategory {
@@ -318,7 +319,6 @@ flex-wrap: wrap;
   font-weight: bold;
   font-size: 61px;
   word-break: break-word;
-
 }
 .popupcardDescription {
   color: #000000;
@@ -473,9 +473,9 @@ flex-wrap: wrap;
 
 .buttonAddTaskContainer {
   display: flex;
-    gap: 10px;
-    flex-direction: row-reverse;
-    margin-top: 20px;
+  gap: 10px;
+  flex-direction: row-reverse;
+  margin-top: 20px;
 }
 
 .headAddTaskContainer p {
@@ -584,16 +584,17 @@ flex-wrap: wrap;
   justify-content: flex-end;
 }
 
-.colorPopupCategoryBox {
-  display: flex;
-  align-items: center;
-  font-size: 27px;
-  padding: 4px 35px;
-  border-radius: 8px;
-  width: 135px;
-  color: white;
-  cursor: pointer;
+  .colorPopupCategoryBox {
+    display: flex;
+    align-items: center;
+    font-size: 21px;
+    padding: 4px 35px;
+    border-radius: 8px;
+    width: 135px;
+    color: white;
+    cursor: pointer;
 }
+
 
 .editPopupCardCategory {
   display: flex;
@@ -609,7 +610,7 @@ flex-wrap: wrap;
   border: 4px ridge black;
 }
 
-.editPopupCardCategory:hover{
+.editPopupCardCategory:hover {
   scale: 1.1;
 }
 
@@ -623,38 +624,37 @@ flex-wrap: wrap;
   margin-bottom: 19px;
   display: none;
 }
-.statusButtonsContainer{
+.statusButtonsContainer {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
-.popupCardStatus b{
+.popupCardStatus b {
   font-size: 21px;
 }
-.statusButtonsContainer button{
+.statusButtonsContainer button {
   margin-top: 10px;
-  width : 100px;
+  width: 100px;
   height: 50px;
   background-color: white;
   border: 1px solid #091931;
   border-radius: 10px;
   cursor: pointer;
-
 }
 
-.statusButtonsContainer button:hover{
-color: white;
-background-color: rgb(41, 171, 226);
-border: 1px solid rgb(41, 171, 226);
+.statusButtonsContainer button:hover {
+  color: white;
+  background-color: rgb(41, 171, 226);
+  border: 1px solid rgb(41, 171, 226);
 }
 
-.initialsNameBox{
+.initialsNameBox {
   display: flex;
   gap: 10px;
   margin-top: 10px;
   align-items: center;
 }
-.initials{
+.initials {
   border-radius: 50%;
   padding: 10px 8px;
   color: white;
@@ -664,12 +664,11 @@ border: 1px solid rgb(41, 171, 226);
   display: flex;
 }
 
-.initialsSecond{
+.initialsSecond {
   border-radius: 50%;
   padding: 10px 8px;
   color: white;
 }
-
 
 @media (max-width: 1335px) {
   .middleAddTaskContainer {
@@ -682,7 +681,6 @@ border: 1px solid rgb(41, 171, 226);
     left: 24%;
     margin-left: 50px;
     width: 50%;
-
   }
   .bodyAddTaskCotnainer {
     flex-direction: column;
@@ -909,8 +907,8 @@ border: 1px solid rgb(41, 171, 226);
   .popupCardImgBox {
     flex-direction: column;
   }
-  
-  .popupCardImgBox img{
+
+  .popupCardImgBox img {
     display: block;
   }
 
@@ -920,10 +918,45 @@ border: 1px solid rgb(41, 171, 226);
 
   .popupCardSubBox {
     width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .popupcardCategory {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    font-size: 20px;
+    padding: 4px 35px;
+    border-radius: 8px;
+    width: fit-content;
+    color: white;
+}
+
+.editPopupCardCategory {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  font-size: 21px;
+  padding: 4px 35px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  width: fit-content;
+  color: white;
+  cursor: pointer;
+  border: 4px ridge black;
+}
+
+.popupCardTitle {
+  color: #2a3647;
+  font-weight: bold;
+  font-size: 40px;
+  word-break: break-word;
 }
 }
 
 @media (max-width: 360px) {
+  
   .mainBoardContainer {
     margin-left: 10px;
     margin-right: 20px;
