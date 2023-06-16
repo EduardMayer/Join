@@ -486,7 +486,7 @@ body {
 }
 
 .overlay {
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -769,7 +769,9 @@ body {
   }
 
   .popupCard {
-    left: 25%;
+    position: fixed;
+    max-height: 700px;
+    overflow-y: scroll;
   }
 }
 
