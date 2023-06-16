@@ -374,9 +374,9 @@ function openContactHTML(name,firstandSecoundLetters,email,phone,Letter,i){
         </div>
         <div class="contacts-infomations">
             <span>Contact Information</span>
-            <div class="openContactOnlyDesk">
+            <div onclick="openEdit('other')" class="openContactOnlyDesk">
                 <img src="img/Edit2.svg" alt="">
-                <a onclick="openEdit('other')" href="#">Edit contact</a>
+                <a href="#">Edit contact</a>
             </div>
         </div>
         <div class="contacts-adress">
