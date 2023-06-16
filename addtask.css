@@ -176,6 +176,7 @@ textarea {
 
 .subBox{
   word-break: break-all;
+  margin-bottom: 10px;
 }
 .prioBox {
   box-sizing: border-box;
