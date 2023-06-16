@@ -252,7 +252,7 @@ function newContactHTML(){
                         <img src="img/emailicon.svg" alt="">
                     </div>
                     <div class="relativ-for-icon">
-                        <input id="phone" required placeholder="Phone" type="number">
+                        <input class="imgPhone" id="phone" required placeholder="Phone" type="number">
                         <img src="img/phone.svg" alt="">
                     </div>
                     <div class="buttons">
