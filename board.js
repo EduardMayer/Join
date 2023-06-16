@@ -348,9 +348,12 @@ function generateFullName(name) {
  * @returns {string} - Eine zufällig generierte Farbe.
  */
 function getRandomColor(name) {
-  let User = users.find((u) => u.name == name);
-  let color = User["color"];
-  return color;
+  let User = users.find(u => u.name == name);
+  if(User){
+    let color = User['color'];
+    return color;
+  }
+  return 'rgb(211,211,211)'
 }
 
 /**

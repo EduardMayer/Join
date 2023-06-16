@@ -201,6 +201,7 @@ h3 {
     align-items: center;
     height: 50%;
     width: 70%;
+    max-width: 1065px;
 }
 
 .cancel-overbutton {

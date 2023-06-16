@@ -442,10 +442,11 @@ body {
   border-radius: 30px;
   position: absolute;
   left: 16%;
-  top: 90px;
+  top: 10px;
   z-index: 10;
   width: 65%;
   margin-left: 50px;
+  max-width: 1065px;
 }
 
 .bodyAddTaskCotnainer {
