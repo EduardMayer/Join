@@ -3,15 +3,7 @@ let clickedId = null;
 let allTasks = [];
 let allCategory = [];
 let allSubtask = [];
-let allColors = [
-  "#E200BE",
-  "#1FD7C1",
-  "#0038FF",
-  "#FF8A00",
-  "#2AD300",
-  "#FF0000",
-  "#8AA4FF",
-];
+let allColors = ["#E200BE","#1FD7C1","#0038FF","#FF8A00","#2AD300","#FF0000","#8AA4FF",];
 let selectedContacts = [];
 let initialsColors = {};
 let currentDraggedElement;
@@ -60,7 +52,7 @@ function renderTasksByStatus(status, containerId) {
   const tasks = allTasks.filter((task) => task.status === status);
   const container = document.getElementById(containerId);
   container.innerHTML = "";
-  tasks.forEach((task, index) => {
+  tasks.forEach((task, index) => { 
     container.innerHTML += generateCardHTML(task, index);
   });
 }
@@ -75,29 +67,16 @@ function searchCards() {
   const cards = document.querySelectorAll(".card");
   const matchedCards = [];
 
-  cards.forEach((card) => {
-    const cardTitle = card
-      .querySelector(".cardTitle")
-      .textContent.toLowerCase();
-    const cardDescription = card
-      .querySelector(".cardDescription")
-      .textContent.toLowerCase();
+  cards.forEach((card) => {const cardTitle = card.querySelector(".cardTitle").textContent.toLowerCase();
+    const cardDescription = card.querySelector(".cardDescription").textContent.toLowerCase();
     if (
-      cardTitle.includes(searchValue) ||
-      cardDescription.includes(searchValue)
+      cardTitle.includes(searchValue) ||cardDescription.includes(searchValue)
     ) {
       matchedCards.push(card);
     }
   });
-
-  // Verstecke alle Karten
-  cards.forEach((card) => {
-    card.style.display = "none";
-  });
-
-  // Zeige nur die übereinstimmenden Karten an
-  matchedCards.forEach((card) => {
-    card.style.display = "block";
+  cards.forEach((card) => {card.style.display = "none";});
+  matchedCards.forEach((card) => {card.style.display = "block";
   });
 }
 
@@ -109,12 +88,9 @@ function searchCards() {
  * @returns {object} - Ein Objekt mit den Werten für abgeschlossene Unteraufgaben, Gesamtanzahl der Unteraufgaben und Fortschritt.
  */
 function generateProgress(task) {
-  let completedSubtasks = task.subtaskChecked
-    ? task.subtaskChecked.filter((checked) => checked).length
-    : 0;
+  let completedSubtasks = task.subtaskChecked ? task.subtaskChecked.filter((checked) => checked).length: 0;
   let totalSubtasks = task.subtask ? task.subtask.length : 0;
-  let progress =
-    totalSubtasks > 0 ? (completedSubtasks / totalSubtasks) * 100 : 0;
+  let progress = totalSubtasks > 0 ? (completedSubtasks / totalSubtasks) * 100 : 0;
   return { completedSubtasks, totalSubtasks, progress };
 }
 /**
@@ -955,17 +931,6 @@ function openDropBoxAssigned(taskId) {
 }
 
 
-/**
- * Leert die Dropdown-Box für die zugewiesenen Kontakte.
- */
-function clearDropBoxAssigned() {
-  let dropDownUser = document.getElementById("dropDownUser");
-  let childUserContainer = document.getElementById("assigned");
-  selectedContacts = [];
-  dropDownUser.classList.add("d-none");
-  dropDownUser.classList.remove("dropDownBox");
-  childUserContainer.classList.remove("b-none");
-}
 
 /**
  * Öffnet oder schließt die Dropdown-Box für die Kategorieauswahl.
@@ -990,6 +955,19 @@ function openDropBoxCategory() {
     categoryBox.classList.remove("categoryBox");
   }
 }
+
+/**
+ * Leert die Dropdown-Box für die zugewiesenen Kontakte.
+ */
+function clearDropBoxAssigned() {
+  let dropDownUser = document.getElementById("dropDownUser");
+  let childUserContainer = document.getElementById("assigned");
+  selectedContacts = [];
+  dropDownUser.classList.add("d-none");
+  dropDownUser.classList.remove("dropDownBox");
+  childUserContainer.classList.remove("b-none");
+}
+
 
 /**
  * Ändert die Symbole in der Subtask-Leiste, um die Subtask-Eingabe anzuzeigen.
