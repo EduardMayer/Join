@@ -66,12 +66,9 @@ function searchCards() {
   const searchValue = searchInput.value.trim().toLowerCase();
   const cards = document.querySelectorAll(".card");
   const matchedCards = [];
-
   cards.forEach((card) => {const cardTitle = card.querySelector(".cardTitle").textContent.toLowerCase();
     const cardDescription = card.querySelector(".cardDescription").textContent.toLowerCase();
-    if (
-      cardTitle.includes(searchValue) ||cardDescription.includes(searchValue)
-    ) {
+    if (cardTitle.includes(searchValue) ||cardDescription.includes(searchValue)) {
       matchedCards.push(card);
     }
   });
@@ -101,17 +98,20 @@ function generateProgress(task) {
  */
 function generateProgressBarContainerHTML(task) {
   let { completedSubtasks, totalSubtasks, progress } = generateProgress(task);
-
   let progressBarContainerHTML = "";
   if (task.subtask && task.subtask.length > 0) {
-    progressBarContainerHTML = `
+    progressBarContainerHTML = generateProgressHTML(progress,completedSubtasks,totalSubtasks)
+  }
+  return progressBarContainerHTML;
+}
+
+function generateProgressHTML(progress,completedSubtasks,totalSubtasks){
+  return `
   <div class="progressBarContainer" id="progressBarContainer">
     <div class="cardProgress"><progress value="${progress}" max="100"></progress></div>
     <div class="checkboxCount">${completedSubtasks}/${totalSubtasks} Done</div>
   </div>
 `;
-  }
-  return progressBarContainerHTML;
 }
 
 /**
@@ -122,7 +122,6 @@ function generateProgressBarContainerHTML(task) {
  */
 function checkPrioPopupCard(task) {
   let priorityImage, priorityText, backgroundColor;
-
   if (task.priority === "urgent") {
     priorityImage = "img/Prio-urgent-white.png";
     priorityText = "Urgent";
@@ -136,7 +135,6 @@ function checkPrioPopupCard(task) {
     priorityText = "Low";
     backgroundColor = "rgb(122, 226, 41)";
   }
-
   return { priorityImage, priorityText, backgroundColor };
 }
 
@@ -146,33 +144,13 @@ function checkPrioPopupCard(task) {
  * @param {string} status - Der Status der Aufgabe.
  */
 function createTask(status) {
-  const title = document.getElementById("title");
-  const description = document.getElementById("description");
-  const date = document.getElementById("date");
-  const categoryText = document.getElementById("categoryText");
-  const categoryColor = document.getElementById("selectColorBox");
+  const title = document.getElementById("title"); const description = document.getElementById("description"); const date = document.getElementById("date"); const categoryText = document.getElementById("categoryText"); const categoryColor = document.getElementById("selectColorBox");
   let selectedContacts = getSelectedContacts();
   let priority = clickedId;
-
-  // Überprüfen, ob ein Ziel angeklickt wurde
   if (checkPrioritySelected()) {
     return;
   }
-
-  // Neue Aufgabe erstellen
-  let allTask = {
-    id: allTasks.length,
-    title: title.value,
-    description: description.value,
-    categoryText: categoryText.innerHTML,
-    categoryColor: categoryColor.style.backgroundColor,
-    date: date.value,
-    priority: priority,
-    status: status,
-    subtask: allSubtask,
-    contacts: selectedContacts,
-  };
-
+  let allTask = {id: allTasks.length, title: title.value, description: description.value, categoryText: categoryText.innerHTML, categoryColor: categoryColor.style.backgroundColor, date: date.value, priority: priority, status: status, subtask: allSubtask, contacts: selectedContacts,};
   showPopup();
   allTasks.push(allTask);
   save();
@@ -205,13 +183,15 @@ function clearTask() {
   const alarmbox = document.getElementById("prioBoxAlarm");
   const subtask = document.getElementById("subtask");
   const subtaskDescription = document.getElementById("subTaskDescription");
-
   alarmbox.innerHTML = ``;
   title.value = ``;
   description.value = ``;
   subtask.value = ``;
   subtaskDescription.innerHTML = ``;
+  startNewFunctionsclear(currentElement);
+}
 
+function startNewFunctionsclear(currentElement){
   setCurrentDate();
   clearCategory();
   clearDropBoxAssigned();
@@ -226,7 +206,6 @@ function resetElement(currentElement) {
   if (currentElement !== null) {
     currentElement.style.backgroundColor = "";
     resetImage(currentElement);
-
     currentElement = null;
     clickedId = null;
   }
@@ -259,13 +238,10 @@ function openAddTaskContainer(status) {
 function slideAnimation() {
   let mainAddTaskContainer = document.querySelector(".mainAddTaskContainer");
   let overlayDiv = document.createElement("div");
-
   mainAddTaskContainer.style.transform = "translateX(150%)";
   overlayDiv.classList.add("overlay");
   document.body.appendChild(overlayDiv);
   setCurrentDate();
-
-  // Warte kurz, um die Animation zu verzögern
   setTimeout(function () {
     mainAddTaskContainer.style.transform = "translate(0%)";
   }, 100);
@@ -289,9 +265,7 @@ function closePopupTaskCard() {
 function generateInitialsAndFullName(name) {
   const names = name.substring(0, name.indexOf(" ")).charAt(0);
   const lastnames = name.substring(name.indexOf(" ") + 1).charAt(0);
-  // Überprüfe, ob die Farbe für die Initialen bereits vorhanden ist, sonst generiere eine neue
   const initialsBackgroundColor = initialsColors[name] || getRandomColor();
-  // Speichere die Farbe im Objekt
   initialsColors[name] = initialsBackgroundColor;
   return `<div class="initialsNameBox"><div class="initials" id="initials" style="background-color:${initialsBackgroundColor}">${names}${lastnames}</div><div id="initialsName">${name}</div></div>`;
 }
@@ -303,9 +277,7 @@ function generateInitialsAndFullName(name) {
 function generateInitials(name) {
   const names = name.substring(0, name.indexOf(" ")).charAt(0);
   const lastnames = name.substring(name.indexOf(" ") + 1).charAt(0);
-  // Hole die gespeicherte Farbe für die Initialen oder generiere eine neue zufällige Farbe
   const initialsBackgroundColor = initialsColors[name] || getRandomColor(name);
-  // Aktualisiere die Farbe im Objekt
   initialsColors[name] = initialsBackgroundColor;
   return `<div class="initialsSecond" id="initials" style="background-color:${initialsBackgroundColor}">${names}${lastnames}</div>`;
 }
@@ -362,15 +334,7 @@ async function showCardPopup(taskId) {
     .join("");
   overlayDiv.classList.add("overlay");
   document.body.appendChild(overlayDiv);
-  popupCard.innerHTML = generatePopupCardHtml(
-    task,
-    taskId,
-    subtask,
-    backgroundColor,
-    priorityText,
-    priorityImage,
-    assignedContactsHtml
-  );
+  popupCard.innerHTML = generatePopupCardHtml(task,taskId,subtask,backgroundColor,priorityText,priorityImage,assignedContactsHtml);
 }
 
 /**
@@ -379,9 +343,7 @@ async function showCardPopup(taskId) {
  */
 function showCardMainBoard(taskId) {
   let task = allTasks.find((task) => task.id === taskId);
-  let showMainBoardContainer = document.getElementById(
-    "showMainBoardContainer"
-  );
+  let showMainBoardContainer = document.getElementById("showMainBoardContainer");
   let mainBoardContainer = document.getElementById("mainBoardContainer");
   let { priorityImage, priorityText, backgroundColor } =
     checkPrioPopupCard(task);
@@ -390,15 +352,7 @@ function showCardMainBoard(taskId) {
     .map((contact) => generateInitialsAndFullName(contact))
     .join("");
   mainBoardContainer.style.display = "none";
-  showMainBoardContainer.innerHTML = generateShowCardHtml(
-    task,
-    taskId,
-    subtask,
-    backgroundColor,
-    priorityText,
-    priorityImage,
-    assignedContactsHtml
-  );
+  showMainBoardContainer.innerHTML = generateShowCardHtml(task,taskId,subtask,backgroundColor,priorityText,priorityImage,assignedContactsHtml);
 }
 
 /**
@@ -414,15 +368,19 @@ function generateSubtaskHtml(task, taskId) {
       let checkboxId = `checkbox-${taskId}-${i}`;
       let checkedAttribute =
         task.subtaskChecked && task.subtaskChecked[i] ? "checked" : "";
-      subtaskHtml += `
-        <div class="popupCardSubItem">
-          <input type="checkbox" class="popupCardCheckbox" id="${checkboxId}" ${checkedAttribute} onclick="updateProgress(${taskId}, ${i})">
-          <span class="popupCardSubtask">${task.subtask[i]}</span>
-        </div>
-      `;
+      subtaskHtml += SubtaskHTMLgerate(checkboxId,checkedAttribute,taskId,i,task);
     }
   }
   return subtaskHtml;
+}
+
+function SubtaskHTMLgerate(checkboxId,checkedAttribute,taskId,i,task){
+  return `
+  <div class="popupCardSubItem">
+    <input type="checkbox" class="popupCardCheckbox" id="${checkboxId}" ${checkedAttribute} onclick="updateProgress(${taskId}, ${i})">
+    <span class="popupCardSubtask">${task.subtask[i]}</span>
+  </div>
+`;
 }
 
 /**
@@ -448,15 +406,10 @@ function saveCheckboxState(taskId, subtaskIndex) {
   let checkboxId = `checkbox-${taskId}-${subtaskIndex}`;
   let checkbox = document.getElementById(checkboxId);
   let task = allTasks.find((task) => task.id === taskId);
-
-  // Initialize subtaskChecked array if it doesn't exist
   if (!task.subtaskChecked) {
     task.subtaskChecked = [];
   }
-  // Update the state in the task object
   task.subtaskChecked[subtaskIndex] = checkbox.checked;
-
-  // Save the task in the Local Storage (optional)
   setItem("allTasks", JSON.stringify(allTasks));
 }
 
@@ -481,10 +434,9 @@ async function renderCategory() {
 function renderAllContacts(taskId) {
   let dropDownUser = document.getElementById("dropDownUser");
   dropDownUser.innerHTML = "";
-
   for (let i = 0; i < allContacts.length; i++) {
     const name = allContacts[i];
-    const isChecked = selectedContacts.includes(name) ? "checked" : ""; // Überprüfe, ob der Kontakt ausgewählt ist
+    const isChecked = selectedContacts.includes(name) ? "checked" : ""; 
     dropDownUser.innerHTML += `<div class="contactBox"><input type="checkbox" id="contact${i}" name="contact${i}" ${isChecked} onchange="saveSelectedContact(${i})"><label for="contact${i}">${name}</label></div>`;
   }
   markMatchingContacts(taskId);
@@ -518,12 +470,9 @@ function markMatchingContacts(taskId) {
 function saveSelectedContact(index) {
   const checkbox = document.getElementById(`contact${index}`);
   const contactName = allContacts[index];
-
   if (checkbox.checked) {
-    // Checkbox wurde ausgewählt, füge den Kontakt zur Liste hinzu
     selectedContacts.push(contactName);
   } else {
-    // Checkbox wurde abgewählt, entferne den Kontakt aus der Liste
     const contactIndex = selectedContacts.indexOf(contactName);
     if (contactIndex !== -1) {
       selectedContacts.splice(contactIndex, 1);
@@ -537,19 +486,16 @@ function saveSelectedContact(index) {
 function getSelectedContacts() {
   let selectedContacts = [];
   let checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-
   if (checkboxes.length === 0) {
     let errorMessage = document.getElementById("assigned-error");
     errorMessage.textContent = "Please select at least one contact.";
     errorMessage.style.color = "red";
     return selectedContacts;
   }
-
   checkboxes.forEach((checkbox) => {
     let contactId = checkbox.id.replace("contact", "");
     selectedContacts.push(allContacts[contactId]);
   });
-
   return selectedContacts;
 }
 
@@ -558,14 +504,10 @@ function getSelectedContacts() {
  */
 function setPopupCategoryCard() {
   let popupCategoryBox = document.getElementById("popupCategoryBox");
-
-  // Überprüfe, ob der Popup-Container bereits sichtbar ist
   if (popupCategoryBox.innerHTML !== "") {
-    popupCategoryBox.innerHTML = ""; // Wenn sichtbar, leere den Inhalt und beende die Funktion
+    popupCategoryBox.innerHTML = "";
     return;
   }
-
-  // Wenn nicht sichtbar, erzeuge den Inhalt wie zuvor
   for (let i = 0; i < allCategory.length; i++) {
     const category = allCategory[i].category;
     const color = allCategory[i].color;
@@ -581,7 +523,6 @@ function selectPopupCategory(i) {
   let sourceDiv = document.getElementById(`selectPopupCategory${i}`);
   let targetDiv = document.getElementById(`popupcardCategory`);
   let backgroundColor = sourceDiv.style.backgroundColor;
-
   targetDiv.innerHTML = sourceDiv.innerHTML;
   targetDiv.style.backgroundColor = backgroundColor;
   setPopupCategoryCard();
@@ -654,6 +595,16 @@ function getCategoryColor(task, defaultColorElementId) {
   return color;
 }
 
+function upadateValuePopUp(task,title,description,date,categoryText,categoryColor,selectedContacts,priority){
+  task.title = title;
+  task.description = description;
+  task.date = date;
+  task.categoryText = categoryText;
+  task.categoryColor = categoryColor;
+  task.priority = priority;
+  task.contacts = selectedContacts;
+}
+
 /**
  * Speichert den Zustand einer Aufgabenkarte.
  * @param {number} taskId - Die ID der Aufgabenkarte.
@@ -665,24 +616,17 @@ function savePopupCard(taskId) {
   let date = document.getElementById("popupCardDate").value;
   let categoryText = getCategoryText(task, "categoryPopupText");
   let categoryColor = getCategoryColor(task, "selectColorBox");
-  let selectedContacts = getSelectedContacts(); // Speichert die ausgewählten Kontakte in einer Variablen
+  let selectedContacts = getSelectedContacts();
   let priority = clickedId;
-
   if (!clickedId) {
-    document.getElementById(
-      "prioBoxAlarm"
-    ).innerHTML = `<div class="alarmBoxPrio">Select a priority!</div>`;
+    document.getElementById("prioBoxAlarm").innerHTML = `<div class="alarmBoxPrio">Select a priority!</div>`;
     return;
   }
-  // Update the task object with the new values
-  task.title = title;
-  task.description = description;
-  task.date = date;
-  task.categoryText = categoryText;
-  task.categoryColor = categoryColor;
-  task.priority = priority;
-  task.contacts = selectedContacts; // Aktualisiert die ausgewählten Kontakte in der Aufgabe
+  upadateValuePopUp(task,title,description,date,categoryText,categoryColor,selectedContacts,priority)
+  startOtherFunctions(allTasks,taskId,task,currentElement);
+}
 
+function startOtherFunctions(allTasks,taskId,task,currentElement){
   updateTaskInArray(allTasks, taskId, task);
   resetElement(currentElement);
   closePopupCard();
@@ -718,9 +662,7 @@ function closePopupCard() {
  * Schließt die Anzeige der Aufgabenkarte und kehrt zum Hauptboard zurück.
  */
 function closeShowCard() {
-  let showMainBoardContainer = document.getElementById(
-    "showMainBoardContainer"
-  );
+  let showMainBoardContainer = document.getElementById("showMainBoardContainer");
   let mainBoardContainer = document.getElementById("mainBoardContainer");
   mainBoardContainer.style.display = "block";
   showMainBoardContainer.innerHTML = "";
@@ -732,11 +674,9 @@ function closeShowCard() {
  * @param {number} taskId - Die ID der Aufgabenkarte.
  */
 function deletePopupCard(taskId) {
-  // Finde den Index der zu löschenden Aufgabe im allTasks-Array
   const taskIndex = allTasks.findIndex((task) => task.id === taskId);
   if (taskIndex !== -1) {
     allTasks.splice(taskIndex, 1);
-
     for (let i = 0; i < allTasks.length; i++) {
       allTasks[i].id = i;
     }
@@ -798,6 +738,14 @@ function moveToStatus(taskId, status) {
   closeShowCard();
 }
 
+function newCategoryClass(categoryContainer,newCategoryContainer,categoryColors){
+  categoryContainer.classList.add("d-none");
+  newCategoryContainer.classList.remove("d-none");
+  categoryColors.classList.remove("d-none");
+  categoryColors.classList.add("colorsContainer");
+  document.getElementById("newCategoryContainer").innerHTML = newCategoryHtml();
+}
+
 /**
  * Zeigt den Container für die Erstellung einer neuen Kategorie an und rendert die Farben für die Kategorieauswahl.
  */
@@ -806,11 +754,7 @@ function newCategory() {
   let newCategoryContainer = document.getElementById("newCategoryContainer");
   let categoryColors = document.getElementById("categoryColors");
   renderColorCategory();
-  categoryContainer.classList.add("d-none");
-  newCategoryContainer.classList.remove("d-none");
-  categoryColors.classList.remove("d-none");
-  categoryColors.classList.add("colorsContainer");
-  document.getElementById("newCategoryContainer").innerHTML = newCategoryHtml();
+  newCategoryClass(categoryContainer,newCategoryContainer,categoryColors);
 }
 
 /**
