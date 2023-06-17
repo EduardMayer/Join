@@ -819,7 +819,6 @@ function newCategory() {
 function renderColorCategory() {
   let categoryColors = document.getElementById("categoryColors");
   categoryColors.innerHTML = "";
-
   for (let i = 0; i < allColors.length; i++) {
     categoryColors.innerHTML += `<div onclick="selectColor(${i})" id="selectColor${i}" class="color" style="background-color: ${allColors[i]}">
     </div>`;
@@ -882,10 +881,21 @@ async function addNewCategory() {
 function selectCategory(i) {
   let sourceDiv = document.getElementById(`selectCategory${i}`);
   let targetDiv = document.getElementById(`categoryTextBox`);
-
   targetDiv.innerHTML = sourceDiv.innerHTML;
   sourceDiv.parentNode.removeChild(sourceDiv);
   openDropBoxCategory();
+}
+
+function closeNewCategoryfunction(categoryContainer,newCategoryContainer,childTaskContainer,dropDownBox,categoryColors,categoryBox){
+  categoryBox.classList.add("d-none");
+  categoryBox.classList.remove("categoryBox");
+  categoryColors.classList.add("d-none");
+  categoryColors.classList.remove("colorsContainer");
+  categoryContainer.classList.remove("d-none");
+  newCategoryContainer.classList.add("d-none");
+  childTaskContainer.classList.remove("b-none");
+  dropDownBox.classList.add("d-none");
+  dropDownBox.classList.remove("dropDownBox");
 }
 
 /**
@@ -898,18 +908,20 @@ function closeNewCategory() {
   let childTaskContainer = document.getElementById("category");
   let categoryColors = document.getElementById("categoryColors");
   let categoryBox = document.getElementById("categoryBox");
-
-  categoryBox.classList.add("d-none");
-  categoryBox.classList.remove("categoryBox");
-  categoryColors.classList.add("d-none");
-  categoryColors.classList.remove("colorsContainer");
-  categoryContainer.classList.remove("d-none");
-  newCategoryContainer.classList.add("d-none");
-  childTaskContainer.classList.remove("b-none");
-  dropDownBox.classList.add("d-none");
-  dropDownBox.classList.remove("dropDownBox");
-
+  closeNewCategoryfunction(categoryContainer,newCategoryContainer,childTaskContainer,dropDownBox,categoryColors,categoryBox);
   clearCategory();
+}
+
+function dropUser(dropDownUser,childUserContainer){
+  dropDownUser.classList.remove("d-none");
+  dropDownUser.classList.add("dropDownBox");
+  childUserContainer.classList.add("b-none");
+}
+
+function dropUserElse(dropDownUser,childUserContainer){
+  dropDownUser.classList.add("d-none");
+  dropDownUser.classList.remove("dropDownBox");
+  childUserContainer.classList.remove("b-none");
 }
 
 /**
@@ -920,17 +932,11 @@ function openDropBoxAssigned(taskId) {
   let childUserContainer = document.getElementById("assigned");
   renderAllContacts(taskId);
   if (dropDownUser.classList.contains("d-none")) {
-    dropDownUser.classList.remove("d-none");
-    dropDownUser.classList.add("dropDownBox");
-    childUserContainer.classList.add("b-none");
+    dropUser(dropDownUser,childUserContainer);
   } else {
-    dropDownUser.classList.add("d-none");
-    dropDownUser.classList.remove("dropDownBox");
-    childUserContainer.classList.remove("b-none");
+    dropUserElse(dropDownUser,childUserContainer);
   }
 }
-
-
 
 /**
  * Öffnet oder schließt die Dropdown-Box für die Kategorieauswahl.
@@ -942,18 +948,26 @@ function openDropBoxCategory() {
   let categoryBox = document.getElementById("categoryBox");
   renderCategory();
   if (dropDownBox.classList.contains("d-none")) {
-    dropDownBox.classList.remove("d-none");
-    dropDownBox.classList.add("newCategoryBox");
-    childTaskContainer.classList.add("b-none");
-    categoryBox.classList.remove("d-none");
-    categoryBox.classList.add("categoryBox");
+    dropDownBoxDnone(dropDownBox,childTaskContainer,categoryBox);
   } else {
-    dropDownBox.classList.add("d-none");
-    dropDownBox.classList.remove("newCategoryBox");
-    childTaskContainer.classList.remove("b-none");
-    categoryBox.classList.add("d-none");
-    categoryBox.classList.remove("categoryBox");
+    dropDownBoxElse(dropDownBox,childTaskContainer,categoryBox)
   }
+}
+
+function dropDownBoxElse(dropDownBox,childTaskContainer,categoryBox){
+  dropDownBox.classList.add("d-none");
+  dropDownBox.classList.remove("newCategoryBox");
+  childTaskContainer.classList.remove("b-none");
+  categoryBox.classList.add("d-none");
+  categoryBox.classList.remove("categoryBox");
+}
+
+function dropDownBoxDnone(dropDownBox,childTaskContainer,categoryBox){
+  dropDownBox.classList.remove("d-none");
+  dropDownBox.classList.add("newCategoryBox");
+  childTaskContainer.classList.add("b-none");
+  categoryBox.classList.remove("d-none");
+  categoryBox.classList.add("categoryBox");
 }
 
 /**
@@ -968,14 +982,11 @@ function clearDropBoxAssigned() {
   childUserContainer.classList.remove("b-none");
 }
 
-
 /**
  * Ändert die Symbole in der Subtask-Leiste, um die Subtask-Eingabe anzuzeigen.
  */
 function changeSubImg() {
-  document.getElementById(
-    "subImgContainer"
-  ).innerHTML = `<div class="subImgContainer">
+  document.getElementById("subImgContainer").innerHTML = `<div class="subImgContainer">
   <img onclick="closeSubImg()" src="img/iconoir_cancel_black.svg">
   <div class="searchBarLine"></div>
   <img onclick="addSubtask()" id="subImg" src="img/akar-icons_check_black.svg">
@@ -1027,35 +1038,45 @@ function resetImage(box) {
   const defaultImg = img.dataset.defaultImg;
   img.src = defaultImg;
 }
+
+function ifcurrentElement(element){
+  element.style.backgroundColor = "";
+  resetImage(element);
+  currentElement = null;
+  clickedId = null;
+}
+
+function ifcurrentElementNull(){
+  currentElement.style.backgroundColor = "";
+  resetImage(currentElement);
+}
+
+function prio(elementId,element){
+  if (elementId === "urgent") {
+    element.style.backgroundColor = "rgb(255, 61, 0)";
+    element.querySelector("img").src = "img/Prio-urgent-white.png";
+  } else if (elementId === "medium") {
+    element.style.backgroundColor = "rgb(255, 168, 0)";
+    element.querySelector("img").src = "img/Prio-medium-white.png";
+  } else if (elementId === "low") {
+    element.style.backgroundColor = "rgb(122, 226, 41)";
+    element.querySelector("img").src = "img/Prio-low-white.png";
+  }
+}
+
 /**
  * Ändert die Hintergrundfarbe und das Symbolbild des ausgewählten Prioritätsbuttons.
  * @param {object} event - Das Ereignisobjekt für das Klicken auf den Prioritätsbutton.
  */
 function checkpriobox(elementId) {
   let element = document.getElementById(elementId);
-
   if (currentElement === element) {
-    element.style.backgroundColor = "";
-    resetImage(element);
-    currentElement = null;
-    clickedId = null;
+    ifcurrentElement(element)
   } else {
     if (currentElement !== null) {
-      currentElement.style.backgroundColor = "";
-      resetImage(currentElement);
+      ifcurrentElementNull()
     }
-
-    if (elementId === "urgent") {
-      element.style.backgroundColor = "rgb(255, 61, 0)";
-      element.querySelector("img").src = "img/Prio-urgent-white.png";
-    } else if (elementId === "medium") {
-      element.style.backgroundColor = "rgb(255, 168, 0)";
-      element.querySelector("img").src = "img/Prio-medium-white.png";
-    } else if (elementId === "low") {
-      element.style.backgroundColor = "rgb(122, 226, 41)";
-      element.querySelector("img").src = "img/Prio-low-white.png";
-    }
-
+    prio(elementId,element);
     currentElement = element;
     clickedId = elementId;
   }
@@ -1076,6 +1097,10 @@ function setCurrentDate() {
   if (day < 10) {
     day = "0" + day;
   }
+  currentDate(year,month,day,dateInput);
+}
+
+function currentDate(year,month,day,dateInput){
   const currentDate = year + "-" + month + "-" + day;
   dateInput.min = currentDate; // set minimum date to current date
   dateInput.value = currentDate;
