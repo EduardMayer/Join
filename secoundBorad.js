@@ -274,22 +274,6 @@ function setPopupCategoryCard() {
     }
 }
 
-function getSelectedContacts() {
-    let selectedContacts = [];
-    let checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-    if (checkboxes.length === 0) {
-      let errorMessage = document.getElementById("assigned-error");
-      errorMessage.textContent = "Please select at least one contact.";
-      errorMessage.style.color = "red";
-      return selectedContacts;
-    }
-    checkboxes.forEach((checkbox) => {
-      let contactId = checkbox.id.replace("contact", "");
-      selectedContacts.push(allContacts[contactId]);
-    });
-    return selectedContacts;
-}
-
 function markMatchingContacts(taskId) {
     const task = allTasks.find((task) => task.id === taskId);
     if (task) {
