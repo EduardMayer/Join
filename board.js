@@ -954,24 +954,6 @@ function openDropBoxAssigned(taskId) {
   }
 }
 
-/**
- * Öffnet die Dropdown-Box zur Bearbeitung der zugewiesenen Kontakte.
- * @param {number} taskId - Die ID der Aufgabenkarte.
- */
-function openDropBoxEditAssigned(taskId) {
-  let dropDownUser = document.getElementById("dropDownUser");
-  let childUserContainer = document.getElementById("assigned");
-  renderAllContacts(taskId);
-  if (dropDownUser.classList.contains("d-none")) {
-    dropDownUser.classList.remove("d-none");
-    dropDownUser.classList.add("dropDownBox");
-    childUserContainer.classList.add("b-none");
-  } else {
-    dropDownUser.classList.add("d-none");
-    dropDownUser.classList.remove("dropDownBox");
-    childUserContainer.classList.remove("b-none");
-  }
-}
 
 /**
  * Leert die Dropdown-Box für die zugewiesenen Kontakte.
