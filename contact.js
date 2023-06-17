@@ -399,4 +399,3 @@ function mobileDelButton(email){
         button.setAttribute('onclick', `deleteContact(${index})`);
     }
 }
-  
