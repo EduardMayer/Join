@@ -117,3 +117,38 @@ function editContactHTML(){
         </div>
     `;
 }
+
+function generateUserHTML(index) {
+    let html = '';
+    let indexLetter = firstLetters[index];
+    
+    for (let i = 0; i < sortedContacts[indexLetter].length; i++) {
+        html += /* html */`
+            <div onclick="openContact('${indexLetter}', ${i})" class="profile-div">
+                <div style="background-color: ${sortedContacts[indexLetter][i]['color']}!important" class="profilePicture">
+                    ${sortedContacts[indexLetter][i]['firstLetter']}
+                </div>
+                <div class="overview-Informations">
+                    <span>${sortedContacts[indexLetter][i]['name']}</span>
+                    <a class="email-link" href="#">${sortedContacts[indexLetter][i]['email']}</a>
+                </div>
+            </div>
+        `;
+    }
+    
+    return html;
+}
+
+function contactHTML(letter, index) {
+    return `
+        <div>
+            <h3>${letterHTML(letter).toUpperCase()}</h3>
+            <div class="forh3"></div>
+            <div id="contact${index}"></div>
+        </div>
+        <button class="new-contact button mobile-only" onclick="openOverdiv('newContactHTML')">
+            <span>New Contact</span>
+            <img src="img/addContact.svg">
+        </button>
+    `;
+}
