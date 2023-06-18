@@ -817,7 +817,9 @@ body {
   }
 
   .popupCard {
-    left: 23%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 @media (max-width: 835px) {
@@ -835,7 +837,9 @@ body {
     margin-left: 12px;
   }
   .popupCard {
-    left: 15%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 
@@ -950,6 +954,7 @@ body {
     padding-top: 0px;
     justify-content: center;
   }
+  
 
   .popupCardImgBox {
     flex-direction: column;
