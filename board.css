@@ -264,17 +264,32 @@ body {
 .popupCard {
   display: flex;
   position: absolute;
-  top: 100px;
+  top: 88px;
   left: 35%;
   width: 523px;
   height: auto;
-  border-radius: 30px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
   background-color: #ffffff;
   box-shadow: 0px 0px 14px 3px rgb(0 0 0 / 0.04);
   padding: 50px;
   flex-direction: column;
   gap: 25px;
   z-index: 10;
+}
+
+.popupCard::-webkit-scrollbar {
+  width: 20px;
+}
+.popupCard::-webkit-scrollbar-thumb {
+  background-color: rgba(9, 25, 49);
+  border-radius: 5px;
+}
+
+.popupCard::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .showCard {
@@ -486,7 +501,7 @@ body {
 }
 
 .overlay {
-  position: relative;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;

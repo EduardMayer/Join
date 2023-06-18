@@ -13,7 +13,7 @@
 .mainTaskContainer {
   display: flex;
   margin-left: 124px;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .leftTaskContainer {
@@ -485,6 +485,12 @@ textarea {
   .rightTaskContainer {
     margin-right: 0px;
   }
+  .middleTaskContainer {
+    display:none;
+}
+ .mainTaskContainer{
+  justify-content: space-around;
+ }
 }
 
 @media (max-width: 1335px) {
