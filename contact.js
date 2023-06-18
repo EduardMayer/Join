@@ -398,4 +398,4 @@ function mobileDelButton(email){
         let button = document.getElementById('delMobile');
         button.setAttribute('onclick', `deleteContact(${index})`);
     }
-} 
+}
