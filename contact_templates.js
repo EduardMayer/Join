@@ -53,7 +53,7 @@ function newContactHTML(){
                 <div class="bigImg">
                     <img src="img/guest.png" alt="">
                 </div>
-                <form class="form">
+                <form onsubmit="createNewContact() return false;;" class="form">
                     <div class="relativ-for-icon">
                         <input id="name" minlength="2" required placeholder="Name" type="text">
                         <img src="img/people.svg" alt="">
@@ -69,7 +69,7 @@ function newContactHTML(){
                     <div class="buttons">
                         <button type="button" onclick="closeOverdiv();" class="cancelButton">Cancel <img id="Cancel"
                                 class="cancelImg" src="img/cancel.svg" alt=""></button>
-                        <button type="submit" onclick="createNewContact(); return false;"
+                        <button type="submit" 
                             class="create-contactButton">Create contact <img src="img/hook.svg" alt=""></button>
                     </div>
                 </form>
