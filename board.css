@@ -840,6 +840,21 @@ body {
 }
 
 @media (max-width: 768px) {
+  .showCard{
+    border-radius: 0;
+    
+  }
+  .showMainBoardContainer{
+    overflow-y: scroll;
+    max-height: 85vh;
+  }
+  .showMainBoardContainer::-webkit-scrollbar-track {
+    background-color: transparent !important; 
+  }
+
+  .showMainBoardContainer::-webkit-scrollbar {
+    background-color: transparent;
+  }
   body {
     margin-left: 0px;
     margin: 0px;

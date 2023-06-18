@@ -203,6 +203,7 @@ function newCategoryClass(categoryContainer,newCategoryContainer,categoryColors)
 function closeShowCard() {
     let showMainBoardContainer = document.getElementById("showMainBoardContainer");
     let mainBoardContainer = document.getElementById("mainBoardContainer");
+    document.getElementById('body').style.overflow = 'scroll';
     mainBoardContainer.style.display = "block";
     showMainBoardContainer.innerHTML = "";
     renderBoardCards();
