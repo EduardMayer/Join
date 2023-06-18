@@ -263,8 +263,6 @@ async function registerForContacts(name,email,phone) {
     } 
 }
 
-
-
 function mobileDelButton(email){
     if(window.innerWidth <= 768){
         let index = users.findIndex(u => u['email'] == email);

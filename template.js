@@ -333,3 +333,177 @@ function newCategoryHtml() {
   </div>
   </div>`;
 }
+
+function renderSummaryCardsHTML(totalCount,todoCount,progressCount,feedbackCount,doneCount,urgentCount){
+  return `
+  <div class="content">
+    <div class="tasks-container">
+      <div class="task-boxes" onclick="linkToBoard()">
+        <div class="task-box"> ${totalCount}</div>
+          <p>Tasks in
+          <br>
+          Board</p>  
+      </div>
+      <div class="task-boxes" onclick="linkToBoard()">
+        <div class="task-box">${progressCount}</div>
+          <p>Tasks in Progress</p>
+        </div>
+      <div class="task-boxes" onclick="linkToBoard()">
+        <div class="task-box">${feedbackCount}</div> 
+          <p>Awaiting Feedback</p>
+        </div>
+    </div>
+    <div class="tasks-urgent-deadline" onclick="linkToBoard()">
+      <div class="tasks-urgent"><img src="img/Frame 59.svg">
+        <div class="urgent-info">
+          <div class="urgnet-number">${urgentCount}</div>
+          <div class="urgent-name">Urgent</div>
+        </div> 
+      </div>   
+      <div class="verticalLine-urgent"><img src="img/verticalline-urgent-grey.svg"></div>
+        <div class="deadline">
+          <div id="date" class="deadline-date"></div>
+          <div class="deadline-upcoming">Upcoming Deadline</div>
+        </div>
+    </div>
+    <div class="todo-done">
+      <div class="todo" onclick="linkToBoard()">
+          <img class="pensil" src="img/Group 7.svg">
+          <img class="dis-none" src="img/pencilInverted.png">
+          <div class="todo-done-ticket">
+            <div class="todo-done-number">${todoCount}</div>
+            <p>To-do</p>
+          </div>
+        </div>
+        <div class="done" onclick="linkToBoard()">
+          <img class="dis-none-btn" src="img/done-button.svg">
+          <img class="dis-none" src="img/checkInverted.png">
+          <div class="todo-done-ticket">
+            <div class="todo-done-number">${doneCount}</div>
+            <p>Done</p>
+          </div>
+        </div>
+      </div>
+      
+      </div><div class="greet">
+        <div class="greeting-message" id="greeting-message"></div>
+        <div class="gretting-user" id="greeting-user"></div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderHTML(){
+  return`
+  <div>
+                  <h1>Log in</h1>
+                  <div class="overH1-line">
+                    <div class="h1-line"></div>
+                  </div>
+              </div>
+              <form class="login-value">
+                  <div class="relativ-for-icon">
+                      <input required placeholder="Email" type="email" id="email">
+                      <img src="img/emailicon.svg" alt="">
+                    </div>
+                    <div class="relativ-for-icon">
+                      <input required onkeyup="checkInput()" id="password" placeholder="Password" type="password">
+                      <img id="password-img" onclick="seePassword()" src="img/passwordicon.svg" alt="">
+                      <span id="wrong" class="d-none worng">wrong password</span>
+                  </div>
+                  <div class="password-options">
+                      <div class="checkbox">
+                          <div>
+                              <input onclick="RememberMeSetLocalStorage()" id="check" type="checkbox">
+                          </div>
+                          <div>
+                              <span>Remember me</span>
+                          </div>
+                      </div>
+                      <div class="forgot">
+                        <a onclick="renderPassword()">Forgot my password</a>
+                      </div>
+                    </div>
+                    <div class="login-buttons">
+                      <div>
+                        <button type="submit" onclick="login(event)" class="login-button">Log in</button>
+                      </div>
+                      <div>
+                        <button type="button" onclick="guestLogin()" id="guest" class="guest-button">Guest Log in</button>
+                      </div>
+                    </div>
+              </form>
+
+`;
+}
+
+function SignUpHTML(){
+  return `
+  <div class="back">
+  <img onclick="back()" src="img/blackarrowicon.svg" alt="">
+</div>
+<div>
+  <h1>Sign up</h1>
+  <div class="overH1-line">
+      <div class="h1-line"></div>
+  </div>
+</div>
+<div class="login-value">
+  <form onsubmit="register();return false;">
+      <div class="relativ-for-icon">
+          <input required id="inputName" placeholder="name" type="text" minlength="2">
+          <img src="img/people.svg" alt="">
+      </div>
+      <div class="relativ-for-icon">
+          <input required id="inputEmail" placeholder="Email" type="email">
+          <img src="img/emailicon.svg" alt="">
+      </div>
+      <div class="relativ-for-icon">
+          <input required onkeyup="checkInput()" id="password" placeholder="Password" type="password">
+          <img id="password-img" onclick="seePassword()" src="img/passwordicon.svg" alt="">
+      </div>
+      <div class="login-buttons-sign-up">
+          <div>
+              <button id="Btn" class="login-button">Sign up</button>
+          </div>
+      </div>
+  </form>
+</div>
+
+  `;
+}
+
+function forgotMyPasswordHTML(){
+  return /* html */`
+  
+  <div class="back">
+      <img onclick="back()" src="img/blackarrowicon.svg" alt="">
+  </div>
+  <div>
+      <h1>I forgot my password</h1>
+      <div class="overH1-line">
+          <div class="h1-line"></div>
+      </div>
+  </div>
+  <span class="Password-text">Don't worry! We will send you an email with the instructions to <br> reset your password.</span>
+  <div class="login-value">
+      <form onsubmit="forgotPassword(); return false;">
+          <div class="relativ-for-icon">
+              <input id="email" required placeholder="Email" type="email">
+              <img src="img/emailicon.svg" alt="">
+          </div>
+          <div class="send d-none" id="send">
+              <img style="display:block;" src="img/SendCheck.svg" alt=""> 
+              <span>An E-Mail has been sent to you</span>
+          </div>
+          <div class="login-buttons-sign-up">
+          <div>
+              <button style="width: 200px; margin-top: 20px;" class="login-button">Send me the Email</button>
+          </div>
+      </div>
+      </form>
+  </div>
+</div>
+
+  `;
+}

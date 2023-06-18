@@ -270,8 +270,8 @@ body {
   height: auto;
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
-  border-bottom-right-radius: 30px;
-  border-top-right-radius: 30px;
+  border-bottom-right-radius: 23px;
+  border-top-right-radius: 23px;
   background-color: #ffffff;
   box-shadow: 0px 0px 14px 3px rgb(0 0 0 / 0.04);
   padding: 50px;
@@ -281,7 +281,8 @@ body {
 }
 
 .popupCard::-webkit-scrollbar {
-  width: 30px;
+  width: 20px;
+  margin-left: -10px;
 }
 .popupCard::-webkit-scrollbar-thumb {
   background-color: rgba(9, 25, 49);
@@ -335,12 +336,12 @@ body {
 .popupCardTitle {
   color: #2a3647;
   font-weight: bold;
-  font-size: 61px;
+  font-size: 22px;
   word-break: break-word;
 }
 .popupcardDescription {
   color: #000000;
-  font-size: 21px;
+  font-size: 16px;
   width: 100%;
   word-wrap: break-word;
 }
