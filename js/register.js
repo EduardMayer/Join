@@ -119,7 +119,7 @@ function renderfirstNames(inputname){
   initials = '';
   for(let i = 0; i < names.length; i++){
       let name = names[i];
-      let initial = name.charAt(0);
+      let initial = name.charAt(0).toUpperCase();
       initials += initial;
   }
   updateAllContacts(); 

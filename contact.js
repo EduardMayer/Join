@@ -49,18 +49,32 @@ function loadUserInformations(email) {
     }
 }
 
+function newLetters(inputname){
+    let names = inputname.split(' ');
+    let initials = '';
+    for(let i = 0; i < names.length; i++){
+      let name = names[i];
+      let initial = name.charAt(0).toUpperCase();
+      initials += initial;
+    }
+    return initials;
+}
+
 async function SaveUser(i){
     let name = document.getElementById('name').value;
+    let firstLetter = newLetters(name)
     let email = document.getElementById('email').value;
     let phone = document.getElementById('phone').value;
     if(email && name && phone != ''){
         users[i]['name'] = name;
         users[i]['email'] = email;
         users[i]['tel'] = phone;
+        users[i]['firstLetter'] = firstLetter;
         await setItem('users', JSON.stringify(users));
         closeOverdiv();
         document.getElementById('informationsContacts').innerHTML = '';
         contactInit();
+        closeOverdivArrow();
     }
     return false;
 }
@@ -268,5 +282,11 @@ function mobileDelButton(email){
         let index = users.findIndex(u => u['email'] == email);
         let button = document.getElementById('delMobile');
         button.setAttribute('onclick', `deleteContact(${index})`);
+    }
+}
+
+function checkInputLength(input, maxLength) {
+    if (input.value.length > maxLength) {
+      input.value = input.value.slice(0, maxLength);
     }
 }

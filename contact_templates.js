@@ -53,7 +53,7 @@ function newContactHTML(){
                 <div class="bigImg">
                     <img src="img/guest.png" alt="">
                 </div>
-                <form onsubmit="createNewContact() return false;;" class="form">
+                <form onsubmit="createNewContact(); return false;" class="form">
                     <div class="relativ-for-icon">
                         <input id="name" minlength="2" required placeholder="Name" type="text">
                         <img src="img/people.svg" alt="">
@@ -63,13 +63,13 @@ function newContactHTML(){
                         <img src="img/emailicon.svg" alt="">
                     </div>
                     <div class="relativ-for-icon imgPhone">
-                        <input id="phone" required placeholder="Phone" type="number">
+                        <input id="phone" required placeholder="Phone" type="number" maxlength="10">
                         <img src="img/phone.svg" alt="">
                     </div>
                     <div class="buttons">
                         <button type="button" onclick="closeOverdiv();" class="cancelButton">Cancel <img id="Cancel"
                                 class="cancelImg" src="img/cancel.svg" alt=""></button>
-                        <button type="submit" 
+                        <button
                             class="create-contactButton">Create contact <img src="img/hook.svg" alt=""></button>
                     </div>
                 </form>
@@ -103,7 +103,7 @@ function editContactHTML(){
                         <img src="img/emailicon.svg" alt="">
                     </div>
                     <div class="relativ-for-icon imgPhone">
-                        <input id="phone" required placeholder="Phone" type="number">
+                        <input id="phone" required placeholder="Phone" type="number" oninput="checkInputLength(this, 12)">
                         <img src="img/phone.svg" alt="">
                     </div>
                     <div class="buttons">

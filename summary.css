@@ -155,20 +155,20 @@ p {
   padding: 0px;
   width: 52px;
   height: 75px;
+  gap: 15px;
 }
 
 .urgnet-number {
   width: 50px;
   height: 56px;
   font-weight: 600;
-  font-size: 47px;
+  font-size: 64px;
   line-height: 120%;
   text-align: center;
 }
 
 .urgent-name {
   width: 52px;
-  height: 19px;
   font-weight: 400;
   font-size: 16px;
   color: var(--dark-grey);
@@ -307,7 +307,7 @@ p {
 }
 
 .todo-done-number {
-  height: 60px;
+  height: 55px;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
@@ -464,10 +464,11 @@ p {
     font-size: 16px !important;
   }
   .main {
-    max-width: 330px;
+    max-width: 500px;
     margin-left: 20px;
     display: flex;
     align-items: center;
+    justify-content: center;
   }
 
   .headline{
@@ -496,6 +497,13 @@ p {
     width: 320px;
     gap: 20px;
     height: 115px;
+  }
+
+  .urgent-info {
+    gap: 1px;
+  }
+  .urgnet-number {
+    font-size: 48px;
   }
 
   .todo {
@@ -532,6 +540,11 @@ p {
 
   .todo-done img {
     width: 55px;
+  }
+
+  .todo-done-number {
+    font-size: 48px;
+    line-height: 160%
   }
 
   .headline {

@@ -10,7 +10,7 @@
 }
 
 h1{
-    font-size: 52px;
+    font-size: 47px;
 }
 
 @media (max-width: 769px){
@@ -22,6 +22,10 @@ h1{
         flex-direction: column;
         margin-right: 50px;
         margin-bottom: 100px;
+    }
+
+    h1 {
+        font-size: 40px;
     }
 }
 

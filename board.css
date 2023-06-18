@@ -675,6 +675,11 @@ body {
   align-items: center;
 }
 .initials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
   padding: 10px 8px;
   color: white;
@@ -688,6 +693,12 @@ body {
   border-radius: 50%;
   padding: 10px 8px;
   color: white;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
 }
 
 .popupCard {
