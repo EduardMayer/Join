@@ -117,32 +117,3 @@ function editContactHTML(){
         </div>
     `;
 }
-
-function userTemplate(){
-    return/* html */ `
-    <div onclick="openContact('${indexLetter}',${i})" class="profile-div">
-        <div style="background-color: ${sortedContacts[indexLetter][i]['color']}!important" class="profilePicture">
-            ${sortedContacts[indexLetter][i]['firstLetter']}
-        </div>
-        <div class="overview-Informations">
-            <span>${sortedContacts[indexLetter][i]['name']}</span>
-            <a class="email-link" href="#">${sortedContacts[indexLetter][i]['email']}</a>
-        </div>
-    </div>
-`;
-}
-
-function contactTemplate(){
-return/* html */`
-<div>
-    <h3>${letterHTML(sortLetter[i]).toUpperCase()}</h3>
-    <div class="forh3"></div>
-    <div id="contact${i}"></div>
-</div>
-<button class="new-contact button mobile-only" onclick="openOverdiv('newContactHTML')">
-        <span>New Contact</span>
-        <img src="img/addContact.svg"></button>
-`;
-usersLetter.sort();
-
-}

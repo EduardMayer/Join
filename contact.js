@@ -154,7 +154,17 @@ function renderUser(index){
     div.innerHTML = '';
     let indexLetter = firstLetters[index];
     for(let i = 0; i < sortedContacts[indexLetter].length; i++){
-        div.innerHTML += userTemplate();
+        div.innerHTML += /* html */`
+        <div onclick="openContact('${indexLetter}',${i})" class="profile-div">
+            <div style="background-color: ${sortedContacts[indexLetter][i]['color']}!important" class="profilePicture">
+                ${sortedContacts[indexLetter][i]['firstLetter']}
+            </div>
+            <div class="overview-Informations">
+                <span>${sortedContacts[indexLetter][i]['name']}</span>
+                <a class="email-link" href="#">${sortedContacts[indexLetter][i]['email']}</a>
+            </div>
+        </div>
+    `;
     }
 }
 
@@ -162,7 +172,17 @@ function renderContactHTML(){
     let div = document.getElementById('contact-list-overview');
     div.innerHTML = '';
     for(let i = 0; i < sortLetter.length; i++){
-        div.innerHTML += contactTemplate();
+        div.innerHTML += /* html */`
+        <div>
+            <h3>${letterHTML(sortLetter[i]).toUpperCase()}</h3>
+            <div class="forh3"></div>
+            <div id="contact${i}"></div>
+        </div>
+        <button class="new-contact button mobile-only" onclick="openOverdiv('newContactHTML')">
+                <span>New Contact</span>
+                <img src="img/addContact.svg"></button>
+        `;
+        usersLetter.sort();
     }
 }
 
