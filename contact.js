@@ -309,7 +309,12 @@ function editContactHTML(){
 
 function closeOverdiv(){
     let div = document.getElementById('overdiv');
+    let overlayDiv = document.querySelector(".overlay");
     div.classList.remove('overdiv-slide');
+    if (overlayDiv) { 
+        document.body.removeChild(overlayDiv);
+    }
+   
 }
 function closeOverdivArrow(){
     document.getElementById('contact-info-container').classList.replace('contact-info-container-new','contact-info-container');
@@ -318,7 +323,11 @@ function closeOverdivArrow(){
 function openOverdiv(form){
     loadContactForm(form);
     let div = document.getElementById('overdiv');
+    let overlayDiv = document.createElement("div");
+    
     div.classList.add('overdiv-slide');
+    overlayDiv.classList.add("overlay");
+    document.body.appendChild(overlayDiv);
 }
 
 function doNotClose(event) {
