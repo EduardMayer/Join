@@ -1,0 +1,1030 @@
+body {
+  margin-left: 232px;
+  margin-top: 90px;
+  background-color: rgb(245, 245, 245);
+  font-family: Inter;
+}
+
+.mainBoardContainer {
+  margin-left: 70px;
+  padding-top: 82px;
+}
+.topBoardContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.topBoardContainer p {
+  font-size: 61px;
+  font-weight: 700;
+  margin: 0px;
+}
+.searchBoardContainer {
+  display: flex;
+}
+.searchBarContainer {
+  display: flex;
+  background-color: white;
+  border: 1px solid #a8a8a8;
+  border-radius: 10px;
+  height: 30px;
+  align-items: center;
+  padding: 13px 10px 13px 20px;
+}
+
+.searchBarContainer input {
+  border: none;
+  font-size: 16px;
+}
+.popupCategoryBox {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.searchBarLine {
+  border-left: 1px solid #d1d1d1;
+  height: 30px;
+}
+.searchBarImage {
+  margin-left: 15px;
+  cursor: pointer;
+}
+.addButtonContainer {
+  display: flex;
+  background-color: #2a3647;
+  color: white;
+  border-radius: 10px;
+  align-items: center;
+  gap: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 21px;
+  cursor: pointer;
+  margin-left: 35px;
+  margin-right: 65px;
+  transition: background 200ms ease-in-out;
+}
+.uperStatusBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.addButtonContainer:hover {
+  box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
+  background-color: rgb(41, 171, 226);
+  outline: 1px solid rgb(41, 171, 226);
+}
+
+.addButtonContainer img {
+  margin-left: 10px;
+}
+.addSecondButtonContainer {
+  display: none;
+}
+
+.addTitleContainer {
+  display: none;
+}
+
+.bottomBoardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 80px;
+  margin-right: 65px;
+}
+.statusContainer {
+  display: flex;
+  min-width: 250px;
+  white-space: nowrap;
+  flex-direction: column;
+}
+
+.statusContainer h3 {
+  margin-left: 15px;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.statusContainer img {
+  cursor: pointer;
+}
+
+.upperStatusBox {
+  color: #2a3647;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.mainHelpContainer {
+  margin-top: 161px;
+  margin-left: 124px;
+  margin-right: 124px;
+  margin-bottom: 124px;
+  text-align: justify;
+}
+
+.titleArrowConntainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 19px;
+  margin-top: 114px;
+}
+
+.helpTitleContainer {
+  display: none;
+}
+
+.backArrow {
+  display: flex;
+  width: 100%;
+  flex-direction: row-reverse;
+}
+.mainHelpContainer h1 {
+  font-weight: 700;
+  font-size: 61px;
+  margin-top: 0px;
+}
+
+.mainHelpContainer h2 {
+  font-weight: 700;
+  font-size: 27px;
+}
+
+.explainContainer {
+  display: flex;
+  gap: 35px;
+  margin-bottom: 15px;
+}
+.numberHelp {
+  display: flex;
+  margin: 0px;
+  font-weight: 700;
+  font-size: 27px;
+}
+.createTaskBox:hover {
+  content: url("img/blueplusicon.svg");
+}
+
+.searchBarContainer:focus-within {
+  outline: 2px solid black;
+}
+.searchBarContainer input:focus {
+  outline: none;
+}
+
+.box {
+  min-height: 200px;
+  height: 100%;
+}
+
+.box-highlight {
+  background-color: rgba(42, 54, 71, 0.2);
+  border-radius: 30px;
+}
+
+.card {
+  display: flex;
+  padding: 18px 19px 18px 19px;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 30px;
+  flex-direction: column;
+  box-shadow: 0px 0px 14px 3px rgb(0 0 0 / 0.04);
+  margin-bottom: 35px;
+  height: auto;
+  cursor: grab;
+  width: 251px;
+}
+
+.cardCategory {
+  background-color: rgb(226, 0, 190);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+  padding: 4px 25px 4px 25px;
+  color: white;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.cardTitle {
+  color: #2a3647;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cardDescription {
+  font-size: 16px;
+  color: #a8a8a8;
+  margin-bottom: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.progressBarContainer {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 21px;
+  font-size: 12px;
+  justify-content: space-between;
+  align-items: center;
+}
+.cardProgress {
+  display: flex;
+  width: 100%;
+}
+
+.cardProgress progress {
+  width: 100%;
+  height: 18px;
+}
+
+.cancelIconPopupCard {
+  display: flex;
+  justify-content: flex-end;
+}
+.checkboxStatus {
+  margin-top: 5px;
+}
+
+.lowerCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.popupCard {
+  display: flex;
+  position: absolute;
+  top: 88px;
+  left: 35%;
+  width: 523px;
+  height: auto;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 23px;
+  border-top-right-radius: 23px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 14px 3px rgb(0 0 0 / 0.04);
+  padding: 50px;
+  flex-direction: column;
+  gap: 25px;
+  z-index: 10;
+}
+
+.popupCard::-webkit-scrollbar {
+  width: 20px;
+  margin-left: -10px;
+}
+.popupCard::-webkit-scrollbar-thumb {
+  background-color: rgba(9, 25, 49);
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.popupCard::-webkit-scrollbar-track {
+  background-color: white;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.showCard {
+  display: flex;
+  border-radius: 30px;
+  margin: 140px 3px 32px 3px;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.cancelIconShowCard {
+  cursor: pointer;
+  padding-top: 5px;
+}
+
+.showMainBoardContainer {
+  margin-left: 33px;
+  margin-right: 33px;
+}
+
+.showCategoryContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.popupcardCategory {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  font-size: 27px;
+  padding: 4px 35px;
+  border-radius: 8px;
+  width: fit-content;
+  color: white;
+}
+
+.popupCardTitle {
+  color: #2a3647;
+  font-weight: bold;
+  font-size: 22px;
+  word-break: break-word;
+}
+.popupcardDescription {
+  color: #000000;
+  font-size: 16px;
+  width: 100%;
+  word-wrap: break-word;
+}
+
+.popupCardDate {
+  display: flex;
+  font-size: 21px;
+  gap: 25px;
+}
+
+.popupPrioContainer {
+  display: flex;
+  font-size: 21px;
+  align-items: center;
+  gap: 25px;
+}
+
+.popupPrioBox {
+  color: white;
+  display: flex;
+  padding: 4px 18px;
+  border-radius: 10px;
+  align-items: center;
+  gap: 10px;
+}
+
+.popupCardAssigned {
+  font-size: 21px;
+  height: 15%;
+}
+
+.popupCardSubContainer {
+  font-size: 21px;
+  z-index: 4;
+}
+.popupCardSubBox {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  width: 100%;
+  overflow: auto;
+  overflow-x: hidden;
+  max-height: 150px;
+}
+
+/* Hiermit passt du das Aussehen der Scrollbar an */
+.popupCardSubBox::-webkit-scrollbar {
+  width: 8px;
+}
+
+.popupCardSubBox::-webkit-scrollbar-thumb {
+  background-color: rgba(9, 25, 49);
+  border-radius: 5px;
+}
+
+.popupCardSubBox::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.popupCardSubItem {
+  display: flex;
+  word-break: break-all;
+  gap: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+.popupCardImgContainer {
+  display: flex;
+  justify-content: end;
+  width: 100%;
+  bottom: 50px;
+  left: -50px;
+  cursor: pointer;
+}
+.popupCardImgBox {
+  display: flex;
+  align-items: center;
+  width: 100px;
+  height: 50px;
+  gap: 10px;
+}
+
+.popupDeletButton:hover {
+  content: url("img/deletbuttonhover.png");
+}
+
+.popupEditButton:hover {
+  content: url("img/editbuttonhover.png");
+}
+
+.popupCardLowerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 0;
+}
+
+.cancelIconPopupCard {
+  cursor: pointer;
+}
+
+.cancelPopupCardBox {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.mainAddTaskContainer {
+  transform: translateX(150%);
+  transition: 430ms ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 61px 74px 61px 74px;
+  background: #ffffff;
+  border-radius: 30px;
+  position: absolute;
+  left: 16%;
+  top: 10px;
+  z-index: 10;
+  width: 65%;
+  margin-left: 50px;
+  max-width: 1116px;
+}
+
+.bodyAddTaskCotnainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.headAddTaskContainer {
+  display: flex;
+  font-weight: bold;
+}
+
+.rightAddTaskContainer {
+  display: flex;
+  flex-direction: column;
+  font-size: 21px;
+  gap: 37px;
+  margin-left: 59px;
+  width: 422px;
+}
+.middleAddTaskContainer {
+  border-left: 1px solid #d1d1d1;
+  height: 551px;
+}
+
+.buttonAddTaskContainer {
+  display: flex;
+  gap: 10px;
+  flex-direction: row-reverse;
+  margin-top: 20px;
+}
+
+.headAddTaskContainer p {
+  font-size: 61px;
+  margin-top: 0px;
+  margin-bottom: 41px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popupCardtitleContainer {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  font-size: 21px;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.popupCarddescriptionContainer {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  font-size: 21px;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.popupCarddateContainer {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  font-size: 21px;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+.popupCardprioContainer {
+  display: flex;
+  flex-direction: column;
+  font-size: 21px;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.popupCardprioContainer label {
+  font-weight: bold;
+}
+
+.popupCardprioBox {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 13px;
+  height: 51px;
+  width: 100%;
+  gap: 10px;
+  background: #ffffff;
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+}
+
+.popupCardprioBox:hover {
+  box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
+  scale: 1.05;
+}
+
+.popupSaveButton {
+  border: 1px solid #2a3647;
+  background-color: #2a3647;
+  color: #f5f5f5;
+  width: 100px;
+  height: 61px;
+  border-radius: 10px;
+  font-size: 21px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  transition: background 200ms ease-in-out;
+}
+
+.popupSaveButton:hover {
+  box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
+  background-color: rgb(41, 171, 226);
+  border: 1px solid rgb(41, 171, 226);
+}
+
+.popupCardEditAssigned {
+  margin-top: 10px;
+}
+
+.popupCardEditImgContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+  .colorPopupCategoryBox {
+    display: flex;
+    align-items: center;
+    font-size: 21px;
+    padding: 4px 35px;
+    border-radius: 8px;
+    width: 135px;
+    color: white;
+    cursor: pointer;
+}
+
+
+.editPopupCardCategory {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  font-size: 27px;
+  padding: 4px 35px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  width: fit-content;
+  color: white;
+  cursor: pointer;
+  border: 4px ridge black;
+}
+
+.editPopupCardCategory:hover {
+  scale: 1.1;
+}
+
+.popupCardCheckbox {
+  cursor: pointer;
+  margin: 0px;
+  height: 20px;
+}
+.secondTitleContainer p {
+  font-size: 16px;
+  margin-bottom: 19px;
+  display: none;
+}
+.statusButtonsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.popupCardStatus b {
+  font-size: 21px;
+}
+.statusButtonsContainer button {
+  margin-top: 10px;
+  width: 100px;
+  height: 50px;
+  background-color: white;
+  border: 1px solid #091931;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.statusButtonsContainer button:hover {
+  color: white;
+  background-color: rgb(41, 171, 226);
+  border: 1px solid rgb(41, 171, 226);
+}
+
+.initialsNameBox {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  align-items: center;
+}
+.initials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  padding: 10px 8px;
+  color: white;
+}
+
+.cardUser {
+  display: flex;
+}
+
+.initialsSecond {
+  border-radius: 50%;
+  padding: 10px 8px;
+  color: white;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+}
+
+.popupCard {
+  position: fixed;
+  max-height: 700px;
+  overflow-y: scroll !important;
+}
+
+@media (max-width: 1335px) {
+  .middleAddTaskContainer {
+    display: none;
+  }
+}
+
+@media (max-width: 1275px) {
+  .mainAddTaskContainer {
+    left: 24%;
+    margin-left: 50px;
+    width: 50%;
+  }
+  .bodyAddTaskCotnainer {
+    flex-direction: column;
+  }
+
+  .titleContainer {
+    width: 422px;
+  }
+
+  .rightAddTaskContainer {
+    margin-left: 0px;
+  }
+  .bodyAddTaskCotnainer {
+    align-items: center;
+  }
+  .buttonAddTaskContainer {
+    display: flex;
+    gap: 10px;
+    position: static;
+    bottom: 30px;
+    right: 61px;
+    padding-top: 25px;
+    justify-content: center;
+    margin-top: 15px;
+  }
+
+  .headAddTaskContainer {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1047px) {
+  .headlineContainer {
+    margin-bottom: 30px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .topBoardContainer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .searchBoardContainer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .addButtonContainer {
+    display: none;
+  }
+
+  .addSecondButtonContainer {
+    display: flex;
+    background-color: #2a3647;
+    color: white;
+    border-radius: 10px;
+    align-items: center;
+    gap: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 21px;
+    cursor: pointer;
+    height: 58px;
+    margin-left: 35px;
+    margin-right: 65px;
+    transition: background 200ms ease-in-out;
+  }
+
+  .addSecondButtonContainer:hover {
+    box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
+    background-color: rgb(41, 171, 226);
+    outline: 1px solid rgb(41, 171, 226);
+  }
+
+  .addSecondButtonContainer img {
+    margin-left: 10px;
+  }
+  .headlineContainer {
+    margin-bottom: 30px;
+  }
+  .bottomBoardContainer {
+    margin-top: 22px;
+    margin-right: 65px;
+  }
+}
+
+@media (max-width: 975px) {
+  .bottomBoardContainer {
+    flex-direction: column;
+  }
+  .statusContainer {
+    width: 100%;
+  }
+  .card {
+    width: 93%;
+  }
+
+  .popupCard {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+@media (max-width: 835px) {
+  .addSecondButtonContainer {
+    margin-left: 0px;
+    width: 40px;
+    height: 40px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .addSecondButtonContainer b {
+    display: none;
+  }
+  .addSecondButtonContainer img {
+    margin-left: 12px;
+  }
+  .popupCard {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media (max-width: 768px) {
+  .showCard{
+    border-radius: 0;
+    
+  }
+  .showMainBoardContainer{
+    overflow-y: scroll;
+    max-height: 85vh;
+  }
+  .showMainBoardContainer::-webkit-scrollbar-track {
+    background-color: transparent !important; 
+  }
+
+  .showMainBoardContainer::-webkit-scrollbar {
+    background-color: transparent;
+  }
+  body {
+    margin-left: 0px;
+    margin: 0px;
+    margin-top: 0px;
+    padding-bottom: 120px;
+  }
+
+  .mainBoardContainer {
+    margin-left: 20px;
+    margin-right: 29px;
+    padding-top: 0px;
+  }
+  .bottomBoardContainer {
+    margin-top: 0px;
+    margin-right: 0px;
+  }
+  .addSecondButtonContainer {
+    margin-right: 0px;
+  }
+  .mainHelpContainer {
+    margin-top: 101px;
+    margin-left: 33px;
+    margin-right: 33px;
+    margin-bottom: 0px;
+    text-align: justify;
+  }
+
+  .helpTitleContainer {
+    font-size: 16px;
+    display: flex;
+    white-space: nowrap;
+  }
+  .helpIconContainer {
+    display: none;
+  }
+
+  .topBoardContainer p {
+    font-size: 47px;
+  }
+  .secondTitleContainer p {
+    font-size: 16px;
+    margin-bottom: 19px;
+    margin-top: 114px;
+    display: flex;
+  }
+
+  .mainAddTaskContainer {
+    transform: translateX(150%);
+    transition: 400ms ease-in-out;
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    background: #ffffff;
+    border-radius: 0;
+    position: absolute;
+    left: 0px;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    height: 1650px;
+    justify-content: flex-start;
+    top: 85px;
+    margin: 0px;
+  }
+
+  .leftAddTaskContainer {
+    width: 90%;
+  }
+
+  .rightAddTaskContainer {
+    width: 90%;
+  }
+
+  .cancelIconPopupCard {
+    padding-right: 15px;
+    padding-top: 15px;
+  }
+
+  .addTitleContainer {
+    font-size: 16px;
+    margin-bottom: 19px;
+    margin-top: 114px;
+    display: flex;
+    padding-left: 33px;
+  }
+
+  .buttonAddTaskContainer {
+    display: flex;
+    gap: 10px;
+    position: static;
+    bottom: 30px;
+    right: 61px;
+    padding-top: 0px;
+    justify-content: center;
+  }
+  
+
+  .popupCardImgBox {
+    flex-direction: column;
+  }
+
+  .popupCardImgBox img {
+    display: block;
+  }
+
+  .popupCardImgContainer {
+    position: static;
+  }
+
+  .popupCardSubBox {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .popupcardCategory {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    font-size: 20px;
+    padding: 4px 35px;
+    border-radius: 8px;
+    width: fit-content;
+    color: white;
+}
+
+.editPopupCardCategory {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  font-size: 21px;
+  padding: 4px 35px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  width: fit-content;
+  color: white;
+  cursor: pointer;
+  border: 4px ridge black;
+}
+
+.popupCardTitle {
+  color: #2a3647;
+  font-weight: bold;
+  font-size: 40px;
+  word-break: break-word;
+}
+}
+
+@media (max-width: 360px) {
+  
+  .mainBoardContainer {
+    margin-left: 10px;
+    margin-right: 20px;
+    padding-top: 0px;
+  }
+  .helpTitleContainer {
+    font-size: 16px;
+    display: flex;
+    white-space: normal;
+  }
+  .buttonAddTaskContainer {
+    display: flex;
+    gap: 10px;
+    bottom: 30px;
+    right: 61px;
+    padding-top: 0px;
+    justify-content: center;
+  }
+}

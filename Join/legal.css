@@ -1,0 +1,30 @@
+.mainContainer{
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 90px;
+    margin-left: 300px;
+    flex-direction: column;
+    margin-right: 50px;
+    margin-bottom: 50px;
+}
+
+h1{
+    font-size: 47px;
+}
+
+@media (max-width: 769px){
+    .mainContainer{
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 100px;
+        margin-left: 50px;
+        flex-direction: column;
+        margin-right: 50px;
+        margin-bottom: 100px;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+}
+

@@ -1,0 +1,296 @@
+.navbar-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Inter;
+  padding: 0px 36px 0px 348px;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  height: 89px;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  z-index: 8;
+}
+
+.HeadProfile{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  background-color: rgb(254, 104, 45);
+  border-radius: 100%;
+  color: black;
+  font-size: 18px;
+}
+
+.navbar-header p {
+  font-size: 21px;
+  font-weight: 400;
+}
+.rightSiteheader {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.guestIcon img {
+  width: 49px;
+}
+
+.navbarMainContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 55px 0px;
+  gap: 103px;
+  position: fixed;
+  width: 232px;
+  left: 0px;
+  height: 100%;
+  bottom: 0px;
+  background: #2a3647;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0px;
+  font-size: 16px;
+  line-height: 170%;
+  z-index: 9;
+  align-items: center;
+}
+
+.navbarMainContainer ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navbarMainContainer a {
+  color: #cdcdcd;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 229px;
+  gap: 15px;
+}
+
+.joinLogoContainer {
+  margin-top: 115px;
+}
+
+.navbarSection {
+  display: flex;
+  align-items: center;
+  padding: 8px 53px;
+  height: 46px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.navbarSection img {
+  width: 28px;
+  padding-right: 16px;
+}
+.navbarSection:hover {
+  background-color: #091931;
+}
+
+.lowerNavbarSection {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+  white-space: nowrap;
+  width: 100%;
+  justify-content: center;
+  height: 62px;
+}
+
+.lowerNavbarSection img {
+  justify-content: center;
+  width: 31px;
+  padding-right: 16px;
+}
+
+.lowerNavbarSection:hover {
+  background-color: #091931;
+}
+
+.logout {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+header {
+  position: relative;
+}
+
+.logoutdiv{
+  position: absolute;
+  bottom: -134px;
+  width: 80px;
+}
+
+.logoutdivOne{
+  position: absolute;
+  bottom: -40px;
+  width: 80px;
+}
+
+.logoutdivOne span{
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.logoutdiv span:first-child{
+  border-top-left-radius: 20px;
+}
+
+.logoutdiv span:last-child{
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+
+.logout span {
+  background-color: rgb(41, 55, 71);
+  width: 70px;
+  color: rgb(144, 149, 155);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.logout span:hover {
+  cursor: pointer;
+  color: white;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.joinMiniLogoContainer {
+  display: none;
+}
+
+.popupAddTaskBoard {
+  transition: transform 400ms ease-in-out;
+  display: flex;
+  position: fixed;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, 500%);
+  align-items: center;
+  gap: 20px;
+  background-color: #2a3647;
+  color: white;
+  height: 74px;
+  border-radius: 20px;
+  width: 326px;
+  justify-content: center;
+  font-size: 21px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  z-index: 15;
+}
+
+@media (max-width:830px){
+  .navbar-header p{
+    font-size: 18px;
+  }
+}
+
+@media (max-width:800px){
+  .navbar-header p{
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .joinLogoContainer {
+    display: none;
+  }
+  .lowerNavbarSection {
+    display: none;
+  }
+  .firstTitleContainer {
+    display: none;
+  }
+  .navbar-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Inter;
+    padding: 0px 25px 0px 25px;
+    background: #ffffff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    height: 89px;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    z-index: 8;
+  }
+
+  .navbarMainContainer {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 80px;
+    bottom: 0;
+    background: #2a3647;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    z-index: 1;
+    padding: 0px 0px 0px 0px;
+  }
+
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 50px;
+    gap: 5px;
+    justify-content: space-around;
+  }
+  .navbarSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80px;
+    width: 80px;
+    white-space: nowrap;
+    cursor: pointer;
+    padding: 0px 0px;
+    gap: 14px;
+    justify-content: center;
+    line-height: 0%;
+  }
+
+  .navbarSection:hover {
+    background-color: #091931;
+  }
+  .navbarSection img {
+    display: flex;
+    justify-content: center;
+    width: 28px;
+    padding-right: 0px;
+  }
+
+  .joinMiniLogoContainer {
+    display: flex;
+  }
+}

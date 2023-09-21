@@ -314,8 +314,8 @@ function popupAddTaskContainerTemplate(status) {
           </div>
         </div>
         <div class="buttonAddTaskContainer">
-          <button class="buttonTask" onclick="clearTask()">Clear <img class="cancelIcon" src="img/iconoir_cancel.svg"></button>
           <button class="buttonTask2" type="submit">Create Task<img src="img/akar-icons_check.svg"></button>
+          <button class="buttonTask" onclick="clearTask()">Clear <img class="cancelIcon" src="img/iconoir_cancel.svg"></button>
         </div>
       </form>
     </div>

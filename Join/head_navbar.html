@@ -1,0 +1,58 @@
+<nav>
+  <header class="navbar-header">
+    <div class="joinMiniLogoContainer"><img src="img/minijoinlogo.svg"></div>
+    <div class="firstTitleContainer">
+      <p>Kanban Project Management Tool</p>
+    </div>
+    <div class="rightSiteheader">
+      <div class="helpIconContainer"><a href="help.html"><img src="img/helpicon.svg"></a></div>
+      <div class="logout">
+        <a style="text-decoration: none;" class="guestIcon" href="#"><div class="HeadProfile" id="headProfile" onclick="showLogOut()"></div> </a>
+        <div class="d-none logoutdiv" id="logout">
+          <span id="openhelp" class="d-none" onclick="openhelp()">
+            Help
+          </span>
+          <span id="openlegal" class="d-none" onclick="openlegal()">
+            Legal notice
+          </span>
+          <span  onclick="logout()">
+            Log out
+          </span>
+        </div>
+      </div>
+  </header>
+  <nav class="navbarMainContainer">
+    <div class="joinLogoContainer"><a href="summary.html"><img src="img/logoJoin.svg"></a></div>
+    <div class="navbar">
+      <a href="summary.html">
+        <div class="navbarSection">
+          <img src="img/summaryicon.svg" alt="Summary">
+          <span>Summary</span>
+        </div>
+      </a>
+      <a href="board.html">
+        <div class="navbarSection">
+          <img src="img/boardicon.svg" alt="Board">
+          <span>Board</span>
+        </div>
+      </a>
+      <a href="addtask.html">
+        <div class="navbarSection">
+          <img src="img/addtaskicon.svg" alt="Add Task">
+          <span>Add Task</span>
+        </div>
+      </a>
+      <a href="contact.html">
+        <div class="navbarSection">
+          <img src="img/contactsicon.svg" alt="Contacts">
+          <span>Contacts</span>
+        </div>
+      </a>
+    </div>
+    </div>
+    <div class="lowerNavbarSection">
+      <img src="img/infoiconsvg.svg">
+      <a href="legal.html">Legal notice</a>
+    </div>
+  </nav>
+<div class="popupAddTaskBoard" id="popupAddTaskBoard">Task added to Board <img src="img/boardicon.svg" alt="boardicon"></div>

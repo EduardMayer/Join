@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="board.css">
+    <link rel="stylesheet" href="headnav.css">
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="addtask.css">
+    <script src="js/storage.js"></script>
+    <script src="js/register.js"></script>
+    <script src="js/logtinAcc.js"></script>
+    <script src="js/login.js"></script>
+    <script src="board.js"></script>
+    <script src="summary.js"></script>
+    <script src="template.js"></script>
+    <script src="contact.js"></script>
+    <script src="secondBoard.js"></script>
+    <script src="thirdBoard.js"></script>
+    <script src="contact_templates.js"></script>
+    <link rel="icon" type="image/svg" href="img/Join-logo.svg">
+    <title>Join-Board</title>
+</head>
+
+<body id="body" onload="includeHTML(), loadLogtinUser(), renderBoardCards(), load() ">
+    <div w3-include-html="head_navbar.html"></div>
+    <div class="showMainBoardContainer" id="showMainBoardContainer"></div>
+    <div class="mainBoardContainer" id="mainBoardContainer">
+        <div class="secondTitleContainer">
+            <p>Kanban Project Management Tool</p>
+        </div>
+
+        <div class="topBoardContainer">
+            <div class="headlineContainer">
+                <p>Board</p>
+                <div class="addSecondButtonContainer">
+                    <div onclick="openAddTaskContainer('todo')"><b>Add task</b><img src="img/crossboard.svg"></div>
+                </div>
+            </div>
+            <div class="searchBoardContainer">
+                <div class="searchBarContainer">
+                    <div>
+                        <input type="text" placeholder="Find Task" onkeyup="searchCards()">
+                    </div>
+                    <div class="searchBarLine"></div>
+                    <div class="searchBarImage">
+                        <img onclick="searchCards()" src="img/magnifiericon.svg">
+                    </div>
+                </div>
+                <div class="addButtonContainer">
+                    <div onclick="openAddTaskContainer('todo')"><b>Add task</b><img src="img/crossboard.svg"></div>
+                </div>
+            </div>
+        </div>
+        <div class="bottomBoardContainer">
+            <div class="statusContainer">
+                <div class="upperStatusBox">
+                    <h3>To Do</h3>
+                    <div onclick="openAddTaskContainer('todo')"><img class="createTaskBox" src="img/plus button v1.svg">
+                    </div>
+                </div>
+                <div class="box" ondragover="allowDrop(event); highlight('todo')"
+                    ondrop="moveTo('todo'); removeHighlight('todo')" ondragleave="removeHighlight('todo')" id="todo">
+                </div>
+            </div>
+            <div class="statusContainer">
+                <div class="upperStatusBox">
+                    <h3>In Progress</h3>
+                    <div onclick="openAddTaskContainer('progress')"><img class="createTaskBox"
+                            src="img/plus button v1.svg"></div>
+                </div>
+                <div class="box" ondragover="allowDrop(event); highlight('progress')"
+                    ondrop="moveTo('progress'); removeHighlight('progress')" ondragleave="removeHighlight('progress')"
+                    id="progress">
+                </div>
+            </div>
+            <div class="statusContainer">
+                <div class="upperStatusBox">
+                    <h3>Awaiting Feedback</h3>
+                    <div onclick="openAddTaskContainer('feedback')"><img class="createTaskBox"
+                            src="img/plus button v1.svg"></div>
+                </div>
+                <div class="box" ondragover="allowDrop(event); highlight('feedback')"
+                    ondrop="moveTo('feedback'); removeHighlight('feedback')" ondragleave="removeHighlight('feedback')"
+                    id="feedback">
+
+                </div>
+            </div>
+            <div class="statusContainer">
+                <div class="upperStatusBox">
+                    <h3>Done</h3>
+                    <div onclick="openAddTaskContainer('done')"><img class="createTaskBox" src="img/plus button v1.svg">
+                    </div>
+                </div>
+                <div class="box" ondragover="allowDrop(event); highlight('done')"
+                    ondrop="moveTo('done'); removeHighlight('done')" ondragleave="removeHighlight('done')" id="done">
+                </div>
+            </div>
+        </div>
+        <div class="popupContainer" id="popupContainer"></div>
+        <div class="popupAddTaskContainer" id="popupAddTaskContainer"></div>
+</body>
+
+</html>

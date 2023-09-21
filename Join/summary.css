@@ -1,0 +1,631 @@
+body {
+  margin: 0;
+  background-color: rgb(245, 245, 245);
+  font-family: Inter;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  margin-top: 141px;
+  margin-left: 315px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 120%;
+}
+
+.headline {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  width: 681px;
+  height: 80px;
+}
+
+h1 {
+  font-size: 61px;
+  font-weight: 700;
+  line-height: 120%;
+  width: 315px;
+}
+
+.verticalline-summary {
+  height: 59px;
+  border: 2px solid #29ABE2;
+  text-align: center;
+}
+
+.verticalline-summary-media {
+  display: none;
+}
+
+h4 {
+  align-items: center;
+  display: flex;
+  width: 306px;
+  height: 32px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 27px;
+  line-height: 120%;
+  color: #2A3647;
+}
+
+.content-summary {
+  display: flex;
+  align-items: center;
+  padding-top: 87px;
+  max-width: 1500px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 35px;
+  width: 55%;
+  height: 510px;
+}
+
+.tasks-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 35px;
+  width: 580px;
+  height: 170px;
+}
+
+p {
+  text-align: center;
+}
+
+.task-boxes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 170px;
+  height: 170px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  transition: all 100ms ease-in-out;
+}
+
+.task-boxes:hover {
+  background-color: #2A3647;
+  cursor: pointer;
+  color: #FFFFFF;
+  box-shadow: 0 4px 4px 0 rgb(0, 0, 0, 0.3);
+  transform: scale(1.05);
+}
+
+.task-box {
+  text-align: center;
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 90%;
+  margin-top: 15px;
+}
+
+.tasks-urgent-deadline {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 61px;
+  width: 580px;
+  height: 150px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 100ms ease-in-out;
+}
+
+.tasks-urgent-deadline:hover {
+  background-color: #2A3647;
+  cursor: pointer;
+  color: #FFFFFF;
+  box-shadow: 0 4px 4px 0 rgb(0, 0, 0, 0.3);
+  transform: scale(1.05);
+}
+
+.tasks-urgent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 18px;
+  width: 130px;
+  height: 75px;
+}
+
+.urgent-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  width: 52px;
+  height: 75px;
+  gap: 15px;
+}
+
+.urgnet-number {
+  width: 50px;
+  height: 56px;
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 120%;
+  text-align: center;
+}
+
+.urgent-name {
+  width: 52px;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--dark-grey);
+}
+
+.verticalline-urgent {
+  width: 0px;
+  height: 102.02px;
+  border: 2px solid var(--grey);
+}
+
+.deadline {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 13px;
+  height: 57px;
+}
+
+.deadline-date {
+  height: 25px;
+  font-weight: 700;
+  color: var(--dark-grey);
+}
+
+.date {
+  font-size: 28px;
+}
+
+.deadline-upcoming {
+  width: 148px;
+  height: 19px;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--dark-grey);
+}
+
+.todo-done {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 35px;
+  width: 580px;
+  height: 150px;
+}
+
+.todo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  width: 272.5px;
+  height: 150px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  transition: all 100ms ease-in-out;
+}
+
+.d-none {
+  display: none;
+}
+
+.todo:hover {
+  background-color: #2A3647;
+  color: white !important;
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.todo:hover .pensil {
+  display: none;
+}
+
+.todo .dis-none {
+  display: none;
+}
+
+.todo:hover .dis-none {
+  height: 65px;
+  display: block;
+}
+
+.todo:hover div {
+  color: #FFFFFF;
+}
+
+.done {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  width: 272.5px;
+  height: 150px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 100ms ease-in-out;
+}
+
+.done:hover {
+  background-color: #2A3647;
+  cursor: pointer;
+  color: #FFFFFF;
+  box-shadow: 0 4px 4px 0 rgb(0, 0, 0, 0.3);
+  transform: scale(1.05);
+}
+
+.done:hover div {
+  color: white;
+}
+
+.done:hover .dis-none-btn {
+  display: none;
+}
+
+.done .dis-none {
+  display: none;
+}
+
+.done:hover .dis-none {
+  height: 65px;
+  display: block;
+}
+
+.todo-done-ticket {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60px;
+}
+
+.todo-done-number {
+  height: 55px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 120%;
+  text-align: center;
+  color: #000000;
+}
+
+p {
+  height: 25px;
+  color: var(--dark-grey);
+}
+
+.greet {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 67px;
+  gap: 3px;
+  width: 385px;
+  height: 136px;
+}
+
+.greeting-message {
+  font-weight: 500;
+  font-size: 47px;
+  line-height: 120%;
+  color: var(--dark-grey);
+}
+
+.gretting-user {
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 120%;
+  color: #29ABE2;
+}
+
+.overlayContainer {
+  display: flex;
+  background-color: white;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.overlay {
+  font-weight: 500;
+  font-size: 40px;
+  color: var(--dark-grey);
+}
+
+.overlayUser {
+  font-weight: 700;
+  font-size: 45px;
+  color: #29ABE2;
+}
+
+@media (max-width: 1300px) {
+  .greet {
+    display: none;
+  }
+}
+
+@media (max-width: 1000px) {
+  .headline {
+    align-items: center;
+    width: 500px;
+  }
+
+  .headline h1 {
+    font-size: 40px;
+    width: 190px;
+  }
+
+  .headline h4 {
+    font-size: 20px;
+    height: 22px;
+  }
+}
+
+@media (max-width: 935px) {
+  .main {
+    margin-left: 250px;
+  }
+}
+
+@media (max-width: 855px) {
+  .tasks-urgent-deadline {
+    width: 450px;
+  }
+
+  .tasks-container {
+    width: 450px;
+  }
+
+  .task-boxes {
+    width: 125px;
+  }
+
+  .todo-done {
+    width: 450px;
+  }
+
+  .todo {
+    width: 205px;
+  }
+
+  .done {
+    width: 205px;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-summary{
+    padding-top: 15px;
+  }
+
+  .main {
+    margin-left: 150px;
+  }
+
+  .tasks-container {
+    width: 450px;
+  }
+
+  .todo-done {
+    width: 450px;
+  }
+}
+
+@media (max-width: 650px) {
+  .main {
+    margin-left: 50px;
+  }
+
+  .headline {
+    width: 400px;
+  }
+}
+
+@media (max-width: 520px) {
+  h1{
+    font-size: 28px !important;
+  }
+
+  .content-summary{
+    padding-top: 30px;
+  }
+
+
+
+  h4{
+    font-size: 16px !important;
+  }
+  .main {
+    max-width: 420px;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .headline{
+    margin-top: -10px;
+    gap: 0px;
+  }
+
+  .tasks-container {
+    width: 320px;
+    height: 130px;
+  }
+
+  .task-box {
+    font-size: 48px;
+  }
+
+  .task-boxes p {
+    font-size: 14px;
+  }
+
+  .task-boxes {
+    height: 150px;
+  }
+
+  .tasks-urgent-deadline {
+    width: 320px;
+    gap: 20px;
+    height: 115px;
+  }
+
+  .urgent-info {
+    gap: 1px;
+  }
+  .urgnet-number {
+    font-size: 48px;
+  }
+
+  .todo {
+    height: 100px;
+  }
+
+  .todo:hover {
+    font-size: 14px;
+  }
+
+  .todo:hover .dis-none {
+    width: 50px;
+    height: 50px;
+  }
+
+  .done {
+    height: 100px;
+  }
+
+  .done:hover {
+    font-size: 14px;
+  }
+
+  .done:hover .dis-none {
+    width: 50px;
+    height: 50px;
+  }
+
+  .todo-done {
+    width: 320px;
+    font-size: 14px;
+    height: 100px;
+  }
+
+  .todo-done img {
+    width: 55px;
+  }
+
+  .todo-done-number {
+    font-size: 48px;
+    line-height: 160%
+  }
+
+  .headline {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1px;
+    margin-left: 65px;
+    width: 330px;
+  }
+
+  .verticalline-summary {
+    display: none;
+  }
+
+  .verticalline-summary-media {
+    display: flex;
+    border: 2px solid #29ABE2;
+    width: 90px;
+  }
+
+  h1 {
+    line-height: 0px;
+  }
+
+  h4 {
+    text-align: center;
+  }
+}
+
+@media (max-width: 420px){
+  h1{
+    width: min-content !important;
+  }
+
+  .headline{
+    width: min-content !important;
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 350px) {
+  .main {
+    margin-left: 0px;
+  }
+
+  .todo-done img {
+    width: 50px;
+  }
+
+  .todo-done {
+    width: 300px;
+    font-size: 14px;
+  }
+
+  .tasks-urgent-deadline {
+    width: 300px;
+    gap: 20px;
+  }
+
+  .tasks-urgent {
+    display: flex;
+    gap: 10px;
+    margin-left: 5px;
+  }
+
+  .tasks-urgent img {
+    width: 40px;
+  }
+
+  .deadline-upcoming {
+    font-size: 14px;
+  }
+
+  .tasks-container {
+    width: 300px;
+  }
+
+  .task-boxes p {
+    font-size: 14px;
+  }
+}
