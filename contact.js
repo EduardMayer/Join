@@ -84,23 +84,40 @@ function newLetters(inputname) {
  */
 async function SaveUser(i) {
     let name = document.getElementById('name').value;
-    let firstLetter = newLetters(name)
+    let firstLetter = newLetters(name);
     let email = document.getElementById('email').value;
     let phone = document.getElementById('phone').value;
+    
     if (email && name && phone != '') {
         users[i]['name'] = name;
         users[i]['email'] = email;
         users[i]['tel'] = phone;
         users[i]['firstLetter'] = firstLetter;
         await setItem('users', JSON.stringify(users));
+        renderAllContacts();
         closeOverdiv();
-        document.getElementById('informationsContacts').innerHTML = '';
         contactInit();
         closeOverdivArrow();
     }
+
     return false;
 }
 
+function renderAllContacts() {
+    for (const letter in sortedContacts) {
+        for (let i = 0; i < sortedContacts[letter].length; i++) {
+            const currentContact = sortedContacts[letter][i];
+            const currentLetter = letter;
+            const currentIndex = i;
+
+            // Überprüfen, ob der aktuelle Kontakt der bearbeitete Kontakt ist
+            if (currentContact.email === document.getElementById('email').value) {
+                setInformationsForContact(currentLetter, currentIndex);
+                break; // Beenden Sie die Schleife, da der Kontakt gefunden wurde
+            }
+        }
+    }
+}
 /**
  * Deletes a contact from the users array based on the provided index.
  * @param {number} i - The index of the contact in the users array.
@@ -265,14 +282,15 @@ function openContact(Letter, i) {
  * @param {number} i - The index of the contact in the sortedContacts array.
  */
 function setInformationsForContact(Letter, i) {
-    let name = sortedContacts[`${Letter}`][i]['name'];
-    let firstandSecoundLetters = sortedContacts[`${Letter}`][i]['firstLetter'];
-    let email = sortedContacts[`${Letter}`][i]['email'];
-    let phone = sortedContacts[`${Letter}`][i]['tel'];
-    document.getElementById('informationsContacts').innerHTML = openContactHTML(name, firstandSecoundLetters, email, phone, Letter, i);
-    mobileDelButton(email);
+    if (sortedContacts[Letter] && i >= 0 && i < sortedContacts[Letter].length) {
+        let name = sortedContacts[Letter][i]['name'];
+        let firstandSecoundLetters = sortedContacts[Letter][i]['firstLetter'];
+        let email = sortedContacts[Letter][i]['email'];
+        let phone = sortedContacts[Letter][i]['tel'];
+        document.getElementById('informationsContacts').innerHTML = openContactHTML(name, firstandSecoundLetters, email, phone, Letter, i);
+        mobileDelButton(email);
+    }
 }
-
 
 /**
  * Sorts the firstLetters array alphabetically.
