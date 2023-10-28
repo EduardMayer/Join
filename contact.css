@@ -347,6 +347,9 @@ h4 {
 }
 
 .openContactOnlyDesk{
+    align-items: center;
+    display: flex;
+    gap: 10px;
     cursor: pointer;
 }
 

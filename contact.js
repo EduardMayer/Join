@@ -94,7 +94,7 @@ async function SaveUser(i) {
         users[i]['tel'] = phone;
         users[i]['firstLetter'] = firstLetter;
         await setItem('users', JSON.stringify(users));
-        renderAllContacts();
+        renderAllContactsInContact();
         closeOverdiv();
         contactInit();
         closeOverdivArrow();
@@ -103,7 +103,7 @@ async function SaveUser(i) {
     return false;
 }
 
-function renderAllContacts() {
+function renderAllContactsInContact() {
     for (const letter in sortedContacts) {
         for (let i = 0; i < sortedContacts[letter].length; i++) {
             const currentContact = sortedContacts[letter][i];
