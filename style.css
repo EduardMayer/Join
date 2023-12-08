@@ -292,6 +292,10 @@ h1{
     color: rgb(240, 249, 253);
 }
 
+.show {
+    display:block;
+}
+
 @keyframes logoEffect{
     from{
         opacity: 1;

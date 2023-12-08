@@ -158,33 +158,6 @@ function deletePopupCard(taskId) {
   }
 }
 
-/**
- * Hides the dropdown box and displays the child task container and category box.
- * @param {HTMLElement} dropDownBox - The dropdown box element.
- * @param {HTMLElement} childTaskContainer - The child task container element.
- * @param {HTMLElement} categoryBox - The category box element.
- */
-function dropDownBoxElse(dropDownBox, childTaskContainer, categoryBox) {
-  dropDownBox.classList.add("d-none");
-  dropDownBox.classList.remove("newCategoryBox");
-  childTaskContainer.classList.remove("b-none");
-  categoryBox.classList.add("d-none");
-  categoryBox.classList.remove("categoryBox");
-}
-
-/**
- * Displays the dropdown box and hides the child task container and category box.
- * @param {HTMLElement} dropDownBox - The dropdown box element.
- * @param {HTMLElement} childTaskContainer - The child task container element.
- * @param {HTMLElement} categoryBox - The category box element.
- */
-function dropDownBoxDnone(dropDownBox, childTaskContainer, categoryBox) {
-  dropDownBox.classList.remove("d-none");
-  dropDownBox.classList.add("newCategoryBox");
-  childTaskContainer.classList.add("b-none");
-  categoryBox.classList.remove("d-none");
-  categoryBox.classList.add("categoryBox");
-}
 
 /**
  * Pushes the subtask information into the allSubtask array.
@@ -258,13 +231,42 @@ function openDropBoxCategory() {
   let dropDownBox = document.getElementById("newCategoryBox");
   let childTaskContainer = document.getElementById("category");
   let categoryBox = document.getElementById("categoryBox");
-  renderCategory();
+  
   if (dropDownBox.classList.contains("d-none")) {
-    dropDownBoxDnone(dropDownBox, childTaskContainer, categoryBox);
+    dropDownBoxShow(dropDownBox, childTaskContainer, categoryBox);
   } else {
-    dropDownBoxElse(dropDownBox, childTaskContainer, categoryBox);
+    dropDownBoxClose(dropDownBox, childTaskContainer, categoryBox);
   }
 }
+
+/**
+ * Hides the dropdown box and displays the child task container and category box.
+ * @param {HTMLElement} dropDownBox - The dropdown box element.
+ * @param {HTMLElement} childTaskContainer - The child task container element.
+ * @param {HTMLElement} categoryBox - The category box element.
+ */
+function dropDownBoxClose(dropDownBox, childTaskContainer, categoryBox) {
+  dropDownBox.classList.add("d-none");
+  dropDownBox.classList.remove("newCategoryBox");
+  childTaskContainer.classList.remove("b-none");
+  categoryBox.classList.add("d-none");
+  categoryBox.classList.remove("categoryBox");
+}
+
+/**
+ * Displays the dropdown box and hides the child task container and category box.
+ * @param {HTMLElement} dropDownBox - The dropdown box element.
+ * @param {HTMLElement} childTaskContainer - The child task container element.
+ * @param {HTMLElement} categoryBox - The category box element.
+ */
+function dropDownBoxShow(dropDownBox, childTaskContainer, categoryBox) {
+  dropDownBox.classList.remove("d-none");
+  dropDownBox.classList.add("newCategoryBox");
+  childTaskContainer.classList.add("b-none");
+  categoryBox.classList.remove("d-none");
+  categoryBox.classList.add("categoryBox");
+}
+
 
 /**
  * Clears the assigned contacts from the dropdown user box and hides the box.
